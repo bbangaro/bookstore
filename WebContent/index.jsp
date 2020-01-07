@@ -14,14 +14,19 @@
   	.nav-tabs {
  		border-bottom: none;
 	}
+	#floatMenu {
+		position: absolute;
+	}
+	.fix{position:fixed;_position:absolute;width:100%;top:0;z-index:100}
+
   </style>
 <title>북스토어</title>
 </head>
 <body>
-	
+	<div id="start">움직여라</div>
 	<%@ include file="include/top.jsp" %>
 	
-	<div class="container">
+	<div class="container" >
 	  <div id="books" class="carousel slide" data-ride="carousel">
 			  <ul class="carousel-indicators">
 			    <li data-target="#books" data-slide-to="0" class="active"></li>
@@ -138,5 +143,7 @@
 		  <div class="jumbotron"></div>
 	</div>
 	<%@ include file="include/bottom.jsp" %>
+
+	
 </body>
 </html>

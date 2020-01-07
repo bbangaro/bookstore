@@ -7,13 +7,16 @@
                     <a class="nav-link" href="#">공지사항</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">게시판</a>
+                    <a class="nav-link" href="#">후기게시판</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">로그인</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">마이페이지</a>
+                    <a class="nav-link" href="#">책요청</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Q&A</a>
                 </li>
             </ul>
     </div>
