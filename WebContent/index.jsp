@@ -23,7 +23,7 @@
 <title>북스토어</title>
 </head>
 <body>
-	<div id="start">움직여라</div>
+	<div id="floatMenu">움직여라</div>
 	<%@ include file="include/top.jsp" %>
 	
 	<div class="container" >

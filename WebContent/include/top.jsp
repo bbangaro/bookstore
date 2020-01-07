@@ -21,7 +21,7 @@ jQuery("#chase").css("position", "static");
 	</div>
 	
 	  <br>
-	  <div class="banner">
+	  <div class="banner nav justify-content-center">
 		<div id="chase" style="top:0px;">
 			<ul class="nav justify-content-center">
 			    <li class="nav-item">
@@ -42,7 +42,5 @@ jQuery("#chase").css("position", "static");
 	 		</ul>
 		</div>
 	  </div>
-	  	<div id="scroll">
-		    
-	 	</div>
+	  	
 </div>
