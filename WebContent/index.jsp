@@ -12,23 +12,24 @@
 <title>북스토어</title>
 </head>
 <body>
-	<div class="container text-center">
-		<form>
-			<div class="row">
-				<div class="col-sm-4 text-right mt-2 mr-0">
-					<a class="navbar-brand" href="#">
-						<img src="images/5.jpg">
-					</a>
-				</div>
-				<div class="col-sm-4 my-5">
-					<input type="text" class="form-control mb-2 mr-sm-2" placeholder="검색">
-				</div>
-				<div class="col-sm-4">
-				</div>
+	<div class="container my-5">
+		<div class="row">
+			<div class="col-4 text-right">
+				<a href="#"><img src="images/5.jpg"></a>
 			</div>
-		</form>
+			<div class="col-4 mt-3">
+				<form class="form-block">
+				    <div class="input-group">
+				      <input type="text" class="form-control" placeholder="검색">
+				      <div class="input-group-prepend">
+				      	<input type="submit" class="input-group-text" value="검색">
+				      </div>
+				    </div>    
+		 		</form>
+	 		</div>
+	 		<div class="col-4"></div>
+		</div>
 	</div>
-	
 	<nav class="navbar navbar-expand-sm bg-info navbar-dark">
 	  <ul class="navbar-nav">
 	    <li class="nav-item">
