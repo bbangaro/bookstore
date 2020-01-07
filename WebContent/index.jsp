@@ -9,7 +9,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+<title>북스토어</title>
 </head>
 <body>
 	<div class="container text-center">
@@ -31,7 +31,7 @@
 	
 	<nav class="navbar navbar-expand-sm bg-info navbar-dark">
 	  <ul class="navbar-nav">
-	    <li class="nav-item active">
+	    <li class="nav-item">
 	      <a class="nav-link" href="#">Active</a>
 	    </li>
 	    <li class="nav-item">
@@ -40,10 +40,12 @@
 	    <li class="nav-item">
 	      <a class="nav-link" href="#">Link</a>
 	    </li>
-	    <li class="nav-item text-right">
+	  </ul>
+	  <ul class="navbar-nav ml-auto">
+	  	<li class="nav-item">
 	      <a class="nav-link" href="#">로그인</a>
 	    </li>
-	    <li class="nav-item text-right">
+	  	<li class="nav-item">
 	      <a class="nav-link" href="#">회원가입</a>
 	    </li>
 	  </ul>
