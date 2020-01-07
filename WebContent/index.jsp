@@ -18,33 +18,10 @@
 <title>북스토어</title>
 </head>
 <body>
-<div class="container">
-	<div class="container text-center">
-		<a href="#">
-			<img src="images/5.jpg">
-		</a>
-	</div>
+	
+	<%@ include file="include/top.jsp" %>
 	
 	<div class="container">
-	  <br>
-	    <ul class="nav justify-content-center">
-		    <li class="nav-item">
-		      <a class="nav-link" href="index.jsp">Link</a>
-		    </li>
-		    <li class="nav-item">
-		      <a class="nav-link" href="list.jsp">Link</a>
-		    </li>
-		    <li class="nav-item">
-		      <a class="nav-link" href="#">Link</a>
-		    </li>
-		    <li class="nav-item">
-		      <a class="nav-link" href="#">Link</a>
-		    </li>
-		    <li class="nav-item">
-		      <a class="nav-link" href="#">Link</a>
-		    </li>
- 		</ul>
-	
 	  <div id="books" class="carousel slide" data-ride="carousel">
 			  <ul class="carousel-indicators">
 			    <li data-target="#books" data-slide-to="0" class="active"></li>
@@ -159,8 +136,7 @@
 			  </li>
 		  </ul>
 		  <div class="jumbotron"></div>
-
-</div>
-
+	</div>
+	<%@ include file="include/bottom.jsp" %>
 </body>
 </html>
