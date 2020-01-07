@@ -55,7 +55,15 @@
 		</div>
 		<div class="col p-0">
 			<div class="card bg-secondary text-white">
-	   			<div class="card-body">베스트 셀러<br></div>
+	   			<div class="card-body">
+	   				베스트셀러<br><hr>
+	   				1.<br><hr>
+	   				2.<br><hr>
+	   				3.<br><hr>
+	   				4.<br><hr>
+	   				5.<br><hr>
+	   				6.<br><hr>
+	   			</div>
 			</div>
 		</div>
 	</div>
