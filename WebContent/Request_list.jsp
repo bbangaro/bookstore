@@ -101,38 +101,9 @@ a {
                                 <th>&nbsp;</th>
                                 </tr>
                             </thead>
+                            
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <img src="https://bootdey.com/img/Content/user_1.jpg" alt="">
-                                        <a href="#" class="user-link">역사의 역사  재입고 해주세요!</a>
-                                        <span class="user-subhead">유시민</span>
-                                    </td>
-                                    <td>2013/08/12</td>
-                                    <td>
-                                        <a href="#">marlon@brando.com</a>
-                                    </td>
-                                    <td style="width: 20%;">
-                                        <a href="#" class="table-link">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                        <a href="#" class="table-link">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                        <a href="#" class="table-link danger">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                    </td>
-                                </tr>
+                              
                                 <tr>
                                     <td>
                                         <img src="https://bootdey.com/img/Content/user_3.jpg" alt="">
@@ -164,11 +135,16 @@ a {
                                         </a>
                                     </td>
                                 </tr>
-                                <tr>
+                               
+                            
+                            <c:if test="${not empty list}">
+                            	<c:forEach var="vo" items="${list}">
+	                            
+	                            <tr>
                                     <td>
-                                        <img src="https://bootdey.com/img/Content/user_2.jpg" alt="">
-                                        <a href="#" class="user-link">자바의 정석 판매 헤주세요 ㅠㅠㅠ</a>
-                                        <span class="user-subhead">비트보이</span>
+                                        <img src="https://bootdey.com/img/Content/user_3.jpg" alt="">
+                                        <a href="#" class="user-link">${vo.subject }</a>
+                                        <span class="user-subhead">아미</span>
                                     </td>
                                     <td>2013/08/12</td>
                                     <td>
@@ -195,7 +171,13 @@ a {
                                         </a>
                                     </td>
                                 </tr>
+	                            
+                            	
+                            	</c:forEach>
+                            </c:if>
+                            
                             </tbody>
+                            
                         </table>
                     </div>
                 </div>
