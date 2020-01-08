@@ -3,7 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bookstore">
-<<<<<<< HEAD:src/com/bc/mybatis/mapperReq.xml
 		
 	<select id="all" resultType="com.bc.model.vo.GuestBookVO">
 		SELECT REQUEST_NUM, MEMBER_ID, SUBJECT, R_CONTENT, PASSWORD, UPLOAD, REGDATE
@@ -11,24 +10,5 @@
 		ORDER BY REQUEST_NUM
 	</select>
 	
-=======
 
-	<insert id="memberinsert" parameterType="com.bc.model.vo.MemberVO">
-		INSERT INTO member
-		(MEMBER_ID, USERNAME, PASSWORD, EMAIL, ZIPCODE,
-		ADDRESS1,ADDRESS2,MOBILEPHONE,REGDATE,U_STATUS)
-		VALUES
-		(#{memberId},
-		#{userName},
-		#{password},
-		#{email},
-		#{zipcode},
-		#{address1},
-		#{address2},
-		#{mobilePhone},
-		#{regdate},
-		#{uStatus})
-	</insert>
-
->>>>>>> 05fcaca59604df3c020b434d26832d028a18a4a9:src/com/bc/mybatis/mapper.xml
 </mapper>
