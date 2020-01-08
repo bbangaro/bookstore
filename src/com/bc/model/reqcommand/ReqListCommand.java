@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bc.model.dao.ReqDAO;
 import com.bc.model.vo.GuestBookVO;
-import com.bc.model.vo.MemberVO;
 
 public class ReqListCommand implements Command {
 
