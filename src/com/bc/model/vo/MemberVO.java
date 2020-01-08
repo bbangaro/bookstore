@@ -1,8 +1,8 @@
 package com.bc.model.vo;
 
 public class MemberVO {
-	String memberId, userName,	password, email, zipcode, address1, address2, mobilePhone, regdate ;
-	int	uStatus ;
+	private String memberId, userName,	password, email, zipcode, address1, address2, mobilePhone, regdate ;
+	private int	uStatus ;
 	
 	public MemberVO() {}
 
