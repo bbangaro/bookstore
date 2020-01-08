@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,57 +98,40 @@ a {
                             <thead>
                                  <tr>
                                 <th><span>No</span></th> 
+                                <th><span>썸네일</span></th>
                                 <th><span>작성자</span></th>
                                 <th><span>제목</span></th>
                                 <th><span>내용</span></th>
                                 <th><span>등록일</span></th>
-                                <th>&nbsp;</th>
                                 </tr>
                             </thead>
+                            
                             <tbody>
-                                
                                	<c:if test="${not empty list}">
-									<c:forEach var="vo" items="${list}">
-									
-									<tr>
-										<td>${vo.requestNum }</td>
-	                                    <td>
-	                                        <img src="${vo.upload }.jpg" width="100px" height="95px">
-	                                        <a href="#" class="user-link">${vo.memberId }</a>
-	                                        <span class="user-subhead">${vo.memberId }</span>
-	                                    </td>
-	                                    <td href="#">${vo.subject }</td>
-	                                    <td>
-	                                        <span class="label label-default">${vo.content }</span>
-	                                    </td>
-	                                    <td>
-	                                        <a>${vo.regdate }</a>
-	                                    </td>
-	                                    <td style="width: 20%;">
-	                                        <a href="#" class="table-link">
-	                                            <span class="fa-stack">
-	                                                <i class="fa fa-square fa-stack-2x"></i>
-	                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-	                                            </span>
-	                                        </a>
-	                                        <a href="#" class="table-link danger">
-	                                            <span class="fa-stack">
-	                                                <i class="fa fa-square fa-stack-2x"></i>
-	                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-	                                            </span>
-	                                        </a>
-	                                    </td>
-                               		</tr>
-									
+									<c:forEach var="vo" items="${list}">								
+										<tr>
+											<td>${vo.requestNum }</td>
+		                                    <td>
+		                                        <img src="images/${vo.upload }.jpg" width="100px" height="50px">
+		                                    </td>
+		                                    <td><a href="#" class="user-link">${vo.memberId }</a></td>
+		                                    <td href="#">${vo.subject }</td>
+		                                    <td>
+		                                        <span class="label label-default">${vo.rContent }</span>
+		                                    </td>
+		                                    <td>
+		                                        <a>${vo.regdate }</a>
+		                                    </td>
+	                               		</tr>
+										
 									</c:forEach>
 								</c:if>
 								
 								<c:if test="${empty list }">
 									<td colspan="5">데이터가 없습니다t^^t</td>
 								</c:if>
-                               
-                               
                             </tbody>
+                               
                         </table>
                     </div>
                 </div>
