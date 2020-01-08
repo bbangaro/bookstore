@@ -14,22 +14,22 @@
 		<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
 			<ul class="navbar-nav">
 			    <li class="nav-item">
-			      <a class="nav-link" href="#">메인</a>
+			      <a class="nav-link" href="#">국내</a>
 			    </li>
 			    <li class="nav-item">
-			      <a class="nav-link" href="#">대분류1</a>
+			      <a class="nav-link" href="#">신간</a>
 			    </li>
 			    <li class="nav-item">
-			      <a class="nav-link" href="#">대분류2</a>
+			      <a class="nav-link" href="#">베스트셀러</a>
 			    </li>
 			    <li class="nav-item">
-			      <a class="nav-link" href="#">대분류3</a>
+			      <a class="nav-link" href="#">외국</a>
 			    </li>
 			    <li class="nav-item">
-			      <a class="nav-link" href="#">대분류4</a>
+			      <a class="nav-link" href="#">e북</a>
 			    </li>
 			    <li class="nav-item">
-			      <a class="nav-link" href="#">대분류5</a>
+			      <a class="nav-link" href="#">오디오북</a>
 			    </li>
 	     	</ul>
 		</nav>
