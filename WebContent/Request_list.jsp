@@ -4,17 +4,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Q&A 게시판</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/jejugothic.css">
+  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="csstemplate/bbs.css">
 
+
+<title>Insert title here</title>
 <style>
-   body{
-    background:#eee;    
+body{
+    background:white;    
 }
 .main-box.no-header {
     padding-top: 20px;
@@ -78,13 +81,12 @@ a {
     padding: 12px 8px;
 }
 </style>
+
 </head>
-<body>         
-<%@ include file="include/top.jsp" %>
+<body>
+		<%@ include file="include/top.jsp" %>
 
 
-<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.4.1/css/font-awesome.min.css">
-<hr>
 <div class="container bootstrap snippet">
     <div class="row">
         <div class="col-lg-12">
@@ -93,117 +95,58 @@ a {
                     <div class="table-responsive">
                         <table class="table user-list">
                             <thead>
-                                <tr>
-                                <th><span>User</span></th>
-                                <th><span>Created</span></th>
-                                <th class="text-center"><span>Status</span></th>
-                                <th><span>Email</span></th>
+                                 <tr>
+                                <th><span>No</span></th> 
+                                <th><span>작성자</span></th>
+                                <th><span>제목</span></th>
+                                <th><span>내용</span></th>
+                                <th><span>등록일</span></th>
                                 <th>&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <img src="https://bootdey.com/img/Content/user_1.jpg" alt="">
-                                        <a href="#" class="user-link">Full name 1</a>
-                                        <span class="user-subhead">Member</span>
-                                    </td>
-                                    <td>2013/08/12</td>
-                                    <td class="text-center">
-                                        <span class="label label-default">pending</span>
-                                    </td>
-                                    <td>
-                                        <a href="#">marlon@brando.com</a>
-                                    </td>
-                                    <td style="width: 20%;">
-                                        <a href="#" class="table-link">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                        <a href="#" class="table-link">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                        <a href="#" class="table-link danger">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src="https://bootdey.com/img/Content/user_3.jpg" alt="">
-                                        <a href="#" class="user-link">Full name 2</a>
-                                        <span class="user-subhead">Admin</span>
-                                    </td>
-                                    <td>2013/08/12</td>
-                                    <td class="text-center">
-                                        <span class="label label-success">Active</span>
-                                    </td>
-                                    <td>
-                                        <a href="#">marlon@brando.com</a>
-                                    </td>
-                                    <td style="width: 20%;">
-                                        <a href="#" class="table-link">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                        <a href="#" class="table-link">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                        <a href="#" class="table-link danger">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src="https://bootdey.com/img/Content/user_2.jpg" alt="">
-                                        <a href="#" class="user-link">Full name 3</a>
-                                        <span class="user-subhead">Member</span>
-                                    </td>
-                                    <td>2013/08/12</td>
-                                    <td class="text-center">
-                                        <span class="label label-danger">inactive</span>
-                                    </td>
-                                    <td>
-                                        <a href="#">marlon@brando.com</a>
-                                    </td>
-                                    <td style="width: 20%;">
-                                        <a href="#" class="table-link">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                        <a href="#" class="table-link">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                        <a href="#" class="table-link danger">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                    </td>
-                                </tr>
+                                
+                               	<c:if test="${not empty list}">
+									<c:forEach var="vo" items="${list}">
+									
+									<tr>
+										<td>${vo.requestNum }</td>
+	                                    <td>
+	                                        <img src="${vo.upload }.jpg" width="100px" height="95px">
+	                                        <a href="#" class="user-link">${vo.memberId }</a>
+	                                        <span class="user-subhead">${vo.memberId }</span>
+	                                    </td>
+	                                    <td href="#">${vo.subject }</td>
+	                                    <td>
+	                                        <span class="label label-default">${vo.content }</span>
+	                                    </td>
+	                                    <td>
+	                                        <a>${vo.regdate }</a>
+	                                    </td>
+	                                    <td style="width: 20%;">
+	                                        <a href="#" class="table-link">
+	                                            <span class="fa-stack">
+	                                                <i class="fa fa-square fa-stack-2x"></i>
+	                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+	                                            </span>
+	                                        </a>
+	                                        <a href="#" class="table-link danger">
+	                                            <span class="fa-stack">
+	                                                <i class="fa fa-square fa-stack-2x"></i>
+	                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+	                                            </span>
+	                                        </a>
+	                                    </td>
+                               		</tr>
+									
+									</c:forEach>
+								</c:if>
+								
+								<c:if test="${empty list }">
+									<td colspan="5">데이터가 없습니다t^^t</td>
+								</c:if>
+                               
+                               
                             </tbody>
                         </table>
                     </div>
@@ -211,7 +154,7 @@ a {
             </div>
         </div>
     </div>
-</div> 
+</div>
 
 <%@ include file="include/bottom.jsp" %>
 </body>
