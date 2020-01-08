@@ -14,7 +14,12 @@
 <title>북스토어</title>
 </head>
 <body>
+<<<<<<< HEAD
+	<div id="start">움직여라</div>
+
+=======
 	<%@ include file="include/top.jsp" %>
+>>>>>>> 531dc4c9f8d6a32095a6d33d1fa8500051ec9168
 	
 	<div class="container" >
 	  <div id="books" class="carousel slide" data-ride="carousel">
@@ -133,6 +138,10 @@
 		  <div class="jumbotron"></div>
 		<%@ include file="include/bottom.jsp" %>
 	</div>
+<<<<<<< HEAD
+
+=======
+>>>>>>> 531dc4c9f8d6a32095a6d33d1fa8500051ec9168
 
 	
 </body>
