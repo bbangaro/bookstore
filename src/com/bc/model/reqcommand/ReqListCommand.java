@@ -1,4 +1,4 @@
-package com.bc.model.command;
+package com.bc.model.reqcommand;
 
 import java.io.IOException;
 import java.util.List;

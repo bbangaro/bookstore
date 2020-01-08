@@ -10,7 +10,7 @@ import javax.servlet.jsp.PageContext;
 import org.apache.ibatis.session.SqlSession;
 
 import com.bc.model.vo.GuestBookVO;
-import com.bc.mybatis.suna.DBService;
+import com.bc.mybatis.DBService;
 
 public class ReqDAO {
 	

@@ -1,4 +1,4 @@
-package com.bc.frontcontroller;
+package com.bc.reqcontroller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,23 +9,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bc.model.command.ReqListCommand;
-import com.bc.model.command.OneListCommand;
 import com.bc.model.dao.ReqDAO;
-import com.bc.mybatis.suna.GuestbookVO;
+import com.bc.model.reqcommand.ReqListCommand;
 
-@WebServlet("/OneListController")
-public class ReqOneListController extends HttpServlet {
+@WebServlet("/ReqListController")
+public class ReqListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		OneListCommand comm = new OneListCommand();
+		//요청에 대한 처리
+		ReqListCommand comm = new ReqListCommand();
 		
 		String path = comm.exec(request, response);
 		request.getRequestDispatcher(path).forward(request, response);
-		
 	}
+	
+
+	
+	
+	
+	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("utf-8");

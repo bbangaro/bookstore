@@ -1,4 +1,4 @@
-package com.bc.mybatis.suna;
+package com.bc.mybatis;
 
 import java.io.IOException;
 import java.io.Reader;
