@@ -7,7 +7,7 @@
    <nav class="navbar fixed-bottom navbar-expand-sm navbar-light bg-light justify-content-center">
    	 <ul class="navbar-nav">
 	    <li class="nav-item">
-	      <a class="nav-link" href="#">공지사항</a>
+	      <a class="nav-link" href="NotListController">공지사항</a>
 	    </li>
 	    <li class="nav-item">
 	      <a class="nav-link" href="#">후기게시판</a>
