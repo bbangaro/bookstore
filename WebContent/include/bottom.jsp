@@ -16,7 +16,7 @@
 	      <a class="nav-link" href="ReqListController">책요청</a>
 	    </li>
 	    <li class="nav-item">
-	      <a class="nav-link" href="#">Q&A</a>
+	      <a class="nav-link" href="QnAListController">Q&A</a>
 	    </li>
 	    <li class="nav-item">
 	      <a class="nav-link" href="#">로그인</a>
