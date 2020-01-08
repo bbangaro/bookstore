@@ -4,7 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 
 
 import com.bc.model.vo.MemberVO;
-import com.bc.mybatis.DBService;
+import com.bc.mybatis.suna.DBService;
 
 public class DAO {
 		
