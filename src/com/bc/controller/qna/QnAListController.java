@@ -1,54 +1,31 @@
-package com.bc.reqcontroller;
+package com.bc.controller.qna;
 
 import java.io.IOException;
-
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-import com.bc.model.reqcommand.ReqListCommand;
-
-@WebServlet("/ReqListController")
-public class ReqListController extends HttpServlet {
+import com.bc.model.command.qna.Command;
+import com.bc.model.command.qna.QnAListCommand;
+ 
+@WebServlet("/QnAListController")
+public class QnAListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+ 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//요청에 대한 처리
-		ReqListCommand comm = new ReqListCommand();
+		
+		QnAListCommand comm = new QnAListCommand();
 		
 		String path = comm.exec(request, response);
 		request.getRequestDispatcher(path).forward(request, response);
 	}
-	
 
-	
-	
-	
-	
-	
+	 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.setCharacterEncoding("utf-8");
 		doGet(request, response);
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

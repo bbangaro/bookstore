@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bc.model.dao.DAO;
+import com.bc.model.dao.TakDAO;
 import com.bc.model.vo.MemberVO;
 
 @WebServlet("/memberJoin")
@@ -37,7 +37,7 @@ public class memberJoin extends HttpServlet {
 		membervo.setuStatus(1);
 	
 	
-		DAO.insetMember(membervo);
+		TakDAO.insetMember(membervo);
 		
 	}
 
