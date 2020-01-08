@@ -1,5 +1,8 @@
+<%@page import="java.util.List"%>
+<%@page import="com.bc.model.vo.GuestBookVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +24,7 @@
 <title>공지사항</title>
 </head>
 <body>
+
 		<%@ include file="include/top.jsp" %>
 <br>
 <div class="container bootstrap snippet">
@@ -42,36 +46,22 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="text-center">
-                                        	운영자
-                                    </td>
-                                    <td>2019/01/08</td>
-                                    <td>
-                                        <span class="label label-default">공지</span>
-                                    </td>
-                                    <td>
-                                       	 <h4>test</h4>
-                                    </td>
-                                    <td style="width: 20%;">
-                                        <a href="#" class="table-link">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                        <a href="#" class="table-link">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                        <a href="#" class="table-link danger">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                    </td>
+                                    	<c:if test="${not empty list}">
+										<c:forEach var="vo" items="${list}">								
+										<tr>
+											<td>${vo.nNum }</td>
+		                                    <td>
+		                                    	${vo.subject }
+		                                    </td>
+		                                    <td>${vo.content }</td>
+		                                    <td>
+		                                        ${vo.wDate }
+		                                    </td>
+		                      
+	                               		</tr>
+										
+										</c:forEach>
+										</c:if>
                                 </tr>
                                 
                             </tbody>

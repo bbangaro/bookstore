@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bc.notcommand.Command;
+import com.bc.notcommand.NotListCommand;
 
 @WebServlet("/NotListController")
 public class NotListController extends HttpServlet {
@@ -15,8 +16,11 @@ public class NotListController extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Command comm = ;
 		
+		Command comm = new NotListCommand();
+		
+		String path = comm.exec(request, response);
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 	
