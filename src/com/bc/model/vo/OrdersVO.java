@@ -1,23 +1,27 @@
 package com.bc.model.vo;
 
 public class OrdersVO {
-	int oNum, productsCount, amount, cancel ;
-	String orderId, buyerName,	buyerZipcode, buyerAddress, buyerPhone, buyerEmail,
-		   recipientName, recipientZipcode, recipientAddress, recipientPhone, message,
-		   payYype,	bankName, depositName, depositDate,	State, wDate ;
+	
+	private int oNum, bType, productsCount, amount, cancel ;
+	private String orderId, memberId, bCode, buyerName, buyerZipcode, buyerAddress, buyerPhone, buyerEmail, recipientName, recipientZipcode,
+				   recipientAddress, recipientPhone, message, payType, bankName, depositName, depositDate, state, wDate, bName ;
 	
 	public OrdersVO() {}
 
-	public OrdersVO(int oNum, int productsCount, int amount, int cancel, String orderId, String buyerName,
-			String buyerZipcode, String buyerAddress, String buyerPhone, String buyerEmail, String recipientName,
-			String recipientZipcode, String recipientAddress, String recipientPhone, String message, String payYype,
-			String bankName, String depositName, String depositDate, String state, String wDate) {
+	public OrdersVO(int oNum, int bType, int productsCount, int amount, int cancel, String orderId, String memberId,
+			String bCode, String buyerName, String buyerZipcode, String buyerAddress, String buyerPhone,
+			String buyerEmail, String recipientName, String recipientZipcode, String recipientAddress,
+			String recipientPhone, String message, String payType, String bankName, String depositName,
+			String depositDate, String state, String wDate, String bName) {
 		super();
 		this.oNum = oNum;
+		this.bType = bType;
 		this.productsCount = productsCount;
 		this.amount = amount;
 		this.cancel = cancel;
 		this.orderId = orderId;
+		this.memberId = memberId;
+		this.bCode = bCode;
 		this.buyerName = buyerName;
 		this.buyerZipcode = buyerZipcode;
 		this.buyerAddress = buyerAddress;
@@ -28,12 +32,13 @@ public class OrdersVO {
 		this.recipientAddress = recipientAddress;
 		this.recipientPhone = recipientPhone;
 		this.message = message;
-		this.payYype = payYype;
+		this.payType = payType;
 		this.bankName = bankName;
 		this.depositName = depositName;
 		this.depositDate = depositDate;
-		State = state;
+		this.state = state;
 		this.wDate = wDate;
+		this.bName = bName;
 	}
 
 	public int getoNum() {
@@ -42,6 +47,14 @@ public class OrdersVO {
 
 	public void setoNum(int oNum) {
 		this.oNum = oNum;
+	}
+
+	public int getbType() {
+		return bType;
+	}
+
+	public void setbType(int bType) {
+		this.bType = bType;
 	}
 
 	public int getProductsCount() {
@@ -74,6 +87,22 @@ public class OrdersVO {
 
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
+	public String getbCode() {
+		return bCode;
+	}
+
+	public void setbCode(String bCode) {
+		this.bCode = bCode;
 	}
 
 	public String getBuyerName() {
@@ -156,12 +185,12 @@ public class OrdersVO {
 		this.message = message;
 	}
 
-	public String getPayYype() {
-		return payYype;
+	public String getPayType() {
+		return payType;
 	}
 
-	public void setPayYype(String payYype) {
-		this.payYype = payYype;
+	public void setPayType(String payType) {
+		this.payType = payType;
 	}
 
 	public String getBankName() {
@@ -189,11 +218,11 @@ public class OrdersVO {
 	}
 
 	public String getState() {
-		return State;
+		return state;
 	}
 
 	public void setState(String state) {
-		State = state;
+		this.state = state;
 	}
 
 	public String getwDate() {
@@ -204,15 +233,32 @@ public class OrdersVO {
 		this.wDate = wDate;
 	}
 
+	public String getbName() {
+		return bName;
+	}
+
+	public void setbName(String bName) {
+		this.bName = bName;
+	}
+
 	@Override
 	public String toString() {
-		return "OrdersVO [oNum=" + oNum + ", productsCount=" + productsCount + ", amount=" + amount + ", cancel="
-				+ cancel + ", orderId=" + orderId + ", buyerName=" + buyerName + ", buyerZipcode=" + buyerZipcode
-				+ ", buyerAddress=" + buyerAddress + ", buyerPhone=" + buyerPhone + ", buyerEmail=" + buyerEmail
-				+ ", recipientName=" + recipientName + ", recipientZipcode=" + recipientZipcode + ", recipientAddress="
-				+ recipientAddress + ", recipientPhone=" + recipientPhone + ", message=" + message + ", payYype="
-				+ payYype + ", bankName=" + bankName + ", depositName=" + depositName + ", depositDate=" + depositDate
-				+ ", State=" + State + ", wDate=" + wDate + "]";
+		return "OrdersVO [oNum=" + oNum + ", bType=" + bType + ", productsCount=" + productsCount + ", amount=" + amount
+				+ ", cancel=" + cancel + ", orderId=" + orderId + ", memberId=" + memberId + ", bCode=" + bCode
+				+ ", buyerName=" + buyerName + ", buyerZipcode=" + buyerZipcode + ", buyerAddress=" + buyerAddress
+				+ ", buyerPhone=" + buyerPhone + ", buyerEmail=" + buyerEmail + ", recipientName=" + recipientName
+				+ ", recipientZipcode=" + recipientZipcode + ", recipientAddress=" + recipientAddress
+				+ ", recipientPhone=" + recipientPhone + ", message=" + message + ", payType=" + payType + ", bankName="
+				+ bankName + ", depositName=" + depositName + ", depositDate=" + depositDate + ", state=" + state
+				+ ", wDate=" + wDate + ", bName=" + bName + "]";
 	}
+	
+	
+	
+	
+
+	
+	
+	
 	
 }
