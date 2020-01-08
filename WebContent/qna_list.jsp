@@ -16,6 +16,7 @@
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 
 <link href="csstemplate/bss.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>			
 <%@ include file="include/top.jsp" %>
@@ -67,7 +68,6 @@
                                     </td>
                                     <td>2013/08/12</td>
                                 </tr>
-                                
                                 <c:forEach var="vo" items="${list }">
                                 	<tr>
                                 		<td>
@@ -76,8 +76,8 @@
                                 		<td>
                                 			${vo.memberId }
                                 		</td>
-                                		<td>
-                                			${vo.rContent }
+                                		<td class="text-center">
+                                			<a href="#">${vo.subject }</a>
                                 		</td>
                                 		<td>
                                 			${vo.category }
