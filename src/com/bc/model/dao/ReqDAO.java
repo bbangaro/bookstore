@@ -19,18 +19,9 @@ public class ReqDAO {
 		SqlSession ss =  DBService.getFactory().openSession(true);
 		List<GuestBookVO> list = ss.selectList("all"); //전달하는 파라미터가 없을 때는 이름만
 		ss.close();
+		System.out.println(list.toString());
 		return list;
 	}
-	
-	//방명록 하나 조회
-	public static GuestBookVO getOneList(int idx) {
-		SqlSession ss =  DBService.getFactory().openSession(true);
-		GuestBookVO vo = ss.selectOne("one", idx); //전달하는 파라미터가 없을 때는 이름만
-						//  쿼리문 소환 ( mapper아이디, 파라미터 값)
-		ss.close();
-		return vo;
-	}
 		
-	
 	
 }
