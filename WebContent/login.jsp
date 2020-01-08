@@ -158,7 +158,7 @@ hr {
 			<p>아래양식을 작성해주세요</p>
 			<hr>
 			<label for="member_id"><b>아이디</b></label> <input type="text"
-				name="member_id" placeholder="아이디" > <label for="psw"><b>이름</b></label>
+				name="member_id" placeholder="아이디"> <label for="psw"><b>이름</b></label>
 			<input type="text" name="username" placeholder="이름"> <label
 				for="psw"><b>암호</b></label> <input type="password" name="password"
 				placeholder="암호"> <label for="psw"><b>암호확인</b></label> <input

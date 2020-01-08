@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bc.model.dao.DAO;
 import com.bc.model.vo.MemberVO;
 
 @WebServlet("/memberJoin")
@@ -19,7 +20,7 @@ public class memberJoin extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//시간 출력
-		SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy/MM/dd");
 		Calendar time = Calendar.getInstance(); 
 		String format_time1 = format1.format(time.getTime());
 		
@@ -36,7 +37,7 @@ public class memberJoin extends HttpServlet {
 		membervo.setuStatus(1);
 	
 	
-		System.out.println(membervo);
+		DAO.insetMember(membervo);
 		
 	}
 

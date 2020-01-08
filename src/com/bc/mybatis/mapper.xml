@@ -3,7 +3,23 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bookstore">
-		
-	
+
+	<insert id="memberinsert" parameterType="com.bc.model.vo.MemberVO">
+		INSERT INTO member
+		(MEMBER_ID, USERNAME, PASSWORD, EMAIL, ZIPCODE,
+		ADDRESS1,ADDRESS2,MOBILEPHONE,REGDATE,U_STATUS)
+		VALUES
+		(#{memberId},
+		#{userName},
+		#{password},
+		#{email},
+		#{zipcode},
+		#{address1},
+		#{address2},
+		#{mobilePhone},
+		#{regdate},
+		#{uStatus})
+	</insert>
+
 </mapper>
 
