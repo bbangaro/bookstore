@@ -10,17 +10,23 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/jejugothic.css">
+  <style>
+  	*{
+  		font-family: 'Jeju Gothic', sans-serif;
+  	}
+  	.nav-item .active{
+		background: #f7ff00;  /* fallback for old browsers */
+		background: -webkit-linear-gradient(to right, #db36a4, #f7ff00);  /* Chrome 10-25, Safari 5.1-6 */
+		background: linear-gradient(to right, #db36a4, #f7ff00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+  	}
+  </style>
 <title>북스토어</title>
 </head>
 <body>
-<<<<<<< HEAD
-	<div id="start">움직여라</div>
 
-=======
 	<%@ include file="include/top.jsp" %>
->>>>>>> 531dc4c9f8d6a32095a6d33d1fa8500051ec9168
-	
 	<div class="container" >
 	  <div id="books" class="carousel slide" data-ride="carousel">
 			  <ul class="carousel-indicators">
@@ -50,7 +56,7 @@
 		  </div>
 		  <h2>장르별 베스트 셀러</h2>
 		  <ul class="nav nav-pills">
-			  <li class="nav-item">
+			  <li class="nav-item mr-3">
 			    <a class="nav-link active" href="#">인문</a>
 			  </li>
 			  <li class="nav-item">
@@ -138,11 +144,6 @@
 		  <div class="jumbotron"></div>
 		<%@ include file="include/bottom.jsp" %>
 	</div>
-<<<<<<< HEAD
 
-=======
->>>>>>> 531dc4c9f8d6a32095a6d33d1fa8500051ec9168
-
-	
 </body>
 </html>
