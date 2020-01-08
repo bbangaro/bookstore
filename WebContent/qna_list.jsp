@@ -87,6 +87,13 @@
                                 		</td>
                                 	</tr>
                                 </c:forEach>
+                                	<tr>
+                                		<td colspan="4">
+                                		</td>
+                                		<td>
+                                			<input type="button" value="글쓰기" onclick="javascript:location.href='qna_write.jsp'">
+                                		</td>
+                                	</tr>
                                 
                                 
                             </tbody>
