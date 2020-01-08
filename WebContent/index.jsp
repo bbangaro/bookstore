@@ -24,7 +24,7 @@
 </head>
 <body>
 	<div id="start">움직여라</div>
-	<%@ include file="include/top.jsp" %>
+
 	
 	<div class="container" >
 	  <div id="books" class="carousel slide" data-ride="carousel">
@@ -142,7 +142,7 @@
 		  </ul>
 		  <div class="jumbotron"></div>
 	</div>
-	<%@ include file="include/bottom.jsp" %>
+
 
 	
 </body>
