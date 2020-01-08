@@ -96,14 +96,20 @@ a {
                     <div class="table-responsive">
                         <table class="table user-list">
                             <thead>
-                                 <tr>
+                                <a href="#" class="table-link">
+                                    <span class="fa-stack">
+                                        <i class="fa fa-square fa-stack-2x"></i>
+                                        <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            <tr>
                                 <th><span>No</span></th> 
                                 <th><span>썸네일</span></th>
                                 <th><span>작성자</span></th>
                                 <th><span>제목</span></th>
                                 <th><span>내용</span></th>
                                 <th><span>등록일</span></th>
-                                </tr>
+                            </tr>
                             </thead>
                             
                             <tbody>
