@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.bc.model.command.ReqListCommand;
 import com.bc.model.command.OneListCommand;
 import com.bc.model.dao.ReqDAO;
-import com.bc.mybatis.GuestbookVO;
+import com.bc.mybatis.suna.GuestbookVO;
 
 @WebServlet("/OneListController")
 public class ReqOneListController extends HttpServlet {
