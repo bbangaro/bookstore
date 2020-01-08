@@ -19,6 +19,7 @@
   <mappers>
     <mapper resource="com/bc/mybatis/mapperReq.xml"/>
     <mapper resource="com/bc/mybatis/mapperTak.xml"/>
+    <mapper resource="com/bc/mybatis/mapperQnA.xml"/>
   </mappers>
 </configuration>
 
