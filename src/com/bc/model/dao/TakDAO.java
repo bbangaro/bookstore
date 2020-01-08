@@ -14,5 +14,11 @@ public class TakDAO {
 		return i;
 	}
 	
+	public static MemberVO logincheck(String member_id) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		MemberVO membervo = ss.selectOne("logincheck", member_id);
+		return membervo;
+	}
+	
 	
 }

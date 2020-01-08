@@ -13,9 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.bc.model.dao.TakDAO;
 import com.bc.model.vo.MemberVO;
 
-@WebServlet("/memberJoin")
-public class memberJoin extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+/**
+ * Servlet implementation class join_login2
+ */
+@WebServlet("/join")
+public class join extends HttpServlet {
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,9 +37,10 @@ public class memberJoin extends HttpServlet {
 		membervo.setMobilePhone(request.getParameter("mobilephone"));
 		membervo.setRegdate(format_time1);
 		membervo.setuStatus(1);
-	
-	
-		TakDAO.insetMember(membervo);
+		
+		System.out.println(membervo);
+		
+		int i = TakDAO.insetMember(membervo);
 		
 	}
 
@@ -47,3 +50,4 @@ public class memberJoin extends HttpServlet {
 	}
 
 }
+
