@@ -1,13 +1,8 @@
 package com.bc.model.vo;
 
 public class GuestBookVO {
-<<<<<<< HEAD
-	private int reviewNum ;
-	private String subject, rContent, upload ;
-=======
-	int requestNum, reviewNum, qNum, nNum ;
-	String subject, rContent, upload, regdate, categor, wDate, writerName ;
->>>>>>> 4f64a1580f75b97f5efd60e9774b122623cacff8
+	private int requestNum, reviewNum, qNum, nNum ;
+	private String subject, rContent, upload, regdate, categor, wDate, writerName ;
 	
 	public GuestBookVO() {}
 
