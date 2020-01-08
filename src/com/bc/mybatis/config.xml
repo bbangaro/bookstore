@@ -23,6 +23,7 @@
     <mapper resource="com/bc/mybatis/mapperReq.xml"/>
     <mapper resource="com/bc/mybatis/mapperTak.xml"/>
     <mapper resource="com/bc/mybatis/mapperQnA.xml"/>
+    <mapper resource="com/bc/mybatis/mapperNot.xml"/>
   </mappers>
 </configuration>
 

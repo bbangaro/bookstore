@@ -14,7 +14,7 @@
   <link rel="stylesheet" type="text/css" href="csstemplate/bbs.css">
 
 
-<title>Insert title here</title>
+<title>공지사항</title>
 </head>
 <body>
 		<%@ include file="include/top.jsp" %>
