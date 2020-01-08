@@ -4,188 +4,187 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>Q&A 게시판</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-<title>요쳥 게시판 리스트 화면</title>
 
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script>
+   $(document).ready(function () {
+   
+       $('.btn-filter').on('click', function () {
+         var $target = $(this).data('target');
+         if ($target != 'all') {
+           $('.table tr').css('display', 'none');
+           $('.table tr[data-status="' + $target + '"]').fadeIn('slow');
+         } else {
+           $('.table tr').css('display', 'none').fadeIn('slow');
+         }
+       });
+   
+    });
+</script>
 <style>
-body{
-    background:#eee;    
-}
-.main-box.no-header {
-    padding-top: 20px;
-}
-.main-box {
-    background: #FFFFFF;
-    -webkit-box-shadow: 1px 1px 2px 0 #CCCCCC;
-    -moz-box-shadow: 1px 1px 2px 0 #CCCCCC;
-    -o-box-shadow: 1px 1px 2px 0 #CCCCCC;
-    -ms-box-shadow: 1px 1px 2px 0 #CCCCCC;
-    box-shadow: 1px 1px 2px 0 #CCCCCC;
-    margin-bottom: 16px;
-    -webikt-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-}
-.table a.table-link.danger {
-    color: #e74c3c;
-}
-.label {
-    border-radius: 3px;
-    font-size: 0.875em;
-    font-weight: 600;
-}
-.user-list tbody td .user-subhead {
-    font-size: 0.875em;
-    font-style: italic;
-}
-.user-list tbody td .user-link {
-    display: block;
-    font-size: 1.25em;
-    padding-top: 3px;
-    margin-left: 60px;
-}
-a {
-    color: #3498db;
-    outline: none!important;
-}
-.user-list tbody td>img {
-    position: relative;
-    max-width: 50px;
-    float: left;
-    margin-right: 15px;
-}
-
-.table thead tr th {
-    text-transform: uppercase;
-    font-size: 0.875em;
-}
-.table thead tr th {
-    border-bottom: 2px solid #e7ebee;
-}
-.table tbody tr td:first-child {
-    font-size: 1.125em;
-    font-weight: 300;
-}
-.table tbody tr td {
-    font-size: 0.875em;
-    vertical-align: middle;
-    border-top: 1px solid #e7ebee;
-    padding: 12px 8px;
-}
+   body {
+      font-family: 'Open Sans', sans-serif;
+      color: #353535;
+   }
+   .content h1 {
+      text-align: center;
+   }
+   .content .content-footer p {
+      color: #6d6d6d;
+       font-size: 12px;
+       text-align: center;
+   }
+   .content .content-footer p a {
+      color: inherit;
+      font-weight: bold;
+   }
+   .panel {
+      border: 1px solid #ddd;
+      background-color: #fcfcfc;
+   }
+   .panel .btn-group {
+      margin: 15px 0 30px;
+   }
+   .panel .btn-group .btn {
+      transition: background-color .3s ease;
+   }
+   .table-filter {
+      background-color: #fff;
+      border-bottom: 1px solid #eee;
+   }
+   .table-filter tbody tr:hover {
+      cursor: pointer;
+      background-color: #eee;
+   }
+   .table-filter tbody tr td {
+      padding: 10px;
+      vertical-align: middle;
+      border-top-color: #eee;
+   }
+   .table-filter tbody tr.selected td {
+      background-color: #eee;
+   }
+   .table-filter tr td:first-child {
+      width: 38px;
+   }
+   .table-filter tr td:nth-child(2) {
+      width: 35px;
+   }
+   .table-filter .media-photo {
+      width: 38px;
+   }
+   .table-filter .media-body {
+       display: block;
+       /* Had to use this style to force the div to expand (wasn't necessary with my bootstrap version 3.3.6) */
+   }
+   .table-filter .media-meta {
+      font-size: 11px;
+      color: #999;
+   }
+   .table-filter .title {
+      color: #2BBCDE;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: normal;
+      margin: 0;
+   }
+   .table-filter .media .title span {
+      font-size: .8em;
+      margin-right: 20px;
+   }
+   .table-filter .delivery {
+      color: #5cb85c;
+   }
+   .table-filter .order {
+      color: #f0ad4e;
+   }
+   .table-filter .return {
+      color: #ed9624;
+   }
+   .table-filter .payment {
+      color: #33b5e5;
+   }
+   .table-filter .media .summary {
+      font-size: 14px;
+   }
 </style>
 </head>
-<body>
+<body>         
+<%@ include file="include/top.jsp" %>
 
-	<%@ include file="include/top.jsp" %>
-	
-<hr>
-<div class="container bootstrap snippet">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="main-box no-header clearfix">
-                <div class="main-box-body clearfix">
-                    <div class="table-responsive">
-                        <table class="table user-list">
-                            <thead>
-                                <tr>
-                                <th><span></span></th>
-                                <th><span>작성일</span></th>
-                                <th><span>Email</span></th>
-                                <th>&nbsp;</th>
-                                </tr>
-                            </thead>
-                            
-                            <tbody>
-                              
-                                <tr>
+
+<div class="container">
+   <div class="row">
+
+      <section class="content">
+         <h1>Q&A 게시판</h1>
+         <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+               <div class="panel-body">
+                  <div class="pull-right">
+                     <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-filter" data-target="all">글쓰기<button>
+                     </div>
+                  </div>
+                  <div class="table-container">
+                     <table class="table table-filter">
+                        <thead>   
+                           <tr>
+                              <th>이미지</th>
+                              <th>아이디</th>
+                              <th>제목</th>
+                              <th>유형</th>
+                              <th>등록일</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr data-status="delivery">
+                              <div class="media">
+                                 <td>   
+                                    <a href="#" class="pull-left">
+                                       <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+                                    </a>
+                                 </td>   
+                                 <div class="media-body">
+                                    <td class="title">
+                                       Lorem Impsum
+                                    </td>   
                                     <td>
-                                        <img src="https://bootdey.com/img/Content/user_3.jpg" alt="">
-                                        <a href="#" class="user-link">BTS 잡지는 판매 안하시나여?</a>
-                                        <span class="user-subhead">아미</span>
+                                       <p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
                                     </td>
-                                    <td>2013/08/12</td>
+                                    <td>   
+                                       <span class="pull-right delivery">(delivery)</span>
+                                    </td>
                                     <td>
-                                        <a href="#">marlon@brando.com</a>
+                                       <span class="media-meta pull-right">Febrero 13, 2016</span>
                                     </td>
-                                    <td style="width: 20%;">
-                                        <a href="#" class="table-link">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                        <a href="#" class="table-link">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                        <a href="#" class="table-link danger">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                    </td>
-                                </tr>
-                               
-                            
-                            <c:if test="${not empty list}">
-                            	<c:forEach var="vo" items="${list}">
-	                            
-	                            <tr>
-                                    <td>
-                                        <img src="https://bootdey.com/img/Content/user_3.jpg" alt="">
-                                        <a href="#" class="user-link">${vo.subject }</a>
-                                        <span class="user-subhead">아미</span>
-                                    </td>
-                                    <td>2013/08/12</td>
-                                    <td>
-                                        <a href="#">marlon@brando.com</a>
-                                    </td>
-                                    <td style="width: 20%;">
-                                        <a href="#" class="table-link">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                        <a href="#" class="table-link">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                        <a href="#" class="table-link danger">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                    </td>
-                                </tr>
-	                            
-                            	
-                            	</c:forEach>
-                            </c:if>
-                            
-                            </tbody>
-                            
-                        </table>
-                    </div>
-                </div>
+                                 </div>
+                              </div>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
             </div>
-        </div>
-    </div>
-</div>
-	
-	<%@ include file="include/bottom.jsp" %>
+            <div class="content-footer">
+               <p>
+               </p>
+            </div>
+         </div>
+      </section>
+   </div>
+</div>   
+
+<%@ include file="include/bottom.jsp" %>
 </body>
 </html>
