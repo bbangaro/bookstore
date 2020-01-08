@@ -1,4 +1,4 @@
-package com.bc.model.command.hh;
+package com.bc.model.command.qna;
 
 import java.io.IOException;
 import java.util.List;
