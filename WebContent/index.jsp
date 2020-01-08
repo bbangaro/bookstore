@@ -15,12 +15,25 @@
   	*{
   		font-family: 'Jeju Gothic', sans-serif;
   	}
+  	.nav-item .nav-link{
+  		color: rgba(0, 0, 0, .5);
+  	}
+  	.nav-item .nav-link:hover {
+  		color: rgba(0, 0, 0, .7);
+  	}
   	.nav-item .active{
 		background: #f7ff00;  /* fallback for old browsers */
 		background: -webkit-linear-gradient(to right, #db36a4, #f7ff00);  /* Chrome 10-25, Safari 5.1-6 */
 		background: linear-gradient(to right, #db36a4, #f7ff00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+		
   	}
+  	.nav-item .active:hover {
+  		color:white;
+  	}
+  	.bg-light {
+  		background-color:rgba(255, 255, 255, 0.5) !important;
+	}
+  	
   </style>
 <title>북스토어</title>
 </head>
@@ -59,16 +72,16 @@
 			  <li class="nav-item mr-3">
 			    <a class="nav-link active" href="#">인문</a>
 			  </li>
-			  <li class="nav-item">
+			  <li class="nav-item mr-3">
 			    <a class="nav-link" href="#">소설</a>
 			  </li>
-			  <li class="nav-item">
+			  <li class="nav-item mr-3">
 			    <a class="nav-link" href="#">경제</a>
 			  </li>
-			  <li class="nav-item">
+			  <li class="nav-item mr-3">
 			    <a class="nav-link" href="#">에세이</a>
 			  </li>
-			  <li class="nav-item">
+			  <li class="nav-item mr-3">
 			    <a class="nav-link" href="#">과학</a>
 			  </li>
 		  </ul>
