@@ -8,8 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>로그인 | 밀리의 서재</title>
 <style type="text/css">
-
-.cancel{
+.cancel {
 	margin-left: 95%;
 	font-size: 2em;
 }
@@ -53,16 +52,13 @@
 </style>
 
 <style type="text/css">
-
-
-
 .modal-content {
 	background-color: #fefefe;
 	margin: 5% auto 15% auto;
 	border: 1px solid #888;
-	width: 80%; 
+	width: 80%;
 	z-index: 2;
-	display:none;
+	display: none;
 }
 
 input[type=text], input[type=password], input[type=number], input[type=email]
@@ -79,9 +75,10 @@ hr {
 	border: 1px solid #f1f1f1;
 	margin-bottom: 25px;
 }
+
 .cancelbtn, .signupbtn {
-  float: left;
-  width: 50%;
+	float: left;
+	width: 50%;
 }
 </style>
 
@@ -146,7 +143,7 @@ hr {
 					<button class="facebook">
 						<i class="fas fa-book"></i> 서재로 로그인
 					</button>
-					<button class="facebook" onclick="document.querySelector('.modal-content').style.display='block'; document.querySelector('.content-wrap').style.display='none'">
+					<button class="memberJoin">
 						<i class="fas fa-sign-in-alt"></i> 회원가입
 					</button>
 				</div>
@@ -156,24 +153,48 @@ hr {
 
 
 	<div>
-		<form class="modal-content" action="">
+		<form class="modal-content" action="memberJoin">
 			<h1>회원가입</h1>
 			<p>아래양식을 작성해주세요</p>
 			<hr>
-			<label for="id"><b>아이디</b></label> <input type="text"
-				placeholder="아이디"> <label for="psw"><b>이름</b></label> <input
-				type="text" placeholder="이름"> <label for="psw"><b>암호</b></label>
-			<input type="password" placeholder="암호"> <label for="psw"><b>암호확인</b></label>
-			<input type="password" placeholder="암호확인"> <label for="email"><b>이메일</b></label>
-			<input type="email" placeholder="이메일@"> <label for="zipcode"><b>우편번호</b></label>
-			<input type="text" placeholder="우편번호"> <label for="addrds1"><b>집주소</b></label>
-			<input type="text" placeholder="집주소"> <label for="addrds2"><b>집주소</b></label>
-			<input type="text" placeholder="집상세주소"> <label for="phone"><b>핸드폰번호</b></label>
-			<input type="number" placeholder="휴대전화번호">
-			<button type="submit" class="signupbtn" >회원가입</button>
-			<button type="reset" class="cancelbtn" onclick="document.querySelector('.modal-content').style.display='none'; document.querySelector('.content-wrap').style.display='block'">취소</button>
+			<label for="member_id"><b>아이디</b></label> <input type="text"
+				name="member_id" placeholder="아이디" > <label for="psw"><b>이름</b></label>
+			<input type="text" name="username" placeholder="이름"> <label
+				for="psw"><b>암호</b></label> <input type="password" name="password"
+				placeholder="암호"> <label for="psw"><b>암호확인</b></label> <input
+				type="password" name="id" placeholder="암호확인"> <label
+				for="email"><b>이메일</b></label> <input type="email" name="email"
+				placeholder="이메일@"> <label for="zipcode"><b>우편번호</b></label>
+			<input type="text" name="zipcode" placeholder="우편번호"> <label
+				for="addrds1"><b>집주소</b></label> <input type="text" name="address1"
+				placeholder="집주소"> <label for="addrds2"><b>집주소</b></label> <input
+				type="text" name="address2" placeholder="집상세주소"> <label
+				for="phone"><b>핸드폰번호</b></label> <input type="number"
+				name="mobilephone" placeholder="휴대전화번호">
+			<button type="submit" name="id" class="signupbtn">회원가입</button>
+			<button type="reset" name="id" class="cancelbtn">취소</button>
 		</form>
 	</div>
+
+	<script>
+		<!-- 회원가입창  -->
+		let modalContent = document.querySelector('.modal-content');
+		<!-- 로그인/회원가입란   -->
+		let contentWrap = document.querySelector('.content-wrap');
+		let memberJoin = document.querySelector('.memberJoin');
+		let cancelbtn = document.querySelector('.cancelbtn');
+		
+		memberJoin.onclick = function(){
+			contentWrap.style.display='none';
+			modalContent.style.display="block";
+		}
+		cancelbtn.onclick = function(){
+			contentWrap.style.display='block';
+			modalContent.style.display="none";
+		}
+		
+		
+	</script>
 
 </body>
 
