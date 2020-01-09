@@ -29,9 +29,6 @@
 	    	<div class="col">
 	    		<input type="text" class="form-control" placeholder="제목" name="subject">
 	    	</div>
-	    	<div class="col">
-	        <input type="text" class="form-control" placeholder="유형" name="kind">
-	      </div>
 	    </div>
 	    <div class="row mt-2">
 		    <div class="col">

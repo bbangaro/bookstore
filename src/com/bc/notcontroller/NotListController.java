@@ -28,5 +28,6 @@ public class NotListController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		doGet(request, response);
 	}
-
+	
 }
+

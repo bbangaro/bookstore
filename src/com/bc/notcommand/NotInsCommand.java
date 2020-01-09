@@ -17,7 +17,6 @@ public class NotInsCommand implements Command{
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("subject",request.getParameter("subject"));
-		map.put("kind",request.getParameter("kind"));
 		map.put("content",request.getParameter("content"));
 		System.out.println("map 객체"+map);
 		int result = NotDAO.getInsert(map);
