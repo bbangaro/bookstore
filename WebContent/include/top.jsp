@@ -4,7 +4,7 @@
 	
 
 	<div class="container text-center">
-		<a href="#">
+		<a href="index.jsp">
 			<img src="images/5.jpg">
 		</a>
 	</div>
