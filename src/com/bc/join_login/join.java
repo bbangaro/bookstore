@@ -40,8 +40,15 @@ public class join extends HttpServlet {
 		
 		System.out.println(membervo);
 		
-		int i = TakDAO.insetMember(membervo);
-		
+		int result = TakDAO.insetMember(membervo);
+		System.out.println(i);
+		if(result == 1 ) {
+			request.getSession().setAttribute("message","회원가입에 성공했습니다.");
+			response.sendRedirect("join.jsp");
+		}else {
+			request.getSession().setAttribute("message","회원가입에 실패하였습니다.");
+			response.sendRedirect("join.jsp");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
