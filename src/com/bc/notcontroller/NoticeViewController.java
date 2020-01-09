@@ -8,22 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bc.notcommand.Command;
-import com.bc.notcommand.NotListCommand;
+import com.bc.notcommand.NotViewCommand;
 
-@WebServlet("/NotListController")
-public class NotListController extends HttpServlet {
+@WebServlet("/Nview")
+public class NoticeViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		NotListCommand comm = new NotListCommand();
-		
+		Command comm = null;
+		comm = new NotViewCommand();
 		String path = comm.exec(request, response);
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		doGet(request, response);

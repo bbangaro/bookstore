@@ -11,8 +11,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/jejugothic.css">
-  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="csstemplate/bbs.css">
   <style>
   	*{
   		font-family: 'Jeju Gothic', sans-serif;
@@ -20,30 +18,16 @@
   </style>
 </head>
 <body>
-
 	<%@ include file="include/top.jsp" %>
-	
-	<div class="container mt-2">
-	  <form action="Notinsert" method="post">
-	    <div class="row mt-2">
-	    	<div class="col">
-	    		<input type="text" class="form-control" placeholder="제목" name="subject">
-	    	</div>
-	    	<div class="col">
-	        <input type="text" class="form-control" placeholder="유형" name="kind">
-	      </div>
-	    </div>
-	    <div class="row mt-2">
-		    <div class="col">
-		    	<h2>공지사항</h2>
-		    	<textarea class="form-control" rows="15" name="content"></textarea>
-		    </div>
-	    </div>
-	    <button type="submit" class="btn btn-light text-right mt-2">글쓰기</button>
-	  </form>
+	<div class="container">
+		<c:if test="${not empty vo}">
+			
+			
+			${vo.content }							
+		                                 
+						
+		</c:if>
 	</div>
-	
 	<%@ include file="include/bottom.jsp" %>
-	
 </body>
 </html>

@@ -37,23 +37,21 @@
                         <table class="table user-list">
                             <thead>
                                 <tr>
-                                <th><span>작성자</span></th>
-                                <th><span>작성일</span></th>
+                                <th><span>작성번호</span></th>
                                 <th><span>유형</span></th>
                                 <th><span>제목</span></th>
+                                <th><span>날짜</span></th>
                                 <th>&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    	<c:if test="${not empty list}">
+                             <c:if test="${not empty list}">
 										<c:forEach var="vo" items="${list}">								
 										<tr>
 											<td>${vo.nNum }</td>
 		                                    <td>
-		                                    	${vo.subject }
 		                                    </td>
-		                                    <td>${vo.content }</td>
+		                                    <td><a href="Nview?nNum=${vo.nNum }">${vo.subject }</a></td>
 		                                    <td>
 		                                        ${vo.wDate }
 		                                    </td>
@@ -62,8 +60,9 @@
 										
 										</c:forEach>
 										</c:if>
-                                </tr>
-                                
+										<c:if test="${empty list }">
+											<td colspan="5">데이터가 없습니다t^^t</td>
+										</c:if>
                             </tbody>
                         </table>
                     </div>
@@ -71,11 +70,21 @@
             </div>
         </div>
     </div>
-    <form action="Notice" method="post">
-      <input type="submit" class="btn btn-light text-right" value="글 쓰기">
-    </form>
+    <div class="text-center">
+	    <ul class="pagination">
+		    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+		    <li class="page-item"><a class="page-link" href="#">1</a></li>
+		    <li class="page-item active"><a class="page-link" href="#">2</a></li>
+		    <li class="page-item"><a class="page-link" href="#">3</a></li>
+		    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+	    </ul>
+    </div>
+    <div class="text-right">
+	    <form action="Notice" method="post">
+	      <input type="submit" class="btn btn-light text-right" value="글 쓰기">
+	    </form>
+    </div>
 </div>
-
 <%@ include file="include/bottom.jsp" %>
 </body>
 </html>

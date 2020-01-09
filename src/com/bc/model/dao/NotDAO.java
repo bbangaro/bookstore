@@ -21,7 +21,18 @@ public class NotDAO {
 		ss.close();
 		return list;
 	}
-	
+	public static int getInsert(Map map) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		int result = ss.insert("Ninsert", map);
+		ss.close();
+		return result;
+	}
+	public static GuestBookVO getOne(int nNum) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		GuestBookVO vo = ss.selectOne("Nselectone",nNum);
+		ss.close();
+		return vo;
+	}
 	
 		
 	
