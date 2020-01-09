@@ -16,5 +16,17 @@ public class QnADAO {
 		return list;
 	}
 	
-	
+	public static int insertQnA(int qNum) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.insert("insert", qNum);
+		ss.close();
+		return result;
+	}
+
+	public static QnAVO getOne(int qNum) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		QnAVO vo = ss.selectOne("selectone", qNum);
+		ss.close();
+		return vo;
+	}
 }
