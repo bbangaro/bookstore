@@ -29,7 +29,7 @@ public class join extends HttpServlet {
 		MemberVO membervo = new MemberVO();
 		membervo.setMemberId(request.getParameter("member_id"));
 		membervo.setUserName(request.getParameter("username"));
-		membervo.setPassword(request.getParameter("password"));
+		membervo.setPassword(request.getParameter("password1"));
 		membervo.setEmail(request.getParameter("email"));
 		membervo.setZipcode(request.getParameter("zipcode"));
 		membervo.setAddress1(request.getParameter("address1"));
