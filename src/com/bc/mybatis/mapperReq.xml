@@ -21,5 +21,22 @@
 		       (REQUEST_NUM, MEMBER_ID, SUBJECT, R_CONTENT, PASSWORD, UPLOAD, REGDATE)
 		VALUES (REQ_BOARD.NEXTVAL, #{memberId}, #{subject}, #{rContent}, #{password}, #{upload, jdbcType=VARCHAR}, SYSDATE)
 	</insert>	
+	
+
+
+	<select id="reqPaging" parameterType="Map" resultType="com.bc.model.vo.GuestBookVO">
+		SELECT *
+		FROM (SELECT ROWNUM R_NUM, R.*
+		        FROM (SELECT *
+		              FROM REQUEST
+		              ORDER BY REQUEST_NUM
+		             ) R
+		     )    
+		WHERE R_NUM BETWEEN #{begin} AND #{end}
+	</select>
+	
+	<select id="reqtotal" resultType="int">
+		SELECT COUNT(*) FROM REQUEST
+	</select>	
 
 </mapper>
