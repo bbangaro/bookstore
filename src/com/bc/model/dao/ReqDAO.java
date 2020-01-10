@@ -17,9 +17,9 @@ public class ReqDAO {
 	
 	public static List<GuestBookVO> getReqList(Map<String, Integer> map) {
 		SqlSession ss = DBService.getFactory().openSession(true);
-		List<GuestBookVO> plist = ss.selectList("reqPaging", map);
+		List<GuestBookVO> list = ss.selectList("reqall", map);
 		ss.close();
-		return plist;
+		return list;
 	}
 	
 	public static int getTotalCount() {

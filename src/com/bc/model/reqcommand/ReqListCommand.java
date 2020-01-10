@@ -64,12 +64,10 @@ public class ReqListCommand implements Command {
 		
 		
 		//1. DB연결하고 전체 데이터 가져와서(DAO)
-		List<GuestBookVO> List = ReqDAO.getList();
-		List<GuestBookVO> PList = ReqDAO.getReqList(map);
+		List<GuestBookVO> List = ReqDAO.getReqList(map);
 		
 		//2. 응답페이지에 전달(request 객체에 속성값 저장) 
 		request.setAttribute("list", List);
-		request.setAttribute("plist", PList);
 		request.setAttribute("pvo", p);
 		
 		//응답페이지(list.jsp) 저장하고 페이지 전환(포워딩)

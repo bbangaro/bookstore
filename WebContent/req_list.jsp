@@ -42,10 +42,12 @@
 				$(data).find("member").each(function(){
 					tbody += "<br>";
 					tbody += "<tr>";
-					tbody += "<td><img src='upload/" + $(this).find("upload").text() + "'></td>";
-					tbody += "<br>";
-					tbody += "<td></td>";
 					tbody += "<td>" + $(this).find("content").text() + "</td>";
+					tbody += "<br>";
+					tbody += "<br>";
+					tbody += "<br>";
+					tbody += "<td><img src='upload/" + $(this).find("upload").text() + "'></td>";
+					tbody += "<td></td>";
 					tbody += "</tr>";
 				});
 				
@@ -128,6 +130,15 @@ a {
     padding: 12px 8px;
 }
 
+.table tfoot {
+    border-bottom: 2px solid #e7ebee;
+    font-size: 1.125em;
+    font-weight: 300;
+    font-size: 0.875em;
+    vertical-align: middle;
+    border-top: 1px solid #e7ebee;
+    padding: 12px 8px;
+}
 
 
 </style>
