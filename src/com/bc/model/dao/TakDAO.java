@@ -3,6 +3,7 @@ package com.bc.model.dao;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.bc.model.vo.BookVO;
 import com.bc.model.vo.MemberVO;
 import com.bc.mybatis.DBService;
 
@@ -29,4 +30,11 @@ public class TakDAO {
 		System.out.println(count);
 		return count;
 	}
+	//회원가입 중복 체크
+		public static BookVO detailPage(String detailPage) {
+			SqlSession ss = DBService.getFactory().openSession(true);
+			BookVO bookvo = ss.selectOne("detailPage",detailPage);
+			System.out.println(bookvo);
+			return bookvo;
+		}
 }

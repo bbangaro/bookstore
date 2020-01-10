@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,6 +37,7 @@ hr {
 	width: 50%;
 }
 </style>
+
 
 <script>
     function sample6_execDaumPostcode() {
@@ -83,12 +85,20 @@ hr {
 </script>
 </head>
 <body>
+<%@ include file="include/top.jsp" %>	
+	<c:choose>
+		<c:when test="${not empty sessionScope.message }">
+					<script> alert("${sessionScope.message }");</script>
+		</c:when>
+	</c:choose>
+
+
 <div class="modal">
-		<form name="from_join" action="join" class="modal-content" method="post" >
+		<form name="form_join" action="join" class="modal-content" method="post" >
 			<h1>회원가입</h1>
 			<p>아래양식을 작성해주세요</p>
 			<hr>
-			<label for="member_id"><b>아이디<input type="button" onclick="regCheckFunction()" value="중복체크"></b><span class="check_id"></span></label>
+			<label for="member_id"><b>아이디</b><button type="button" class="check_id_count" name="checkCount" onclick="regCheckFunction()" value="0">중복체크</button><span class="check_id"></span></label>
 			 <input type="text" name="member_id" class="id" placeholder="영문 대소문자와 숫자 4~12자리" min="4" max="20"> 
 			 
 			 <label for="psw"><b>이름</b></label>
@@ -111,17 +121,20 @@ hr {
 			<input type="text" id="sample6_detailAddress" name="address2" placeholder="상세주소">
 		
 			<label for="phone"><b>핸드폰번호</b></label> 
-			<input type="number" name="mobilephone" placeholder="휴대전화번호">
+			<input type="number" name="mobilephone" placeholder="휴대전화번호(-없이 번호만입력)">
 			<button type="button"  class="signupbtn" onclick="check_login()">회원가입</button>
 			<button type="reset" class="cancelbtn_id" >다시입력</button>
 		</form>
+		
+			
 	</div>
 	
 <script>
 	/* 중복체크  */
 	function regCheckFunction(){
 		var id = $(".id").val();
-		console.log(id);
+		var idRegExp = /^[a-zA-z0-9]{4,12}$/;
+		if(idRegExp.test(id)){
 		 $.ajax({
 			url : "checking_id",
 			type: 'POST',
@@ -129,21 +142,27 @@ hr {
 			success: function(result){
 				if(result == 1){
 					$(".check_id").html("이미 존재하는  아이디 입니다.");
+					$(".check_id_count").val(0);
 				}else{
 					$(".check_id").html("사용할수 있는 아이디 입니다.");	
+					$(".check_id_count").val(1);
 				}
 			}
+	
 			
 		}) 
+	}else{ 
+		$(".check_id").html("아이디는 영문 대소문자와 숫자 4~12자리로 입력해야합니다!");
+		document.from_join.member_id.focus();
 	}
+}
 		
 	/* 비밀번호 일치확인 */
 		function isSame(){
 			var pw1 = document.from_join.password1.value;
 			var pw2 = document.from_join.password2.value;
 			var same = document.querySelector(".same");
-			console.log(pw1);
-			console.log(pw2);
+	
 			if(pw1 !==undefined && pw1 !== ""){
 			if(pw1 == pw2){
 				same.innerHTML="비밀번호가 일치합니다";
@@ -156,20 +175,25 @@ hr {
 	
 	/* 값 유효성 체크후 액션 */
 	function check_login(){
-		var member_id = document.from_join.member_id.value;
-		var username = document.from_join.username.value;
-		var password1 =  document.from_join.password1.value;
-		var password2 =document.from_join.password2.value;
-		var email = document.from_join.email.value;
-		var	zipcode =document.from_join.zipcode.value;
-		var	address1 = document.from_join.address1.value;
-		var address2 = document.from_join.address2.value;
-		var mobilephone = document.from_join.mobilephone.value;
 		
+		
+		var member_id = document.form_join.member_id.value;
+		var username = document.form_join.username.value;
+		var password1 =  document.form_join.password1.value;
+		var password2 =document.form_join.password2.value;
+		var email = document.form_join.email.value;
+		var	zipcode =document.form_join.zipcode.value;
+		var	address1 = document.form_join.address1.value;
+		var address2 = document.form_join.address2.value;
+		var mobilephone = document.form_join.mobilephone.value;
+		var checkCount = document.form_join.checkCount.value;
+	
 		/* 아이디 유효성검사 */
+		regCheckFunction();
 		if(member_id !== undefined && member_id !== ""){
 			var idRegExp = /^[a-zA-z0-9]{4,12}$/;
 			if(!idRegExp.test(member_id)){
+			
 			alert("아이디는 영문 대소문자와 숫자 4~12자리로 입력해야합니다!");
 				member_id.value = "";
 				document.from_join.member_id.focus();
@@ -181,6 +205,13 @@ hr {
 			document.from_join.member_id.focus();
 			return false;
 		}
+		
+		/* 중복체크 여부  */
+		if(checkCount == 0){
+			alert("중복체크를 해주세요");
+			return false;
+		}
+		
 		//이름 유효성 검사 
 		if(username !== undefined && username !== ""){
 			 var nameRegExp = /^[가-힣]{2,4}$/;
@@ -235,12 +266,11 @@ hr {
 		
 		
 	 if(mobilephone == undefined || mobilephone == ""){
-			alert("휴대전화번호를 입력해주세요");
-			  return false;
+			alert("휴대전화번호를 확인해주세요");
+			return false;
 		}
 	
-		document.from_join.submit();
-		
+		document.form_join.submit();
 		
 	
 	}

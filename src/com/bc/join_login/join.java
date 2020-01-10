@@ -13,9 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.bc.model.dao.TakDAO;
 import com.bc.model.vo.MemberVO;
 
-/**
- * Servlet implementation class join_login2
- */
 @WebServlet("/join")
 public class join extends HttpServlet {
        
@@ -41,7 +38,7 @@ public class join extends HttpServlet {
 		System.out.println(membervo);
 		
 		int result = TakDAO.insetMember(membervo);
-		System.out.println(i);
+		System.out.println(result);
 		if(result == 1 ) {
 			request.getSession().setAttribute("message","회원가입에 성공했습니다.");
 			response.sendRedirect("join.jsp");
