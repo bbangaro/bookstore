@@ -24,6 +24,11 @@
 	<select id="logincheck" parameterType="String" resultType="com.bc.model.vo.MemberVO">
 		select member_id,password from member WHERE member_id = #{member_id}
 	</select>
+	
+	<select id="checking_id" parameterType="String" resultType="int">
+		select count(*) from member WHERE member_id = #{member_id}
+	</select>
+	
 
 
 </mapper>

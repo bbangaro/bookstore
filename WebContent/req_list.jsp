@@ -16,6 +16,51 @@
 
 
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+	$(function(){
+		$("#getDataBtn").click(function(){
+			getXMLMembers();
+		});
+	});
+	
+	
+	function getXMLMembers(){
+	const numUrl = "getXmlRequest?requestNum=" + $("#requestNum").text();
+		$.ajax({
+			url : numUrl,
+			type : "get",
+			dataType : "xml",
+			//data : "name=" + name +&age=27", //서버로 전달할 데이터 작성
+			//data : $('#inputForm').serialize(), //form 데이터 파라미터 전달
+			success : function(data){
+				
+				var tbody = "";
+				//전달받은 xml 데이터 처리
+				// <member>태그들이 찾아짐 .fine("태그명")
+				// 태그 안에 있는 텍스트 값 찾기 .text()
+				// 태그방식이니까 돔 객체 사용하듯
+				$(data).find("member").each(function(){
+					tbody += "<br>";
+					tbody += "<tr>";
+					tbody += "<td>" + $(this).find("content").text() + "</td>";
+					tbody += "<td><img src='images/" + $(this).find("upload").text() + ".jpg'></td>";
+					tbody += "</tr>";
+				});
+				
+				$("#tbody").html(tbody);
+	
+			},
+			error : function(jqXHR, textStatus, errorThrown){
+				alert("Ajax 처리 실패 : \n"
+					+ "jqXHR.readyState : " + jqXHR.readyState +"\n"
+					+ "textStatus : " + textStatus +"\n"
+					+ "errorThrown : " + errorThrown);
+			}
+		});
+	}
+</script>
+
 <style>
 body{
     background:white;    
@@ -47,19 +92,11 @@ body{
     font-size: 0.875em;
     font-style: italic;
 }
-.user-list tbody td .user-link {
-    display: block;
-    font-size: 1.25em;
-    padding-top: 3px;
-    margin-left: 60px;
-}
 a {
     color: #3498db;
     outline: none!important;
 }
 .user-list tbody td>img {
-    position: relative;
-    max-width: 50px;
     float: left;
     margin-right: 15px;
 }
@@ -81,6 +118,9 @@ a {
     border-top: 1px solid #e7ebee;
     padding: 12px 8px;
 }
+
+
+
 </style>
 
 </head>
@@ -96,7 +136,7 @@ a {
                     <div class="table-responsive">
                         <table class="table user-list">
                             <thead>
-                                <a href="#" class="table-link">
+                                <a href="ReqWriteController?requestNum=${guestBookVO.getRequestNum }" class="table-link">
                                     <span class="fa-stack">
                                         <i class="fa fa-square fa-stack-2x"></i>
                                         <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
@@ -107,8 +147,8 @@ a {
                                 <th><span>썸네일</span></th>
                                 <th><span>작성자</span></th>
                                 <th><span>제목</span></th>
-                                <th><span>내용</span></th>
                                 <th><span>등록일</span></th>
+                                <th><span>&nbsp;</span></th>
                             </tr>
                             </thead>
                             
@@ -116,17 +156,34 @@ a {
                                	<c:if test="${not empty list}">
 									<c:forEach var="vo" items="${list}">								
 										<tr>
-											<td>${vo.requestNum }</td>
+											<td><a id="requestNum">${vo.requestNum }</a></td>
 		                                    <td>
-		                                        <img src="images/${vo.upload }.jpg" width="100px" height="50px">
+		                                        <img src="images/${vo.upload }.jpg" width="50px" height="50px">
 		                                    </td>
-		                                    <td><a href="#" class="user-link">${vo.memberId }</a></td>
-		                                    <td href="#">${vo.subject }</td>
+		                                    <td><a>${vo.memberId }</a></td>
 		                                    <td>
-		                                        <span class="label label-default">${vo.rContent }</span>
+		                                    	<a href="ReqOneListController?requestNum=${vo.requestNum }">${vo.subject }</a>
+		                                    	<button id="getDataBtn">눌렁</button>
+		                                    	<br>
+												<div id="tbody"></div>
 		                                    </td>
 		                                    <td>
 		                                        <a>${vo.regdate }</a>
+		                                    </td>
+		                                     
+	                               			<td style="width: 10%;">
+		                                        <a href="#" class="table-link">
+		                                            <span class="fa-stack">
+		                                                <i class="fa fa-square fa-stack-2x"></i>
+		                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+		                                            </span>
+		                                        </a>
+		                                        <a href="#" class="table-link danger">
+		                                            <span class="fa-stack">
+		                                                <i class="fa fa-square fa-stack-2x"></i>
+		                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+		                                            </span>
+		                                        </a>
 		                                    </td>
 	                               		</tr>
 										

@@ -8,6 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>로그인 | 서재</title>
 <style type="text/css">
+
 .center {
 	text-align: center;
 }
@@ -29,26 +30,20 @@
 	position: absolute;
 	border: 1px solid red;
 	height: 100px;
-	width: 100px;
+	width: 200px;
 	position: absolute;
 	left: 50%;
-	margin-left: -50px;
+	margin-left: -100px;
 	top: 50%;
 	margin-top: -50px;
 	z-index: 1;
 }
-.facebook {
-	width: 135.99px;
-	height: 21.99px;
-}
+
 </style>
 
 <style type="text/css">
 
-
-
 .modal-login{
-
 	background-color: #fefefe;
 	margin: 5% auto 15% auto;
 	border: 1px solid #888;
@@ -67,18 +62,34 @@ input[type=text], input[type=password], input[type=number], input[type=email]
 	box-sizing: border-box;
 }
 
-
-
 .cancelbtn_id, .cancelbtn_login, .signupbtn {
 	float: left;
 	width: 50%;
 }
 
+.library, .memberJoin{
+	cursor: pointer;
+	background-color: #5dca88;
+	box-shadow: 0px 5px #279C56;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 15px;
+	margin-top: 10px;
+	height:30px;
+	width: 100%;
+}
+
+
+.library:active, .memberJoin:active{
+	font-size: 15px;
+	position: relative;
+	top: 5px;
+	box-shadow: none;
+}
 
 </style>
 
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-
 <script>
 	//페이스북 로그인  api
 	window.fbAsyncInit = function() {
@@ -130,17 +141,17 @@ input[type=text], input[type=password], input[type=number], input[type=email]
 					<fb:login-button scope="public_profile,email"
 						onlogin="checkLoginState();" class="facebook">페이스북 로그인
 							</fb:login-button>
-					<button class="facebook">
-						<i class="fab fa-neos"></i> 네이버 로그인
+					<button class="naver">
+						<i class="fab fa-neos"></i>네이버 로그인
 					</button>
-					<button class="facebook">
-						<i class="fab fa-kaggle"></i> 카카오 로그인
+					<button class="kakao">
+						<i class="fab fa-kaggle"></i>카카오 로그인
 					</button>
 					<button class="library">
-						<i class="fas fa-book"></i> 서재로 로그인
+						<i class="fas fa-book"></i>서재로 로그인
 					</button>
 					<button class="memberJoin">
-						<i class="fas fa-sign-in-alt"></i> 회원가입
+						<i class="fas fa-sign-in-alt"></i>회원가입하기
 					</button>
 				</div>
 			</section>

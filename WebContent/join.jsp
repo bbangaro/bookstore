@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 <!-- 다음 주소 api  -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 <style>
 .modal-content {
 	background-color: #fefefe;
@@ -86,7 +88,7 @@ hr {
 			<h1>회원가입</h1>
 			<p>아래양식을 작성해주세요</p>
 			<hr>
-			<label for="member_id"><b>아이디<input type="button" value="중복체크"></b><span class="id"></span></label>
+			<label for="member_id"><b>아이디<input type="button" onclick="regCheckFunction()" value="중복체크"></b><span class="check_id"></span></label>
 			 <input type="text" name="member_id" class="id" placeholder="영문 대소문자와 숫자 4~12자리" min="4" max="20"> 
 			 
 			 <label for="psw"><b>이름</b></label>
@@ -97,7 +99,7 @@ hr {
 			<label for="psw"><b>암호확인</b><span class="same"></span></label>
 			 <input type="password" name="password2" onkeyup="isSame()" placeholder="영문 대소문자와 숫자 4~12자리"> 
 			 <label for="email"><b>이메일</b></label> 
-			 <input type="email" name="email" placeholder="이메일@"> 
+			 <input type="email" name="email" placeholder="이메일@  ex) email@gmail.com"> 
 			 
 			 <label for="zipcode"><b>우편번호<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></b><br><br></label>
 			<input type="text" id="sample6_postcode" readonly="readonly" name="zipcode" placeholder="우편번호" onclick="sample6_execDaumPostcode()">
@@ -115,7 +117,25 @@ hr {
 		</form>
 	</div>
 	
-	<script>
+<script>
+	/* 중복체크  */
+	function regCheckFunction(){
+		var id = $(".id").val();
+		console.log(id);
+		 $.ajax({
+			url : "checking_id",
+			type: 'POST',
+			data : {id:id},
+			success: function(result){
+				if(result == 1){
+					$(".check_id").html("이미 존재하는  아이디 입니다.");
+				}else{
+					$(".check_id").html("사용할수 있는 아이디 입니다.");	
+				}
+			}
+			
+		}) 
+	}
 		
 	/* 비밀번호 일치확인 */
 		function isSame(){
@@ -150,7 +170,6 @@ hr {
 		if(member_id !== undefined && member_id !== ""){
 			var idRegExp = /^[a-zA-z0-9]{4,12}$/;
 			if(!idRegExp.test(member_id)){
-		
 			alert("아이디는 영문 대소문자와 숫자 4~12자리로 입력해야합니다!");
 				member_id.value = "";
 				document.from_join.member_id.focus();
@@ -221,6 +240,7 @@ hr {
 		}
 	
 		document.from_join.submit();
+		
 		
 	
 	}

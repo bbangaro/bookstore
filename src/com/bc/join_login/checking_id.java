@@ -1,7 +1,7 @@
-package com.bc.reqcontroller;
+package com.bc.join_login;
 
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,40 +9,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bc.model.dao.ReqDAO;
-import com.bc.model.reqcommand.ReqOneListCommand;
+import com.bc.model.dao.TakDAO;
 
-@WebServlet("/ReqOneListController")
-public class ReqOneListController extends HttpServlet {
+@WebServlet("/checking_id")
+public class checking_id extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+ 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		ReqOneListCommand comm = new ReqOneListCommand();
-		
-		String path = comm.exec(request, response);
-		request.getRequestDispatcher(path).forward(request, response);
-		
+		request.getParameter("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		String id = request.getParameter("id");
+		PrintWriter out = response.getWriter();
+		out.print(TakDAO.checking_id(id));
 	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.setCharacterEncoding("utf-8");
 		doGet(request, response);
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
