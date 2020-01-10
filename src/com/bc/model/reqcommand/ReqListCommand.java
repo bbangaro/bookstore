@@ -23,6 +23,6 @@ public class ReqListCommand implements Command {
 		//응답페이지(list.jsp) 저장하고 페이지 전환(포워딩)
 		//request.getRequestDispatcher("list.jsp").forward(request, response);
 		
-		return "Request_list.jsp";
+		return "req_list.jsp";
 	}
 }

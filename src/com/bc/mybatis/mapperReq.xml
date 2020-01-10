@@ -4,11 +4,22 @@
 
 <mapper namespace="rbookstore">
 		
-	<select id="all" resultType="com.bc.model.vo.GuestBookVO">
+	<select id="reqall" resultType="com.bc.model.vo.GuestBookVO">
 		SELECT REQUEST_NUM, MEMBER_ID, SUBJECT, R_CONTENT, PASSWORD, UPLOAD, REGDATE
 		FROM REQUEST
 		ORDER BY REQUEST_NUM
 	</select>
 	
+	<select id="reqone" parameterType="int" resultType="com.bc.model.vo.GuestBookVO">
+		SELECT REQUEST_NUM, MEMBER_ID, SUBJECT, R_CONTENT, PASSWORD, UPLOAD, REGDATE
+		FROM REQUEST
+		WHERE REQUEST_NUM = #{requestNum}
+	</select>
+	
+	<insert id="reqInsertGuest" parameterType="com.bc.model.vo.GuestBookVO">
+		INSERT INTO REQUEST 
+		       (REQUEST_NUM, MEMBER_ID, SUBJECT, R_CONTENT, PASSWORD, UPLOAD, REGDATE)
+		VALUES (REQ_BOARD.NEXTVAL, #{memberId}, #{subject}, #{rContent}, #{password}, #{upload}, SYSDATE)
+	</insert>	
 
 </mapper>
