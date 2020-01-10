@@ -37,5 +37,11 @@
 		DELETE FROM QNA
 		 WHERE Q_NUM = #{qNum}
 	</delete>
+	
+	<!-- 댓글 SQL문 -->
+	<select id="selectC" parameterType="int" resultType="com.bc.model.vo.CommentVO">
+		SELECT * FROM COMMENTS 
+		 WHERE Q_NUM = #{qNum}
+	</select>
 </mapper>
 
