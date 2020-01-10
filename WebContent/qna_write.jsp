@@ -21,7 +21,7 @@
 	function sendData() {
 		for (var i = 0; i < document.forms[0].elements.length; i++) {
 			if (document.forms[0].elements[i].value == "") {
-				if (i == 3)	continue;
+				if (i == 4)	continue;
 				alert(document.forms[0].elements[i].name + "를 입력하세요");
 				document.forms[0].elements[i].focus();
 				return;
@@ -47,10 +47,10 @@
 							<th>카테고리</th>
 							<td>
 								<select name="category">
-									<option value="delivery">배송</option>
-									<option value="order">주문/취소</option>
-									<option value="return">반품/교환</option>
-									<option value="payment">결제/결제수단</option>
+									<option value="배송">배송</option>
+									<option value="주문/취소">주문/취소</option>
+									<option value="반품/교환">반품/교환</option>
+									<option value="결제/결제수단">결제/결제수단</option>
 								</select>
 							</td>
 						</tr>
@@ -73,8 +73,8 @@
 						</tr>
 						<tr>
 							<td colspan="2">
-							<input type="button" value="입력" onclick="sendData()" /> 
-							<input type="reset" value="취소" />
+							<input type="button" value="입력" onclick="sendData()"> 
+							<input type="reset" value="취소">
 							</td>
 						</tr>
 		            </tbody>

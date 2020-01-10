@@ -17,6 +17,56 @@
 
 <link href="csstemplate/bss.css" rel="stylesheet" type="text/css">
 
+
+<script>
+$(document).ready(function () {
+
+    $('.btn-filter').on('click', function () {
+      var $target = $(this).data('target');
+      if ($target != '전체') {
+        $('.table tr').css('display', 'none');
+        $('.table tr[data-status="' + $target + '"]').fadeIn('slow');
+      } else {
+        $('.table tr').css('display', 'none').fadeIn('slow');
+      }
+    });
+
+ });
+</script>
+
+<style>
+	
+	.paging { list-style: none; }
+	.paging li {
+		float: left;
+		margin-right: 8px;
+	}
+	.paging li a {
+		text-decoration: none;
+		display: block;
+		padding: 3px 7px;
+		border: 1px solid #00B3DC;
+		font-weight: bold;
+		color: black;
+	}
+	.paging .disable {
+		border: 1px solid silver;
+		padding: 3px 7px;
+		color: silver;
+	}
+	.paging .now {
+		border: 1px solid #ff4aa5;
+		padding: 3px 7px;
+		background-color: #ff4aa5;
+	}
+	.paging li a:hover {
+		background-color: #00B3DC;
+		color: white;
+	}
+
+</style>
+
+
 </head>
 <body>			
 <%@ include file="include/top.jsp" %>
@@ -24,21 +74,19 @@
 
 <hr>
 <div class="container bootstrap snippet">
-    <div class="row">
     <h2>Q&A 게시판</h2>
+    <div class="row">
         <div class="col-lg-12">
             <div class="main-box no-header clearfix">
                 <div class="main-box-body clearfix">
                     <div class="table-responsive">
-                    	
                     	<div class="pull-right">
 							<div class="btn-group">
-								버튼 수정
-								<button type="button" class="btn btn-success btn-filter" data-target="delivery">배송</button>
-								<button type="button" class="btn btn-warning btn-filter" data-target="order">주문/취소</button>
-								<button type="button" class="btn btn-danger btn-filter" data-target="return">반품/교환</button>
-								<button type="button" class="btn btn-info btn-filter" data-target="payment">결제/결제수단</button>
-								<button type="button" class="btn btn-default btn-filter" data-target="all">전체</button>
+								<button type="button" class="btn btn-outline-success btn-filter" data-target="배송">배송</button>
+								<button type="button" class="btn btn-outline-warning btn-filter" data-target="주문/취소">주문/취소</button>
+								<button type="button" class="btn btn-outline-danger btn-filter" data-target="반품/교환">반품/교환</button>
+								<button type="button" class="btn btn-outline-info btn-filter" data-target="결제/결제수단">결제/결제수단</button>
+								<button type="button" class="btn btn-default btn-filter" data-target="전체">전체</button>
 							</div>
 						</div>
                     
@@ -69,15 +117,15 @@
                                     <td>2013/08/12</td>
                                 </tr>
                                 <c:forEach var="vo" items="${list }">
-                                	<tr>
+                                	<tr data-status="${vo.category }">
                                 		<td>
-                                			${vo.upload }
+                                			<img src="upload/${vo.upload }" alt="업로드이미지" width="80px" height="80px">
                                 		</td>
                                 		<td>
                                 			${vo.memberId }
                                 		</td>
                                 		<td class="text-center">
-                                			<a href="QnAOneListController?qNum=${vo.qNum} ">${vo.subject }</a>
+                                			<a href="QnAOneListController?qNum=${vo.qNum}">${vo.subject }</a>
                                 		</td>
                                 		<td>
                                 			${vo.category }
@@ -87,16 +135,56 @@
                                 		</td>
                                 	</tr>
                                 </c:forEach>
+                                </tbody>
+                                <tfoot>
                                 	<tr>
                                 		<td colspan="4">
-                                		</td>
+											<ol class="paging">
+											<%--[이전으로]에 대한 사용여부 처리 --%>
+											<c:choose>
+												<%--사용불가(disable) : 첫번째 블록인 경우 --%>
+												<c:when test="${pvo.beginPage == 1}">
+													<li class="disable">이전으로</li>
+												</c:when>
+												<c:otherwise>
+													<li>
+														<a href="QnAListController?cPage=${pvo.beginPage - 1}">이전으로</a>
+													</li>
+												</c:otherwise>
+											</c:choose>
+											
+											<%-- 블록내에 표시할 페이지 표시(시작페이지~끝페이지) --%>
+											<c:forEach var="k" begin="${pvo.beginPage }" end="${pvo.endPage }">
+											<c:choose>
+												<c:when test="${k == pvo.nowPage}">
+													<li class="now">${k }</li>
+												</c:when>
+												<c:otherwise>
+													<li>
+														<a href="QnAListController?cPage=${k}">${k}</a>
+													</li> 
+												</c:otherwise>
+											</c:choose>
+											</c:forEach>
+											
+											<%--[다음으로]에 대한 사용여부 처리 --%>
+											<c:choose>
+												<%--사용불가(disable) : 
+													endPage가 전체페이지 수보다  크거나 같으면 --%>
+												<c:when test="${pvo.endPage >= pvo.totalPage }">
+													<li class="disable">다음으로</li>
+												</c:when>
+												<c:otherwise>
+													<li><a href="QnAListController?cPage=${pvo.endPage + 1}">다음으로</a></li>
+												</c:otherwise>
+											</c:choose>
+											</ol>	
+										</td>
                                 		<td>
                                 			<input type="button" value="글쓰기" onclick="javascript:location.href='qna_write.jsp'">
                                 		</td>
                                 	</tr>
-                                
-                                
-                            </tbody>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
@@ -104,6 +192,7 @@
         </div>
     </div>
 </div>
+<br><br><br><br><br>
 <%@ include file="include/bottom.jsp" %>
 </body>
 </html>
