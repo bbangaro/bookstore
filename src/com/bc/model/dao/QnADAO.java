@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.bc.model.vo.BookVO;
+import com.bc.model.vo.CommentVO;
 import com.bc.model.vo.QnAVO;
 import com.bc.mybatis.DBService;
 
@@ -44,5 +45,12 @@ public class QnADAO {
 		int result = ss.selectOne("total");
 		ss.close();
 		return result;
+	}
+
+	public static List<CommentVO> getComment(int qNum) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		List<CommentVO> list = ss.selectList("selectC", qNum);
+		ss.close();
+		return list;
 	}
 }
