@@ -6,13 +6,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.bc.model.command.qna.QnAWriteCommand;
  
 @WebServlet("/QnAWriteController")
 public class QnAWriteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("qna_write.jsp").forward(request, response);
+		QnAWriteCommand comm = new QnAWriteCommand();
+		
+		String path = comm.exec(request, response);
+		
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

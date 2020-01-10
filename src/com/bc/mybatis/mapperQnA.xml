@@ -3,8 +3,15 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="qbookstore">
-	<select id="selectall" resultType="com.bc.model.vo.QnAVO">
-		SELECT * FROM QNA
+	<select id="selectall" parameterType="Map" resultType="com.bc.model.vo.QnAVO">
+		SELECT *
+		FROM (SELECT ROWNUM R_NUM, Q.*
+		        FROM (SELECT *
+		              FROM QNA
+		              ORDER BY Q_NUM
+		             ) Q
+		     )    
+		WHERE R_NUM BETWEEN #{begin} AND #{end}
 	</select>	
 	
 	<select id="selectone" parameterType="int" resultType="com.bc.model.vo.QnAVO">
@@ -12,11 +19,23 @@
 		 WHERE Q_NUM = #{qNum}
 	</select>
 	
-	<insert id="insert" parameterType="int">
-		INSERT INTO QNA 
-		VALUES(QNA_SEQ.NEXTVAL, #{memberId(세션에서)}, #{userName(세션에서)}, #{password(세션에서)}, 
-			#{subject}, #{category}, #{rContent}, #{upload}, #{bCode}, 
-			#{bType}, SYSDATE)
+	<select id="total" resultType="int">
+		SELECT COUNT(*) FROM QNA
+	</select>
+	
+	<insert id="insert" parameterType="Map">
+		INSERT INTO QNA VALUES(11 ,#{memberId}, 
+                    (SELECT USERNAME FROM MEMBER WHERE MEMBER_ID = #{memberId}), 
+                    (SELECT PASSWORD FROM MEMBER WHERE MEMBER_ID = #{memberId}),
+                    #{subject}, #{category}, #{rContent}, #{upload}, 
+                    (SELECT B_CODE FROM BOOK WHERE B_NAME = #{bName}),
+                    (SELECT B_TYPE FROM BOOK WHERE B_NAME = #{bName}), 
+                    SYSDATE) 
 	</insert>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM QNA
+		 WHERE Q_NUM = #{qNum}
+	</delete>
 </mapper>
 
