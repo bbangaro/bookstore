@@ -30,16 +30,15 @@ public class login extends HttpServlet {
 				request.setAttribute("loginFiledId", "등록된 아이디가 없습니다. 다시로그인 하세요");
 				 dispatcher.forward(request, response);
 		}else {
-			
 			if(!membervo.getPassword().equals(password)) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 				request.setAttribute("loginFiledPassword", "비밀번호가 일지하지 않습니다. 다시로그인 하세요");
 				 dispatcher.forward(request, response);
 			}else {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-			request.setAttribute("loginSucceed", "로그인에 성공 하였습니다.");
-			request.setAttribute("id", "로그인에 성공 하였습니다.");
-			dispatcher.forward(request, response);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+				request.setAttribute("loginSucceed", "로그인에 성공 하였습니다.");
+				request.setAttribute("id", "로그인에 성공 하였습니다.");
+				dispatcher.forward(request, response);
 			}
 		}
 		System.out.println(membervo);

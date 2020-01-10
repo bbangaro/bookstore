@@ -36,9 +36,9 @@ public class NotDAO {
 		ss.close();
 		return totalCount;
 	}
-	public static List<BookVO> getBList() {
+	public static List<BookVO> getBList(String lcode) {
 		SqlSession ss =  DBService.getFactory().openSession(true);
-		List<BookVO> list = ss.selectList("Nall");
+		List<BookVO> list = ss.selectList("Nall", lcode);
 		ss.close();
 		return list;
 	}	
