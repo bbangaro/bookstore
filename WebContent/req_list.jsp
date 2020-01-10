@@ -18,15 +18,14 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
-	$(function(){
-		$("#getDataBtn"+$(vo.requestNum )).click(function(){
-			getXMLMembers();
-		});
-	});
 	
+	function getDataBtn(requestNum) { 
+			getXMLMembers(requestNum);
+	};	
+
 	
-	function getXMLMembers(){
-	const numUrl = "getXmlRequest?requestNum=" + $("#requestNum").text();
+	function getXMLMembers(requestNum){
+	const numUrl = "getXmlRequest?requestNum=" + requestNum;
 		$.ajax({
 			url : numUrl,
 			type : "get",
@@ -43,12 +42,14 @@
 				$(data).find("member").each(function(){
 					tbody += "<br>";
 					tbody += "<tr>";
-					tbody += "<td>" + $(this).find("content").text() + "</td>";
 					tbody += "<td><img src='upload/" + $(this).find("upload").text() + "'></td>";
+					tbody += "<br>";
+					tbody += "<td></td>";
+					tbody += "<td>" + $(this).find("content").text() + "</td>";
 					tbody += "</tr>";
 				});
 				
-				$("#tbody").html(tbody);
+				$("#tbody"+requestNum).html(tbody);
 	
 			},
 			error : function(jqXHR, textStatus, errorThrown){
@@ -63,7 +64,7 @@
 
 <style>
 body{
-    background:white;    
+    background:#eee;    
 }
 .main-box.no-header {
     padding-top: 20px;
@@ -92,11 +93,19 @@ body{
     font-size: 0.875em;
     font-style: italic;
 }
+.user-list tbody td .user-link {
+    display: block;
+    font-size: 1.25em;
+    padding-top: 3px;
+    margin-left: 60px;
+}
 a {
     color: #3498db;
     outline: none!important;
 }
 .user-list tbody td>img {
+    position: relative;
+    max-width: 50px;
     float: left;
     margin-right: 15px;
 }
@@ -127,7 +136,7 @@ a {
 <body>
 		<%@ include file="include/top.jsp" %>
 
-
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 <div class="container bootstrap snippet">
     <div class="row">
         <div class="col-lg-12">
@@ -164,9 +173,9 @@ a {
 		                                  
 		                                    <td>
 		                                    	<a href="ReqOneListController?requestNum=${vo.requestNum }">${vo.subject }</a>
-		                                    	<button id="getDataBtn${vo.requestNum } }">눌렁</button>
+		                                    	<button onClick="getDataBtn(${vo.requestNum })" >눌렁</button>
 		                                    	<br>
-												<div id="tbody"></div>
+												<div id="tbody${vo.requestNum }"></div>
 		                                    </td>
 		                                  
 		                                    <td>
@@ -195,6 +204,7 @@ a {
 								<c:if test="${empty list }">
 									<td colspan="5">데이터가 없습니다t^^t</td>
 								</c:if>
+								
                             </tbody>
                                
                         </table>
