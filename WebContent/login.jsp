@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,6 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>로그인 | 서재</title>
 <style type="text/css">
-
 .center {
 	text-align: center;
 }
@@ -38,28 +38,35 @@
 	margin-top: -50px;
 	z-index: 1;
 }
-
 </style>
 
 <style type="text/css">
-
 .modal-login{
+	height: 100px;
+	width: 300px;
+	position: absolute;
+	left: 50%;
+	top: 30%;
+	margin-top: -50px;
+	margin-left: -150px;
 	background-color: #fefefe;
-	margin: 5% auto 15% auto;
 	border: 1px solid #888;
-	width: 80%;
-	z-index: 2;
 	display: none;
+	z-index: 1;
 }
 
-input[type=text], input[type=password], input[type=number], input[type=email]
+input[type=text], input[type=password], input[type=number], input[type=email], label
 	{
 	width: 100%;
-	padding: 15px;
+	padding: 13px;
 	display: inline-block;
 	border: none;
 	background: #f1f1f1;
 	box-sizing: border-box;
+}
+
+.loginfication{
+	display: none;
 }
 
 .cancelbtn_id, .cancelbtn_login, .signupbtn {
@@ -79,7 +86,6 @@ input[type=text], input[type=password], input[type=number], input[type=email]
 	width: 100%;
 }
 
-
 .library:active, .memberJoin:active{
 	font-size: 15px;
 	position: relative;
@@ -90,7 +96,7 @@ input[type=text], input[type=password], input[type=number], input[type=email]
 </style>
 
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-<script>
+ <script>
 	//페이스북 로그인  api
 	window.fbAsyncInit = function() {
 		FB.init({
@@ -132,15 +138,53 @@ input[type=text], input[type=password], input[type=number], input[type=email]
 
 </head>
 <body>
+
+	<c:choose>
+		<c:when test="${!empty requestScope.loginFiledId}">
+				<script>
+				window.addEventListener("load",function(){
+						var contentWrap = document.querySelector('.content-wrap');
+						var modalLogin = document.querySelector('.modal-login');
+						var loginfication = document.querySelector('.loginfication');
+						var elementNode = document.createElement('b');
+						const elementNodes = elementNode.innerHTML = "${requestScope.loginFiledId}";
+						contentWrap.style.display="none";
+						modalLogin.style.display="block";
+						loginfication.append(elementNodes);
+						loginfication.style.display="block";
+				});
+				</script>
+		</c:when>
+		<c:when test="${!empty requestScope.loginFiledPassword }">
+				<script>
+				window.addEventListener("load",function(){
+					var contentWrap = document.querySelector('.content-wrap');
+					var modalLogin = document.querySelector('.modal-login');
+					var loginfication = document.querySelector('.loginfication');
+					var elementNode = document.createElement('b');
+					const elementNodes = elementNode.innerHTML = "${requestScope.loginFiledPassword}";
+					contentWrap.style.display="none";
+					modalLogin.style.display="block";
+					loginfication.append(elementNodes);
+					loginfication.style.display="block";
+				});
+				
+				</script>
+		</c:when>
+	</c:choose>
+		
+		
+					
+	
 	<img src="images/왕문곰_pc-01.jpg" alt="책" class="web-mount">
 	<section class="center">
 		<div>
 			<h1></h1>
 			<section class="content-wrap">
 				<div class="btn-area">
-					<fb:login-button scope="public_profile,email"
+				<fb:login-button scope="public_profile,email"
 						onlogin="checkLoginState();" class="facebook">페이스북 로그인
-							</fb:login-button>
+							</fb:login-button> 
 					<button class="naver">
 						<i class="fab fa-neos"></i>네이버 로그인
 					</button>
@@ -151,7 +195,7 @@ input[type=text], input[type=password], input[type=number], input[type=email]
 						<i class="fas fa-book"></i>서재로 로그인
 					</button>
 					<button class="memberJoin">
-						<i class="fas fa-sign-in-alt"></i>회원가입하기
+						<i class="fas fa-sign-in-alt"></i>회원가입페이지로
 					</button>
 				</div>
 			</section>
@@ -159,28 +203,31 @@ input[type=text], input[type=password], input[type=number], input[type=email]
 	</section>
 	
 	
-	<div class="modal">
+
 		<form class="modal-login" action="login" method="post">
 			<label for="member_id"><b>아이디</b></label>
-			 <input type="text"name="member_id" placeholder="아이디">
+			 <input type="text" name="member_id" placeholder="아이디">
 			 <label for="psw"><b>암호</b></label> 
 			<input type="password" name="password" placeholder="암호">
+			<label class="loginfication"> </label>
 			<button type="submit"  class="signupbtn">로그인</button>
 			<button type="reset"  class="cancelbtn_login">취소</button> 
 		</form>
-	</div>
 
 
 
 
+					
 <!-- 로그인 모달창 관련  -->
-	<script>
-		<!-- 로그인/회원가입란   -->
+	<script>	
+			<!-- 로그인/회원가입란   -->
 		let contentWrap = document.querySelector('.content-wrap');
 		let memberJoin = document.querySelector('.memberJoin');
 		let modalLogin = document.querySelector('.modal-login');
 		let library = document.querySelector('.library');
 		let cancelbtnLogin =  document.querySelector('.cancelbtn_login');
+		
+	
 		
 		memberJoin.onclick = function(){
 			location.href='join.jsp';
