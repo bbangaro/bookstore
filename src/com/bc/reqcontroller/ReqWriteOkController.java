@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bc.model.reqcommand.ReqWriteOKCommand;
+import com.oreilly.servlet.MultipartRequest;
 
 @WebServlet("/ReqWriteOkController")
 public class ReqWriteOkController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ReqWriteOKCommand comm = new ReqWriteOKCommand();
-		System.out.println("test" + request.getParameter("memberId"));
-		String path = comm.exec(request, response);
-		request.getRequestDispatcher(path).forward(request, response);
+		
+		
+		
 				
 	}
 	
@@ -28,6 +28,11 @@ public class ReqWriteOkController extends HttpServlet {
 		
 		request.setCharacterEncoding("utf-8");
 		doGet(request, response);
+		
+		ReqWriteOKCommand comm = new ReqWriteOKCommand();
+		
+		String path = comm.exec(request, response);
+		request.getRequestDispatcher(path).forward(request, response);
 		
 	}
 

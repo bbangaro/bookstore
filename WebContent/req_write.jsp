@@ -19,7 +19,7 @@
 <link href="css/guestbook.css" rel="stylesheet" type="text/css">
 <style>
 
-body{
+body {
     margin-top:20px;
     background:#f8f8f8
 }

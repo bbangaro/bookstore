@@ -1,14 +1,17 @@
 package com.bc.model.reqcommand;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bc.model.dao.ReqDAO;
 import com.bc.model.vo.GuestBookVO;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 
 public class ReqWriteOKCommand implements Command {
@@ -20,14 +23,50 @@ public class ReqWriteOKCommand implements Command {
 		//DAO 쿼리문 호출
 		
 		GuestBookVO vo = new GuestBookVO();
-		vo.setMemberId(request.getParameter("memberId"));
-		vo.setSubject(request.getParameter("subject"));
-		vo.setrContent(request.getParameter("rContent"));
-		vo.setUpload(request.getParameter("upload"));
-		vo.setPassword(request.getParameter("password"));
 		
 		System.out.println(vo.toString());
+		//-------------------------
+		MultipartRequest mr = null;
+		String path = request.getRealPath("/upload");
+		try {
+			mr = new MultipartRequest(
+					request, //요청객체
+					path, //실제 파일을 저장하기 위한 경로
+					10 * 1024 * 1024, //업로드 파일의 최대용량(byte 단위)
+					"UTF-8", //인코딩타입
+					new DefaultFileRenamePolicy() //파일이름중복시 새로운이름 사용
+					);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		/* MultipartRequest 주요메소드
+		getParameter(문자열) : 파라미터값 추출
+		getOriginalFileName(문자열) : 업로드시 사용한 원본파일명
+		getFilesystemName(문자열) : 업로드시 저장된 파일명(실제 물리적으로)
+		getContentType(문자열) : 업로드된 파일의 타입(형식)
+		*/
+		vo.setMemberId(mr.getParameter("memberId"));
 		
+		vo.setSubject(mr.getParameter("subject"));
+		vo.setrContent(mr.getParameter("rContent"));
+		vo.setPassword(mr.getParameter("password"));
+		
+		//File file = mr.getFile("upload");
+		//vo.setUpload(mr.getParameter("file"));
+		
+		String regip = request.getRemoteAddr();
+		
+		vo.setUpload(mr.getFilesystemName("upload"));
+		
+//		vo.setMemberId(request.getParameter("memberId"));
+//		vo.setSubject(request.getParameter("subject"));
+//		vo.setrContent(request.getParameter("rContent"));
+//		vo.setUpload(request.getParameter("upload"));
+//		vo.setPassword(request.getParameter("password"));
+		
+		
+		//--------------------------
+		System.out.println(vo);
 		
 		
 		int result = ReqDAO.getReqInsert(vo);
@@ -35,6 +74,7 @@ public class ReqWriteOKCommand implements Command {
 		return "ReqListController";
 		
 	}
+
 
 }
 

@@ -19,7 +19,7 @@
 	<insert id="reqInsertGuest" parameterType="com.bc.model.vo.GuestBookVO">
 		INSERT INTO REQUEST 
 		       (REQUEST_NUM, MEMBER_ID, SUBJECT, R_CONTENT, PASSWORD, UPLOAD, REGDATE)
-		VALUES (REQ_BOARD.NEXTVAL, #{memberId}, #{subject}, #{rContent}, #{password}, #{upload}, SYSDATE)
+		VALUES (REQ_BOARD.NEXTVAL, #{memberId}, #{subject}, #{rContent}, #{password}, #{upload, jdbcType=VARCHAR}, SYSDATE)
 	</insert>	
 
 </mapper>

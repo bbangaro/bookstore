@@ -19,7 +19,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
 	$(function(){
-		$("#getDataBtn").click(function(){
+		$("#getDataBtn"+$(vo.requestNum )).click(function(){
 			getXMLMembers();
 		});
 	});
@@ -44,7 +44,7 @@
 					tbody += "<br>";
 					tbody += "<tr>";
 					tbody += "<td>" + $(this).find("content").text() + "</td>";
-					tbody += "<td><img src='images/" + $(this).find("upload").text() + ".jpg'></td>";
+					tbody += "<td><img src='upload/" + $(this).find("upload").text() + "'></td>";
 					tbody += "</tr>";
 				});
 				
@@ -158,15 +158,17 @@ a {
 										<tr>
 											<td><a id="requestNum">${vo.requestNum }</a></td>
 		                                    <td>
-		                                        <img src="images/${vo.upload }.jpg" width="50px" height="50px">
+		                                        <img src="upload/${vo.upload }" width="50px" height="50px">
 		                                    </td>
 		                                    <td><a>${vo.memberId }</a></td>
+		                                  
 		                                    <td>
 		                                    	<a href="ReqOneListController?requestNum=${vo.requestNum }">${vo.subject }</a>
-		                                    	<button id="getDataBtn">눌렁</button>
+		                                    	<button id="getDataBtn${vo.requestNum } }">눌렁</button>
 		                                    	<br>
 												<div id="tbody"></div>
 		                                    </td>
+		                                  
 		                                    <td>
 		                                        <a>${vo.regdate }</a>
 		                                    </td>
