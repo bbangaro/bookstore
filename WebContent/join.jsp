@@ -85,7 +85,7 @@ hr {
 </script>
 </head>
 <body>
-<%@ include file="include/top.jsp" %>	
+
 	<c:choose>
 		<c:when test="${not empty sessionScope.message }">
 					<script> alert("${sessionScope.message }");</script>

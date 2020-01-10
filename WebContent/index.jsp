@@ -4,7 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/jejugothic.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <style>
   	*{
   		font-family: 'Jeju Gothic', sans-serif;
@@ -28,7 +35,16 @@
   	.bg-light {
   		background-color:rgba(255, 255, 255, 0.5) !important;
 	}
-  	
+  	a {
+	  color: #007bff;
+	  text-decoration: none;
+	  background-color: transparent
+	}
+	
+	a:hover {
+	  color: ;
+	  text-decoration: none;
+	}
   </style>
 <title>북스토어</title>
 </head>
@@ -64,16 +80,16 @@
 		  </div>
 		  <h2>장르별 베스트 셀러</h2>
 		  <div class="container">
-		  <form>
-		  	<button id="getGo" type="button" class="btn btn-dark" onclick="frm_go(this.form)">인문</button>
-		  </form>
-		  	<button type="button" class="btn btn-dark" id="getDataBtn">역사</button>
-		  	<button type="button" class="btn btn-dark">소설</button>
-		  	<button type="button" class="btn btn-dark">기타</button>
-		  	<button type="button" class="btn btn-dark">등등</button>
-		  	<button type="button" class="btn btn-dark">Light</button>
+			<button id="getGo" type="button" class="btn btn-dark" name="lcode" value="K1">소설</button>
+		  	<button id="getGo2" type="button" class="btn btn-dark" name="lcode2" value="K2">시/에세이</button>
+		  	<button id="getGo3" type="button" class="btn btn-dark" name="lcode3" value="K3">경제/경영</button>
+		  	<button id="getGo4" type="button" class="btn btn-dark" name="lcode4" value="K4">자기계발</button>
+		  	<button id="getGo5" type="button" class="btn btn-dark" name="lcode5" value="K5">인문</button>
 		  </div>
-		  <div class="container" id="con"></div>
+		  <div class="container text-center my-2">
+		  	<div class="row" id="con">
+		  	</div>
+		  </div>
 		  <hr>
 		  <h2>오늘의 리딩북</h2>
 		  <div id="reding" class="carousel slide" data-ride="carousel">
@@ -147,38 +163,7 @@
 	</div>
 <script>
 $(function(){
-	$("#getGo").click(function(){
-		$.ajax("getBook", {
-			type : "get",
-			dataType : "json",
-			success : function(data){
-				
-				var tbody = "";
-				//데이터를 HTML 태그에 삽입
-				var alist = data.list;//JSON 객체의 속성명("list")의 값 추출
-				//                배열의 인덱스값, 현재 처리하는 객체 데이터
-				$.each(alist, function(index, member){
-					//this 객체 : 배열에 저장된 객체 중 지금 처리되는 객체
-					//자바스크립트 객체 속성 사용방식 2가지
-					//1. 객체.속성명
-					//2. 객체["속성명"]
-					tbody += "<tr>";
-					tbody += "<td>" + this.name + "</td>";
-					tbody += "<img src='" + this.image + "'/>";
-					tbody += "</tr>";
-				});
-				
-				$("#con").html(tbody);
-				
-			},
-			error : function(jqXHR, textStatus, errorThrown){
-				alert("Ajax 처리 실패 : \n"
-					+ "jqXHR.readyState : " + jqXHR.readyState +"\n"
-					+ "textStatus : " + textStatus +"\n"
-					+ "errorThrown : " + errorThrown);
-			}
-		});
-	});
+	<%@ include file="include/ajax.jsp"%>
 });
 
 </script>
