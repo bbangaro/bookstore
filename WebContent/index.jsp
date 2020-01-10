@@ -4,13 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/jejugothic.css">
+
   <style>
   	*{
   		font-family: 'Jeju Gothic', sans-serif;
@@ -21,12 +15,13 @@
   	.nav-item .nav-link:hover {
   		color: rgba(0, 0, 0, .7);
   	}
-  	.nav-item .active{
+  	/*
+    .active{
 		background: #f7ff00;  /* fallback for old browsers */
 		background: -webkit-linear-gradient(to right, #db36a4, #f7ff00);  /* Chrome 10-25, Safari 5.1-6 */
 		background: linear-gradient(to right, #db36a4, #f7ff00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-		
   	}
+  	*/
   	.nav-item .active:hover {
   		color:white;
   	}
@@ -68,24 +63,17 @@
 			  </a>
 		  </div>
 		  <h2>장르별 베스트 셀러</h2>
-		  <ul class="nav nav-pills">
-			  <li class="nav-item mr-3">
-			    <a class="nav-link active" href="#">인문</a>
-			  </li>
-			  <li class="nav-item mr-3">
-			    <a class="nav-link" href="#">소설</a>
-			  </li>
-			  <li class="nav-item mr-3">
-			    <a class="nav-link" href="#">경제</a>
-			  </li>
-			  <li class="nav-item mr-3">
-			    <a class="nav-link" href="#">에세이</a>
-			  </li>
-			  <li class="nav-item mr-3">
-			    <a class="nav-link" href="#">과학</a>
-			  </li>
-		  </ul>
-		  <div class="jumbotron"></div>
+		  <div class="container">
+		  <form>
+		  	<button id="getGo" type="button" class="btn btn-dark" onclick="frm_go(this.form)">인문</button>
+		  </form>
+		  	<button type="button" class="btn btn-dark" id="getDataBtn">역사</button>
+		  	<button type="button" class="btn btn-dark">소설</button>
+		  	<button type="button" class="btn btn-dark">기타</button>
+		  	<button type="button" class="btn btn-dark">등등</button>
+		  	<button type="button" class="btn btn-dark">Light</button>
+		  </div>
+		  <div class="container" id="con"></div>
 		  <hr>
 		  <h2>오늘의 리딩북</h2>
 		  <div id="reding" class="carousel slide" data-ride="carousel">
@@ -157,6 +145,42 @@
 		  <div class="jumbotron"></div>
 		<%@ include file="include/bottom.jsp" %>
 	</div>
+<script>
+$(function(){
+	$("#getGo").click(function(){
+		$.ajax("getBook", {
+			type : "get",
+			dataType : "json",
+			success : function(data){
+				
+				var tbody = "";
+				//데이터를 HTML 태그에 삽입
+				var alist = data.list;//JSON 객체의 속성명("list")의 값 추출
+				//                배열의 인덱스값, 현재 처리하는 객체 데이터
+				$.each(alist, function(index, member){
+					//this 객체 : 배열에 저장된 객체 중 지금 처리되는 객체
+					//자바스크립트 객체 속성 사용방식 2가지
+					//1. 객체.속성명
+					//2. 객체["속성명"]
+					tbody += "<tr>";
+					tbody += "<td>" + this.name + "</td>";
+					tbody += "<img src='" + this.image + "'/>";
+					tbody += "</tr>";
+				});
+				
+				$("#con").html(tbody);
+				
+			},
+			error : function(jqXHR, textStatus, errorThrown){
+				alert("Ajax 처리 실패 : \n"
+					+ "jqXHR.readyState : " + jqXHR.readyState +"\n"
+					+ "textStatus : " + textStatus +"\n"
+					+ "errorThrown : " + errorThrown);
+			}
+		});
+	});
+});
 
+</script>
 </body>
 </html>

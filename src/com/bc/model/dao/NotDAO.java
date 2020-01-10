@@ -1,14 +1,11 @@
 package com.bc.model.dao;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-import javax.servlet.jsp.PageContext;
-
 import org.apache.ibatis.session.SqlSession;
 
+import com.bc.model.vo.BookVO;
 import com.bc.model.vo.GuestBookVO;
 import com.bc.mybatis.DBService;
 
@@ -39,7 +36,12 @@ public class NotDAO {
 		ss.close();
 		return totalCount;
 	}
-		
+	public static List<BookVO> getBList() {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		List<BookVO> list = ss.selectList("Nall");
+		ss.close();
+		return list;
+	}	
 	
 	
 }

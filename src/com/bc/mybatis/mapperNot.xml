@@ -24,7 +24,9 @@
 	<select id="totalCount" resultType="int">
 		SELECT COUNT(*) FROM NOTICE
 	</select>
-	
+	<select id="Nall" resultType="com.bc.model.vo.BookVO">
+		SELECT B_NAME, B_IMAGE FROM BOOK
+	</select>
 	
 	
 	
