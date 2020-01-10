@@ -1,4 +1,4 @@
-package com.bc.notcontroller;
+package com.bc.controller.qna;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,28 +6,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.bc.notcommand.Command;
-import com.bc.notcommand.NotListCommand;
-
-@WebServlet("/NotListController")
-public class NotListController extends HttpServlet {
+ 
+@WebServlet("/QnADeleteController")
+public class QnADeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	
+ 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		NotListCommand comm = new NotListCommand();
-		
-		String path = comm.exec(request, response);
-		request.getRequestDispatcher(path).forward(request, response);
 	}
-
-	
+ 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		doGet(request, response);
 	}
-	
-}
 
+}

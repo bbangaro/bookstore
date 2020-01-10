@@ -77,7 +77,7 @@
                                 			${vo.memberId }
                                 		</td>
                                 		<td class="text-center">
-                                			<a href="#">${vo.subject }</a>
+                                			<a href="QnAOneListController?qNum=${vo.qNum} ">${vo.subject }</a>
                                 		</td>
                                 		<td>
                                 			${vo.category }
