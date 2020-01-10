@@ -10,9 +10,25 @@ import javax.servlet.jsp.PageContext;
 import org.apache.ibatis.session.SqlSession;
 
 import com.bc.model.vo.GuestBookVO;
+import com.bc.model.vo.QnAVO;
 import com.bc.mybatis.DBService;
 
 public class ReqDAO {
+	
+	public static List<GuestBookVO> getReqList(Map<String, Integer> map) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		List<GuestBookVO> list = ss.selectList("reqall", map);
+		ss.close();
+		return list;
+	}
+	
+	public static int getTotalCount() {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.selectOne("reqtotal");
+		ss.close();
+		return result;
+	}
+	//----------------------------------------------------------
 	
 	//방명록 전체 목록 조회
 	public static List<GuestBookVO> getList() {

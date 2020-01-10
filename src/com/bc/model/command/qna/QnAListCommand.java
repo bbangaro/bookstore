@@ -23,10 +23,7 @@ public class QnAListCommand implements Command {
 		//1. 전체 게시물의 수를 구하기
 		p.setTotalRecord(QnADAO.getTotalCount()); 
 		p.setTotalPage(); //전체 페이지 갯수 구하기
-		
-		System.out.println(">전체 게시글 수 : " + p.getTotalRecord());
-		System.out.println(">전체 페이지 수 : " + p.getTotalPage());
-		
+
 		//2. 현재 페이지 구하기(default : 1)
 		String cPage = request.getParameter("cPage");
 		if (cPage != null) {//넘겨받은 페이지 값이 있으면
@@ -36,11 +33,6 @@ public class QnAListCommand implements Command {
 		//3. 현재페이지의 시작번호(begin)와 끝번호(end) 구하기
 		p.setEnd(p.getNowPage() * p.getNumPerPage());
 		p.setBegin(p.getEnd() - p.getNumPerPage() + 1);
-		
-		System.out.println("-------------");
-		System.out.println(">>현재 페이지 : " + p.getNowPage());
-		System.out.println(">>시작번호(begin) : " + p.getBegin());
-		System.out.println(">>끝번호(end) : " + p.getEnd());
 		
 		//------- 블록(block) 계산하기 ----------
 		//4. 블록의 시작페이지, 끝페이지 구하기(현재페이지 번호 사용)
