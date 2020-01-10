@@ -35,15 +35,8 @@
   	.bg-light {
   		background-color:rgba(255, 255, 255, 0.5) !important;
 	}
-  	a {
-	  color: #007bff;
-	  text-decoration: none;
-	  background-color: transparent
-	}
-	
-	a:hover {
-	  color: ;
-	  text-decoration: none;
+	a:hover{
+		text-decoration: none;
 	}
   </style>
 <title>북스토어</title>

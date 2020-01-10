@@ -29,6 +29,13 @@
 		WHERE L_CODE = #{lcode}
 	</select>
 	
+	<select id="searchList" resultType="com.bc.model.vo.BookVO" parameterType="map">
+		SELECT * FROM BOOK
+			WHERE B_NAME LIKE '%'||#{search}||'%'
+			OR B_COMPANY LIKE '%'||#{search}||'%'
+			OR WRITER_NAME LIKE '%'||#{search}||'%'
+			AND B_TYPE = 1
+	</select>
 	
 	
 </mapper>
