@@ -1,32 +1,32 @@
 package com.bc.model.vo;
 
 public class CommentVO {
-	private int review_num, q_num, request_num;
-	private String member_id, content, password, writer_name, c_idx;
+	private int reviewNum, qNum, requestNum;
+	private String memberId, content, password, writerName, cIdx;
 	
-	public int getReview_num() {
-		return review_num;
+	public int getReviewNum() {
+		return reviewNum;
 	}
-	public void setReview_num(int review_num) {
-		this.review_num = review_num;
+	public void setReviewNum(int reviewNum) {
+		this.reviewNum = reviewNum;
 	}
-	public int getQ_num() {
-		return q_num;
+	public int getqNum() {
+		return qNum;
 	}
-	public void setQ_num(int q_num) {
-		this.q_num = q_num;
+	public void setqNum(int qNum) {
+		this.qNum = qNum;
 	}
-	public int getRequest_num() {
-		return request_num;
+	public int getRequestNum() {
+		return requestNum;
 	}
-	public void setRequest_num(int request_num) {
-		this.request_num = request_num;
+	public void setRequestNum(int requestNum) {
+		this.requestNum = requestNum;
 	}
-	public String getMember_id() {
-		return member_id;
+	public String getMemberId() {
+		return memberId;
 	}
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	public String getContent() {
 		return content;
@@ -40,23 +40,22 @@ public class CommentVO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getWriter_name() {
-		return writer_name;
+	public String getWriterName() {
+		return writerName;
 	}
-	public void setWriter_name(String writer_name) {
-		this.writer_name = writer_name;
+	public void setWriterName(String writerName) {
+		this.writerName = writerName;
 	}
-	public String getC_idx() {
-		return c_idx;
+	public String getcIdx() {
+		return cIdx;
 	}
-	public void setC_idx(String c_idx) {
-		this.c_idx = c_idx;
+	public void setcIdx(String cIdx) {
+		this.cIdx = cIdx;
 	}
-	
 	@Override
 	public String toString() {
-		return "CommentVO [review_num=" + review_num + ", q_num=" + q_num + ", request_num=" + request_num
-				+ ", member_id=" + member_id + ", content=" + content + ", password=" + password + ", writer_name="
-				+ writer_name + ", c_idx=" + c_idx + "]";
+		return "CommentVO [reviewNum=" + reviewNum + ", qNum=" + qNum + ", requestNum=" + requestNum + ", memberId="
+				+ memberId + ", content=" + content + ", password=" + password + ", writerName=" + writerName
+				+ ", cIdx=" + cIdx + "]";
 	}
 }
