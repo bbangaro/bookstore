@@ -3,11 +3,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="rbookstore">
-		
+	<!-- 
 	<select id="reqall" resultType="com.bc.model.vo.GuestBookVO">
 		SELECT REQUEST_NUM, MEMBER_ID, SUBJECT, R_CONTENT, PASSWORD, UPLOAD, REGDATE
 		FROM REQUEST
 		ORDER BY REQUEST_NUM
+	</select>
+	 -->	
+	<select id="reqall" parameterType="Map" resultType="com.bc.model.vo.GuestBookVO">
+		SELECT *
+		FROM (SELECT ROWNUM R_NUM, R.*
+		        FROM (SELECT *
+		              FROM REQUEST
+		              ORDER BY REQUEST_NUM DESC
+		             ) R
+		     )    
+		WHERE R_NUM BETWEEN #{begin} AND #{end}
 	</select>
 	
 	<select id="reqone" parameterType="int" resultType="com.bc.model.vo.GuestBookVO">
@@ -21,5 +32,12 @@
 		       (REQUEST_NUM, MEMBER_ID, SUBJECT, R_CONTENT, PASSWORD, UPLOAD, REGDATE)
 		VALUES (REQ_BOARD.NEXTVAL, #{memberId}, #{subject}, #{rContent}, #{password}, #{upload, jdbcType=VARCHAR}, SYSDATE)
 	</insert>	
+	
+
+
+	
+	<select id="reqtotal" resultType="int">
+		SELECT COUNT(*) FROM REQUEST
+	</select>	
 
 </mapper>

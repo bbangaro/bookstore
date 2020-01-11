@@ -23,7 +23,8 @@ public class GetBook extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		//DB데이터 조회(전체)
-		List<BookVO> list = NotDAO.getBList();
+		String lcode =  request.getParameter("lcode");
+		List<BookVO> list = NotDAO.getBList(lcode);
 		System.out.println(list);
 		//JSON 형태의 문자열 작성
 		/*
@@ -38,6 +39,7 @@ public class GetBook extends HttpServlet {
 		for(BookVO vo : list) {
 			result += "{";
 			result += "\"name\" : \"" + vo.getbName() + "\",";
+			result += "\"writer\" : \"" + vo.getWriterName() + "\",";
 			result += "\"image\" : \"" + vo.getbImage() + "\"";
 			result += "},";
 		}

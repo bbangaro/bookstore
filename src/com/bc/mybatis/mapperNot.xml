@@ -24,10 +24,18 @@
 	<select id="totalCount" resultType="int">
 		SELECT COUNT(*) FROM NOTICE
 	</select>
-	<select id="Nall" resultType="com.bc.model.vo.BookVO">
-		SELECT B_NAME, B_IMAGE FROM BOOK
+	<select id="Nall" resultType="com.bc.model.vo.BookVO" parameterType="string">
+		SELECT B_NAME, B_IMAGE, WRITER_NAME FROM BOOK
+		WHERE L_CODE = #{lcode}
 	</select>
 	
+	<select id="searchList" resultType="com.bc.model.vo.BookVO" parameterType="map">
+		SELECT * FROM BOOK
+			WHERE B_NAME LIKE '%'||#{search}||'%'
+			OR B_COMPANY LIKE '%'||#{search}||'%'
+			OR WRITER_NAME LIKE '%'||#{search}||'%'
+			AND B_TYPE = 1
+	</select>
 	
 	
 </mapper>

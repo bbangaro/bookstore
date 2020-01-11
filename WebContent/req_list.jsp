@@ -18,15 +18,14 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
-	$(function(){
-		$("#getDataBtn"+$(vo.requestNum )).click(function(){
-			getXMLMembers();
-		});
-	});
 	
+	function getDataBtn(requestNum) { 
+			getXMLMembers(requestNum);
+	};	
+
 	
-	function getXMLMembers(){
-	const numUrl = "getXmlRequest?requestNum=" + $("#requestNum").text();
+	function getXMLMembers(requestNum){
+	const numUrl = "getXmlRequest?requestNum=" + requestNum;
 		$.ajax({
 			url : numUrl,
 			type : "get",
@@ -44,11 +43,15 @@
 					tbody += "<br>";
 					tbody += "<tr>";
 					tbody += "<td>" + $(this).find("content").text() + "</td>";
+					tbody += "<br>";
+					tbody += "<br>";
+					tbody += "<br>";
 					tbody += "<td><img src='upload/" + $(this).find("upload").text() + "'></td>";
+					tbody += "<td></td>";
 					tbody += "</tr>";
 				});
 				
-				$("#tbody").html(tbody);
+				$("#tbody"+requestNum).html(tbody);
 	
 			},
 			error : function(jqXHR, textStatus, errorThrown){
@@ -63,7 +66,7 @@
 
 <style>
 body{
-    background:white;    
+    background:#eee;    
 }
 .main-box.no-header {
     padding-top: 20px;
@@ -92,11 +95,19 @@ body{
     font-size: 0.875em;
     font-style: italic;
 }
+.user-list tbody td .user-link {
+    display: block;
+    font-size: 1.25em;
+    padding-top: 3px;
+    margin-left: 60px;
+}
 a {
     color: #3498db;
     outline: none!important;
 }
 .user-list tbody td>img {
+    position: relative;
+    max-width: 50px;
     float: left;
     margin-right: 15px;
 }
@@ -119,6 +130,15 @@ a {
     padding: 12px 8px;
 }
 
+.table tfoot {
+    border-bottom: 2px solid #e7ebee;
+    font-size: 1.125em;
+    font-weight: 300;
+    font-size: 0.875em;
+    vertical-align: middle;
+    border-top: 1px solid #e7ebee;
+    padding: 12px 8px;
+}
 
 
 </style>
@@ -127,7 +147,7 @@ a {
 <body>
 		<%@ include file="include/top.jsp" %>
 
-
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 <div class="container bootstrap snippet">
     <div class="row">
         <div class="col-lg-12">
@@ -164,9 +184,9 @@ a {
 		                                  
 		                                    <td>
 		                                    	<a href="ReqOneListController?requestNum=${vo.requestNum }">${vo.subject }</a>
-		                                    	<button id="getDataBtn${vo.requestNum } }">눌렁</button>
+		                                    	<button onClick="getDataBtn(${vo.requestNum })" >눌렁</button>
 		                                    	<br>
-												<div id="tbody"></div>
+												<div id="tbody${vo.requestNum }"></div>
 		                                    </td>
 		                                  
 		                                    <td>
@@ -195,16 +215,63 @@ a {
 								<c:if test="${empty list }">
 									<td colspan="5">데이터가 없습니다t^^t</td>
 								</c:if>
+								
                             </tbody>
-                               
+                            
                         </table>
+                           <tfoot>
+                                	<tr>
+                                		<td colspan="4">
+											<ol class="paging">
+											<%--[이전으로]에 대한 사용여부 처리 --%>
+											<c:choose>
+												<%--사용불가(disable) : 첫번째 블록인 경우 --%>
+												<c:when test="${pvo.beginPage == 1}">
+													<li class="disable">이전으로</li>
+												</c:when>
+												<c:otherwise>
+													<li>
+														<a href="ReqListController?cPage=${pvo.beginPage - 1}">이전으로</a>
+													</li>
+												</c:otherwise>
+											</c:choose>
+											
+											<%-- 블록내에 표시할 페이지 표시(시작페이지~끝페이지) --%>
+											<c:forEach var="k" begin="${pvo.beginPage }" end="${pvo.endPage }">
+											<c:choose>
+												<c:when test="${k == pvo.nowPage}">
+													<li class="now">${k }</li>
+												</c:when>
+												<c:otherwise>
+													<li>
+														<a href="ReqListController?cPage=${k}">${k}</a>
+													</li> 
+												</c:otherwise>
+											</c:choose>
+											</c:forEach>
+											
+											<%--[다음으로]에 대한 사용여부 처리 --%>
+											<c:choose>
+												<%--사용불가(disable) : 
+													endPage가 전체페이지 수보다  크거나 같으면 --%>
+												<c:when test="${pvo.endPage >= pvo.totalPage }">
+													<li class="disable">다음으로</li>
+												</c:when>
+												<c:otherwise>
+													<li><a href="ReqListController?cPage=${pvo.endPage + 1}">다음으로</a></li>
+												</c:otherwise>
+											</c:choose>
+											</ol>	
+										</td>
+                                	</tr>
+                            </tfoot>		
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<br><br><br><br><br><br><br><br><br><br><br><br>
 <%@ include file="include/bottom.jsp" %>
 </body>
 </html>
