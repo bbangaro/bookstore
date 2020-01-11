@@ -33,7 +33,7 @@
 			      <a class="nav-link" href="#">오디오북</a>
 			    </li>
 			    <li class="nav-item justify-content-right">
-			    	<a class="nav-link " href="Search"><i class="material-icons" style="font-size:24px;">search</i></a>
+			    	<a class="nav-link " href="Search?def=first"><i class="material-icons" style="font-size:24px;">search</i></a>
 			    </li>
 	     	</ul>
 		</nav>

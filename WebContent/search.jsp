@@ -44,6 +44,74 @@
 			    </form>
 		    </div>
 		    <div class="container mt-3">
+		    	<c:if test="${not empty def }">
+		    	<h2>현재 잘 나가는 책</h2>
+		    <div class="row">
+		    	<div class="col">
+		    		<div class="container">
+					  <div class="row">
+					    <div class="col-lg-12">
+					      <div id="Carousel" class="carousel slide">
+					        <!-- Carousel items -->
+					        <div class="carousel-inner">
+					          <div class="item active carousel-item">
+					            <div class="row">
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250/0ff" alt="Image" style="max-width:100%;"></a>
+					              </div>
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250/0ff" alt="Image" style="max-width:100%;"></a>
+					              </div>
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250/0ff" alt="Image" style="max-width:100%;"></a>
+					              </div>
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250/0ff" alt="Image" style="max-width:100%;"></a>
+					              </div>
+					            </div>
+					            <!--.row-->
+					          </div>
+					          <!--.item-->
+					          <div class="item carousel-item">
+					            <div class="row">
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250/00f" alt="Image" style="max-width:100%;"></a>
+					              </div>
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250/00f" alt="Image" style="max-width:100%;"></a>
+					              </div>
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250/00f" alt="Image" style="max-width:100%;"></a>
+					              </div>
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250/00f" alt="Image" style="max-width:100%;"></a>
+					              </div>
+					            </div>
+					            <!--.row-->
+					          </div>
+					          <!--.item-->
+					          <div class="item carousel-item">
+					            <div class="row">
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a>
+					              </div>
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a>
+					              </div>
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a>
+					              </div>
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a>
+					              </div>
+					            </div>
+					            <!--.row-->
+					          </div>
+					          <!--.item-->
+					        </div>
+					        <!--.carousel-inner--><a class="carousel-control-prev" href="#Carousel" data-slide="prev">
+												    <span class="carousel-control-prev-icon"></span>
+												  </a>
+												  <a class="carousel-control-next" href="#Carousel" data-slide="next">
+												    <span class="carousel-control-next-icon"></span>
+												  </a>
+					      </div>
+					      <!--.Carousel-->
+					    </div>
+					  </div>
+					</div>
+		    	</div>
+		    </div>
+		    </c:if>
+		    <c:if test="${empty def }">
 		        <h2>종이책</h2>
 		    <div class="row">
 		    		<c:if test="${not empty list }">
@@ -58,10 +126,12 @@
 		    			</c:forEach>
 		    		</c:if>
 		    		<c:if test="${empty list }">
+		    		<div class="col text-center">
 		    			<p>검색 결과가 없습니다</p>
+		    		</div>
 		    		</c:if>
 		    </div>
-		    	<hr class="my-5">
+		   		<hr class="my-5">
 		    <h2>e북</h2>
 		    <div class="row">
 		    	<div class="col text-center">
@@ -76,6 +146,7 @@
 		    	</div>
 		    </div>
 				<hr class="my-5">
+			</c:if>
 		    </div>
 			</div>
 			<div class="col-2">

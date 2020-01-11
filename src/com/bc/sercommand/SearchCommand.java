@@ -10,6 +10,8 @@ public class SearchCommand implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String def = request.getParameter("def");
+		request.setAttribute("def", def);
 		return "search.jsp";
 	}
 	
