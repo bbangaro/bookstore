@@ -39,6 +39,9 @@
 		WHERE REQUEST_NUM = #{requestNum}
 	</update>
 	
+	<delete id="reqDelete" parameterType="int">
+		DELETE FROM REQUEST WHERE REQUEST_NUM = #{requestNum}
+	</delete>
 
 
 	
