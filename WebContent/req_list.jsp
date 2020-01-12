@@ -183,7 +183,7 @@ a {
 		                                    <td><a>${vo.memberId }</a></td>
 		                                  
 		                                    <td>
-		                                    	<a href="ReqOneListController?requestNum=${vo.requestNum }">${vo.subject }</a>
+		                                    	<a >${vo.subject }</a>
 		                                    	<button onClick="getDataBtn(${vo.requestNum })" >눌렁</button>
 		                                    	<br>
 												<div id="tbody${vo.requestNum }"></div>
@@ -194,7 +194,7 @@ a {
 		                                    </td>
 		                                     
 	                               			<td style="width: 10%;">
-		                                        <a href="#" class="table-link">
+		                                        <a href="ReqUpdateController?requestNum=${vo.requestNum }" class="table-link">
 		                                            <span class="fa-stack">
 		                                                <i class="fa fa-square fa-stack-2x"></i>
 		                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>

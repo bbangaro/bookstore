@@ -57,4 +57,13 @@ public class ReqDAO {
 		return result;
 	}
 	
+	//방명록 (UpdateOKCommand 에서 뽑은 파라미터 값 vo에 저장했으니까..)
+	public static int getReqUpdate(GuestBookVO vo) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		
+		int result = ss.update("reqUpdate", vo);
+		ss.close();
+		return result;
+	}
+	
 }
