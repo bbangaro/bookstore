@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="rbookstore">
+
+	<select id="commentAll" resultType="com.bc.model.vo.CommemtVO">
+		SELECT REVIEW_NUM, Q_NUM, REQUEST_NUM, MEMBER_ID, CONTENT, PASSWORD, WRITER_NAME, C_IDX
+		FROM COMMENTS
+		ORDER BY C_IDX
+	</select>
+
+	
+	<select id="commentOne" parameterType="int" resultType="com.bc.model.vo.CommemtVO">
+		SELECT REVIEW_NUM, Q_NUM, REQUEST_NUM, MEMBER_ID, CONTENT, PASSWORD, WRITER_NAME, C_IDX
+		FROM COMMENTS
+		WHERE C_IDX = #{cIdx}
+	</select>
+	
+	<insert id="commentInsert" parameterType="com.bc.model.vo.CommemtVO">
+		INSERT INTO COMMENTS 
+		       (REVIEW_NUM, Q_NUM, REQUEST_NUM, MEMBER_ID, CONTENT, PASSWORD, WRITER_NAME, C_IDX)
+		VALUES (#{reviewNum}, #{qNum}, #{requestNum}, #{memberId}, #{content}, #{password}, #{writerName}, COMMENT_SEQ.NEXTVAL)
+		WHERE REQUEST_NUM = #{requestNum}
+	</insert>	
+	
+	<update id="commentUpdate" parameterType="com.bc.model.vo.CommemtVO">
+		UPDATE COMMENTS SET CONTENT = #{content}
+		WHERE REQUEST_NUM = #{requestNum}
+	</update>
+	
+	<delete id="commentDelete" parameterType="int">
+		DELETE FROM COMMENTS WHERE C_IDX = #{cIdx}
+	</delete>
+
+
+
+</mapper>
