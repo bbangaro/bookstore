@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bc.model.command.qna.Command;
 import com.bc.model.command.qna.QnAListCommand;
  
 @WebServlet("/QnAListController")

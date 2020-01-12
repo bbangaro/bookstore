@@ -1,25 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>      
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/jejugothic.css">
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="csstemplate/bbs.css">
+<link href="css/guestbook.css" rel="stylesheet" type="text/css">
+<title>게시글 수정</title>
 
-<link href="csstemplate/bss.css" rel="stylesheet" type="text/css">
-
-<title>Q&A 작성</title>
-<style>
-	* { font-family: 'Jeju Gothic', sans-serif; }
-</style>
 <script>
 	function sendData() {
 		for (var i = 0; i < document.forms[0].elements.length; i++) {
@@ -33,10 +29,14 @@
 		document.forms[0].submit();
 	}
 </script>
+
+<style>
+	* { font-family: 'Jeju Gothic', sans-serif; }
+</style>
 </head>
 <body>
-<%@ include file="include/top.jsp" %>
 
+<%@ include file="include/top.jsp" %>
 
 <div class="container">
  <div class="row flex-lg-nowrap">
@@ -51,11 +51,11 @@
                 </div>
               </div>
               <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="active nav-link">게시글 쓰기</a></li>
+                <li class="nav-item"><a class="active nav-link">게시글 수정</a></li>
               </ul>
               <div class="tab-content pt-3">
                 <div class="tab-pane active">
-                  <form class="form" method="post" enctype="multipart/form-data" action="QnAWriteOkController">
+                  <form class="form" method="post" enctype="multipart/form-data" action="QnAUpdateOkController?qNum=${qNum }">
                     <div class="row">
                       <div class="col">
                         <div class="row">
@@ -121,8 +121,7 @@
   </div>
  </div>
 </div>
-
+	
 <%@ include file="include/bottom.jsp" %>
-
 </body>
 </html>

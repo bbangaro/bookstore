@@ -37,7 +37,7 @@ public class QnAWriteOkCommand implements Command{
 		qvo.setCategory(mr.getParameter("category"));
 		qvo.setMemberId(mr.getParameter("memberId"));
 		qvo.setSubject(mr.getParameter("subject"));
-		qvo.setrContent(mr.getParameter("rcontent"));
+		qvo.setrContent(mr.getParameter("rContent"));
 		qvo.setUpload(mr.getOriginalFileName("upload"));
 		
 		bvo.setbName("진주"); //수정필요!!!!!!!!!
@@ -51,7 +51,7 @@ public class QnAWriteOkCommand implements Command{
 		map.put("bName", bvo.getbName());
 		
 		int result = QnADAO.insertQnA(map);
-		
+		System.out.println("map:" + map);
 		return "QnAListController";
 	}
 

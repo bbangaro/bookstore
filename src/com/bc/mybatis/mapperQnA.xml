@@ -24,10 +24,10 @@
 	</select>
 	
 	<insert id="insert" parameterType="Map">
-		INSERT INTO QNA VALUES(11 ,#{memberId}, 
+		INSERT INTO QNA VALUES(13, #{memberId}, 
                     (SELECT USERNAME FROM MEMBER WHERE MEMBER_ID = #{memberId}), 
                     (SELECT PASSWORD FROM MEMBER WHERE MEMBER_ID = #{memberId}),
-                    #{subject}, #{category}, #{rContent}, #{upload}, 
+                    #{subject}, #{category}, #{rContent}, #{upload, jdbcType=VARCHAR}, 
                     (SELECT B_CODE FROM BOOK WHERE B_NAME = #{bName}),
                     (SELECT B_TYPE FROM BOOK WHERE B_NAME = #{bName}), 
                     SYSDATE) 
@@ -37,6 +37,14 @@
 		DELETE FROM QNA
 		 WHERE Q_NUM = #{qNum}
 	</delete>
+	
+	<update id="update" parameterType="com.bc.model.vo.QnAVO">
+		UPDATE QNA SET SUBJECT = #{subject},
+					   CATEGORY = #{category},
+				       R_CONTENT = #{rContent},
+					   UPLOAD = #{upload, jdbcType=VARCHAR}
+		 WHERE Q_NUM = #{qNum}			   
+	</update>
 	
 	<!-- 댓글 SQL문 -->
 	<select id="selectC" parameterType="int" resultType="com.bc.model.vo.CommentVO">

@@ -53,4 +53,11 @@ public class QnADAO {
 		ss.close();
 		return list;
 	}
+
+	public static int updateQnA(QnAVO vo) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.update("update", vo);
+		ss.close();
+		return result;
+	}
 }
