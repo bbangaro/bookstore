@@ -42,12 +42,14 @@
 				$(data).find("member").each(function(){
 					tbody += "<br>";
 					tbody += "<tr>";
-					tbody += "<td>" + $(this).find("content").text() + "</td>";
+					tbody += "<td>" + $(this).find("rContent").text() + "</td>";
 					tbody += "<br>";
 					tbody += "<br>";
 					tbody += "<br>";
 					tbody += "<td><img src='upload/" + $(this).find("upload").text() + "' width='50%' height='50%'></td>";
 					tbody += "<td></td>";
+					tbody += "<td>" + $(this).find("memberId").text() + "</td>";
+					tbody += "<td>" + $(this).find("content").text() + "</td>";
 					tbody += "</tr>";
 				});
 				

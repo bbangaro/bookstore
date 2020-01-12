@@ -4,32 +4,33 @@
 
 <mapper namespace="rbookstore">
 
-	<select id="commentAll" resultType="com.bc.model.vo.CommemtVO">
+	<select id="reqCommentAll"  parameterType="int" resultType="com.bc.model.vo.CommentVO">
 		SELECT REVIEW_NUM, Q_NUM, REQUEST_NUM, MEMBER_ID, CONTENT, PASSWORD, WRITER_NAME, C_IDX
 		FROM COMMENTS
+		WHERE REQUEST_NUM = #{requestNum}
 		ORDER BY C_IDX
 	</select>
 
 	
-	<select id="commentOne" parameterType="int" resultType="com.bc.model.vo.CommemtVO">
+	<select id="reqCommentOne" parameterType="int" resultType="com.bc.model.vo.CommentVO">
 		SELECT REVIEW_NUM, Q_NUM, REQUEST_NUM, MEMBER_ID, CONTENT, PASSWORD, WRITER_NAME, C_IDX
 		FROM COMMENTS
 		WHERE C_IDX = #{cIdx}
 	</select>
 	
-	<insert id="commentInsert" parameterType="com.bc.model.vo.CommemtVO">
+	<insert id="reqCommentInsert" parameterType="com.bc.model.vo.CommentVO">
 		INSERT INTO COMMENTS 
 		       (REVIEW_NUM, Q_NUM, REQUEST_NUM, MEMBER_ID, CONTENT, PASSWORD, WRITER_NAME, C_IDX)
 		VALUES (#{reviewNum}, #{qNum}, #{requestNum}, #{memberId}, #{content}, #{password}, #{writerName}, COMMENT_SEQ.NEXTVAL)
 		WHERE REQUEST_NUM = #{requestNum}
 	</insert>	
 	
-	<update id="commentUpdate" parameterType="com.bc.model.vo.CommemtVO">
+	<update id="reqCommentUpdate" parameterType="com.bc.model.vo.CommentVO">
 		UPDATE COMMENTS SET CONTENT = #{content}
 		WHERE REQUEST_NUM = #{requestNum}
 	</update>
 	
-	<delete id="commentDelete" parameterType="int">
+	<delete id="reqCommentDelete" parameterType="int">
 		DELETE FROM COMMENTS WHERE C_IDX = #{cIdx}
 	</delete>
 

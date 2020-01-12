@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bc.model.dao.ReqCommentDAO;
 import com.bc.model.dao.ReqDAO;
+import com.bc.model.vo.CommentVO;
 import com.bc.model.vo.GuestBookVO;
 
 @WebServlet("/getXmlRequest")
@@ -26,14 +28,18 @@ public class GetJXmlReqOneListController extends HttpServlet {
 		int requestNum = Integer.parseInt(request.getParameter("requestNum"));
 		
 		GuestBookVO vo = ReqDAO.getOneList(requestNum);
+		List<CommentVO> commentList = ReqCommentDAO.getReqCommentList(requestNum);
+		vo.setCommentList(commentList);
 		
 		StringBuilder result = new StringBuilder();
 		result.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 		
 			result.append("<members>");
 	    	result.append("<member>");
-	    	result.append("<content>" + vo.getrContent() + "</content>");
+	    	result.append("<rContent>" + vo.getrContent() + "</rContent>");
 	    	result.append("<upload>" + vo.getUpload() + "</upload>");
+	    	result.append("<memberId>" + vo.getMemberId() + "</memberId>");
+	    	result.append("<content>" + vo.getContent() + "</content>");
 		    result.append("</member>");
 		    result.append("</members>");
         
