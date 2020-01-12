@@ -16,12 +16,6 @@
   	*{
   		font-family: 'Jeju Gothic', sans-serif;
   	}
-  	.nav-item .nav-link{
-  		color: rgba(0, 0, 0, .5);
-  	}
-  	.nav-item .nav-link:hover {
-  		color: rgba(0, 0, 0, .7);
-  	}
   	/*
     .active{
 		background: #f7ff00;  /* fallback for old browsers */

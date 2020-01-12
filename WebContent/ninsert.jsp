@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +25,7 @@
 	<%@ include file="include/top.jsp" %>
 	
 	<div class="container mt-2">
+	 <c:if test="${empty update }">
 	  <form action="Notinsert" method="post">
 	    <div class="row mt-2">
 	    	<div class="col">
@@ -36,8 +38,26 @@
 		    	<textarea class="form-control" rows="15" name="content"></textarea>
 		    </div>
 	    </div>
-	    <button type="submit" class="btn btn-light text-right mt-2">글쓰기</button>
+	    	<button type="submit" class="btn btn-light text-right mt-2">글쓰기</button>
 	  </form>
+	 </c:if>
+	 <c:if test="${not empty update }">
+	  <form action="NoticeUpDo" method="post">
+	    <div class="row mt-2">
+	    	<div class="col">
+	    		<input type="text" class="form-control" placeholder="제목" name="subject" value="${update.subject }">
+	    		<input type="hidden" class="form-control" name="nNum" value="${update.nNum }">
+	    	</div>
+	    </div>
+	    <div class="row mt-2">
+		    <div class="col">
+		    	<h2>공지사항</h2>
+		    	<textarea class="form-control" rows="15" name="content">${update.content }</textarea>
+		    </div>
+	    </div>
+	    	<button type="submit" class="btn btn-light text-right mt-2">수정</button>
+	  </form>
+	 </c:if>
 	</div>
 	
 	<%@ include file="include/bottom.jsp" %>

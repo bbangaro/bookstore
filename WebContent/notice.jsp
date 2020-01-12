@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/jejugothic.css">
   <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="csstemplate/bbs.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <style>
 	*{
   		font-family: 'Jeju Gothic', sans-serif;
@@ -54,7 +55,20 @@
 		                                    <td>
 		                                        ${vo.wDate }
 		                                    </td>
-		                      
+		                      				<td style="width: 10%;">
+		                                        <a href="NoticeUpdate?nNum=${vo.nNum }&subject=${vo.subject }&content=${vo.content}" class="table-link">
+		                                            <span class="fa-stack">
+		                                                <i class="fa fa-square fa-stack-2x"></i>
+		                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+		                                            </span>
+		                                        </a>
+		                                        <a href="#" class="table-link danger">
+		                                            <span class="fa-stack">
+		                                                <i class="fa fa-square fa-stack-2x"></i>
+		                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+		                                            </span>
+		                                        </a>
+		                                    </td>
 	                               		</tr>
 										
 										</c:forEach>

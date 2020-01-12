@@ -42,6 +42,11 @@ public class NotDAO {
 		ss.close();
 		return list;
 	}	
-	
+	public static int getUpdate(Map map) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		int result = ss.update("Nupdate", map);
+		ss.close();
+		return result;
+	}
 	
 }

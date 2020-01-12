@@ -36,6 +36,11 @@
 			OR WRITER_NAME LIKE '%'||#{search}||'%'
 			AND B_TYPE = 1
 	</select>
-	
+	<update id="Nupdate" parameterType="map">
+		UPDATE NOTICE 
+		SET SUBJECT = #{subject},
+			CONTENT = #{content}
+		WHERE N_NUM = #{nNum}
+	</update>
 	
 </mapper>

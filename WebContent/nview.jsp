@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,13 +22,15 @@
 	<%@ include file="include/top.jsp" %>
 	<div class="container">
 		<c:if test="${not empty vo}">
-			
-			
-			${vo.content }							
-		                                 
-						
+			<h2 class="mt-2">&nbsp;&nbsp;공지</h2>
+		<div class="card">
+		  <div class="card-header">${vo.subject }</div>
+		  <div class="card-body">${vo.content }</div>
+		  <div class="card-footer" style="background-color: white;"><small>${vo.wDate }</small></div>
+		</div>		
 		</c:if>
 	</div>
+	<div class="container"></div>
 	<%@ include file="include/bottom.jsp" %>
 </body>
 </html>
