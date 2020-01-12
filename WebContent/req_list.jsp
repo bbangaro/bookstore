@@ -46,7 +46,7 @@
 					tbody += "<br>";
 					tbody += "<br>";
 					tbody += "<br>";
-					tbody += "<td><img src='upload/" + $(this).find("upload").text() + "'></td>";
+					tbody += "<td><img src='upload/" + $(this).find("upload").text() + "' width='50%' height='50%'></td>";
 					tbody += "<td></td>";
 					tbody += "</tr>";
 				});

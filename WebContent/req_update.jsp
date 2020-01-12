@@ -49,7 +49,7 @@ body {
               </ul>
               <div class="tab-content pt-3">
                 <div class="tab-pane active">
-                  <form class="form" method="post" enctype="multipart/form-data" action="ReqWriteOkController">
+                  <form class="form" method="post" enctype="multipart/form-data" action="ReqUpdateOKController?requestNum=${vo.requestNum }">
                     <div class="row">
                       <div class="col">
                         <div class="row">
@@ -87,6 +87,7 @@ body {
     	                    <c:if test="${not empty vo.upload }">
 								 <p>
 								 	<a href="upload/${vo.upload }"><img src="upload/${vo.upload }"  width="30%"></a> 
+								 	<input type="hidden" name="upload" value="${vo.upload }" >
 								 </p>
 							</c:if>
     	                    
