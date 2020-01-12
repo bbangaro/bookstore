@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-  
+ <br> <br><br><br><br><br>
    <nav class="navbar fixed-bottom navbar-expand-sm navbar-light bg-light justify-content-center">
    	 <ul class="navbar-nav">
 	    <li class="nav-item">

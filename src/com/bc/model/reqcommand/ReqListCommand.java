@@ -9,7 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bc.model.dao.QnADAO;
 import com.bc.model.dao.ReqDAO;
 import com.bc.model.vo.GuestBookVO;
 import com.bc.page.vo.Paging;

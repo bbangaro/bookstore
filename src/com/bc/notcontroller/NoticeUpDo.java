@@ -1,45 +1,31 @@
-package com.bc.reqcontroller;
+package com.bc.notcontroller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import com.bc.notcommand.Command;
+import com.bc.notcommand.NoticeUpDoCommand;
 
-@WebServlet("/ReqWriteController")
-public class ReqWriteController extends HttpServlet {
+/**
+ * Servlet implementation class NoticeUpDo
+ */
+@WebServlet("/NoticeUpDo")
+public class NoticeUpDo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.getRequestDispatcher("req_write.jsp").forward(request, response);
+		Command comm = new NoticeUpDoCommand();
+		String path = comm.exec(request, response);
+		request.getRequestDispatcher(path).forward(request, response);
 	}
-	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.setCharacterEncoding("utf-8");
 		doGet(request, response);
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

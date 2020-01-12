@@ -33,6 +33,15 @@
 		VALUES (REQ_BOARD.NEXTVAL, #{memberId}, #{subject}, #{rContent}, #{password}, #{upload, jdbcType=VARCHAR}, SYSDATE)
 	</insert>	
 	
+	<update id="reqUpdate" parameterType="com.bc.model.vo.GuestBookVO">
+		UPDATE REQUEST SET
+					   SUBJECT = #{subject} , R_CONTENT = #{rContent}, UPLOAD = #{upload, jdbcType=VARCHAR}, REGDATE =  SYSDATE
+		WHERE REQUEST_NUM = #{requestNum}
+	</update>
+	
+	<delete id="reqDelete" parameterType="int">
+		DELETE FROM REQUEST WHERE REQUEST_NUM = #{requestNum}
+	</delete>
 
 
 	

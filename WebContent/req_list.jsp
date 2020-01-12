@@ -46,7 +46,7 @@
 					tbody += "<br>";
 					tbody += "<br>";
 					tbody += "<br>";
-					tbody += "<td><img src='upload/" + $(this).find("upload").text() + "'></td>";
+					tbody += "<td><img src='upload/" + $(this).find("upload").text() + "' width='50%' height='50%'></td>";
 					tbody += "<td></td>";
 					tbody += "</tr>";
 				});
@@ -62,6 +62,18 @@
 			}
 		});
 	}
+	
+	function reqDelete(requestNum) {
+		if(confirm("글을 삭제하시겠습니까?") == true){
+			location.href="ReqDeleteOKController?requestNum=" + requestNum; 
+		}
+			
+	};
+	
+	console.log(${sessionScope.user.memberId});
+	console.log(${sessionScope.user.password});	
+	
+	
 </script>
 
 <style>
@@ -156,7 +168,7 @@ a {
                     <div class="table-responsive">
                         <table class="table user-list">
                             <thead>
-                                <a href="ReqWriteController?requestNum=${guestBookVO.getRequestNum }" class="table-link">
+                                <a href="ReqWriteController" class="table-link">
                                     <span class="fa-stack">
                                         <i class="fa fa-square fa-stack-2x"></i>
                                         <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
@@ -183,7 +195,7 @@ a {
 		                                    <td><a>${vo.memberId }</a></td>
 		                                  
 		                                    <td>
-		                                    	<a href="ReqOneListController?requestNum=${vo.requestNum }">${vo.subject }</a>
+		                                    	<a >${vo.subject }</a>
 		                                    	<button onClick="getDataBtn(${vo.requestNum })" >눌렁</button>
 		                                    	<br>
 												<div id="tbody${vo.requestNum }"></div>
@@ -194,18 +206,23 @@ a {
 		                                    </td>
 		                                     
 	                               			<td style="width: 10%;">
-		                                        <a href="#" class="table-link">
+	                               			
+	                               			<c:if test="${sessionScope.user.memberId eq vo.memberId}">
+		                                        <a href="ReqUpdateController?requestNum=${vo.requestNum }" class="table-link">
 		                                            <span class="fa-stack">
 		                                                <i class="fa fa-square fa-stack-2x"></i>
 		                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
 		                                            </span>
 		                                        </a>
-		                                        <a href="#" class="table-link danger">
+		                                        <a href="#" onclick="reqDelete(${vo.requestNum})" class="table-link danger">
 		                                            <span class="fa-stack">
 		                                                <i class="fa fa-square fa-stack-2x"></i>
 		                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
 		                                            </span>
 		                                        </a>
+	                               			</c:if>
+		                                        
+		                                        
 		                                    </td>
 	                               		</tr>
 										

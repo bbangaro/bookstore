@@ -1,15 +1,16 @@
 package com.bc.model.reqcommand;
 
-import java.io.File;
 import java.io.IOException;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bc.model.dao.ReqDAO;
+import com.bc.model.dao.TakDAO;
 import com.bc.model.vo.GuestBookVO;
+import com.bc.model.vo.MemberVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -56,8 +57,14 @@ public class ReqWriteOKCommand implements Command {
 		
 		String regip = request.getRemoteAddr();
 		
-		vo.setUpload(mr.getFilesystemName("upload"));
-		
+		String upload = mr.getFilesystemName("upload");
+		if("".equals(upload) || upload == null) {
+			vo.setUpload("default.gif");
+		}
+		else {
+			vo.setUpload(mr.getFilesystemName(upload));
+		}
+		System.out.println("업로드 파일 명 : " + vo.getUpload());
 //		vo.setMemberId(request.getParameter("memberId"));
 //		vo.setSubject(request.getParameter("subject"));
 //		vo.setrContent(request.getParameter("rContent"));
@@ -70,6 +77,14 @@ public class ReqWriteOKCommand implements Command {
 		
 		
 		int result = ReqDAO.getReqInsert(vo);
+		
+		// id에 대한 사용자 정보를 꺼내서 세션스코프에 등록 (현재는 id, password만 가져옴)
+		// 로그인에서 세션 구현 완료 되면 난 없애버리기 ~ 
+		HttpSession session = request.getSession();
+		
+		MemberVO memberVo = TakDAO.logincheck(mr.getParameter("memberId"));
+		System.out.println("회원정보 : " + memberVo.toString());
+		session.setAttribute("user", memberVo);
 		
 		return "ReqListController";
 		
