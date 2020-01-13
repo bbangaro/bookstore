@@ -9,24 +9,24 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bc.model.dao.QnADAO;
 import com.bc.model.vo.CommentVO;
-import com.bc.model.vo.QnAVO;
 
-public class QnAOneListCommand implements Command{
+public class QnACommentWriteCommand implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		CommentVO vo = new CommentVO();
 		
 		int qNum = Integer.parseInt(request.getParameter("qNum"));
 		
-		QnAVO vo = QnADAO.getOne(qNum);
+		vo.setqNum(qNum);
+		vo.setMemberId(request.getParameter("memberId"));
+		vo.setContent(request.getParameter("content"));
 		
-		request.setAttribute("vo", vo);
 		
-		List<CommentVO> clist = QnADAO.getComment(qNum);
+		System.out.println("vo : " + vo);
+		int result = QnADAO.insertComment(vo);
 		
-		request.setAttribute("clist", clist);
-		System.out.println("clist : " + clist);
-		return "qna_oneList.jsp";
+		return "QnAOneListController";
 	}
-
+	
 }

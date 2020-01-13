@@ -109,7 +109,7 @@
 						<input type="reset" value="취소">
                       </div>
                     </div>
-                    <br><br><br><br><br><br>
+                    <br><br><br>
                   </form>
                 </div>
               </div>

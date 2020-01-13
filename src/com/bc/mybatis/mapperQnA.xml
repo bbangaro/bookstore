@@ -23,6 +23,7 @@
 		SELECT COUNT(*) FROM QNA
 	</select>
 	
+	<!-- qNum 시퀀스로 변경 -->
 	<insert id="insert" parameterType="Map">
 		INSERT INTO QNA VALUES(13, #{memberId}, 
                     (SELECT USERNAME FROM MEMBER WHERE MEMBER_ID = #{memberId}), 
@@ -46,10 +47,35 @@
 		 WHERE Q_NUM = #{qNum}			   
 	</update>
 	
-	<!-- 댓글 SQL문 -->
+	<!-- /////////////////댓글 SQL문///////////////// -->
 	<select id="selectC" parameterType="int" resultType="com.bc.model.vo.CommentVO">
 		SELECT * FROM COMMENTS 
 		 WHERE Q_NUM = #{qNum}
 	</select>
+	
+	<!-- 댓글 개수 표시 -->
+	<select id="countC" parameterType="int">
+		SELECT COUNT(*) FROM COMMENTS WHERE Q_NUM = #{qNum}
+	</select>
+	
+	<!-- cIdx 시퀀스로 변경 -->
+	<insert id="insertC" parameterType="com.bc.model.vo.CommentVO">
+		INSERT INTO COMMENTS 
+		VALUES(null, #{qNum}, null, #{memberId}, #{content}, 
+        (SELECT PASSWORD FROM MEMBER WHERE MEMBER_ID = #{memberId}),
+        (SELECT USERNAME FROM MEMBER WHERE MEMBER_ID = #{memberId}),
+        COMMENT_SEQ.NEXTVAL)
+	</insert>
+	
+	<delete id="deleteC" parameterType="int">
+		DELETE FROM COMMENTS
+		 WHERE C_IDX = #{cIdx}
+	</delete>
+	
+	<update id="updateC" parameterType="com.bc.model.vo.CommentVO">
+		UPDATE COMMENTS SET CONTENT = #{content}
+		 WHERE C_IDX = #{cIdx}	
+	</update>
+	
 </mapper>
 
