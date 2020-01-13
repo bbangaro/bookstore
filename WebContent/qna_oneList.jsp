@@ -38,9 +38,17 @@
 		frm.action = "QnAUpdateController?qNum=${vo.qNum}";
 		frm.submit();
 	}
+	
 	function delete_go(frm) {
-		frm.action = "QnADeleteController?qNum=${vo.qNum}";
-		frm.submit();
+		var isDelete = confirm("정말 삭제하시겠습니까?");
+		
+		if (isDelete) {
+			frm.action = "QnADeleteController?qNum=${vo.qNum}";
+			frm.submit();			
+		} else {
+			history.go(0);
+		}
+		
 	}
 
 	function sendComment(frm) {
@@ -177,7 +185,7 @@
 															class="fa fa-edit"></i>
 													</a>
 													</span> <input type="hidden" name="qNum" value="${vo.qNum }">
-													<input type="hidden" name="memberId" value="admin">
+													<input type="hidden" name="memberId" value="${sessionScope.id }">
 
 													<!--  <input type="hidden" name="cPage" value="${cPage }">-->
 
@@ -210,7 +218,16 @@
 					                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
 					                                            </span>
 					                                        </a>
-					                                        <a href="QnACommentDeleteController?cIdx=${cvo.cIdx }&qNum=${cvo.qNum}" class="table-link danger">
+
+															<c:if test="${sessionScope.id eq cvo.memberId }">
+						                                        <a href="QnACommentDeleteController?cIdx=${cvo.cIdx }&qNum=${cvo.qNum}" class="table-link danger">
+															</c:if>
+															<c:if test="${sessionScope.id ne cvo.memberId }">
+						                                        <a href="#" class="table-link danger" onclick="diffId()">
+															</c:if>
+															<c:if test="${empty sessionScope.id}">
+						                                        <a href="#" class="table-link danger" onclick="loginpleaz()">
+															</c:if>
 					                                            <span class="fa-stack">
 					                                                <i class="fa fa-square fa-stack-2x"></i>
 					                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
