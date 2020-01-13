@@ -47,6 +47,14 @@ public class QnADAO {
 		return result;
 	}
 
+	public static int updateQnA(QnAVO vo) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.update("update", vo);
+		ss.close();
+		return result;
+	}
+	
+	//댓글 DAO
 	public static List<CommentVO> getComment(int qNum) {
 		SqlSession ss = DBService.getFactory().openSession(true);
 		List<CommentVO> list = ss.selectList("selectC", qNum);
@@ -54,10 +62,33 @@ public class QnADAO {
 		return list;
 	}
 
-	public static int updateQnA(QnAVO vo) {
+	public static int insertComment(CommentVO vo) {
 		SqlSession ss = DBService.getFactory().openSession(true);
-		int result = ss.update("update", vo);
+		int result = ss.insert("insertC", vo);
 		ss.close();
 		return result;
 	}
+	
+	public static int countComment(int qNum) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.selectOne("countC", qNum);
+		ss.close();
+		return result;
+	}
+
+	public static int deleteComment(int cIdx) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.delete("deleteC", cIdx);
+		ss.close();
+		return result;
+	}
+
+	public static int updateComment(CommentVO vo) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.update("updateC", vo);
+		ss.close();
+		return result;
+	}
+	
+	
 }

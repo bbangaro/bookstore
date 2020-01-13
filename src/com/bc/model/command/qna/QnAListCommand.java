@@ -48,6 +48,12 @@ public class QnAListCommand implements Command {
 		
 		request.setAttribute("list", list);
 		request.setAttribute("pvo", p);
+		System.out.println("list : " + list);
+		System.out.println(list.get(0));
+		//댓글 개수 표시
+//		int qNum;
+//		int comment = QnADAO.countComment(qNum);
+//		request.setAttribute("comment", comment);
 		
 		return "qna_list.jsp";
 	}
