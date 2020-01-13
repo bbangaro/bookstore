@@ -39,7 +39,7 @@ public class login extends HttpServlet {
 			}else {
 				HttpSession Session = request.getSession(true);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-				Session.setAttribute("id","로그인에 성공 하였습니다.");       
+				Session.setAttribute("id",membervo.getMemberId());       
 				dispatcher.forward(request, response);
 			}
 		}
