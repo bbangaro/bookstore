@@ -81,13 +81,11 @@ public class ReqWriteOKCommand implements Command {
 		// id에 대한 사용자 정보를 꺼내서 세션스코프에 등록 (현재는 id, password만 가져옴)
 		// 로그인에서 세션 구현 완료 되면 난 없애버리기 ~ 
 		
-		HttpSession session = request.getSession();
-		
-		MemberVO memberVo = TakDAO.logincheck(mr.getParameter("memberId"));
-		
-		System.out.println("회원정보 : " + memberVo.toString());
-		
-		session.setAttribute("user", memberVo);
+//		HttpSession session = request.getSession();
+//		MemberVO memberVo = TakDAO.logincheck(mr.getParameter("memberId"));
+//		System.out.println("회원정보 : " + memberVo.toString());
+//		session.setAttribute("user", memberVo);
+
 		
 		return "ReqListController";
 		
