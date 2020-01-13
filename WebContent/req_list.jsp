@@ -79,7 +79,6 @@
 		success : function(data){
 			
 			var tbody = "";
-			$(data).find("comment").each(function(){
 				
 				tbody += "<div class='container'>";
 				tbody += "<div class='col-sm-8'>";
@@ -91,6 +90,7 @@
 				tbody += "<input class='form-control' placeholder='Add a comment' type='text'>";
 				tbody += "<span class='input-group-addon'> <a href='#'><i class='fa fa-edit'></i></a></span>";
 				tbody += "</div>";
+			$(data).find("comment").each(function(){
 				tbody += "<ul class='comments-list'>";
 				tbody += "<li class='comment'><a class='pull-left' href='#'> <img class='avatar' src='http://bootdey.com/img/Content/user_1.jpg' alt='avatar'> </a>";
 				tbody += "<div class='comment-body'>";
@@ -101,13 +101,13 @@
 				tbody += "<p>"+ $(this).find("cComment").text() +"</p>";
 				tbody += "</div></li>";
 				tbody += "</ul>";
-				tbody += "</div>";
-				
-				tbody += "</div>";
-				tbody += "</div>";
-				tbody += "</div>";
-				
 			});
+				tbody += "</div>";
+				
+				tbody += "</div>";
+				tbody += "</div>";
+				tbody += "</div>";
+				
 				
 			$("#tbody2"+requestNum).html(tbody);
 	
