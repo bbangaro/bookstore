@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bc.model.dao.TakDAO;
 import com.bc.model.vo.MemberVO;
@@ -22,7 +23,8 @@ public class login extends HttpServlet {
 	
 		String member_id = request.getParameter("member_id");
 		String password = request.getParameter("password");
-		
+		System.out.println(member_id);
+		System.out.println(password);
 		MemberVO membervo = TakDAO.logincheck(member_id);
 		
 		if(membervo == null) {
@@ -35,9 +37,9 @@ public class login extends HttpServlet {
 				request.setAttribute("loginFiledPassword", "비밀번호가 일지하지 않습니다. 다시로그인 하세요");
 				 dispatcher.forward(request, response);
 			}else {
+				HttpSession Session = request.getSession(true);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-				request.setAttribute("loginSucceed", "로그인에 성공 하였습니다.");
-				request.setAttribute("id", "로그인에 성공 하였습니다.");
+				Session.setAttribute("id",membervo.getMemberId());       
 				dispatcher.forward(request, response);
 			}
 		}

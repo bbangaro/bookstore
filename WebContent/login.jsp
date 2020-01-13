@@ -229,8 +229,7 @@ body{
              <button type="submit"  class="signupbtn btn">로그인</button>
              <button type="reset"  class="cancelbtn_login btn">취소</button> 
             </div>
-            </form>
-        
+           </form>
     </div>
 
 
