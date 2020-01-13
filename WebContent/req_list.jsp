@@ -26,7 +26,7 @@
 
 	
 	function getXMLMembers(requestNum){
-	const numUrl = "getXmlRequest?requestNum=" + requestNum;
+		const numUrl = "getXmlRequest?requestNum=" + requestNum;
 		$.ajax({
 			url : numUrl,
 			type : "get",
@@ -50,42 +50,11 @@
 					tbody += "<td><img src='upload/" + $(this).find("upload").text() + "' width='50%' height='50%'></td>";
 					tbody += "<td></td>";
 					tbody += "<br>";
-					tbody += "<div class='container'>";
-					tbody += "<div class='col-sm-8'>";
-					tbody += "<div class='panel panel-white post panel-shadow'>";
-					tbody += "<c:if test='${not empty list}'>";
-					tbody += "<c:forEach var='vo' items='${list}'>";
-					tbody += "<div class='post-footer'>";
-					tbody += "<div class='input-group'>";
-					tbody += "<input class='form-control' placeholder='Add a comment' type='text'>";
-					tbody += "<span class='input-group-addon'> <a href='#'><i class='fa fa-edit'></i></a></span>";
-					tbody += "</div>";
-					tbody += "<ul class='comments-list'>";
-					tbody += "<li class='comment'><a class='pull-left' href='#'> <img class='avatar' src='http://bootdey.com/img/Content/user_1.jpg' alt='avatar'> </a>";
-					tbody += "<div class='comment-body'>";
-					tbody += "<div class='comment-heading'>";
-					tbody += "<h4 class='user'>"+ $(this).find("memberId").text() +"</h4>";
-					tbody += "<h5 class='time'>5 minutes ago</h5>";
-					tbody += "</div>";
-					tbody += "<p>"+ $(this).find("content").text() +"</p>";
-					tbody += "</div></li>";
-					tbody += "</ul>";
-					tbody += "</c:forEach>";
-					tbody += "</c:if>";
-					tbody += "<c:if test='${empty list }'>";
-					tbody += "<h4 class='user'>데이터가 없습니다t^^t</h4>";
-					tbody += "</c:if>";
-					tbody += "</div>";
-					tbody += "</div>";
-					tbody += "</div>";
-					tbody += "</div>";
+					tbody += "<br>";
+					tbody += "<br>";
 					
 					
-						
-						
-					tbody += "<td> ${sessionScope.id }</td>";
-					tbody += "<td>" + $(this).find("content").text() + "</td>";
-					tbody += "</tr>";
+					
 				});
 				
 				$("#tbody"+requestNum).html(tbody);
@@ -98,8 +67,73 @@
 					+ "errorThrown : " + errorThrown);
 			}
 		});
+		reqComment(requestNum);
 	}
 	
+	function reqComment(requestNum){
+	const numUrl = "getXmlRequest?requestNum=" + requestNum;
+	$.ajax({
+		url : numUrl,
+		type : "get",
+		dataType : "xml",
+		success : function(data){
+			
+			var tbody = "";
+			$(data).find("comment").each(function(){
+				
+				tbody += "<div class='container'>";
+				tbody += "<div class='col-sm-8'>";
+				tbody += "<div class='panel panel-white post panel-shadow'>";
+				
+				tbody += "<c:if test='${not empty list}'>";
+				tbody += "<c:forEach var='vo' items='${list}'>";
+				
+				tbody += "<div class='post-footer'>";
+				tbody += "<div class='input-group'>";
+				tbody += "<input class='form-control' placeholder='Add a comment' type='text'>";
+				tbody += "<span class='input-group-addon'> <a href='#'><i class='fa fa-edit'></i></a></span>";
+				tbody += "</div>";
+				tbody += "<ul class='comments-list'>";
+				tbody += "<li class='comment'><a class='pull-left' href='#'> <img class='avatar' src='http://bootdey.com/img/Content/user_1.jpg' alt='avatar'> </a>";
+				tbody += "<div class='comment-body'>";
+				tbody += "<div class='comment-heading'>";
+				tbody += "<h4 class='user'> "+$(this).find("memberId").text()+" </h4>";
+				tbody += "<h5 class='time'>5 minutes ago</h5>";
+				tbody += "</div>";
+				tbody += "<p>"+ $(this).find("content").text() +"</p>";
+				tbody += "</div></li>";
+				tbody += "</ul>";
+				tbody += "</div>";
+				
+				tbody += "</c:forEach>";
+				tbody += "</c:if>";
+				
+				tbody += "<c:if test='${empty list || list.equals("") }'>";
+				tbody += "<h4 class='user'>데이터가 없습니다t^^t</h4>";
+				tbody += "</c:if>";
+				tbody += "</div>";
+				tbody += "</div>";
+				tbody += "</div>";
+				tbody += "<br>";
+				tbody += "<br>";
+				tbody += "<br>";
+				tbody += "<br>";
+				tbody += "<br>";
+				tbody += "<br>";
+			});
+				
+			$("#tbody2"+requestNum).html(tbody);
+	
+			},
+			error : function(jqXHR, textStatus, errorThrown){
+				alert("Ajax 처리 실패 : \n"
+					+ "jqXHR.readyState : " + jqXHR.readyState +"\n"
+					+ "textStatus : " + textStatus +"\n"
+					+ "errorThrown : " + errorThrown);
+			}
+		});
+	}
+		
 	function reqDelete(requestNum) {
 		if(confirm("글을 삭제하시겠습니까?") == true){
 			location.href="ReqDeleteOKController?requestNum=" + requestNum; 
@@ -363,6 +397,7 @@ a {
 		                                    	<button onClick="getDataBtn(${vo.requestNum })" >눌렁</button>
 		                                    	<br>
 												<div id="tbody${vo.requestNum }"></div>
+												<div id="tbody2${vo.requestNum }"></div>
 		                                    </td>
 		                                  
 		                                    <td>

@@ -16,7 +16,7 @@ import com.bc.model.vo.CommentVO;
 import com.bc.model.vo.GuestBookVO;
 
 @WebServlet("/getXmlRequest")
-public class GetJXmlReqOneListController extends HttpServlet {
+public class GetJXmlReqOneListCommentController2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,6 +28,8 @@ public class GetJXmlReqOneListController extends HttpServlet {
 		int requestNum = Integer.parseInt(request.getParameter("requestNum"));
 		
 		GuestBookVO vo = ReqDAO.getOneList(requestNum);
+		List<CommentVO> commentList = ReqCommentDAO.getReqCommentList(requestNum);
+		vo.setCommentList(commentList);
 		
 		StringBuilder result = new StringBuilder();
 		result.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
@@ -40,6 +42,9 @@ public class GetJXmlReqOneListController extends HttpServlet {
 	    	result.append("<content>" + vo.getCommentList() + "</content>");
 	    	result.append("</member>");
 	    	result.append("</members>");
+	    	
+	    	
+        
 		System.out.println("result : " + result);
 		out.print(result.toString());
 		
