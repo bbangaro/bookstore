@@ -32,6 +32,15 @@ $(document).ready(function () {
     });
 
  });
+ 
+ function diffId() {
+	 alert("글을 열람할 수 있는 권한이 없습니다.");
+ }
+ 
+ function loginpleaz() {
+	 alert("로그인이 필요한 서비스입니다.");
+	 location.href = "login.jsp";
+ }
 </script>
 
 <style>
@@ -131,7 +140,15 @@ $(document).ready(function () {
 	                            
 	                            <c:otherwise>
 	                            	<c:forEach var="vo" items="${list }">
+	                            	  <c:if test="${sessionScope.id eq vo.memberId or sessionScope.id eq 'admin'}">
 	                                	<tr data-status="${vo.category }" onclick="javascript:location.href='QnAOneListController?qNum=${vo.qNum}'">
+	                                  </c:if>
+	                                  <c:if test="${sessionScope.id ne vo.memberId}">
+	                                  	<tr data-status="${vo.category }" onclick="diffId()">
+	                                  </c:if>	
+	                                  <c:if test="${sessionScope.id eq null}">
+	                                  	<tr data-status="${vo.category }" onclick="loginpleaz()">
+	                                  </c:if>
 	                                		<c:choose>
 												<c:when test="${vo.upload eq null}">
 													<td><img src="images/5.jpg" alt="디폴트이미지" width="80px" height="80px"></td>
@@ -155,6 +172,7 @@ $(document).ready(function () {
 	                                			${vo.regdate }
 	                                		</td>
 	                                	</tr>
+	                                  	
 	                                </c:forEach>
 	                            </c:otherwise>
 	                            </c:choose>    

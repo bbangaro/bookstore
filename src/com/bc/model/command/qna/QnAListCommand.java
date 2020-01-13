@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bc.model.dao.QnADAO;
 import com.bc.model.vo.CommentVO;
@@ -45,6 +46,7 @@ public class QnAListCommand implements Command {
 		map.put("end", p.getEnd());
 		
 		List<QnAVO> list = QnADAO.getList(map);
+		
 		
 		request.setAttribute("list", list);
 		request.setAttribute("pvo", p);

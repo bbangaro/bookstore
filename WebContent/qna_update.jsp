@@ -26,7 +26,14 @@
 				return;
 			}
 		}
-		document.forms[0].submit();
+		
+		var isUpdate = confirm("정말 수정하시겠습니까?");
+		
+			if (isUpdate) {
+				document.forms[0].submit();
+			} else {
+				history.go(0);
+			}
 	}
 </script>
 
@@ -75,7 +82,7 @@
                           <div class="col">
                             <div class="form-group">
                               <label>작성자</label>
-                              <input class="form-control" type="text" name="memberId" placeholder="작성자">
+                              <input class="form-control" type="text" name="memberId" placeholder="작성자" value="${sessionScope.id }" readonly>
                             </div>
                           </div>
                         </div>

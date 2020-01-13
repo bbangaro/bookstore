@@ -75,7 +75,7 @@
                           <div class="col">
                             <div class="form-group">
                               <label>작성자</label>
-                              <input class="form-control" type="text" name="memberId" placeholder="작성자">
+                              <input class="form-control" type="text" name="memberId" placeholder="작성자" value="${sessionScope.id }" readonly>
                             </div>
                           </div>
                         </div>
