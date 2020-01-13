@@ -15,8 +15,8 @@ import com.bc.model.dao.ReqDAO;
 import com.bc.model.vo.CommentVO;
 import com.bc.model.vo.GuestBookVO;
 
-@WebServlet("/getXmlRequest")
-public class GetJXmlReqOneListCommentController2 extends HttpServlet {
+@WebServlet("/getXmlRequestComment")
+public class GetJXmlReqOneListCommentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,21 +27,21 @@ public class GetJXmlReqOneListCommentController2 extends HttpServlet {
 		System.out.println(request.getParameter("requestNum"));
 		int requestNum = Integer.parseInt(request.getParameter("requestNum"));
 		
-		GuestBookVO vo = ReqDAO.getOneList(requestNum);
 		List<CommentVO> commentList = ReqCommentDAO.getReqCommentList(requestNum);
-		vo.setCommentList(commentList);
 		
 		StringBuilder result = new StringBuilder();
 		result.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-		
-			result.append("<members>");
-	    	result.append("<member>");
-	    	result.append("<rContent>" + vo.getrContent() + "</rContent>");
-	    	result.append("<upload>" + vo.getUpload() + "</upload>");
-	    	result.append("<memberId>" + vo.getMemberId() + "</memberId>");
-	    	result.append("<content>" + vo.getCommentList() + "</content>");
-	    	result.append("</member>");
-	    	result.append("</members>");
+
+			result.append("<comments>");
+			for(CommentVO list : commentList ) {
+	    	result.append("<comment>");
+	    	
+	    	result.append("<cId>" + list.getMemberId() + "</cId>");
+	    	result.append("<cComment>" + list.getContent() + "</cComment>");
+	    	
+	    	result.append("</comment>");
+			}
+	    	result.append("</comments>");
 	    	
 	    	
         
