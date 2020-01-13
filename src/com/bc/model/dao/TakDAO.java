@@ -1,10 +1,13 @@
 package com.bc.model.dao;
 
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.bc.model.vo.BookVO;
 import com.bc.model.vo.MemberVO;
+import com.bc.model.vo.ReviewVO;
 import com.bc.mybatis.DBService;
 
 public class TakDAO {
@@ -30,11 +33,19 @@ public class TakDAO {
 		System.out.println(count);
 		return count;
 	}
-	//회원가입 중복 체크
-		public static BookVO detailPage(String detailPage) {
+	//책 상세페이지 조회 
+		public static BookVO detailPage(String book_code) {
 			SqlSession ss = DBService.getFactory().openSession(true);
-			BookVO bookvo = ss.selectOne("detailPage",detailPage);
+			BookVO bookvo = ss.selectOne("detailPage",book_code);
 			System.out.println(bookvo);
 			return bookvo;
 		}
+	//해당 책 리뷰 조회 
+		public static List<ReviewVO> detailPageReview(String b_code) {
+			SqlSession ss = DBService.getFactory().openSession(true);
+			List<ReviewVO> reviewvo = ss.selectList("detailPageReview",b_code);
+			System.out.println(reviewvo);
+			return reviewvo;
+		}
+		
 }
