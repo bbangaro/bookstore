@@ -30,7 +30,7 @@
   box-sizing: border-box;
   border-radius:8px ;
   text-align: center;
-  box-shadow: 0 0 25px #bbbab4
+  box-shadow: 0 0 25px #bbbab4;
 
 }
 
