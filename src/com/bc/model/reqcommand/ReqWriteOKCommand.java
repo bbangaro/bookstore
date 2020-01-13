@@ -24,8 +24,8 @@ public class ReqWriteOKCommand implements Command {
 		//DAO 쿼리문 호출
 		
 		GuestBookVO vo = new GuestBookVO();
-		
 		System.out.println(vo.toString());
+		
 		//-------------------------
 		MultipartRequest mr = null;
 		String path = request.getRealPath("/upload");
@@ -57,12 +57,12 @@ public class ReqWriteOKCommand implements Command {
 		
 		String regip = request.getRemoteAddr();
 		
-		String upload = mr.getFilesystemName("upload");
+		String upload = mr.getOriginalFileName("upload");
 		if("".equals(upload) || upload == null) {
 			vo.setUpload("default.gif");
 		}
 		else {
-			vo.setUpload(mr.getFilesystemName(upload));
+			vo.setUpload( mr.getOriginalFileName("upload"));
 		}
 		System.out.println("업로드 파일 명 : " + vo.getUpload());
 //		vo.setMemberId(request.getParameter("memberId"));
@@ -80,10 +80,13 @@ public class ReqWriteOKCommand implements Command {
 		
 		// id에 대한 사용자 정보를 꺼내서 세션스코프에 등록 (현재는 id, password만 가져옴)
 		// 로그인에서 세션 구현 완료 되면 난 없애버리기 ~ 
+		
 		HttpSession session = request.getSession();
 		
 		MemberVO memberVo = TakDAO.logincheck(mr.getParameter("memberId"));
+		
 		System.out.println("회원정보 : " + memberVo.toString());
+		
 		session.setAttribute("user", memberVo);
 		
 		return "ReqListController";

@@ -98,6 +98,7 @@
 		/* 리뷰끝 */
 
 		/* 메인끝  */
+
 	</style>
 </head>
 
@@ -165,23 +166,24 @@
 		<div class="review" style="margin: 0 auto 0 auto; ">
 		   <div class="atc_area">
                          <div class="avg_area">
-               
+							<h1>한줄 리뷰</h1>
+							<form name="">
                                  <div class="box">
-                                   <span class="fa fa-star checked" onmouseover="starmark(this)" onclick="starmark(this)" id="1one" ></span>
-                                   <span class="fa fa-star checked" onmouseover="starmark(this)" onclick="starmark(this)" id="2one" ></span>
-                                   <span class="fa fa-star checked" onmouseover="starmark(this)" onclick="starmark(this)" id="3one" ></span>
-                                   <span class="fa fa-star checked" onmouseover="starmark(this)" onclick="starmark(this)" id="4one" ></span>
-                                   <span class="fa fa-star checked" onmouseover="starmark(this)" onclick="starmark(this)" id="5one" ></span>
+                                   <span class="fa fa-star checked" onclick="starmark(this)" id="1one" ></span>
+                                   <span class="fa fa-star checked" onclick="starmark(this)" id="2one" ></span>
+                                   <span class="fa fa-star checked" onclick="starmark(this)" id="3one" ></span>
+                                   <span class="fa fa-star checked" onclick="starmark(this)" id="4one" ></span>
+                                   <span class="fa fa-star checked" onclick="starmark(this)" id="5one" ></span>
                                    </div>
-                                   	제목 <input type="text" style="margin-bottom: 5px;">                             
+                                   	제목 <input type="text" style="margin-bottom: 5px;"><br>                   
                                    <textarea rows="5" cols="60"  placeholder="내용 최대 4천자" style="resize: none;"></textarea>
                                    <button>리뷰쓰기</button>
-                                
+							</form>
                            
                              
                          </div>
                          <p class="subjcet"><strong>제목</strong><strong>작성자</strong><strong>작성일</strong></p> <span class="info">
-                          <p ><strong>제목</strong><strong>작성자</strong><strong>작성일</strong></p> <span class="info"></span>
+                          <p ><strong>아니 이거</strong><strong>만남의광장</strong><strong>너무 재미있잖아~</strong></p> <span class="info"></span>
                                  
                          <div 져서다시테이프를붙인흔적으로지져분한상태였으며,뭐가얼마나급했는지..본품담는케이스가깨진여파인지, 본품모서리부분에가죽부분이까여서왔습니다.다른분이사서쓰는거보고, 예뻐서샀는데..제품받자마자기분부터상하네요.제품을확인도안하고이런식으로보내주는건지. 너무하시네요-</div>
                          </div>
@@ -194,12 +196,13 @@
 
                   </div>
 			<table class="content-table">
-					<h1>마이리뷰</h1>
+					<h1>구매자 리뷰</h1>
 			<thead>
 				<tr>
 					<th>작성자</th>
 					<th>제목</th>
 					<th>내용</th>
+					<th>포토</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -207,11 +210,13 @@
 					<td>작성자</td>
 					<td>제목</td>
 					<td>내용</td>
+					<td>이미지</td>
 				</tr>
 				<tr>
 						<td>작성자</td>
 						<td>제목</td>
 						<td>내용</td>
+						<td>이미지</td>
 					</tr>
 			</tbody>
 
@@ -316,14 +321,18 @@
 		var rating="";
 		function starmark(item){
 		var count = item.id[0];
+		
 		rating = count;			
 		var subid=item.id.substring(1);
+		var stars =document.querySelectorAll(".checked");
+		console.log(count);
+
 		for(var i=0;i<5; i++){
 			
 			if(i<count){
-				document.getElementByID((i+1)+subid).style.color="orange";
+				stars[i].style.color="orange";
 			}else{
-				document.getElementByID((i+1)+subid).style.color="black";
+				stars[i].style.color="black";
 			}
 			
 		}
