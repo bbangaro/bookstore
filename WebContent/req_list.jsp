@@ -78,38 +78,38 @@
 		dataType : "xml",
 		success : function(data){
 			
-			var tbody = "";
+			var commentTbody = "";
 				
-				tbody += "<div class='container'>";
-				tbody += "<div class='col-sm-8'>";
-				tbody += "<div class='panel panel-white post panel-shadow'>";
+				commentTbody += "<div class='container'>";
+				commentTbody += "<div class='col-sm-8'>";
+				commentTbody += "<div class='panel panel-white post panel-shadow'>";
+					
+					
+				commentTbody += "<div class='post-footer'>";
+				commentTbody += "<div class='input-group'>";
+				commentTbody += "<input class='form-control' placeholder='Add a comment' type='text'>";
+				commentTbody += "<span class='input-group-addon'> <a href='#'><i class='fa fa-edit'></i></a></span>";
+				commentTbody += "</div>";
 				
-				
-				tbody += "<div class='post-footer'>";
-				tbody += "<div class='input-group'>";
-				tbody += "<input class='form-control' placeholder='Add a comment' type='text'>";
-				tbody += "<span class='input-group-addon'> <a href='#'><i class='fa fa-edit'></i></a></span>";
-				tbody += "</div>";
 			$(data).find("comment").each(function(){
-				tbody += "<ul class='comments-list'>";
-				tbody += "<li class='comment'><a class='pull-left' href='#'> <img class='avatar' src='http://bootdey.com/img/Content/user_1.jpg' alt='avatar'> </a>";
-				tbody += "<div class='comment-body'>";
-				tbody += "<div class='comment-heading'>";
-				tbody += "<h4 class='user'>"+ $(this).find("cId").text() +"</h4>";
-				tbody += "<h5 class='time'>5 minutes ago</h5>";
-				tbody += "</div>";
-				tbody += "<p>"+ $(this).find("cComment").text() +"</p>";
-				tbody += "</div></li>";
-				tbody += "</ul>";
+				commentTbody += "<ul class='comments-list'>";
+				commentTbody += "<li class='comment'><a class='pull-left' href='#'> <img class='avatar' src='http://bootdey.com/img/Content/user_1.jpg' alt='avatar'> </a>";
+				commentTbody += "<div class='comment-body'>";
+				commentTbody += "<div class='comment-heading'>";
+				commentTbody += "<h4 class='user'>"+ $(this).find("cId").text() +"</h4>";
+				commentTbody += "<h5 class='time'>5 minutes ago</h5>";
+				commentTbody += "</div>";
+				commentTbody += "<p>"+ $(this).find("cComment").text() +"</p>";
+				commentTbody += "</div></li>";
+				commentTbody += "</ul>";
 			});
-				tbody += "</div>";
+				commentTbody += "</div>";
+				commentTbody += "</div>";
+				commentTbody += "</div>";
+				commentTbody += "</div>";
 				
-				tbody += "</div>";
-				tbody += "</div>";
-				tbody += "</div>";
 				
-				
-			$("#tbody2"+requestNum).html(tbody);
+			$("#commentTbody"+requestNum).html(commentTbody);
 	
 			},
 			error : function(jqXHR, textStatus, errorThrown){
@@ -384,7 +384,7 @@ a {
 		                                    	<button onClick="getDataBtn(${vo.requestNum })" >눌렁</button>
 		                                    	<br>
 												<div id="tbody${vo.requestNum }"></div>
-												<div id="tbody2${vo.requestNum }"></div>
+												<div id="commentTbody${vo.requestNum }"></div>
 		                                    </td>
 		                                  
 		                                    <td>
