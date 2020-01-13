@@ -167,22 +167,23 @@
                          <div class="avg_area">
                
                                  <div class="box">
-                                    <input type="radio" class=" fas fa-star" value="2"></input>
-                                    <input type="radio" class=" fas fa-star" value="2"></input>
-                                    <input type="radio" class=" fas fa-star" value="3"></input>
-                                    <input type="radio" class=" fas fa-star" value="4"></input>
-                                    <input type="radio" class=" fas fa-star" value="5"></input>
-                                 </div>
-                                 <span class="curr_avg"><strong>별점수</strong></span>
+                                   <span class="fa fa-star checked" onmouseover="starmark(this)" onclick="starmark(this)" id="1one" ></span>
+                                   <span class="fa fa-star checked" onmouseover="starmark(this)" onclick="starmark(this)" id="2one" ></span>
+                                   <span class="fa fa-star checked" onmouseover="starmark(this)" onclick="starmark(this)" id="3one" ></span>
+                                   <span class="fa fa-star checked" onmouseover="starmark(this)" onclick="starmark(this)" id="4one" ></span>
+                                   <span class="fa fa-star checked" onmouseover="starmark(this)" onclick="starmark(this)" id="5one" ></span>
+                                   </div>
+                                   	제목 <input type="text" style="margin-bottom: 5px;">                             
+                                   <textarea rows="5" cols="60"  placeholder="내용 최대 4천자" style="resize: none;"></textarea>
+                                   <button>리뷰쓰기</button>
+                                
                            
-                             <span class="info">
-                                 <span class="info_cell"></span>
-                                 <span class="info_cell">작성자</span>
-                                 <span class="info_cell">작성일</span>
-                                 </span>
+                             
                          </div>
-                         <p class="subjcet"><strong>제목</strong></p>
-                         <div class="atc">져서다시테이프를붙인흔적으로지져분한상태였으며,뭐가얼마나급했는지..본품담는케이스가깨진여파인지, 본품모서리부분에가죽부분이까여서왔습니다.다른분이사서쓰는거보고, 예뻐서샀는데..제품받자마자기분부터상하네요.제품을확인도안하고이런식으로보내주는건지. 너무하시네요-</div>
+                         <p class="subjcet"><strong>제목</strong><strong>작성자</strong><strong>작성일</strong></p> <span class="info">
+                          <p ><strong>제목</strong><strong>작성자</strong><strong>작성일</strong></p> <span class="info"></span>
+                                 
+                         <div 져서다시테이프를붙인흔적으로지져분한상태였으며,뭐가얼마나급했는지..본품담는케이스가깨진여파인지, 본품모서리부분에가죽부분이까여서왔습니다.다른분이사서쓰는거보고, 예뻐서샀는데..제품받자마자기분부터상하네요.제품을확인도안하고이런식으로보내주는건지. 너무하시네요-</div>
                          </div>
                          <a href="javascript:void(0);" class="view_toggle _toggleExpandReview" data-review-type="text">
                            <span class="mask"></span>
@@ -311,7 +312,23 @@
 	<br>
 	<br>
 
-
+	<script>
+		var rating="";
+		function starmark(item){
+		var count = item.id[0];
+		rating = count;			
+		var subid=item.id.substring(1);
+		for(var i=0;i<5; i++){
+			
+			if(i<count){
+				document.getElementByID((i+1)+subid).style.color="orange";
+			}else{
+				document.getElementByID((i+1)+subid).style.color="black";
+			}
+			
+		}
+		}
+	</script>
 
 
 
