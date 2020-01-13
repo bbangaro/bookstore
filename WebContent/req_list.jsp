@@ -17,6 +17,7 @@
 
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 <script>
 	
 	function getDataBtn(requestNum) { 
@@ -49,7 +50,40 @@
 					tbody += "<td><img src='upload/" + $(this).find("upload").text() + "' width='50%' height='50%'></td>";
 					tbody += "<td></td>";
 					tbody += "<br>";
-					tbody += "<td>" + $(this).find("memberId").text() + "</td>";
+					tbody += "<div class='container'>";
+					tbody += "<div class='col-sm-8'>";
+					tbody += "<div class='panel panel-white post panel-shadow'>";
+					tbody += "<c:if test='${not empty list}'>";
+					tbody += "<c:forEach var='vo' items='${list}'>";
+					tbody += "<div class='post-footer'>";
+					tbody += "<div class='input-group'>";
+					tbody += "<input class='form-control' placeholder='Add a comment' type='text'>";
+					tbody += "<span class='input-group-addon'> <a href='#'><i class='fa fa-edit'></i></a></span>";
+					tbody += "</div>";
+					tbody += "<ul class='comments-list'>";
+					tbody += "<li class='comment'><a class='pull-left' href='#'> <img class='avatar' src='http://bootdey.com/img/Content/user_1.jpg' alt='avatar'> </a>";
+					tbody += "<div class='comment-body'>";
+					tbody += "<div class='comment-heading'>";
+					tbody += "<h4 class='user'>"+ $(this).find("memberId").text() +"</h4>";
+					tbody += "<h5 class='time'>5 minutes ago</h5>";
+					tbody += "</div>";
+					tbody += "<p>"+ $(this).find("content").text() +"</p>";
+					tbody += "</div></li>";
+					tbody += "</ul>";
+					tbody += "</c:forEach>";
+					tbody += "</c:if>";
+					tbody += "<c:if test='${empty list }'>";
+					tbody += "<h4 class='user'>데이터가 없습니다t^^t</h4>";
+					tbody += "</c:if>";
+					tbody += "</div>";
+					tbody += "</div>";
+					tbody += "</div>";
+					tbody += "</div>";
+					
+					
+						
+						
+					tbody += "<td> ${sessionScope.id }</td>";
 					tbody += "<td>" + $(this).find("content").text() + "</td>";
 					tbody += "</tr>";
 				});
@@ -154,7 +188,134 @@ a {
     border-top: 1px solid #e7ebee;
     padding: 12px 8px;
 }
+<%--코멘트 스타일--%>
+.panel-shadow {
+	box-shadow: rgba(0, 0, 0, 0.3) 7px 7px 7px;
+}
 
+.panel-white {
+	border: 1px solid #dddddd;
+}
+
+.panel-white  .panel-heading {
+	color: #333;
+	background-color: #fff;
+	border-color: #ddd;
+}
+
+.panel-white  .panel-footer {
+	background-color: #fff;
+	border-color: #ddd;
+}
+
+.post .post-heading {
+	height: 95px;
+	padding: 20px 15px;
+}
+
+.post .post-heading .avatar {
+	width: 60px;
+	height: 60px;
+	display: block;
+	margin-right: 15px;
+}
+
+.post .post-heading .meta .title {
+	margin-bottom: 0;
+}
+
+.post .post-heading .meta .title a {
+	color: black;
+}
+
+.post .post-heading .meta .title a:hover {
+	color: #aaaaaa;
+}
+
+.post .post-heading .meta .time {
+	margin-top: 8px;
+	color: #999;
+}
+
+.post .post-image .image {
+	width: 100%;
+	height: auto;
+}
+
+.post .post-description {
+	padding: 15px;
+}
+
+.post .post-description p {
+	font-size: 14px;
+}
+
+.post .post-description .stats {
+	margin-top: 20px;
+}
+
+.post .post-description .stats .stat-item {
+	display: inline-block;
+	margin-right: 15px;
+}
+
+.post .post-description .stats .stat-item .icon {
+	margin-right: 8px;
+}
+
+.post .post-footer {
+	border-top: 1px solid #ddd;
+	padding: 15px;
+}
+
+.post .post-footer .input-group-addon a {
+	color: #454545;
+}
+
+.post .post-footer .comments-list {
+	padding: 0;
+	margin-top: 20px;
+	list-style-type: none;
+}
+
+.post .post-footer .comments-list .comment {
+	display: block;
+	width: 100%;
+	margin: 20px 0;
+}
+
+.post .post-footer .comments-list .comment .avatar {
+	width: 35px;
+	height: 35px;
+}
+
+.post .post-footer .comments-list .comment .comment-heading {
+	display: block;
+	width: 100%;
+}
+
+.post .post-footer .comments-list .comment .comment-heading .user {
+	font-size: 14px;
+	font-weight: bold;
+	display: inline;
+	margin-top: 0;
+	margin-right: 10px;
+}
+
+.post .post-footer .comments-list .comment .comment-heading .time {
+	font-size: 12px;
+	color: #aaa;
+	margin-top: 0;
+	display: inline;
+}
+
+.post .post-footer .comments-list .comment .comment-body {
+	margin-left: 50px;
+}
+
+.post .post-footer .comments-list .comment>.comments-list {
+	margin-left: 50px;
+}
 
 </style>
 
@@ -210,7 +371,7 @@ a {
 		                                     
 	                               			<td style="width: 10%;">
 	                               			
-	                               			<c:if test="${sessionScope.user.memberId eq vo.memberId}">
+	                               			<c:if test="${sessionScope.id eq vo.memberId}">
 		                                        <a href="ReqUpdateController?requestNum=${vo.requestNum }" class="table-link">
 		                                            <span class="fa-stack">
 		                                                <i class="fa fa-square fa-stack-2x"></i>
