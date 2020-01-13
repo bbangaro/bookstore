@@ -52,31 +52,16 @@
 					  <div class="row">
 					    <div class="col-lg-12">
 					      <div id="Carousel" class="carousel slide">
-					        <!-- Carousel items -->
 					        <div class="carousel-inner">
 					          <div class="item active carousel-item">
 					            <div class="row">
-					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250/0ff" alt="Image" style="max-width:100%;"></a>
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="bookimg/01.jpg" alt="Image" style="max-width:100%;"></a>
 					              </div>
-					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250/0ff" alt="Image" style="max-width:100%;"></a>
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="bookimg/02.jpg" alt="Image" style="max-width:100%;"></a>
 					              </div>
-					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250/0ff" alt="Image" style="max-width:100%;"></a>
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="bookimg/03.jpg" alt="Image" style="max-width:100%;"></a>
 					              </div>
-					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250/0ff" alt="Image" style="max-width:100%;"></a>
-					              </div>
-					            </div>
-					            <!--.row-->
-					          </div>
-					          <!--.item-->
-					          <div class="item carousel-item">
-					            <div class="row">
-					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250/00f" alt="Image" style="max-width:100%;"></a>
-					              </div>
-					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250/00f" alt="Image" style="max-width:100%;"></a>
-					              </div>
-					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250/00f" alt="Image" style="max-width:100%;"></a>
-					              </div>
-					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250/00f" alt="Image" style="max-width:100%;"></a>
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="bookimg/04.jpg" alt="Image" style="max-width:100%;"></a>
 					              </div>
 					            </div>
 					            <!--.row-->
@@ -84,13 +69,27 @@
 					          <!--.item-->
 					          <div class="item carousel-item">
 					            <div class="row">
-					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a>
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="bookimg/05.jpg" alt="Image" style="max-width:100%;"></a>
 					              </div>
-					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a>
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="bookimg/06.jpg" alt="Image" style="max-width:100%;"></a>
 					              </div>
-					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a>
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="bookimg/07.jpg" alt="Image" style="max-width:100%;"></a>
 					              </div>
-					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;"></a>
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="bookimg/08.jpg" alt="Image" style="max-width:100%;"></a>
+					              </div>
+					            </div>
+					            <!--.row-->
+					          </div>
+					          <!--.item-->
+					          <div class="item carousel-item">
+					            <div class="row">
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="bookimg/09.jpg" alt="Image" style="max-width:100%;"></a>
+					              </div>
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="bookimg/010.jpg" alt="Image" style="max-width:100%;"></a>
+					              </div>
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="bookimg/01.jpg" alt="Image" style="max-width:100%;"></a>
+					              </div>
+					              <div class="col-lg-3"><a href="#" class="thumbnail"><img src="bookimg/02.jpg" alt="Image" style="max-width:100%;"></a>
 					              </div>
 					            </div>
 					            <!--.row-->
