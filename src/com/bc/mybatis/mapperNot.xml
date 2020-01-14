@@ -83,5 +83,51 @@
 				AND ROWNUM <= 4
 		]]>
 	</select>
+	<select id="mlist1" resultType="com.bc.model.vo.BookVO" parameterType="map">
+		<![CDATA[
+			SELECT B.*, L.L_NAME L_NAME FROM BOOK B, LOW_CATEGORY L
+		    WHERE L.L_CODE = B.L_CODE
+		    AND B.B_CODE >= 5
+		    AND B.H_CODE = #{hCode}
+		    AND B.L_CODE = #{hCode} || '1'
+		]]>
+	</select>
+	<select id="mlist2" resultType="com.bc.model.vo.BookVO" parameterType="map">
+		<![CDATA[
+			SELECT B.*, L.L_NAME L_NAME FROM BOOK B, LOW_CATEGORY L
+		    WHERE L.L_CODE = B.L_CODE
+		    AND B.B_CODE >= 10
+		    AND B.H_CODE = #{hCode}
+		    AND B.L_CODE = #{hCode} || '2'
+		]]>
+	</select>
+	<select id="mlist3" resultType="com.bc.model.vo.BookVO" parameterType="map">
+		<![CDATA[
+			SELECT B.*, L.L_NAME L_NAME FROM BOOK B, LOW_CATEGORY L
+		    WHERE L.L_CODE = B.L_CODE
+		    AND B.B_CODE >= 15
+		    AND B.H_CODE = #{hCode}
+		    AND B.L_CODE = #{hCode} || '3'
+		]]>
+	</select>
+	<select id="mlist4" resultType="com.bc.model.vo.BookVO" parameterType="map">
+		<![CDATA[
+			SELECT B.*, L.L_NAME L_NAME FROM BOOK B, LOW_CATEGORY L
+		    WHERE L.L_CODE = B.L_CODE
+		    AND B.B_CODE >= 20
+		    AND B.H_CODE = #{hCode}
+		    AND B.L_CODE = #{hCode} || '4'
+		]]>
+	</select>
+	<select id="mlist5" resultType="com.bc.model.vo.BookVO" parameterType="map">
+		<![CDATA[
+			SELECT B.*, L.L_NAME L_NAME FROM BOOK B, LOW_CATEGORY L
+		    WHERE L.L_CODE = B.L_CODE
+		    AND B.B_CODE >= 25
+		    AND B.H_CODE = #{hCode}
+		    AND B.L_CODE = #{hCode} || '5'
+		]]>
+	</select>
+	
 	
 </mapper>

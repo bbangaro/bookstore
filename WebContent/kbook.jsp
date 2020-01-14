@@ -61,8 +61,15 @@
 		<div class="card mt-3">
 		    <div class="card-header text-left">국내 도서</div>
 			    <div class="card-body">
-			    	<h3 class="text-left">소설</h3>
-				    <div class="row">
+			    	<div class="row">
+			    		<div class="col text-left">
+			    			<h3>소설</h3>
+			    		</div>
+			    		<div class="col text-right">
+			    			<button type="button" class="btn">>> 소설 전체 보기</button>
+			    		</div>
+			    	</div>
+				    <div class="row text-center">
 				    	<c:if test="${not empty list1 }">
 				    	<c:forEach var="vo" items="${list1 }">
 				    	<div class="col-3">
@@ -74,7 +81,14 @@
 					    </c:if>
 				    </div>
 				    <hr>
-			    	<h3 class="text-left">시/에세이</h3>
+			    	<div class="row">
+			    		<div class="col text-left">
+			    			<h3>시/에세이</h3>
+			    		</div>
+			    		<div class="col text-right">
+			    			<button type="button" class="btn">>> 시/에세이 전체 보기</button>
+			    		</div>
+			    	</div>
 				    <div class="row">
 				    	<c:if test="${not empty list2 }">
 				    	<c:forEach var="vo" items="${list2 }">
@@ -87,7 +101,14 @@
 					    </c:if>
 				    </div>
 				    <hr>
-			    	<h3 class="text-left">경제/경영</h3>
+			    	<div class="row">
+			    		<div class="col text-left">
+			    			<h3>경제/경영</h3>
+			    		</div>
+			    		<div class="col text-right">
+			    			<button type="button" class="btn">>> 경제/경영 전체 보기</button>
+			    		</div>
+			    	</div>
 				    <div class="row">
 				    <c:if test="${not empty list3 }">
 				    	<c:forEach var="vo" items="${list3 }">
@@ -100,7 +121,14 @@
 					    </c:if>
 				    </div>
 				    <hr>
-			    	<h3 class="text-left">자기계발</h3>
+			    	<div class="row">
+			    		<div class="col text-left">
+			    			<h3>자기계발</h3>
+			    		</div>
+			    		<div class="col text-right">
+			    			<button type="button" class="btn">>> 자기계발 전체 보기</button>
+			    		</div>
+			    	</div>
 				    <div class="row">
 				    	<c:if test="${not empty list4 }">
 				    	<c:forEach var="vo" items="${list4 }">
@@ -113,7 +141,14 @@
 					    </c:if>
 				    </div>
 				    <hr>
-			    	<h3 class="text-left">인문</h3>
+			    	<div class="row">
+			    		<div class="col text-left">
+			    			<h3>인문</h3>
+			    		</div>
+			    		<div class="col text-right">
+			    			<button type="button" class="btn">>> 인문 전체 보기</button>
+			    		</div>
+			    	</div>
 				    <div class="row">
 				    	<c:if test="${not empty list5 }">
 				    	<c:forEach var="vo" items="${list5 }">
@@ -124,9 +159,25 @@
 				    	</div>
 					    </c:forEach>	
 					    </c:if>
-				    </div>
+				    </div>		
+				    
+				    <div id="head"></div>
+						<div id="mcon" class="row">
+						</div>
+					<div id="head2"></div>			
+						<div id="mcon2" class="row">
+						</div>
+					<div id="head3"></div>
+						<div id="mcon3" class="row">
+						</div>
+					<div id="head4"></div>	
+						<div id="mcon4" class="row">
+						</div>
+					<div id="head5"></div>	
+						<div id="mcon5" class="row">
+						</div>
 				</div> 
-		    <div class="card-footer"><a href="#" style="color: black;">더보기</a></div>
+		    <div class="card-footer"><button id="More" type="button" class="btn">더보기</button></div>
 		</div>
 	</div>
 	
@@ -149,6 +200,230 @@
 	        $(this).animate({'opacity':'1','margin-left':'0px'},1025);
 	    }); 
 	});
+	
+	$("#More").click(function(){
+		$.ajax("morebook?hCode=K", {
+			type : "get",
+			dataType : "json",
+			success : function(data){
+				
+				var number = 0;
+				var tbody = "";
+				var head = "";
+				//데이터를 HTML 태그에 삽입
+				var alist = data.list;//JSON 객체의 속성명("list")의 값 추출
+				//                배열의 인덱스값, 현재 처리하는 객체 데이터
+				$.each(alist, function(index, member){
+					//this 객체 : 배열에 저장된 객체 중 지금 처리되는 객체
+					//자바스크립트 객체 속성 사용방식 2가지
+					//1. 객체.속성명
+					//2. 객체["속성명"]
+					if(number == 0){
+						head += "<hr>";
+						head += "<div class='row'>";
+						head += "<div class='col text-left'>";
+						head += "<h3>"+this.lname+"</h3>";
+						head += "</div>";
+						head += "<div class='col text-right'>";
+						head += "<a href='#'><button type='button' class='btn'>>> "+this.lname+"전체 보기</button></a>";
+						head += "</div>";
+						head += "</div>";
+					}
+					tbody += "<div class='col-3'>";
+					tbody += "<img src='bookimg/" + this.image + "' class='img-thumbnail' width='150'/><br>";
+					tbody += "<p class='p-0 mb-0'>"+this.name+"</p>";
+					tbody += "<small style='color:gray;'>" +this.writer +"</small>";
+					tbody += "</div>";
+					number++;
+				});
+				
+				$("#mcon").html(tbody);
+				$("#head").html(head);
+			},
+			error : function(jqXHR, textStatus, errorThrown){
+				alert("Ajax 처리 실패 : \n"
+					+ "jqXHR.readyState : " + jqXHR.readyState +"\n"
+					+ "textStatus : " + textStatus +"\n"
+					+ "errorThrown : " + errorThrown);
+			}
+		});
+		$.ajax("morebook2?hCode=K", {
+			type : "get",
+			dataType : "json",
+			success : function(data){
+				
+				var number = 0;
+				var tbody = "";
+				var head = "";
+				//데이터를 HTML 태그에 삽입
+				var alist = data.list;//JSON 객체의 속성명("list")의 값 추출
+				//                배열의 인덱스값, 현재 처리하는 객체 데이터
+				$.each(alist, function(index, member){
+					//this 객체 : 배열에 저장된 객체 중 지금 처리되는 객체
+					//자바스크립트 객체 속성 사용방식 2가지
+					//1. 객체.속성명
+					//2. 객체["속성명"]
+					if(number == 0){
+						head += "<hr>";
+						head += "<div class='row'>";
+						head += "<div class='col text-left'>";
+						head += "<h3>"+this.lname+"</h3>";
+						head += "</div>";
+						head += "<div class='col text-right'>";
+						head += "<a href='#'><button type='button' class='btn'>>> "+this.lname+"전체 보기</button></a>";
+						head += "</div>";
+						head += "</div>";
+					}
+					tbody += "<div class='col-3'>";
+					tbody += "<img src='bookimg/" + this.image + "' class='img-thumbnail' width='150'/><br>";
+					tbody += "<p class='p-0 mb-0'>"+this.name+"</p>";
+					tbody += "<small style='color:gray;'>" +this.writer +"</small>";
+					tbody += "</div>";
+					number++;
+				});
+				$("#mcon2").html(tbody);
+				$("#head2").html(head);
+			},
+			error : function(jqXHR, textStatus, errorThrown){
+				alert("Ajax 처리 실패 : \n"
+					+ "jqXHR.readyState : " + jqXHR.readyState +"\n"
+					+ "textStatus : " + textStatus +"\n"
+					+ "errorThrown : " + errorThrown);
+			}
+		});
+		$.ajax("morebook3?hCode=K", {
+			type : "get",
+			dataType : "json",
+			success : function(data){
+				
+				var number = 0;
+				var tbody = "";
+				var head = "";
+				//데이터를 HTML 태그에 삽입
+				var alist = data.list;//JSON 객체의 속성명("list")의 값 추출
+				//                배열의 인덱스값, 현재 처리하는 객체 데이터
+				$.each(alist, function(index, member){
+					//this 객체 : 배열에 저장된 객체 중 지금 처리되는 객체
+					//자바스크립트 객체 속성 사용방식 2가지
+					//1. 객체.속성명
+					//2. 객체["속성명"]
+					if(number == 0){
+						head += "<hr>";
+						head += "<div class='row'>";
+						head += "<div class='col text-left'>";
+						head += "<h3>"+this.lname+"</h3>";
+						head += "</div>";
+						head += "<div class='col text-right'>";
+						head += "<a href='#'><button type='button' class='btn'>>> "+this.lname+"전체 보기</button></a>";
+						head += "</div>";
+						head += "</div>";
+					}
+					tbody += "<div class='col-3'>";
+					tbody += "<img src='bookimg/" + this.image + "' class='img-thumbnail' width='150'/><br>";
+					tbody += "<p class='p-0 mb-0'>"+this.name+"</p>";
+					tbody += "<small style='color:gray;'>" +this.writer +"</small>";
+					tbody += "</div>";
+					number++;
+				});
+				$("#head3").html(head);
+				$("#mcon3").html(tbody);
+			},
+			error : function(jqXHR, textStatus, errorThrown){
+				alert("Ajax 처리 실패 : \n"
+					+ "jqXHR.readyState : " + jqXHR.readyState +"\n"
+					+ "textStatus : " + textStatus +"\n"
+					+ "errorThrown : " + errorThrown);
+			}
+		});
+		$.ajax("morebook4?hCode=K", {
+			type : "get",
+			dataType : "json",
+			success : function(data){
+				
+				var number = 0;
+				var tbody = "";
+				var head = "";
+				//데이터를 HTML 태그에 삽입
+				var alist = data.list;//JSON 객체의 속성명("list")의 값 추출
+				//                배열의 인덱스값, 현재 처리하는 객체 데이터
+				$.each(alist, function(index, member){
+					//this 객체 : 배열에 저장된 객체 중 지금 처리되는 객체
+					//자바스크립트 객체 속성 사용방식 2가지
+					//1. 객체.속성명
+					//2. 객체["속성명"]
+					if(number == 0){
+						head += "<hr>";
+						head += "<div class='row'>";
+						head += "<div class='col text-left'>";
+						head += "<h3>"+this.lname+"</h3>";
+						head += "</div>";
+						head += "<div class='col text-right'>";
+						head += "<a href='#'><button type='button' class='btn'>>> "+this.lname+"전체 보기</button></a>";
+						head += "</div>";
+						head += "</div>";
+					}
+					tbody += "<div class='col-3'>";
+					tbody += "<img src='bookimg/" + this.image + "' class='img-thumbnail' width='150'/><br>";
+					tbody += "<p class='p-0 mb-0'>"+this.name+"</p>";
+					tbody += "<small style='color:gray;'>" +this.writer +"</small>";
+					tbody += "</div>";
+					number++;
+				});
+				$("#mcon4").html(tbody);
+				$("#head4").html(head);
+			},
+			error : function(jqXHR, textStatus, errorThrown){
+				alert("Ajax 처리 실패 : \n"
+					+ "jqXHR.readyState : " + jqXHR.readyState +"\n"
+					+ "textStatus : " + textStatus +"\n"
+					+ "errorThrown : " + errorThrown);
+			}
+		});
+		$.ajax("morebook5?hCode=K", {
+			type : "get",
+			dataType : "json",
+			success : function(data){
+				
+				var number = 0;
+				var tbody = "";
+				var head = "";
+				//데이터를 HTML 태그에 삽입
+				var alist = data.list;//JSON 객체의 속성명("list")의 값 추출
+				//                배열의 인덱스값, 현재 처리하는 객체 데이터
+				$.each(alist, function(index, member){
+					//this 객체 : 배열에 저장된 객체 중 지금 처리되는 객체
+					//자바스크립트 객체 속성 사용방식 2가지
+					//1. 객체.속성명
+					//2. 객체["속성명"]
+					if(number == 0){
+						head += "<hr>";
+						head += "<div class='row'>";
+						head += "<div class='col text-left'>";
+						head += "<h3>"+this.lname+"</h3>";
+						head += "</div>";
+						head += "<div class='col text-right'>";
+						head += "<a href='#'><button type='button' class='btn'>>> "+this.lname+"전체 보기</button></a>";
+						head += "</div>";
+						head += "</div>";
+					}
+					tbody += "<div class='col-3'>";
+					tbody += "<img src='bookimg/" + this.image + "' class='img-thumbnail' width='150'/><br>";
+					tbody += "<p class='p-0 mb-0'>"+this.name+"</p>";
+					tbody += "<small style='color:gray;'>" +this.writer +"</small>";
+					tbody += "</div>";
+					number++;
+				});
+				$("#mcon5").html(tbody);
+				$("#head5").html(head);
+			},
+			error : function(jqXHR, textStatus, errorThrown){
+				alert("Ajax 처리 실패 : \n"
+					+ "jqXHR.readyState : " + jqXHR.readyState +"\n"
+					+ "textStatus : " + textStatus +"\n"
+					+ "errorThrown : " + errorThrown);
+			}
+		});
+	 });
 	</script>
 </body>
 </html>

@@ -17,14 +17,14 @@
 			    <li class="nav-item ${ko }">
 			      <a class="nav-link " href="Kbook?hCode=K&ko=active">국내</a>
 			    </li>
-			    <li class="nav-item">
-			      <a class="nav-link" href="#">신간</a>
+			    <li class="nav-item ${no }">
+			      <a class="nav-link" href="nbook?hCode=N&no=active">신간</a>
 			    </li>
-			    <li class="nav-item">
+			    <li class="nav-item ">
 			      <a class="nav-link" href="#">베스트셀러</a>
 			    </li>
-			    <li class="nav-item">
-			      <a class="nav-link" href="#">외국</a>
+			    <li class="nav-item ${oo }">
+			      <a class="nav-link" href="obook?hCode=O&oo=active">외국</a>
 			    </li>
 			    <li class="nav-item">
 			      <a class="nav-link" href="#">e북</a>

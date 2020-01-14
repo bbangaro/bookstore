@@ -2,12 +2,12 @@ package com.bc.model.vo;
 
 public class BookVO {
 	
-	private int hName, lName, bPrice, salePrice, buyNum, bType ;
+	private int hName,  bPrice, salePrice, buyNum, bType ;
 	private String hCode, lCode, bName, bCompany, status, st1, st2, 
-		   content, created, bCode, bImage, writerName, contents, eNum, eImage, aNum, audio;
+		   content, created, bCode, bImage, writerName, contents, eNum, eImage, aNum, audio, lName;
 	public BookVO() {}
 	
-	public BookVO(int hName, int lName, int bPrice, int salePrice, int buyNum, int bType, String hCode, String lCode,
+	public BookVO(int hName, String lName, int bPrice, int salePrice, int buyNum, int bType, String hCode, String lCode,
 			String bName, String bCompany, String status, String st1, String st2, String content, String created,
 			String bCode, String bImage, String writerName, String contents, String eNum, String eImage, String aNum,
 			String audio) {
@@ -45,11 +45,11 @@ public class BookVO {
 		this.hName = hName;
 	}
 
-	public int getlName() {
+	public String getlName() {
 		return lName;
 	}
 
-	public void setlName(int lName) {
+	public void setlName(String lName) {
 		this.lName = lName;
 	}
 
