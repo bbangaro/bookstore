@@ -78,6 +78,7 @@
 			success : function(data){
 			
 			reqComment(parseInt($("#requestNum").text()));
+			//reqComment(parseInt($("#requestNum")));
 				
 		},
 			error : function(jqXHR, textStatus, errorThrown){
@@ -87,7 +88,34 @@
 					+ "errorThrown : " + errorThrown);
 			}
 		});
-		reqComment(requestNum);
+		
+		//reqComment(requestNum);
+		
+	}
+	
+	function commentDelete(cIdx) {
+		console.log("cIdx"+cIdx);
+		console.log("$(cIdx)"+$(cIdx));
+		
+		const numUrl = "GetXmlReqCommentDeleteController"	
+		$.ajax({
+			url : numUrl,
+			type : "POST",
+			dataType : "xml",
+			data : {"cIdx":parseInt(cIdx)},
+			success : function(data){
+				
+			//cIdx(parseInt($("#cIdx").text()));
+			reqComment(parseInt($("#requestNum").text()));
+				
+		},
+			error : function(jqXHR, textStatus, errorThrown){
+				alert("Ajax 처리 실패 : \n"
+					+ "jqXHR.readyState : " + jqXHR.readyState +"\n"
+					+ "textStatus : " + textStatus +"\n"
+					+ "errorThrown : " + errorThrown);
+			}
+		});
 		
 	}
 	
@@ -108,9 +136,9 @@
 				commentTbody += "<div class='post-footer'>";
 				commentTbody += "<div class='input-group'>";
 				commentTbody += "<input class='form-control' placeholder='Add a comment' type='text' name='content' id='content"+requestNum+"'>";
-				commentTbody += "<span class='input-group-addon'> <button type='button' onclick='go("+requestNum+")'>샹</button> </span>";
-				
 				commentTbody += "</div>";
+				commentTbody += "<span class='input-group-addon'> <button type='button' onclick='go("+requestNum+")'>댓글달기</button> </span>";
+
 				commentTbody += "<input type='hidden' name='requestNum' value="+requestNum+">";
 				commentTbody += "<input type='hidden' name='memberId' value='${sessionScope.id}'>";
 				commentTbody += "<input type='hidden' name='password' value='${sessionScope.password}'>";
@@ -125,6 +153,8 @@
 				commentTbody += "<h5 class='time'>5 minutes ago</h5>";
 				commentTbody += "</div>";
 				commentTbody += "<p>"+ $(this).find("cComment").text() +"</p>";
+				commentTbody += "<span class='input-group-addon'> <button type='button' onclick='commentEdit()'>수정</button> ";
+				commentTbody += "<button type='button' onclick='commentDelete("+ $(this).find("cIdx").text()+")'>삭제</button> </span>";
 				commentTbody += "</div></li>";
 				commentTbody += "</ul>";
 			});
