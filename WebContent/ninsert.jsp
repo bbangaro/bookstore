@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/jejugothic.css">
   <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="csstemplate/bbs.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <style>
   	*{
   		font-family: 'Jeju Gothic', sans-serif;

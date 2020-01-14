@@ -30,6 +30,18 @@ public class NotDAO {
 		ss.close();
 		return vo;
 	}
+	public static GuestBookVO getOnepr(int nNum) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		GuestBookVO vo = ss.selectOne("Nselectpr",nNum);
+		ss.close();
+		return vo;
+	}
+	public static GuestBookVO getOnene(int nNum) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		GuestBookVO vo = ss.selectOne("Nselectne",nNum);
+		ss.close();
+		return vo;
+	}
 	public static int getTotalCount() {
 		SqlSession ss = DBService.getFactory().openSession(true);
 		int totalCount = ss.selectOne("totalCount");

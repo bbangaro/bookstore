@@ -28,6 +28,12 @@
 		  <div class="card-header">${vo.subject }</div>
 		  <div class="card-body">${vo.content }</div>
 		  <div class="card-footer" style="background-color: white;"><small>${vo.wDate }</small></div>
+		  <c:if test="${not empty vo1 }">
+		  	<div class="card-footer" style="background-color: white;"><small>다음 글 : <a href="Nview?nNum=${vo1.nNum }" style="color:black;">${vo1.subject }</a></small></div>
+		  </c:if>
+		  <c:if test="${not empty vo2 }">
+		  	<div class="card-footer" style="background-color: white;"><small>이전 글 : <a href="Nview?nNum=${vo2.nNum }" style="color:black;">${vo2.subject }</a></small></div>
+		  </c:if>
 		</div>		
 		</c:if>
 	</div>
