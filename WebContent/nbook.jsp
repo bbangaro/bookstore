@@ -66,7 +66,7 @@
 			    			<h3>소설</h3>
 			    		</div>
 			    		<div class="col text-right">
-			    			<button type="button" class="btn">>> 소설 전체 보기</button>
+			    			<a href="Allbook?hCode=${hCode }&lCode=${hCode }1"><button type="button" class="btn">>> 소설 전체 보기</button></a>
 			    		</div>
 			    	</div>
 				    <div class="row text-center">
@@ -86,7 +86,7 @@
 			    			<h3>시/에세이</h3>
 			    		</div>
 			    		<div class="col text-right">
-			    			<button type="button" class="btn">>> 시/에세이 전체 보기</button>
+			    			<a href="Allbook?hCode=${hCode }&lCode=${hCode }2"><button type="button" class="btn">>> 소설 전체 보기</button></a>
 			    		</div>
 			    	</div>
 				    <div class="row">
@@ -106,7 +106,7 @@
 			    			<h3>경제/경영</h3>
 			    		</div>
 			    		<div class="col text-right">
-			    			<button type="button" class="btn">>> 경제/경영 전체 보기</button>
+			    			<a href="Allbook?hCode=${hCode }&lCode=${hCode }3"><button type="button" class="btn">>> 소설 전체 보기</button></a>
 			    		</div>
 			    	</div>
 				    <div class="row">
@@ -126,7 +126,7 @@
 			    			<h3>자기계발</h3>
 			    		</div>
 			    		<div class="col text-right">
-			    			<button type="button" class="btn">>> 자기계발 전체 보기</button>
+			    			<a href="Allbook?hCode=${hCode }&lCode=${hCode }4"><button type="button" class="btn">>> 소설 전체 보기</button></a>
 			    		</div>
 			    	</div>
 				    <div class="row">
@@ -146,7 +146,7 @@
 			    			<h3>인문</h3>
 			    		</div>
 			    		<div class="col text-right">
-			    			<button type="button" class="btn">>> 인문 전체 보기</button>
+			    			<a href="Allbook?hCode=${hCode }&lCode=${hCode }5"><button type="button" class="btn">>> 소설 전체 보기</button></a>
 			    		</div>
 			    	</div>
 				    <div class="row">

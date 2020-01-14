@@ -1,38 +1,27 @@
-package com.bc.serController;
+package bc.com.kbookcontroller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bc.sercommand.Command;
-import com.bc.sercommand.SearchBnaCommand;
-import com.bc.sercommand.SearchComCommand;
-import com.bc.sercommand.SearchListCommand;
-import com.bc.sercommand.SearchWriCommand;
+import com.bc.kbookcommand.AllbookCommand;
+import com.bc.kbookcommand.Command;
 
-
-@WebServlet("/SearchList")
-public class SearchListController extends HttpServlet {
+/**
+ * Servlet implementation class AllbookController
+ */
+@WebServlet("/Allbook")
+public class AllbookController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Command comm = null;
-		String kind = request.getParameter("kind");
-		if(kind.equalsIgnoreCase("all"))
-			comm = new SearchListCommand();
-		else if(kind.equalsIgnoreCase("company"))
-			comm = new SearchComCommand();
-		else if(kind.equalsIgnoreCase("writer"))
-			comm = new SearchWriCommand();
-		else if(kind.equalsIgnoreCase("bookname"))
-			comm = new SearchBnaCommand();
+		Command comm = new AllbookCommand();
 		String path = comm.exec(request, response);
 		request.getRequestDispatcher(path).forward(request, response);
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

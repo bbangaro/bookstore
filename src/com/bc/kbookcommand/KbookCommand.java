@@ -19,6 +19,7 @@ public class KbookCommand implements Command{
 		
 		Map<String,String> map = new HashMap<>();
 		request.setAttribute("ko", request.getParameter("ko"));
+		
 		map.put("hCode", request.getParameter("hCode"));
 		List<BookVO> list1 = NotDAO.get1list(map);
 		request.setAttribute("list1", list1);
@@ -31,6 +32,7 @@ public class KbookCommand implements Command{
 		request.setAttribute("list4", list4);
 		List<BookVO> list5 = NotDAO.get5list(map);
 		request.setAttribute("list5", list5);
+		request.setAttribute("hCode", request.getParameter("hCode"));
 		
 		return "kbook.jsp";
 	}

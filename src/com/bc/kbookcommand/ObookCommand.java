@@ -31,6 +31,7 @@ public class ObookCommand implements Command{
 		request.setAttribute("list4", list4);
 		List<BookVO> list5 = NotDAO.get5list(map);
 		request.setAttribute("list5", list5);
+		request.setAttribute("hCode", request.getParameter("hCode"));
 		
 		return "obook.jsp";
 	}

@@ -109,6 +109,12 @@ public class NotDAO {
 		ss.close();
 		return mlist1;
 	}
+	public static List<BookVO> getAllbook(Map<String, String> map) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		List<BookVO> list = ss.selectList("allList", map);
+		ss.close();
+		return list;
+	}
 	
 	
 }

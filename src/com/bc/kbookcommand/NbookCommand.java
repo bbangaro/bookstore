@@ -20,6 +20,8 @@ public class NbookCommand implements Command{
 		Map<String,String> map = new HashMap<>();
 		request.setAttribute("no", request.getParameter("no"));
 		map.put("hCode", request.getParameter("hCode"));
+		map.put("lCode", request.getParameter("lCode"));
+		
 		List<BookVO> list1 = NotDAO.get1list(map);
 		request.setAttribute("list1", list1);
 		List<BookVO> list2 = NotDAO.get2list(map);
@@ -31,6 +33,7 @@ public class NbookCommand implements Command{
 		request.setAttribute("list4", list4);
 		List<BookVO> list5 = NotDAO.get5list(map);
 		request.setAttribute("list5", list5);
+		request.setAttribute("hCode", request.getParameter("hCode"));
 		
 		return "nbook.jsp";
 	}
