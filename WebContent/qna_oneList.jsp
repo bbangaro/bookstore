@@ -48,25 +48,43 @@
 		} else {
 			history.go(0);
 		}
-		
 	}
 
 	function sendComment(frm) {
-		if (document.forms[1].elements[0].value == "") {
+		
+		if (frm.content.value == "") {
 			alert("댓글 내용을 입력해주세요");
-			document.forms[1].elements[0].focus();
+			frm.content.focus();
 			return;
 		}
-		document.forms[1].submit();
+		frm.submit();
 	}
 	
 	function updateComment(frm) {
-		if (document.forms[2].elements[0].value == "") {
+		
+		if (frm.content.value == "") {
 			alert("댓글 내용을 입력해주세요");
-			document.forms[2].elements[0].focus();
+			frm.content.focus();
 			return;
 		}
-		document.forms[2].submit();
+		
+		var isUpdate = confirm("정말 수정하시겠습니까?");
+		
+		if (isUpdate) {
+			frm.submit();
+		} else {
+			history.go(0);
+		}
+	}
+	
+	function deleteC() {
+		var isDelete = confirm("정말 삭제하시겠습니까?");
+		
+		if (isDelete) {
+			frm.submit();
+		} else {
+			history.go(0);
+		}
 	}
 </script>
 <style>
@@ -76,28 +94,26 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
-	$(function(){
-		$("#updateC").click(function(){
-			var result = "";
-				
-			result += "<c:forEach var="cvo" items="${clist }">";
-			result += "<form action=\"QnACommentUpdateController?cIdx=${cvo.cIdx}\" method=\"post\">";
-			result += "<div class=\"input-group\">";
-			result += "<input class=\"form-control\" placeholder=\"Add a comment\"";
-			result += "type=\"text\" name=\"content\"> <span";
-			result += "class=\"input-group-addon\"> <a href=\"#\"";
-			result += "onclick=\"updateComment(this.form)\"> <i class=\"fa fa-edit\"></i>";
-			result += "</a>";
-			result += "</span> <input type=\"hidden\" name=\"qNum\" value=\"${vo.qNum }\">";
-			result += "<input type=\"hidden\" name=\"memberId\" value=\"admin\">";
-			result += "</div>";
-			result += "</form>";
-			result += "</c:forEach>";
-				
-			alert("result는 " + result);	
-			$("#updateComment").html(result);
-		});
-	});
+
+	function updateC(cIdx) {
+		
+		var result = "";
+		
+		result += "<form action=\"QnACommentUpdateController?cIdx="+cIdx+" method=\"post\">";
+		result += "<div class=\"input-group\">";
+		result += "<input class=\"form-control\" placeholder=\"Add a comment\" type=\"text\" name=\"content\">";
+		result += "<span class=\"input-group-addon\">";
+		result += "<input type=\"button\" value=\"수정\" onclick=\"updateComment(this.form)\">";
+		result += "</a>";
+		result += "</span> <input type=\"hidden\" name=\"qNum\" value=\"${vo.qNum }\">";
+		result += "<input type=\"hidden\" name=\"memberId\" value=\"${sessionScope.id }\">";
+		result += "<input type=\"hidden\" name=\"cIdx\" value="+ cIdx +">";
+		result += "</div>";
+		result += "</form>";
+		
+		$("#updateComment" + cIdx).html(result);
+	};
+	
 </script>
 
 
@@ -180,14 +196,11 @@
 
 													<input class="form-control" placeholder="Add a comment"
 														type="text" name="content"> <span
-														class="input-group-addon"> <a href="#"
-														onclick="sendComment(this.form)"> <i
-															class="fa fa-edit"></i>
+														class="input-group-addon"> 
+														<input type="button" value="입력" onclick="sendComment(this.form)">
 													</a>
 													</span> <input type="hidden" name="qNum" value="${vo.qNum }">
 													<input type="hidden" name="memberId" value="${sessionScope.id }">
-
-													<!--  <input type="hidden" name="cPage" value="${cPage }">-->
 
 												</div>
 											</form>
@@ -208,34 +221,31 @@
 																	<div class="comment-heading">
 																		<h4 class="user">${cvo.memberId}</h4>
 																	</div>
-																	<p id="updateComment">${cvo.content}</p></li>
-															
-															
-						                                   
-					                                        <a href="#" class="table-link" id="updateC">
-					                                            <span class="fa-stack">
-					                                                <i class="fa fa-square fa-stack-2x"></i>
-					                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-					                                            </span>
-					                                        </a>
-
-															<c:if test="${sessionScope.id eq cvo.memberId }">
-						                                        <a href="QnACommentDeleteController?cIdx=${cvo.cIdx }&qNum=${cvo.qNum}" class="table-link danger">
-															</c:if>
-															<c:if test="${sessionScope.id ne cvo.memberId }">
-						                                        <a href="#" class="table-link danger" onclick="diffId()">
-															</c:if>
-															<c:if test="${empty sessionScope.id}">
-						                                        <a href="#" class="table-link danger" onclick="loginpleaz()">
-															</c:if>
-					                                            <span class="fa-stack">
-					                                                <i class="fa fa-square fa-stack-2x"></i>
-					                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-					                                            </span>
-					                                        </a>
-						                                   
-															
 																	
+																		<p id="updateComment${cvo.cIdx }">${cvo.content}</p>
+															</li>
+															
+						                                   <c:choose>
+						                                   	<c:when test="${sessionScope.id eq cvo.memberId }">
+						                                   		<a href="#" class="table-link" onclick="updateC(${cvo.cIdx})">
+					                                            	<span class="fa-stack">
+					                                                	<i class="fa fa-square fa-stack-2x"></i>
+					                                                	<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+					                                            	</span>
+					                                        	</a>
+					                                        <form action="QnACommentDeleteController" method="post" style="display:inline-block">	
+					                                        	<a onclick="deleteC()" href="#" class="table-link danger">
+						                                        	<span class="fa-stack">
+						                                                <i class="fa fa-square fa-stack-2x"></i>
+						                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+						                                            </span>
+						                                            <input type="hidden" name="cIdx" value="${cvo.cIdx }">
+						                                            <input type="hidden" name="qNum" value="${cvo.qNum }">
+					                                        	</a>
+					                                        </form>	
+						                                   	</c:when>
+						                                   </c:choose>
+															
 														</c:forEach>
 													</c:otherwise>
 												</c:choose>
