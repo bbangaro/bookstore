@@ -2,7 +2,6 @@ package com.bc.reqcontroller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,12 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bc.model.dao.ReqCommentDAO;
-import com.bc.model.dao.ReqDAO;
 import com.bc.model.vo.CommentVO;
-import com.bc.model.vo.GuestBookVO;
 
-@WebServlet("/getXmlRequestComment")
-public class GetJXmlReqOneListCommentController extends HttpServlet {
+@WebServlet("/GetJXmlReqCommentWriteController")
+public class GetJXmlReqCommentWriteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,28 +22,23 @@ public class GetJXmlReqOneListCommentController extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		int requestNum = Integer.parseInt(request.getParameter("requestNum"));
 		
-		List<CommentVO> commentList = ReqCommentDAO.getReqCommentList(requestNum);
+		CommentVO vo = new CommentVO();
 		
-		StringBuilder result = new StringBuilder();
-		result.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+		vo.setMemberId(request.getParameter("memberId"));
+		vo.setRequestNum(requestNum);
+		vo.setContent(request.getParameter("content"));
+		vo.setPassword(request.getParameter("password"));
+		
+		
 
-			result.append("<comments>");
-			for(CommentVO list : commentList ) {
-	    	result.append("<comment>");
-	    	result.append("<cId>" + list.getMemberId() + "</cId>");
-	    	result.append("<cComment>" + list.getContent() + "</cComment>");
-	    	result.append("</comment>");
-			}
-	    	result.append("</comments>");
-	    	
-	    	out.print(result.toString());
-        
 		
+		int result = ReqCommentDAO.getReqCommentInsert(vo);
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		doGet(request, response);
+		System.out.println("코멘트 ");
+		
 	}
 
 }

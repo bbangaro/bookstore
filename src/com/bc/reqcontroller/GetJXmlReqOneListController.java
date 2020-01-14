@@ -20,11 +20,9 @@ public class GetJXmlReqOneListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("getxmlservlet");
 		response.setContentType("text/html;charset=utf-8");
 		
 		PrintWriter out = response.getWriter();
-		System.out.println(request.getParameter("requestNum"));
 		int requestNum = Integer.parseInt(request.getParameter("requestNum"));
 		
 		GuestBookVO vo = ReqDAO.getOneList(requestNum);
@@ -32,19 +30,17 @@ public class GetJXmlReqOneListController extends HttpServlet {
 		StringBuilder result = new StringBuilder();
 		result.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 		
-			result.append("<members>");
-	    	result.append("<member>");
+			result.append("<books>");
+	    	result.append("<book>");
 	    	result.append("<rContent>" + vo.getrContent() + "</rContent>");
 	    	result.append("<upload>" + vo.getUpload() + "</upload>");
 	    	result.append("<memberId>" + vo.getMemberId() + "</memberId>");
-	    	result.append("<content>" + vo.getCommentList() + "</content>");
-	    	result.append("</member>");
-	    	result.append("</members>");
-		System.out.println("result : " + result);
-		out.print(result.toString());
+	    	result.append("</book>");
+	    	result.append("</books>");
+	    	
+	    	out.print(result.toString());
 		
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		doGet(request, response);
