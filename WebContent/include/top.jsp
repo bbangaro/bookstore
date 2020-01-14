@@ -14,8 +14,8 @@
 	  <div class="container sticky-top">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
 			<ul class="navbar-nav">
-			    <li class="nav-item">
-			      <a class="nav-link" href="#">국내</a>
+			    <li class="nav-item ${ko }">
+			      <a class="nav-link " href="Kbook?hCode=K&ko=active">국내</a>
 			    </li>
 			    <li class="nav-item">
 			      <a class="nav-link" href="#">신간</a>

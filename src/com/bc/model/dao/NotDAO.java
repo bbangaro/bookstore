@@ -48,5 +48,37 @@ public class NotDAO {
 		ss.close();
 		return result;
 	}
+	public static List<BookVO> get1list(Map map) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		List<BookVO> list = ss.selectList("1list", map);
+		ss.close();
+		return list;
+	}
+	public static List<BookVO> get2list(Map map) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		List<BookVO> list = ss.selectList("2list", map);
+		ss.close();
+		return list;
+	}
+	public static List<BookVO> get3list(Map map) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		List<BookVO> list = ss.selectList("3list", map);
+		ss.close();
+		return list;
+	}
+	public static List<BookVO> get4list(Map map) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		List<BookVO> list = ss.selectList("4list", map);
+		ss.close();
+		return list;
+	}
+	public static List<BookVO> get5list(Map map) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		List<BookVO> list = ss.selectList("5list", map);
+		ss.close();
+		return list;
+	}
+	
+	
 	
 }

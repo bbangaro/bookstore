@@ -12,6 +12,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/jejugothic.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <style>
   	*{
   		font-family: 'Jeju Gothic', sans-serif;
@@ -30,7 +31,15 @@
 		</div>		
 		</c:if>
 	</div>
-	<div class="container"></div>
+	<div class="container text-center mt-3">
+	<a href="NoticeUpdate?nNum=${vo.nNum }&subject=${vo.subject }&content=${vo.content}">
+		<button type="button" class="btn btn-light">수정</button>
+	</a>
+	<a href="">
+		<button type="button" class="btn btn-light">삭제</button>
+	</a>
+	</div>
+	
 	<%@ include file="include/bottom.jsp" %>
 </body>
 </html>

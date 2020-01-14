@@ -43,4 +43,45 @@
 		WHERE N_NUM = #{nNum}
 	</update>
 	
+	<select id="1list" resultType="com.bc.model.vo.BookVO" parameterType="map">
+		<![CDATA[
+			SELECT * FROM BOOK
+				WHERE H_CODE = #{hCode}
+				AND L_CODE = #{hCode} || '1'
+				AND ROWNUM <= 4
+		]]>
+	</select>
+	<select id="2list" resultType="com.bc.model.vo.BookVO" parameterType="map">
+		<![CDATA[
+			SELECT * FROM BOOK
+				WHERE H_CODE = #{hCode}
+				AND L_CODE = #{hCode} || '2'
+				AND ROWNUM <= 4
+		]]>
+	</select>
+	<select id="3list" resultType="com.bc.model.vo.BookVO" parameterType="map">
+		<![CDATA[
+			SELECT * FROM BOOK
+				WHERE H_CODE = #{hCode}
+				AND L_CODE = #{hCode} || '3'
+				AND ROWNUM <= 4
+		]]>
+	</select>
+	<select id="4list" resultType="com.bc.model.vo.BookVO" parameterType="map">
+		<![CDATA[
+			SELECT * FROM BOOK
+				WHERE H_CODE = #{hCode}
+				AND L_CODE = #{hCode} || '4'
+				AND ROWNUM <= 4
+		]]>
+	</select>
+	<select id="5list" resultType="com.bc.model.vo.BookVO" parameterType="map">
+		<![CDATA[
+			SELECT * FROM BOOK
+				WHERE H_CODE = #{hCode}
+				AND L_CODE = #{hCode} || '5'
+				AND ROWNUM <= 4
+		]]>
+	</select>
+	
 </mapper>

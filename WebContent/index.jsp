@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,21 +17,28 @@
   	*{
   		font-family: 'Jeju Gothic', sans-serif;
   	}
-  	/*
-    .active{
-		background: #f7ff00;  /* fallback for old browsers */
-		background: -webkit-linear-gradient(to right, #db36a4, #f7ff00);  /* Chrome 10-25, Safari 5.1-6 */
-		background: linear-gradient(to right, #db36a4, #f7ff00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  	}
-  	*/
-  	.nav-item .active:hover {
-  		color:white;
-  	}
+  
+  	
   	.bg-light {
   		background-color:rgba(255, 255, 255, 0.5) !important;
 	}
 	a:hover{
 		text-decoration: none;
+	}
+	 .navbar-light .navbar-nav .nav-link:hover {
+	 	color: rgba(0, 0, 0, .7);
+	 }
+	.navbar-light .navbar-nav .nav-link:focus {
+		color: #8B008B;
+		border-bottom: 2px solid #8B008B;
+	 }
+	 .btn-light.focus, .btn-light:focus {
+	  color: white;
+	  background: #f7ff00;  /* fallback for old browsers */
+	  background: -webkit-linear-gradient(to right, #db36a4, #f7ff00);  /* Chrome 10-25, Safari 5.1-6 */
+	  background: linear-gradient(to right, #db36a4, #f7ff00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	  border-color: white;
+	  box-shadow: none;
 	}
   </style>
 <title>북스토어</title>
@@ -48,7 +56,7 @@
 			  
 			  <div class="carousel-inner">
 			    <div class="carousel-item active">
-			      <div class="jumbotron"><h1>이달의 베스트셀러</h1></div>
+			      <img src="images/00.jpg" width="1100px" height="300px">
 			    </div>
 			    <div class="carousel-item">
 			      <div class="jumbotron"><h1>이달의 베스트셀러2</h1></div>
@@ -67,11 +75,11 @@
 		  </div>
 		  <h2>장르별 베스트 셀러</h2>
 		  <div class="container">
-			<button id="getGo" type="button" class="btn btn-dark" name="lcode" value="K1">소설</button>
-		  	<button id="getGo2" type="button" class="btn btn-dark" name="lcode2" value="K2">시/에세이</button>
-		  	<button id="getGo3" type="button" class="btn btn-dark" name="lcode3" value="K3">경제/경영</button>
-		  	<button id="getGo4" type="button" class="btn btn-dark" name="lcode4" value="K4">자기계발</button>
-		  	<button id="getGo5" type="button" class="btn btn-dark" name="lcode5" value="K5">인문</button>
+			<button id="getGo" type="button" class="btn btn-light" name="lcode" value="K1">소설</button>
+		  	<button id="getGo2" type="button" class="btn btn-light" name="lcode2" value="K2">시/에세이</button>
+		  	<button id="getGo3" type="button" class="btn btn-light" name="lcode3" value="K3">경제/경영</button>
+		  	<button id="getGo4" type="button" class="btn btn-light" name="lcode4" value="K4">자기계발</button>
+		  	<button id="getGo5" type="button" class="btn btn-light" name="lcode5" value="K5">인문</button>
 		  </div>
 		  <div class="container text-center my-2">
 		  	<div class="row" id="con">
@@ -97,7 +105,12 @@
 			      <div class="jumbotron"><h1>남는곳</h1></div>
 			    </div>
 			  </div>
-			  
+			  <a href="">
+			  if(request.getParameter("update").eq("수정")){
+			  	
+			  } 
+			  	<input type="button" name="update" value="수정">
+			  </a>	
 			  <a class="carousel-control-prev" href="#reding" data-slide="prev">
 			    <span class="carousel-control-prev-icon"></span>
 			  </a>
@@ -149,9 +162,11 @@
 		<%@ include file="include/bottom.jsp" %>
 	</div>
 <script>
-$(function(){
-	<%@ include file="include/ajax.jsp"%>
-});
+	$(document).ready(function(){
+		<%@ include file="include/ajax.jsp"%>
+		$("#getGo").trigger("click");
+	});
+
 
 </script>
 </body>
