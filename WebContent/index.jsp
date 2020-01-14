@@ -17,8 +17,6 @@
   	*{
   		font-family: 'Jeju Gothic', sans-serif;
   	}
-  
-  	
   	.bg-light {
   		background-color:rgba(255, 255, 255, 0.5) !important;
 	}
@@ -105,12 +103,7 @@
 			      <div class="jumbotron"><h1>남는곳</h1></div>
 			    </div>
 			  </div>
-			  <a href="">
-			  if(request.getParameter("update").eq("수정")){
-			  	
-			  } 
-			  	<input type="button" name="update" value="수정">
-			  </a>	
+			  
 			  <a class="carousel-control-prev" href="#reding" data-slide="prev">
 			    <span class="carousel-control-prev-icon"></span>
 			  </a>
@@ -119,27 +112,20 @@
 			  </a>
 		  </div>
 		  <h2>최신 신작 업데이트</h2>
-		  <ul class="nav nav-pills">
-			  <li class="nav-item">
-			    <a class="nav-link active" href="#">인문</a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link" href="#">소설</a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link" href="#">경제</a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link" href="#">에세이</a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link" href="#">과학</a>
-			  </li>
-		  </ul>
-		  
-		  <div class="jumbotron">
-			<p><i class="fas fa-bars"></i>1월 신작</p><br><hr>
+		  <div class="container">
+			<button id="getNo" type="button" class="btn btn-light" name="lcode" value="N1">소설</button>
+		  	<button id="getNo2" type="button" class="btn btn-light" name="lcode2" value="N2">시/에세이</button>
+		  	<button id="getNo3" type="button" class="btn btn-light" name="lcode3" value="N3">경제/경영</button>
+		  	<button id="getNo4" type="button" class="btn btn-light" name="lcode4" value="N4">자기계발</button>
+		  	<button id="getNo5" type="button" class="btn btn-light" name="lcode5" value="N5">인문</button>
 		  </div>
+		  
+		  <div class="container text-center my-2">
+		  	<div class="row" id="con1">
+		  		
+		  	</div>
+		  </div>
+		  
 		  <h2>종합베스트</h2>
 		  <ul class="nav nav-pills">
 			  <li class="nav-item">
@@ -165,6 +151,8 @@
 	$(document).ready(function(){
 		<%@ include file="include/ajax.jsp"%>
 		$("#getGo").trigger("click");
+		<%@ include file="include/ajax1.jsp" %>
+		$("#getNo").trigger("click");
 	});
 
 

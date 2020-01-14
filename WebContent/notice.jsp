@@ -38,7 +38,7 @@
                             <thead>
                                 <tr>
                                 <th><span>작성번호</span></th>
-                                <th><span>유형</span></th>
+                                <th><span></span></th>
                                 <th><span>제목</span></th>
                                 <th><span>날짜</span></th>
                                 <th>&nbsp;</th>

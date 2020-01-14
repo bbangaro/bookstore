@@ -25,7 +25,7 @@
 		SELECT COUNT(*) FROM NOTICE
 	</select>
 	<select id="Nall" resultType="com.bc.model.vo.BookVO" parameterType="string">
-		SELECT B_NAME, B_IMAGE, WRITER_NAME FROM BOOK
+		SELECT * FROM BOOK
 		WHERE L_CODE = #{lcode}
 	</select>
 	
@@ -36,6 +36,22 @@
 			OR WRITER_NAME LIKE '%'||#{search}||'%'
 			AND B_TYPE = 1
 	</select>
+	
+	<select id="searchcom" resultType="com.bc.model.vo.BookVO" parameterType="map">
+		SELECT * FROM BOOK
+   		WHERE B_COMPANY LIKE '%'||#{search}||'%'
+	</select>
+	
+	<select id="searchwri" resultType="com.bc.model.vo.BookVO" parameterType="map">
+		SELECT * FROM BOOK
+   		WHERE WRITER_NAME LIKE '%'||#{search}||'%'
+	</select>
+	
+	<select id="searchbna" resultType="com.bc.model.vo.BookVO" parameterType="map">
+		SELECT * FROM BOOK
+   		WHERE B_NAME LIKE '%'||#{search}||'%'
+	</select>
+	
 	<update id="Nupdate" parameterType="map">
 		UPDATE NOTICE 
 		SET SUBJECT = #{subject},
@@ -82,6 +98,12 @@
 				AND L_CODE = #{hCode} || '5'
 				AND ROWNUM <= 4
 		]]>
+	</select>
+	
+	<select id="allList" resultType="com.bc.model.vo.BookVO" parameterType="map">
+		SELECT * FROM BOOK 
+			WHERE H_CODE = #{hCode}
+			AND L_CODE = #{lCode}
 	</select>
 	
 </mapper>

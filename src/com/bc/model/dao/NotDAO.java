@@ -78,7 +78,43 @@ public class NotDAO {
 		ss.close();
 		return list;
 	}
-	
+	//책 더보기
+	public static List<BookVO> getMlist1(Map map) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		List<BookVO> mlist1 = ss.selectList("mlist1", map);
+		ss.close();
+		return mlist1;
+	}
+	public static List<BookVO> getMlist2(Map map) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		List<BookVO> mlist1 = ss.selectList("mlist2", map);
+		ss.close();
+		return mlist1;
+	}
+	public static List<BookVO> getMlist3(Map map) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		List<BookVO> mlist1 = ss.selectList("mlist3", map);
+		ss.close();
+		return mlist1;
+	}
+	public static List<BookVO> getMlist4(Map map) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		List<BookVO> mlist1 = ss.selectList("mlist4", map);
+		ss.close();
+		return mlist1;
+	}
+	public static List<BookVO> getMlist5(Map map) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		List<BookVO> mlist1 = ss.selectList("mlist5", map);
+		ss.close();
+		return mlist1;
+	}
+	public static List<BookVO> getAllbook(Map<String, String> map) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		List<BookVO> list = ss.selectList("allList", map);
+		ss.close();
+		return list;
+	}
 	
 	
 }
