@@ -40,7 +40,7 @@
 				// <member>태그들이 찾아짐 .fine("태그명")
 				// 태그 안에 있는 텍스트 값 찾기 .text()
 				// 태그방식이니까 돔 객체 사용하듯
-				$(data).find("member").each(function(){
+				$(data).find("book").each(function(){
 					tbody += "<br>";
 					tbody += "<tr>";
 					tbody += "<td>" + $(this).find("rContent").text() + "</td>";
@@ -52,13 +52,8 @@
 					tbody += "<br>";
 					tbody += "<br>";
 					tbody += "<br>";
-					
-					
-					
 				});
-				
 				$("#tbody"+requestNum).html(tbody);
-	
 			},
 			error : function(jqXHR, textStatus, errorThrown){
 				alert("Ajax 처리 실패 : \n"
@@ -70,6 +65,36 @@
 		reqComment(requestNum);
 	}
 	
+
+	//$("#rForm").submit (function () {
+	function go(requestNum) {
+		console.log("method go");
+		let selector = "#content"+requestNum;
+		//console.log("content" +$("#rForm")$("content").text());
+		
+		const numUrl = "GetJXmlReqCommentWriteController";	
+		$.ajax({
+			url : numUrl,
+			type : "post",
+			dataType : "xml",
+			data : {"memberId":"${sessionScope.id}", "content":$(selector).val(), "requestNum":requestNum, "password":"${sessionScope.password}"},
+			success : function(data){
+			
+			reqComment(parseInt($("#requestNum").text()));
+				
+		},
+			error : function(jqXHR, textStatus, errorThrown){
+				alert("Ajax 처리 실패 : \n"
+					+ "jqXHR.readyState : " + jqXHR.readyState +"\n"
+					+ "textStatus : " + textStatus +"\n"
+					+ "errorThrown : " + errorThrown);
+			}
+		});
+		reqComment(requestNum);
+		
+	}
+	//})
+	
 	function reqComment(requestNum){
 	const numUrl = "getXmlRequestComment?requestNum=" + requestNum;
 	$.ajax({
@@ -79,17 +104,21 @@
 		success : function(data){
 			
 			var commentTbody = "";
-				
+				commentTbody += "<form id='rForm' method='POST'}> ";
 				commentTbody += "<div class='container'>";
 				commentTbody += "<div class='col-sm-8'>";
 				commentTbody += "<div class='panel panel-white post panel-shadow'>";
 					
-					
 				commentTbody += "<div class='post-footer'>";
 				commentTbody += "<div class='input-group'>";
-				commentTbody += "<input class='form-control' placeholder='Add a comment' type='text'>";
-				commentTbody += "<span class='input-group-addon'> <a href='#'><i class='fa fa-edit'></i></a></span>";
+				commentTbody += "<input class='form-control' placeholder='Add a comment' type='text' name='content' id='content"+requestNum+"'>";
+				commentTbody += "<span class='input-group-addon'> <button type='button' onclick='go("+requestNum+")'>샹</button> </span>";
+				
 				commentTbody += "</div>";
+				commentTbody += "<input type='hidden' name='requestNum' value="+requestNum+">";
+				commentTbody += "<input type='hidden' name='memberId' value='${sessionScope.id}'>";
+				commentTbody += "<input type='hidden' name='password' value='${sessionScope.password}'>";
+				commentTbody += "</form> ";
 				
 			$(data).find("comment").each(function(){
 				commentTbody += "<ul class='comments-list'>";
@@ -113,7 +142,7 @@
 	
 			},
 			error : function(jqXHR, textStatus, errorThrown){
-				alert("Ajax 처리 실패 : \n"
+				alert("reqComment메서드 Ajax 처리 실패 : \n"
 					+ "jqXHR.readyState : " + jqXHR.readyState +"\n"
 					+ "textStatus : " + textStatus +"\n"
 					+ "errorThrown : " + errorThrown);
@@ -127,9 +156,6 @@
 		}
 			
 	};
-	
-	console.log(${sessionScope.user.memberId});
-	console.log(${sessionScope.user.password});	
 	
 	
 </script>

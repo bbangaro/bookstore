@@ -61,8 +61,15 @@
 		<div class="card mt-3">
 		    <div class="card-header text-left">국내 도서</div>
 			    <div class="card-body">
-			    	<h3 class="text-left">소설</h3>
-				    <div class="row">
+			    	<div class="row">
+			    		<div class="col text-left">
+			    			<h3>소설</h3>
+			    		</div>
+			    		<div class="col text-right">
+			    			<a href="Allbook?hCode=${hCode }&lCode=${hCode }1"><button type="button" class="btn">>> 소설 전체 보기</button></a>
+			    		</div>
+			    	</div>
+				    <div class="row text-center">
 				    	<c:if test="${not empty list1 }">
 				    	<c:forEach var="vo" items="${list1 }">
 				    	<div class="col-3">
@@ -74,7 +81,14 @@
 					    </c:if>
 				    </div>
 				    <hr>
-			    	<h3 class="text-left">시/에세이</h3>
+			    	<div class="row">
+			    		<div class="col text-left">
+			    			<h3>시/에세이</h3>
+			    		</div>
+			    		<div class="col text-right">
+			    			<a href="Allbook?hCode=${hCode }&lCode=${hCode }2"><button type="button" class="btn">>> 시/에세이 전체 보기</button></a>
+			    		</div>
+			    	</div>
 				    <div class="row">
 				    	<c:if test="${not empty list2 }">
 				    	<c:forEach var="vo" items="${list2 }">
@@ -87,7 +101,14 @@
 					    </c:if>
 				    </div>
 				    <hr>
-			    	<h3 class="text-left">경제/경영</h3>
+			    	<div class="row">
+			    		<div class="col text-left">
+			    			<h3>경제/경영</h3>
+			    		</div>
+			    		<div class="col text-right">
+			    			<a href="Allbook?hCode=${hCode }&lCode=${hCode }3"><button type="button" class="btn">>> 경제 경영 전체 보기</button></a>
+			    		</div>
+			    	</div>
 				    <div class="row">
 				    <c:if test="${not empty list3 }">
 				    	<c:forEach var="vo" items="${list3 }">
@@ -100,7 +121,14 @@
 					    </c:if>
 				    </div>
 				    <hr>
-			    	<h3 class="text-left">자기계발</h3>
+			    	<div class="row">
+			    		<div class="col text-left">
+			    			<h3>자기계발</h3>
+			    		</div>
+			    		<div class="col text-right">
+			    			<a href="Allbook?hCode=${hCode }&lCode=${hCode }1"><button type="button" class="btn">>> 자기계발 전체 보기</button></a>
+			    		</div>
+			    	</div>
 				    <div class="row">
 				    	<c:if test="${not empty list4 }">
 				    	<c:forEach var="vo" items="${list4 }">
@@ -113,7 +141,14 @@
 					    </c:if>
 				    </div>
 				    <hr>
-			    	<h3 class="text-left">인문</h3>
+			    	<div class="row">
+			    		<div class="col text-left">
+			    			<h3>인문</h3>
+			    		</div>
+			    		<div class="col text-right">
+			    			<a href="Allbook?hCode=${hCode }&lCode=${hCode }1"><button type="button" class="btn">>> 인문 전체 보기</button></a>
+			    		</div>
+			    	</div>
 				    <div class="row">
 				    	<c:if test="${not empty list5 }">
 				    	<c:forEach var="vo" items="${list5 }">
@@ -124,9 +159,24 @@
 				    	</div>
 					    </c:forEach>	
 					    </c:if>
-				    </div>
+				    </div>		
+				    
+				    <div id="head"></div>
+						<div id="mcon" class="row">
+						</div>
+					<div id="head2"></div>			
+						<div id="mcon2" class="row">
+						</div>
+					<div id="head3"></div>
+						<div id="mcon3" class="row">
+						</div>
+					<div id="head4"></div>	
+						<div id="mcon4" class="row">
+						</div>
+					<div id="head5"></div>	
+						<div id="mcon5" class="row">
+						</div>
 				</div> 
-		    <div class="card-footer"><a href="#" style="color: black;">더보기</a></div>
 		</div>
 	</div>
 	

@@ -20,9 +20,10 @@
 	
 	<insert id="reqCommentInsert" parameterType="com.bc.model.vo.CommentVO">
 		INSERT INTO COMMENTS 
-		       (REVIEW_NUM, Q_NUM, REQUEST_NUM, MEMBER_ID, CONTENT, PASSWORD, WRITER_NAME, C_IDX)
-		VALUES (#{reviewNum}, #{qNum}, #{requestNum}, #{memberId}, #{content}, #{password}, #{writerName}, COMMENT_SEQ.NEXTVAL)
-		WHERE REQUEST_NUM = #{requestNum}
+		VALUES (null, null, #{requestNum}, #{memberId}, #{content}, 
+		 #{password}, 
+		'김서나',
+		COMMENT_SEQ.NEXTVAL)
 	</insert>	
 	
 	<update id="reqCommentUpdate" parameterType="com.bc.model.vo.CommentVO">
