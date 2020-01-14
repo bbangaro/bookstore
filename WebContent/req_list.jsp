@@ -66,11 +66,8 @@
 	}
 	
 
-	//$("#rForm").submit (function () {
 	function go(requestNum) {
-		console.log("method go");
 		let selector = "#content"+requestNum;
-		//console.log("content" +$("#rForm")$("content").text());
 		
 		const numUrl = "GetJXmlReqCommentWriteController";	
 		$.ajax({
@@ -93,7 +90,6 @@
 		reqComment(requestNum);
 		
 	}
-	//})
 	
 	function reqComment(requestNum){
 	const numUrl = "getXmlRequestComment?requestNum=" + requestNum;
