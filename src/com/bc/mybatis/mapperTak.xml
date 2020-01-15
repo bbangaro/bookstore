@@ -33,7 +33,6 @@
 		select count(*) from member WHERE member_id = #{memberId}
 	</select>
 	<!-- 책 상세 페이지 조회 -->
-
 	<select id="detailPage" parameterType="String"
 		resultType="com.bc.model.vo.BookVO">
 		select * from book where b_code = #{bCode}

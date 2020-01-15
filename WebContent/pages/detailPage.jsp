@@ -103,13 +103,13 @@ hr {
 </head>
 
 <body>
-	<c:set var="bCode" value="${param.bCode}" scope="session"></c:set>
-	<%-- <%@ include file="../include/top.jsp"%> --%>
+	<c:set var="b_Code" value="${param.bCode}" scope="session"></c:set>
+ <%@ include file="../include/top.jsp"%> 
 	<header>
 		<div class="header-book">
 			<div>
 				<a><img class="img-size"
-					src="../images/${requestScope.bookvo.bImage }" alt=""></a>
+					src="../bookimg/${requestScope.bookvo.bImage }" alt=""></a>
 			</div>
 
 			<div class="header-book-title">
@@ -228,12 +228,12 @@ hr {
 												</c:forEach>
 												<span>[답변]</span>
 																	<a href="/bookstore//detail/AddForm">	${vo.subject}</a>
-															 		</c:when>
+															 	</c:when>
 											<c:otherwise>
 														<a  href="/bookstore//detail/AddForm">${vo.subject}</a>
 											</c:otherwise>
 										</c:choose></td>
-									<td>${vo.upload}</td>
+									<td><img width="30" height="30" src="../upload/${vo.upload}"></td> 
 								</tr>
 							</c:forEach>
 						</c:when>
@@ -358,7 +358,7 @@ hr {
 
 
 
-	<%-- <%@ include file="../include/bottom.jsp"%> --%>
+	 <%@ include file="../include/bottom.jsp"%> 
 
 
 </body>

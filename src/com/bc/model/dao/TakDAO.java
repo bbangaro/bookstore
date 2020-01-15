@@ -33,6 +33,7 @@ public class TakDAO {
 
 	public static BookVO detailPage(String bCode) {
 		SqlSession ss = DBService.getFactory().openSession(true);
+		System.out.println(bCode);
 		BookVO bookvo = ss.selectOne("detailPage", bCode);
 		System.out.println(bookvo);
 		return bookvo;
