@@ -1,5 +1,6 @@
 package com.bc.model.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -53,5 +54,13 @@ public class CartDAO {
 		int result = ss.update("setcount", map);
 		ss.close();
 		return result;
+	}
+	
+	//아이디별 카트 조회
+	public static List<CartVO> getCart(String id) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		List<CartVO> list = ss.selectList("cart", id);
+		ss.close();
+		return list;
 	}
 }

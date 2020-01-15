@@ -42,5 +42,10 @@
 		 WHERE MEMBER_ID = #{memberId}
 		   AND B_CODE = #{bCode} AND B_TYPE = #{bType}
 	</update>
+	
+	<!-- 아이디별 카트 조회 -->
+	<select id="cart" parameterType="string" resultType="com.bc.model.vo.CartVO">
+		SELECT * FROM CART WHERE MEMBER_ID = #{memberId}
+	</select>
 </mapper>
 
