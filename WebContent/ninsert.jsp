@@ -27,10 +27,13 @@
 	
 	<div class="container mt-2">
 	 <c:if test="${empty update }">
-	  <form action="Notinsert" method="post">
+	  <form action="Notinsert" method="post" enctype="multipart/form-data" m>
 	    <div class="row mt-2">
 	    	<div class="col">
 	    		<input type="text" class="form-control" placeholder="제목" name="subject">
+	    	</div>
+	    	<div class="col">
+	    		<input type="file" id="myFile" name="upload" multiple="multiple">
 	    	</div>
 	    </div>
 	    <div class="row mt-2">
@@ -40,6 +43,7 @@
 		    </div>
 	    </div>
 	    	<button type="submit" class="btn btn-light text-right mt-2">글쓰기</button>
+	    	
 	  </form>
 	 </c:if>
 	 <c:if test="${not empty update }">

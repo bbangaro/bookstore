@@ -7,6 +7,7 @@
 <%-- <c:set var="b_code" value="b_code" > --%>
 <head>
 <meta charset="UTF-8">
+
 <title>책이름</title>
 
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
