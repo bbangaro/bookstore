@@ -17,7 +17,11 @@ public class NotViewCommand implements Command{
 		int nNum = Integer.parseInt(request.getParameter("nNum"));
 		
 		GuestBookVO vo = NotDAO.getOne(nNum);
+		GuestBookVO vo1 = NotDAO.getOnene(nNum);
+		GuestBookVO vo2 = NotDAO.getOnepr(nNum);
 		request.setAttribute("vo", vo);
+		request.setAttribute("vo1", vo1);
+		request.setAttribute("vo2", vo2);
 		return "nview.jsp";
 	}
 	

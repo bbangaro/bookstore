@@ -20,11 +20,9 @@ public class GetJXmlReqOneListCommentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("getXmlRequestComment");
 		response.setContentType("text/html;charset=utf-8");
 		
 		PrintWriter out = response.getWriter();
-		System.out.println(request.getParameter("requestNum"));
 		int requestNum = Integer.parseInt(request.getParameter("requestNum"));
 		
 		List<CommentVO> commentList = ReqCommentDAO.getReqCommentList(requestNum);
@@ -37,14 +35,13 @@ public class GetJXmlReqOneListCommentController extends HttpServlet {
 	    	result.append("<comment>");
 	    	result.append("<cId>" + list.getMemberId() + "</cId>");
 	    	result.append("<cComment>" + list.getContent() + "</cComment>");
+	    	result.append("<cIdx>" + list.getcIdx() + "</cIdx>");
 	    	result.append("</comment>");
 			}
 	    	result.append("</comments>");
 	    	
-	    	
+	    	out.print(result.toString());
         
-		System.out.println("result : " + result);
-		out.print(result.toString());
 		
 	}
 
