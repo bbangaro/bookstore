@@ -1,113 +1,125 @@
 package com.bc.model.vo;
 
 public class ReviewVO {
+ private String	level,
+	reviewNum,
+	memberId,
+	subject,
+	rContent,
+	upload,
+	bCode,
+	orderid,
+	bBype,
+	parentno;
+ 
+ public ReviewVO() {}
+ 
+ 
 
-	String review_num, member_id, username, password, subject, r_content, upload, b_code, orderid, b_type;
+public ReviewVO(String level, String reviewNum, String memberId, String subject, String rContent, String upload,
+		String bCode, String orderid, String bBype, String parentno) {
+	super();
+	this.level = level;
+	this.reviewNum = reviewNum;
+	this.memberId = memberId;
+	this.subject = subject;
+	this.rContent = rContent;
+	this.upload = upload;
+	this.bCode = bCode;
+	this.orderid = orderid;
+	this.bBype = bBype;
+	this.parentno = parentno;
+}
 
-	
-	
-	
-	public ReviewVO(String review_num, String member_id, String username, String password, String subject,
-			String r_content, String upload, String b_code, String orderid, String b_type) {
-		super();
-		this.review_num = review_num;
-		this.member_id = member_id;
-		this.username = username;
-		this.password = password;
-		this.subject = subject;
-		this.r_content = r_content;
-		this.upload = upload;
-		this.b_code = b_code;
-		this.orderid = orderid;
-		this.b_type = b_type;
-	}
+public String getLevel() {
+	return level;
+}
 
-	public String getReview_num() {
-		return review_num;
-	}
+public void setLevel(String level) {
+	this.level = level;
+}
 
-	public void setReview_num(String review_num) {
-		this.review_num = review_num;
-	}
+public String getReviewNum() {
+	return reviewNum;
+}
 
-	public String getMember_id() {
-		return member_id;
-	}
+public void setReviewNum(String reviewNum) {
+	this.reviewNum = reviewNum;
+}
 
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
-	}
+public String getMemberId() {
+	return memberId;
+}
 
-	public String getUsername() {
-		return username;
-	}
+public void setMemberId(String memberId) {
+	this.memberId = memberId;
+}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+public String getSubject() {
+	return subject;
+}
 
-	public String getPassword() {
-		return password;
-	}
+public void setSubject(String subject) {
+	this.subject = subject;
+}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+public String getrContent() {
+	return rContent;
+}
 
-	public String getSubject() {
-		return subject;
-	}
+public void setrContent(String rContent) {
+	this.rContent = rContent;
+}
 
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
+public String getUpload() {
+	return upload;
+}
 
-	public String getR_content() {
-		return r_content;
-	}
+public void setUpload(String upload) {
+	this.upload = upload;
+}
 
-	public void setR_content(String r_content) {
-		this.r_content = r_content;
-	}
+public String getbCode() {
+	return bCode;
+}
 
-	public String getUpload() {
-		return upload;
-	}
+public void setbCode(String bCode) {
+	this.bCode = bCode;
+}
 
-	public void setUpload(String upload) {
-		this.upload = upload;
-	}
+public String getOrderid() {
+	return orderid;
+}
 
-	public String getB_code() {
-		return b_code;
-	}
+public void setOrderid(String orderid) {
+	this.orderid = orderid;
+}
 
-	public void setB_code(String b_code) {
-		this.b_code = b_code;
-	}
+public String getbBype() {
+	return bBype;
+}
 
-	public String getOrderid() {
-		return orderid;
-	}
+public void setbBype(String bBype) {
+	this.bBype = bBype;
+}
 
-	public void setOrderid(String orderid) {
-		this.orderid = orderid;
-	}
+public String getParentno() {
+	return parentno;
+}
 
-	public String getB_type() {
-		return b_type;
-	}
+public void setParentno(String parentno) {
+	this.parentno = parentno;
+}
 
-	public void setB_type(String b_type) {
-		this.b_type = b_type;
-	}
+@Override
+public String toString() {
+	return "ReviewVO [level=" + level + ", reviewNum=" + reviewNum + ", memberId=" + memberId + ", subject=" + subject
+			+ ", rContent=" + rContent + ", upload=" + upload + ", bCode=" + bCode + ", orderid=" + orderid + ", bBype="
+			+ bBype + ", parentno=" + parentno + "]";
+}
 
-	@Override
-	public String toString() {
-		return "ReviewVO [review_num=" + review_num + ", member_id=" + member_id + ", username=" + username
-				+ ", password=" + password + ", subject=" + subject + ", r_content=" + r_content + ", upload=" + upload
-				+ ", b_code=" + b_code + ", orderid=" + orderid + ", b_type=" + b_type + "]";
-	}
 
-	
+
+
+
 }
