@@ -189,7 +189,7 @@ body{
                   <i class="fas fa-book"></i>서재로 로그인
                </button>
                <button class="memberJoin">
-                  <i class="fas fa-sign-in-alt"></i>회원가입페이지로
+                  <i class="fas fa-sign-in-alt"></i>회원가입
                </button>
                 </div>
                 <div class="icon">

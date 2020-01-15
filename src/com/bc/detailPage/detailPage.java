@@ -30,6 +30,7 @@ public class detailPage extends HttpServlet {
 		
 		if(action == null || action.contentEquals("/Page")){
 			String bCode = request.getParameter("bCode");
+			System.out.println(bCode);
 			BookVO bookvo =	TakDAO.detailPage(bCode);
 			List<ReviewVO> reviewvo = TakDAO.detailPageReview(bCode);
 			 request.setAttribute("bookvo", bookvo);
@@ -53,7 +54,7 @@ public class detailPage extends HttpServlet {
 			String rContent =mr.getParameter("rContent");
 			String myFile = mr.getFilesystemName("myFile");
 			String id = (String) session.getAttribute("id");
-			String bCode = (String)session.getAttribute("bCode");
+			String bCode = (String)session.getAttribute("b_Code");
 			
 			System.out.println(bCode);
 			System.out.println(id);

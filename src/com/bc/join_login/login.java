@@ -29,7 +29,7 @@ public class login extends HttpServlet {
 		
 		if(membervo == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-				request.setAttribute("loginFiledId", "등록된 아이디가 없습니다..");
+				request.setAttribute("loginFiledId", "등록된 아이디가 없습니다.");
 				 dispatcher.forward(request, response);
 		}else {
 			if(!membervo.getPassword().equals(password)) {

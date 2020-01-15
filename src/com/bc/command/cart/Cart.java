@@ -16,7 +16,8 @@ public class Cart {
 	
 	public List<CartVO> getList() { return list; }
 	public int getTotal() { return total; }
-	
+
+	//장바구니에 추가
 	public void addProduct(String bCode, int bType) {
 		CartVO vo = findProduct(bCode, bType);
 		if (vo != null) {
@@ -44,5 +45,27 @@ public class Cart {
 			}
 		}
 		return vo;
+	}
+	
+	//장바구니에서 삭제
+	public void deleteProduct(String bCode, int bType) {
+		CartVO vo = findProduct(bCode, bType);
+		if(vo != null) {
+			list.remove(vo);
+			
+			total -= vo.getTotalprice();
+		}
+	}
+	
+	//장바구니에 담긴 제품 수량 변경
+	public void setCount(String bCode, int bType, int count) {
+		CartVO vo = findProduct(bCode, bType);
+		if (vo == null) return;
+		
+		total -= vo.getTotalprice();
+		
+		vo.setProductsCount(count);
+		
+		total += vo.getTotalprice();
 	}
 }
