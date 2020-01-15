@@ -1,6 +1,8 @@
 package com.bc.command.cart;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,8 +22,21 @@ public class AddProduct implements Command {
 		CartVO vo = new CartVO();
 		vo.setbCode(bCode);
 		vo.setbType(bType);
+		vo.setMemberId("test1");
 		
-		CartDAO.insertCart(vo);
+		int count = CartDAO.findProduct(vo);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("bType", bType);
+		map.put("bCode", bCode);
+		map.put("count", 1); //개수 수정!!!!!!!!!!!!!!!
+		map.put("memberId", "test1");
+		
+		if (count == 0) {
+			CartDAO.insertCart(map);
+		} else {
+			CartDAO.updateCount(map);
+		}
 		
 		return "cart.jsp";
 	}
