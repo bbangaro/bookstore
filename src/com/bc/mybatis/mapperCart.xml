@@ -6,7 +6,9 @@
 	<select id="one" parameterType="com.bc.model.vo.CartVO" resultType="com.bc.model.vo.CartVO">
 		SELECT * FROM CART 
 		 WHERE B_CODE = #{bCode} AND B_TYPE = #{bType}
+		 
 	</select>
+
 	
 </mapper>
 
