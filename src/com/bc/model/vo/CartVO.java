@@ -2,9 +2,16 @@ package com.bc.model.vo;
 
 public class CartVO {
 	private String bCode, wdate, memberId, bName;
-	private int pNum, memberSid, bType, productsCount, price, salePrice;
+	private int pNum, bType, productsCount, price, salePrice;
 	
-	int totalprice;
+	//수량별 금액(세일가 * 수량)
+	private int totalprice;
+	
+	//할인율
+	public int getPercent() {
+		double percent = (price - salePrice) * 100 / price;
+		return (int) percent;
+	}
 	
 	public int getTotalprice() {
 		return totalprice;
@@ -42,12 +49,6 @@ public class CartVO {
 	public void setpNum(int pNum) {
 		this.pNum = pNum;
 	}
-	public int getMemberSid() {
-		return memberSid;
-	}
-	public void setMemberSid(int memberSid) {
-		this.memberSid = memberSid;
-	}
 	public int getbType() {
 		return bType;
 	}
@@ -78,7 +79,7 @@ public class CartVO {
 	@Override
 	public String toString() {
 		return "CartVO [bCode=" + bCode + ", wdate=" + wdate + ", memberId=" + memberId + ", bName=" + bName + ", pNum="
-				+ pNum + ", memberSid=" + memberSid + ", bType=" + bType + ", productsCount=" + productsCount
+				+ pNum + ", bType=" + bType + ", productsCount=" + productsCount
 				+ ", price=" + price + ", salePrice=" + salePrice + "]";
 	}
 	
