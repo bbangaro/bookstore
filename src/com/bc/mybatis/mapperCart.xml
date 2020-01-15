@@ -12,13 +12,13 @@
 	<select id="find" parameterType="com.bc.model.vo.CartVO" resultType="int">
 		SELECT COUNT(*) FROM CART 
 		 WHERE B_CODE = #{bCode} AND B_TYPE = #{bType}
-			   AND MEMBER_ID = #{memberId}
+		   AND MEMBER_ID = #{memberId}
 	</select>
 	
 	<insert id="addproduct" parameterType="map">
 		INSERT INTO CART VALUES(
 		CART_SEQ.NEXTVAL, #{bType}, #{bCode}, #{count}, SYSDATE, 
-		(SELECT PRICE FROM BOOK WHERE B_TYPE = #{bType} AND B_CODE = #{bCode}),
+		(SELECT B_PRICE FROM BOOK WHERE B_TYPE = #{bType} AND B_CODE = #{bCode}),
 		#{memberId}, 
 		(SELECT SALE_PRICE FROM BOOK WHERE B_TYPE = #{bType} AND B_CODE = #{bCode}),
 		(SELECT B_NAME FROM BOOK WHERE B_TYPE = #{bType} AND B_CODE = #{bCode})
@@ -31,5 +31,16 @@
 		   AND B_CODE = #{bCode} AND B_TYPE = #{bType}
 	</update>
 	
+	<delete id="deleteproduct" parameterType="com.bc.model.vo.CartVO">
+		DELETE FROM CART 
+		 WHERE B_CODE = #{bCode} AND B_TYPE = #{bType}
+		   AND MEMBER_ID = #{memberId}
+	</delete>
+	
+	<update id="setcount" parameterType="map">
+		UPDATE CART SET PRODUCTS_COUNT = #{quantity}
+		 WHERE MEMBER_ID = #{memberId}
+		   AND B_CODE = #{bCode} AND B_TYPE = #{bType}
+	</update>
 </mapper>
 

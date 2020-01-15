@@ -39,4 +39,19 @@ public class CartDAO {
 		return result;
 	}
 	
+	//카트에서 제품 삭제
+	public static int deleteProduct(CartVO vo) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.delete("deleteproduct", vo);
+		ss.close();
+		return result;
+	}
+	
+	//제품 수량 변경
+	public static int setCount(Map<String, Object> map) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.update("setcount", map);
+		ss.close();
+		return result;
+	}
 }
