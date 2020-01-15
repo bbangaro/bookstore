@@ -28,7 +28,7 @@ public class NotInsCommand implements Command{
 		
 		
 		
-		Map<String, Object> map = new HashMap<>();
+		Map<String, String> map = new HashMap<>();
 		
 		map.put("subject",request.getParameter("subject"));
 		map.put("content",request.getParameter("content"));
@@ -58,7 +58,7 @@ public class NotInsCommand implements Command{
 							String fileName = item.getName().substring(index + 1);
 							File uploadFile = new File(ATTACHES_DIR + separator + fileName);
 							item.write(uploadFile);
-							imlist += item.getName();
+							imlist += item.getName()+",";
 						}
 					}
 				}
@@ -68,9 +68,8 @@ public class NotInsCommand implements Command{
 		}
 		
 		
+		 map.put("upload",imlist);
 		
-		
-		map.put("upload",imlist);
 		
 		
 		System.out.println("map 객체"+map);

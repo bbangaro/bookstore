@@ -26,7 +26,18 @@
 			<h2 class="mt-2">&nbsp;&nbsp;공지</h2>
 		<div class="card">
 		  <div class="card-header">${vo.subject }</div>
-		  <div class="card-body">${vo.content }</div>
+		  <div class="card-body">
+		  	<c:if test="${not empty vo.upload }">
+		  		<div class="container text-center">
+		  		<c:if test="${not empty up }">
+		  		<c:forEach var="vo" items="${up }">
+		  			<img src="bookimg/${vo }">
+		  	 	</c:forEach>
+		  		</c:if>
+		  		</div>
+		  	</c:if>
+		  	${vo.content }
+		  </div>
 		  <div class="card-footer" style="background-color: white;"><small>${vo.wDate }</small></div>
 		  <c:if test="${not empty vo1 }">
 		  	<div class="card-footer" style="background-color: white;"><small>다음 글 : <a href="Nview?nNum=${vo1.nNum }" style="color:black;">${vo1.subject }</a></small></div>
@@ -47,5 +58,15 @@
 	</div>
 	
 	<%@ include file="include/bottom.jsp" %>
+	
+	<script>
+			$("#already").click(function(){
+				$.ajax
+			})	
+			
+		
+		
+	</script>
+	
 </body>
 </html>
