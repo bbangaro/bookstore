@@ -189,7 +189,7 @@ body{
                   <i class="fas fa-book"></i>서재로 로그인
                </button>
                <button class="memberJoin">
-                  <i class="fas fa-sign-in-alt"></i>회원가입페이지로
+                  <i class="fas fa-sign-in-alt"></i>회원가입
                </button>
                 </div>
                 <div class="icon">
@@ -218,7 +218,7 @@ body{
       <form  action="login" method="post">
             <h1>로그인</h1>
             <div class="txtb">
-          <input type="text" name="member_id" placeholder="아이디">
+          <input type="text" name="memberId" placeholder="아이디">
             </div>
             <div class="txtb">
          <input type="password" name="password" placeholder="암호">

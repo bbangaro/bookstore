@@ -8,5 +8,28 @@
 		 WHERE B_CODE = #{bCode} AND B_TYPE = #{bType}
 	</select>
 	
+	<!-- 카트에 제품이 있는지 조회 -->
+	<select id="find" parameterType="com.bc.model.vo.CartVO" resultType="int">
+		SELECT COUNT(*) FROM CART 
+		 WHERE B_CODE = #{bCode} AND B_TYPE = #{bType}
+			   AND MEMBER_ID = #{memberId}
+	</select>
+	
+	<insert id="addproduct" parameterType="map">
+		INSERT INTO CART VALUES(
+		CART_SEQ.NEXTVAL, #{bType}, #{bCode}, #{count}, SYSDATE, 
+		(SELECT PRICE FROM BOOK WHERE B_TYPE = #{bType} AND B_CODE = #{bCode}),
+		#{memberId}, 
+		(SELECT SALE_PRICE FROM BOOK WHERE B_TYPE = #{bType} AND B_CODE = #{bCode}),
+		(SELECT B_NAME FROM BOOK WHERE B_TYPE = #{bType} AND B_CODE = #{bCode})
+		)
+	</insert>
+	
+	<update id="updatecount" parameterType="map">
+		UPDATE CART SET PRODUCTS_COUNT = PRODUCTS_COUNT + #{count}
+		 WHERE MEMBER_ID = #{memberId}
+		   AND B_CODE = #{bCode} AND B_TYPE = #{bType}
+	</update>
+	
 </mapper>
 

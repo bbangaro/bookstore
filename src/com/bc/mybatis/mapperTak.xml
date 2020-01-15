@@ -3,10 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="tbookstore">
-	<!-- 회원가입  -->
-	<insert id="memberinsert" parameterType="com.bc.model.vo.MemberVO">
+	<!-- 회원가입 -->
+	<insert id="memberinsert"
+		parameterType="com.bc.model.vo.MemberVO">
 		INSERT INTO member
-		(MEMBER_ID, USERNAME, PASSWORD, EMAIL, ZIPCODE,
+		(MEMBER_ID, USERNAME, PASSWORD, EMAIL,
+		ZIPCODE,
 		ADDRESS1,ADDRESS2,MOBILEPHONE,REGDATE,U_STATUS)
 		VALUES
 		(#{memberId},
@@ -20,22 +22,54 @@
 		#{regdate},
 		#{uStatus})
 	</insert>
-	<!-- 로그인 체크  -->
-	<select id="logincheck" parameterType="String" resultType="com.bc.model.vo.MemberVO">
-		select member_id,password from member WHERE member_id = #{member_id}
+	<!-- 로그인 체크 -->
+	<select id="logincheck" parameterType="String"
+		resultType="com.bc.model.vo.MemberVO">
+		select member_id,password from member WHERE member_id =
+		#{memberId}
 	</select>
-	<!-- 아이디 체그  -->
+	<!-- 아이디 체그 -->
 	<select id="checking_id" parameterType="String" resultType="int">
-		select count(*) from member WHERE member_id = #{member_id}
+		select count(*) from member WHERE member_id = #{memberId}
 	</select>
-	<!-- 책 상세 페이지 조회  -->
-	<select id="detailPage" parameterType="String" resultType="com.bc.model.vo.BookVO">
-		select * from book where b_code = #{b_code}
-	</select>
-	<select id="detailPageReview" parameterType="String" resultType="com.bc.model.vo.ReviewVO">
-		select * from review where b_code = #{b_code}
+	<!-- 책 상세 페이지 조회 -->
+	<select id="detailPage" parameterType="String"
+		resultType="com.bc.model.vo.BookVO">
+		select * from book where b_code = #{bCode}
 	</select>
 
-	
+	<!-- 디테일 리뷰 조회 -->
+	<select id="detailPageReview" parameterType="String"
+		resultType="com.bc.model.vo.ReviewVO">
+		select
+		level,
+		review_num,
+		member_id,
+		subject,
+		r_content,
+		upload,
+		b_code,
+		orderid,
+		b_type,
+		parentno
+		from review
+		where b_code = #{bCode}
+		start
+		with parentno = 0
+		connect by prior review_num = parentno
+		order siblings
+		by review_num
+	</select>
+
+
+	<insert id="insertReview"
+		parameterType="com.bc.model.vo.ReviewVO">
+		INSERT INTO REVIEW
+		(REVIEW_NUM,MEMBER_ID,SUBJECT,R_CONTENT,UPLOAD,B_CODE,ORDERID,B_TYPE,PARENTNO)
+		VALUES
+		(REVIEW_SEQ.NEXTVAL,#{memberId},#{subject},#{rContent},#{upload},#{bCode},'','1','0')
+	</insert>
+
+
 
 </mapper>

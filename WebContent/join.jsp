@@ -147,8 +147,8 @@
          <p>아래양식을 작성해주세요</p>
       <hr>
       <div class="txtb">
-         <label for="member_id"><b>아이디</b><button type="button" class="check_id_count btn_ch" name="checkCount" onclick="regCheckFunction()" value="0">중복체크</button><span class="check_id"></span></label>
-          <input type="text" name="member_id" class="id" placeholder="영문 대소문자와 숫자 4~12자리" min="4" max="20"> 
+         <label for="memberId"><b>아이디</b><button type="button" class="check_id_count btn_ch" name="checkCount" onclick="regCheckFunction()" value="0">중복체크</button><span class="check_id"></span></label>
+          <input type="text" name="memberId" class="id" placeholder="영문 대소문자와 숫자 4~12자리" min="4" max="20"> 
       </div>
        <div class="txtb">
           <label for="psw"><b>이름</b></label>
@@ -214,7 +214,7 @@
       }) 
    }else{ 
       $(".check_id").html("아이디는 영문 대소문자와 숫자 4~12자리로 입력해야합니다!");
-      document.from_join.member_id.focus();
+      document.from_join.memberId.focus();
    }
 }
       
@@ -238,7 +238,7 @@
    function check_login(){
       
       
-      var member_id = document.form_join.member_id.value;
+      var memberId = document.form_join.memberId.value;
       var username = document.form_join.username.value;
       var password1 =  document.form_join.password1.value;
       var password2 =document.form_join.password2.value;
@@ -250,20 +250,19 @@
       var checkCount = document.form_join.checkCount.value;
    
       /* 아이디 유효성검사 */
-      regCheckFunction();
-      if(member_id !== undefined && member_id !== ""){
-         var idRegExp = /^[a-zA-z0-9]{4,12}$/;
-         if(!idRegExp.test(member_id)){
+      if(memberId !== undefined && memberId !== ""){
+         var idRegExp = /^[a-zA-Z0-9]{4,12}$/;
+         if(!idRegExp.test(memberId)){
          
          alert("아이디는 영문 대소문자와 숫자 4~12자리로 입력해야합니다!");
-            member_id.value = "";
-            document.from_join.member_id.focus();
+         memberId.value = "";
+            document.from_join.memberId.focus();
             return false;
          }
-      }else if(member_id == undefined || member_id == ""){
+      }else if(memberId == undefined || memberId == ""){
          alert("아이디를 입력해주세요");
          member_id.value = "";
-         document.from_join.member_id.focus();
+         document.from_join.memberId.focus();
          return false;
       }
       
@@ -286,8 +285,8 @@
       }
 
       //비밀번호 유효성 검사 
-      if((password1 !== undefined && member_id !== "") &&
-             (password2 !== undefined && member_id !== "")){
+      if((password1 !== undefined && memberId !== "") &&
+             (password2 !== undefined && memberId !== "")){
           var password1RegExp = /^[a-zA-z0-9]{4,12}$/;
          if(!password1RegExp.test(password1)){
             alert("비밀번호는 영문 대소문자와 숫자 4~12자리로 입력해야합니다!");
@@ -302,8 +301,8 @@
                return false;
            }
          
-      }else if(password1 == undefined || member_id == "" ||
-             password2 == undefined || member_id == ""){
+      }else if(password1 == undefined || memberId == "" ||
+             password2 == undefined || memberId == ""){
          alert("비밀번호를를 입력해주세요");
          return false;
       }
