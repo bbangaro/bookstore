@@ -30,7 +30,7 @@
 		]]>
 	</select>
 	<insert id="Ninsert" parameterType="map">
-		INSERT INTO NOTICE VALUES(SEQNOTICE.nextval,#{subject},#{content},SYSDATE)
+		INSERT INTO NOTICE VALUES(SEQNOTICE.nextval,#{subject},#{content},SYSDATE,#{upload},1)
 	</insert>
 	<select id="Nselectone" resultType="com.bc.model.vo.GuestBookVO" parameterType="int">
 		SELECT * FROM NOTICE

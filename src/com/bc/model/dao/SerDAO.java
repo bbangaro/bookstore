@@ -29,7 +29,7 @@ public class SerDAO {
 	}
 	public static List<GuestBookVO> getBna(Map map) {
 		SqlSession ss =  DBService.getFactory().openSession(true);
-		List<GuestBookVO> list = ss.selectList("searchBna", map); //전달하는 파라미터가 없을 때는 이름만
+		List<GuestBookVO> list = ss.selectList("searchbna", map); //전달하는 파라미터가 없을 때는 이름만
 		ss.close();
 		return list;
 	}

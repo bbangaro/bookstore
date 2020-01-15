@@ -154,7 +154,7 @@
 		<%@ include file="include/ajax1.jsp" %>
 		$("#getNo").trigger("click");
 	});
-
+	
 
 </script>
 </body>

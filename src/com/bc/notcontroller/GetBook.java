@@ -39,6 +39,7 @@ public class GetBook extends HttpServlet {
 		for(BookVO vo : list) {
 			result += "{";
 			result += "\"name\" : \"" + vo.getbName() + "\",";
+			result += "\"bcode\" : \"" + vo.getbCode() + "\",";
 			result += "\"writer\" : \"" + vo.getWriterName() + "\",";
 			result += "\"image\" : \"" + vo.getbImage() + "\"";
 			result += "},";
