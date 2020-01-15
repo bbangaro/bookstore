@@ -28,7 +28,7 @@
 	
 	<update id="reqCommentUpdate" parameterType="com.bc.model.vo.CommentVO">
 		UPDATE COMMENTS SET CONTENT = #{content}
-		WHERE REQUEST_NUM = #{requestNum}
+		WHERE C_IDX = #{cIdx}
 	</update>
 	
 	<delete id="reqCommentDelete" parameterType="int">

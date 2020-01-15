@@ -66,7 +66,7 @@
 	}
 	
 
-	function go(requestNum) {
+	function commentInsert(requestNum) {
 		let selector = "#content"+requestNum;
 		
 		const numUrl = "GetJXmlReqCommentWriteController";	
@@ -88,11 +88,43 @@
 					+ "errorThrown : " + errorThrown);
 			}
 		});
-		
-		//reqComment(requestNum);
-		
+		reqComment(requestNum);
 	}
 	
+	 function commentUpdate(cIdx, cComment){
+		    var a ='';
+		    
+		    a += '<div class="input-group">';
+		    a += '<input type="text" class="form-control" name="content_'+cIdx+'" value="'+cComment+'"/>';
+		    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+cIdx+');">수정</button> </span>';
+		    a += '</div>';
+		    
+		    $('.commentList'+cIdx).html(a);
+		}
+	 
+	 function commentUpdateProc(cIdx){
+		    var updateContent = $('[name=content_'+cIdx+']').val();
+		    const numUrl = "GetXmlReqUpdateCommentController"	
+		    $.ajax({
+		        url : numUrl,
+		        type : 'post',
+		        data : {'content' : updateContent, 'cIdx' : cIdx},
+		        success : function(data){
+		        	
+		           reqComment(parseInt($("#requestNum")));  
+		           
+		        },
+				error : function(jqXHR, textStatus, errorThrown){
+					alert("Ajax 처리 실패 : \n"
+						+ "jqXHR.readyState : " + jqXHR.readyState +"\n"
+						+ "textStatus : " + textStatus +"\n"
+						+ "errorThrown : " + errorThrown);
+				}
+			});
+		    reqComment(parseInt($("#requestNum").text())); 
+		}
+
+
 	function commentDelete(cIdx) {
 		console.log("cIdx"+cIdx);
 		console.log("$(cIdx)"+$(cIdx));
@@ -107,7 +139,6 @@
 				
 			//cIdx(parseInt($("#cIdx").text()));
 			reqComment(parseInt($("#requestNum").text()));
-				
 		},
 			error : function(jqXHR, textStatus, errorThrown){
 				alert("Ajax 처리 실패 : \n"
@@ -116,7 +147,6 @@
 					+ "errorThrown : " + errorThrown);
 			}
 		});
-		
 	}
 	
 	function reqComment(requestNum){
@@ -137,7 +167,7 @@
 				commentTbody += "<div class='input-group'>";
 				commentTbody += "<input class='form-control' placeholder='Add a comment' type='text' name='content' id='content"+requestNum+"'>";
 				commentTbody += "</div>";
-				commentTbody += "<span class='input-group-addon'> <button type='button' onclick='go("+requestNum+")'>댓글달기</button> </span>";
+				commentTbody += "<span class='input-group-addon'> <button type='button' onclick='commentInsert("+requestNum+")'>댓글달기</button> </span>";
 
 				commentTbody += "<input type='hidden' name='requestNum' value="+requestNum+">";
 				commentTbody += "<input type='hidden' name='memberId' value='${sessionScope.id}'>";
@@ -152,9 +182,9 @@
 				commentTbody += "<h4 class='user'>"+ $(this).find("cId").text() +"</h4>";
 				commentTbody += "<h5 class='time'>5 minutes ago</h5>";
 				commentTbody += "</div>";
-				commentTbody += "<p>"+ $(this).find("cComment").text() +"</p>";
-				commentTbody += "<span class='input-group-addon'> <button type='button' onclick='commentEdit()'>수정</button> ";
-				commentTbody += "<button type='button' onclick='commentDelete("+ $(this).find("cIdx").text()+")'>삭제</button> </span>";
+				commentTbody += "<div class='commentList"+ $(this).find("cIdx").text()+"'> <p>"+ $(this).find("cComment").text() +"</p>";
+				commentTbody += "<span class='input-group-addon'> <button type='button' onclick='commentUpdate("+$(this).find("cIdx").text()+")'>수정</button> ";
+				commentTbody += "<button type='button' onclick='commentDelete("+ $(this).find("cIdx").text()+")'>삭제</button> </span></div>";
 				commentTbody += "</div></li>";
 				commentTbody += "</ul>";
 			});
@@ -176,6 +206,7 @@
 		});
 	}
 		
+	
 	function reqDelete(requestNum) {
 		if(confirm("글을 삭제하시겠습니까?") == true){
 			location.href="ReqDeleteOKController?requestNum=" + requestNum; 
