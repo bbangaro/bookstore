@@ -56,7 +56,7 @@
 				$("#tbody"+requestNum).html(tbody);
 			},
 			error : function(jqXHR, textStatus, errorThrown){
-				alert("Ajax 처리 실패 : \n"
+				alert("원리스트 소환 처리 실패 : \n"
 					+ "jqXHR.readyState : " + jqXHR.readyState +"\n"
 					+ "textStatus : " + textStatus +"\n"
 					+ "errorThrown : " + errorThrown);
@@ -77,32 +77,32 @@
 			data : {"memberId":"${sessionScope.id}", "content":$(selector).val(), "requestNum":requestNum, "password":"${sessionScope.password}"},
 			success : function(data){
 			
-			reqComment(parseInt($("#requestNum").text()));
-			//reqComment(parseInt($("#requestNum")));
+			reqComment(requestNum);
 				
 		},
 			error : function(jqXHR, textStatus, errorThrown){
-				alert("Ajax 처리 실패 : \n"
+				alert("Ajax 코멘트 입력처리 실패 : \n"
 					+ "jqXHR.readyState : " + jqXHR.readyState +"\n"
 					+ "textStatus : " + textStatus +"\n"
 					+ "errorThrown : " + errorThrown);
 			}
 		});
-		reqComment(requestNum);
 	}
 	
-	 function commentUpdate(cIdx, cComment){
+	 function commentUpdate(cIdx, requestNum){
 		    var a ='';
 		    
 		    a += '<div class="input-group">';
-		    a += '<input type="text" class="form-control" name="content_'+cIdx+'" value="'+cComment+'"/>';
-		    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+cIdx+');">수정</button> </span>';
+		    a += '<input type="text" class="form-control" name="content_'+cIdx+'" value="'+ $(this).find("cComment").text()+'"/>';
+		    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+cIdx+","+ requestNum +');">수정</button> </span>';
 		    a += '</div>';
 		    
 		    $('.commentList'+cIdx).html(a);
 		}
 	 
-	 function commentUpdateProc(cIdx){
+	 function commentUpdateProc(cIdx, requestNum){
+		 console.log($("#requestNum"));
+		 console.log(requestNum);
 		    var updateContent = $('[name=content_'+cIdx+']').val();
 		    const numUrl = "GetXmlReqUpdateCommentController"	
 		    $.ajax({
@@ -111,21 +111,20 @@
 		        data : {'content' : updateContent, 'cIdx' : cIdx},
 		        success : function(data){
 		        	
-		           reqComment(parseInt($("#requestNum")));  
+		           getXMLMembers(requestNum);
 		           
 		        },
 				error : function(jqXHR, textStatus, errorThrown){
-					alert("Ajax 처리 실패 : \n"
+					alert("Ajax 코멘트 수정처리 실패 : \n"
 						+ "jqXHR.readyState : " + jqXHR.readyState +"\n"
 						+ "textStatus : " + textStatus +"\n"
 						+ "errorThrown : " + errorThrown);
 				}
 			});
-		    reqComment(parseInt($("#requestNum").text())); 
 		}
 
 
-	function commentDelete(cIdx) {
+	function commentDelete(cIdx, requestNum) {
 		console.log("cIdx"+cIdx);
 		console.log("$(cIdx)"+$(cIdx));
 		
@@ -138,7 +137,7 @@
 			success : function(data){
 				
 			//cIdx(parseInt($("#cIdx").text()));
-			reqComment(parseInt($("#requestNum").text()));
+			getXMLMembers(requestNum);
 		},
 			error : function(jqXHR, textStatus, errorThrown){
 				alert("Ajax 처리 실패 : \n"
@@ -183,8 +182,8 @@
 				commentTbody += "<h5 class='time'>5 minutes ago</h5>";
 				commentTbody += "</div>";
 				commentTbody += "<div class='commentList"+ $(this).find("cIdx").text()+"'> <p>"+ $(this).find("cComment").text() +"</p>";
-				commentTbody += "<span class='input-group-addon'> <button type='button' onclick='commentUpdate("+$(this).find("cIdx").text()+")'>수정</button> ";
-				commentTbody += "<button type='button' onclick='commentDelete("+ $(this).find("cIdx").text()+")'>삭제</button> </span></div>";
+				commentTbody += "<span class='input-group-addon'> <button type='button' onclick='commentUpdate("+$(this).find("cIdx").text()+","+requestNum+")'>수정</button> ";
+				commentTbody += "<button type='button' onclick='commentDelete("+ $(this).find("cIdx").text()+","+requestNum+")'>삭제</button> </span></div>";
 				commentTbody += "</div></li>";
 				commentTbody += "</ul>";
 			});
@@ -198,7 +197,7 @@
 	
 			},
 			error : function(jqXHR, textStatus, errorThrown){
-				alert("reqComment메서드 Ajax 처리 실패 : \n"
+				alert("댓글 소환 메서드 Ajax 처리 실패 : \n"
 					+ "jqXHR.readyState : " + jqXHR.readyState +"\n"
 					+ "textStatus : " + textStatus +"\n"
 					+ "errorThrown : " + errorThrown);

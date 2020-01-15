@@ -28,7 +28,7 @@ public class GetXmlReqUpdateCommentController extends HttpServlet {
 		CommentVO vo = new CommentVO();
 		
 		vo.setMemberId(request.getParameter("memberId"));
-		//vo.setRequestNum(requestNum);
+//		vo.setRequestNum(requestNum);
 		vo.setContent(request.getParameter("content"));
 		vo.setPassword(request.getParameter("password"));
 		vo.setcIdx(request.getParameter("cIdx"));
