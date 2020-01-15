@@ -218,7 +218,7 @@ body{
       <form  action="login" method="post">
             <h1>로그인</h1>
             <div class="txtb">
-          <input type="text" name="member_id" placeholder="아이디">
+          <input type="text" name="memberId" placeholder="아이디">
             </div>
             <div class="txtb">
          <input type="password" name="password" placeholder="암호">
