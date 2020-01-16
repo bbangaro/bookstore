@@ -21,6 +21,10 @@ public class CartList implements Command {
 		
 		request.setAttribute("list", list);
 		System.out.println("list:" + list);
+
+		for (CartVO cvo : list) {
+			cvo.getbCode();
+		}
 		
 		return "cart.jsp";
 	}

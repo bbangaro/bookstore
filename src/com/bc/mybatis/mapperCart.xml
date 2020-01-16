@@ -47,5 +47,6 @@
 	<select id="cart" parameterType="string" resultType="com.bc.model.vo.CartVO">
 		SELECT * FROM CART WHERE MEMBER_ID = #{memberId}
 	</select>
+
 </mapper>
 

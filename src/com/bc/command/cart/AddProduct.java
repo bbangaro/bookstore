@@ -18,12 +18,12 @@ public class AddProduct implements Command {
 		
 		//String bCode = request.getParameter("bCode");
 		//int bType = Integer.parseInt(request.getParameter("bType"));
-		String bCode = "19"; //코드랑 타입 넘겨받기!!!!!!!!!!!1
+		String bCode = "17"; //코드랑 타입 넘겨받기!!!!!!!!!!!1
 		int bType = 1;
 		CartVO vo = new CartVO();
 		vo.setbCode(bCode);
 		vo.setbType(bType);
-		vo.setMemberId("test1");
+		vo.setMemberId("hh12");
 		
 		int count = CartDAO.findProduct(vo);
 		
@@ -31,7 +31,7 @@ public class AddProduct implements Command {
 		map.put("bType", bType);
 		map.put("bCode", bCode);
 		map.put("count", 3); //개수 수정!!!!!!!!!!!!!!!
-		map.put("memberId", "test1");
+		map.put("memberId", "hh12");
 		
 		
 		//가격 총 합계 조정 추가해야함
@@ -41,7 +41,7 @@ public class AddProduct implements Command {
 			CartDAO.updateCount(map);
 		}
 		
-		return "cart.jsp";
+		return "CartListController";
 	}
 	
 }
