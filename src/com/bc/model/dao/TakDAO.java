@@ -53,4 +53,24 @@ public class TakDAO {
 		return i;
 	}
 
+	public static ReviewVO checkForm(String reviewNum) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		ReviewVO reviewvo = ss.selectOne("checkForm", reviewNum);
+		return reviewvo;
+	}
+
+	public static int updateReviewvo(ReviewVO reviewvo) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int i = ss.update("updateReview", reviewvo);
+		System.out.println(i);
+		return i;
+	}
+
+	public static int deleteReviewvo(String reviewNum) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int i = ss.delete("deleteReview", reviewNum);
+		System.out.println(i);
+		return i;
+	}
+
 }

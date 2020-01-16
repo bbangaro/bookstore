@@ -104,7 +104,8 @@ hr {
 </head>
 
 <body>
-	<c:set var="b_Code" value="${param.bCode}" scope="session"></c:set>
+
+<c:set var="b_Code" value="${param.bCode}" scope="session"></c:set>
  <%@ include file="../include/top.jsp"%> 
 	<header>
 		<div class="header-book">
@@ -228,13 +229,19 @@ hr {
 													<span style="padding-left: 10px"></span>
 												</c:forEach>
 												<span>[답변]</span>
-																	<a href="/bookstore//detail/AddForm">	${vo.subject}</a>
+																	<a href="/bookstore/detail/CheckForm?reviewNum=${vo.reviewNum }">${vo.subject}</a>
 															 	</c:when>
 											<c:otherwise>
-														<a  href="/bookstore//detail/AddForm">${vo.subject}</a>
+														<a  href="/bookstore/detail/CheckForm?reviewNum=${vo.reviewNum }">${vo.subject}</a>
 											</c:otherwise>
 										</c:choose></td>
-									<td><img width="30" height="30" src="../upload/${vo.upload}"></td> 
+										<c:if test="${empty vo.upload }">
+											<td></td>
+										</c:if>
+										
+										<c:if test="${not empty vo.upload }">
+											<td><img width="30" height="30" src="../upload/${vo.upload}"></td> 
+										</c:if>
 								</tr>
 							</c:forEach>
 						</c:when>
@@ -247,7 +254,7 @@ hr {
 
 
 			</table>
-			<button onclick="location.href='/bookstore//detail/AddForm'">리뷰쓰기</button>
+			<button onclick="location.href='/bookstore/detail/AddForm'">리뷰쓰기</button>
 		</div>
 
 
@@ -318,18 +325,6 @@ hr {
 
 	</main>
 
-
-
-
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
 	<br>
 	<br>
 	<br>

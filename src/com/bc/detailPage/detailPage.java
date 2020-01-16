@@ -1,7 +1,7 @@
 package com.bc.detailPage;
 
 import java.io.IOException;
-import java.util.Enumeration;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -22,62 +22,127 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 @WebServlet("/detail/*")
 public class detailPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private static String image_repo = "/images";
+	private static String image_repo = "/images";
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String nextPage = null;
 		String action = request.getPathInfo();
-		
-		if(action == null || action.contentEquals("/Page")){
+		System.out.println(action);
+		if (action == null || action.contentEquals("/Page")) {
 			String bCode = request.getParameter("bCode");
 			System.out.println(bCode);
-			BookVO bookvo =	TakDAO.detailPage(bCode);
+			BookVO bookvo = TakDAO.detailPage(bCode);
 			List<ReviewVO> reviewvo = TakDAO.detailPageReview(bCode);
-			 request.setAttribute("bookvo", bookvo);
-			 request.setAttribute("reviewvo", reviewvo);
-			 nextPage = "/pages/detailPage.jsp";
-			 System.out.println(action);
-			
-	}else if(action.contentEquals("/AddForm")) {
+			request.setAttribute("bookvo", bookvo);
+			request.setAttribute("reviewvo", reviewvo);
+			nextPage = "/pages/detailPage.jsp";
+
+		} else if (action.contentEquals("/AddForm")) {
 			nextPage = "/pages/detailPageAddForm.jsp";
-		}else if (action.contentEquals("/insertForm")) {
+		} else if (action.contentEquals("/insertForm")) {
 			ServletContext sc = this.getServletContext();
 			String path = sc.getRealPath("/upload");
 			System.out.println(path);
-			
-			MultipartRequest mr = new MultipartRequest(request, path,10*1024*1024,
-					"UTF-8",new DefaultFileRenamePolicy());
+
+			MultipartRequest mr = new MultipartRequest(request, path, 10 * 1024 * 1024, "UTF-8",
+					new DefaultFileRenamePolicy());
 			HttpSession session = request.getSession();
-			
-			
-			String subject =mr.getParameter("subject");
-			String rContent =mr.getParameter("rContent");
+
+			String subject = mr.getParameter("subject");
+			String rContent = mr.getParameter("rContent");
 			String myFile = mr.getFilesystemName("myFile");
+			String parentno = (String) session.getAttribute("reviewNum");
 			String id = (String) session.getAttribute("id");
-			String bCode = (String)session.getAttribute("b_Code");
-			
+			String bCode = (String) session.getAttribute("b_Code");
+
+			System.out.println(parentno);
 			System.out.println(bCode);
 			System.out.println(id);
 			System.out.println(rContent);
 			System.out.println(subject);
 			System.out.println(myFile);
-			
+
 			ReviewVO reviewvo = new ReviewVO();
+			reviewvo.setParentno(parentno);
 			reviewvo.setUpload(myFile);
 			reviewvo.setbCode(bCode);
 			reviewvo.setMemberId(id);
 			reviewvo.setSubject(subject);
 			reviewvo.setrContent(rContent);
-			
+
 			int i = TakDAO.inersertReviewvo(reviewvo);
-			
-			 nextPage = "/detail/Page?bCode="+Integer.parseInt(bCode);
-	}
+
+			PrintWriter pw = response.getWriter();
+			pw.print("<script>alert('글쓰기 완료');" + "location.href='/bookstore/detail/Page?bCode="
+					+ Integer.parseInt(bCode) + "'</script>");
+
+		} else if (action.contentEquals("/CheckForm")) {
+			String reviewNum = request.getParameter("reviewNum");
+			System.out.println(reviewNum);
+			ReviewVO reviewvo = new ReviewVO();
+
+			reviewvo = TakDAO.checkForm(reviewNum);
+			System.out.println(reviewvo.getParentno());
+			request.setAttribute("reviewvo", reviewvo);
+			HttpSession session = request.getSession();
+			session.setAttribute("reviewNum", reviewvo.getReviewNum());
+
+			nextPage = "/pages/detailPageAddForm.jsp";
+
+		} else if (action.contentEquals("/updateForm")) {
+			ServletContext sc = this.getServletContext();
+			String path = sc.getRealPath("/upload");
+			System.out.println(path);
+
+			MultipartRequest mr = new MultipartRequest(request, path, 10 * 1024 * 1024, "UTF-8",
+					new DefaultFileRenamePolicy());
+			HttpSession session = request.getSession();
+
+			String subject = mr.getParameter("subject");
+			String rContent = mr.getParameter("rContent");
+			String myFile = mr.getFilesystemName("myFile");
+			String reviewNum = mr.getParameter("reviewNum");
+			String id = (String) session.getAttribute("id");
+			String bCode = (String) session.getAttribute("b_Code");
+
+			System.out.println(reviewNum);
+			System.out.println(bCode);
+			System.out.println(id);
+			System.out.println(rContent);
+			System.out.println(subject);
+			System.out.println(myFile);
+
+			ReviewVO reviewvo = new ReviewVO();
+
+			reviewvo.setReviewNum(reviewNum);
+			reviewvo.setUpload(myFile);
+			reviewvo.setbCode(bCode);
+			reviewvo.setMemberId(id);
+			reviewvo.setSubject(subject);
+			reviewvo.setrContent(rContent);
+			int i = TakDAO.updateReviewvo(reviewvo);
+			PrintWriter pw = response.getWriter();
+			pw.print("<script>alert('수정 완료');" + "location.href='/bookstore/detail/Page?bCode="
+					+ Integer.parseInt(bCode) + "'</script>");
+		} else if (action.contentEquals("/deleteForm")) {
+			String reviewNum = request.getParameter("reviewNum");
+			String bCode = request.getParameter("bCode");
+			System.out.println(reviewNum);
+			System.out.println("bCodr: " + bCode);
+			TakDAO.deleteReviewvo(reviewNum);
+			PrintWriter pw = response.getWriter();
+			pw.print("<script>alert('삭제 완료');" + "location.href='/bookstore/detail/Page?bCode="
+					+ Integer.parseInt(bCode) + "'</script>");
+		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
 		dispatcher.forward(request, response);
-}
+	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.getParameter("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		request.setCharacterEncoding("utf-8");
 		doGet(request, response);
 	}
