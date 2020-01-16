@@ -2,74 +2,66 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
 <mapper namespace="tbookstore">
+
 	<!-- 회원가입 -->
-	<insert id="memberinsert"
-		parameterType="com.bc.model.vo.MemberVO">
-		INSERT INTO member
-		(MEMBER_ID, USERNAME, PASSWORD, EMAIL,
-		ZIPCODE,
-		ADDRESS1,ADDRESS2,MOBILEPHONE,REGDATE,U_STATUS)
-		VALUES
-		(#{memberId},
-		#{userName},
-		#{password},
-		#{email},
-		#{zipcode},
-		#{address1},
-		#{address2},
-		#{mobilePhone},
-		#{regdate},
-		#{uStatus})
+
+
+	<insert parameterType="com.bc.model.vo.MemberVO"
+		id="memberinsert">INSERT INTO member(MEMBER_ID, USERNAME, PASSWORD,
+		EMAIL,ZIPCODE,ADDRESS1,ADDRESS2,MOBILEPHONE,REGDATE,U_STATUS)VALUES(#{memberId},#{userName},#{password},#{email},#{zipcode},#{address1},#{address2},#{mobilePhone},#{regdate},#{uStatus})
 	</insert>
+
 	<!-- 로그인 체크 -->
-	<select id="logincheck" parameterType="String"
-		resultType="com.bc.model.vo.MemberVO">
-		select member_id,password from member WHERE member_id =
-		#{memberId}
-	</select>
+
+
+	<select parameterType="String" id="logincheck"
+		resultType="com.bc.model.vo.MemberVO">select member_id,password from member WHERE member_id
+		=#{memberId} </select>
+
 	<!-- 아이디 체그 -->
-	<select id="checking_id" parameterType="String" resultType="int">
-		select count(*) from member WHERE member_id = #{memberId}
-	</select>
+
+
+	<select parameterType="String" id="checking_id" resultType="int">select
+		count(*) from member WHERE member_id = #{memberId} </select>
+
 	<!-- 책 상세 페이지 조회 -->
-	<select id="detailPage" parameterType="String"
-		resultType="com.bc.model.vo.BookVO">
-		select * from book where b_code = #{bCode}
-	</select>
+
+
+	<select parameterType="String" id="detailPage"
+		resultType="com.bc.model.vo.BookVO">select * from book where b_code = #{bCode} </select>
 
 	<!-- 디테일 리뷰 조회 -->
-	<select id="detailPageReview" parameterType="String"
-		resultType="com.bc.model.vo.ReviewVO">
-		select
-		level,
-		review_num,
-		member_id,
-		subject,
-		r_content,
-		upload,
-		b_code,
-		orderid,
-		b_type,
-		parentno
-		from review
-		where b_code = #{bCode}
-		start
-		with parentno = 0
-		connect by prior review_num = parentno
-		order siblings
-		by review_num
-	</select>
 
 
-	<insert id="insertReview"
-		parameterType="com.bc.model.vo.ReviewVO">
-		INSERT INTO REVIEW
-		(REVIEW_NUM,MEMBER_ID,SUBJECT,R_CONTENT,UPLOAD,B_CODE,ORDERID,B_TYPE,PARENTNO)
-		VALUES
-		(REVIEW_SEQ.NEXTVAL,#{memberId},#{subject},#{rContent},#{upload},#{bCode},'','1','0')
+	<select parameterType="String" id="detailPageReview" resultType="com.bc.model.vo.ReviewVO">
+		select level,review_num,member_id,subject,r_content,upload,b_code,orderid,b_type,parentno from
+		review where b_code =  #{bCode}  start with parentno = 0 connect by prior
+		review_num = parentno order siblings by review_num  </select>
+
+	<!-- -->
+
+
+	<insert parameterType="com.bc.model.vo.ReviewVO"
+		id="insertReview">INSERT INTO
+		REVIEW(REVIEW_NUM,MEMBER_ID,SUBJECT,R_CONTENT,UPLOAD,B_CODE,ORDERID,B_TYPE,PARENTNO) VALUES(REVIEW_SEQ.NEXTVAL,#{memberId},#{subject},#{rContent},#{upload},#{bCode},'','1',#{parentno})
 	</insert>
 
+	<!-- -->
 
+
+	<select parameterType="String" id="checkForm"
+		resultType="com.bc.model.vo.ReviewVO">select * from review where review_num =#{reviewNum}
+	</select>
+
+	<update parameterType="com.bc.model.vo.ReviewVO"
+		id="updateReview">update review SET subject = #{subject} ,R_content =
+		#{rContent},upload = #{upload} WHERE review_num = #{reviewNum}
+	</update>
+
+	<delete parameterType="String" id="deleteReview">delete from review where
+		review_num = #{reviewNum} </delete>
 
 </mapper>
