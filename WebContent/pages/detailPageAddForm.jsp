@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
+
 	function readURL(input){
 		if(input.files && input.files[0]){
 			var reader = new FileReader();
@@ -17,21 +18,8 @@
 			}
 			reader.readAsDataURL(input.files[0]);
 		}
-	}
+	}	
 	
-	function deleteForm(frm){
-		var ch = confirm("정말로 삭제 하시겠습니까?");
-		if(ch == true){
-			console.log("ff");
-			frm.action="/bookstore/detail/deleteForm?reviewNum=${param.reviewNum }&bCode=${b_Code }";
-			frm.submit();
-			//location.href = "/bookstore/detail/deleteForm?reviewNum=${param.reviewNum }&bCode=${b_Code }";
-			
-		}
-	}
-	
-	
-
 </script>
 </head>
 <body>
@@ -48,12 +36,15 @@
 		<br>
 		<div>
 		<label>내용</label>
-		<textarea name="rContent" rows="" cols="50"></textarea>
+		<textarea name="rContent" rows="30" cols="200"></textarea>
 		</div>
 	    <input type="file" name="myFile" onchange="readURL(this);" ><br>
-	    <img class="preview" src = "#" width =200 height =200/>
+	    <img class="preview" src = "#" width ="150" height ="150"/>
+	    <input type="hidden" name="reviewNum" value="${sessionScope.reviewNum  }">
   	<input type="submit">
 	</form> 
+	
+	
 	</c:if>
 	<c:if test="${not empty reviewvo }">
 	<form name ="changeForm" method="post"  action="" enctype="multipart/form-data">
@@ -65,7 +56,8 @@
 		<br>
 		<div>
 		<label>내용</label>
-		<textarea name="rContent"  rows="" cols="50">${reviewvo.rContent }</textarea>
+		
+		<textarea name="rContent"  rows="30" cols="200">${reviewvo.rContent }</textarea>
 		</div>
 	    <input type="file" name="myFile" onchange="readURL(this);" ><br>
 	    <img class="preview" src="../upload/${reviewvo.upload}" width =200 height =200/>

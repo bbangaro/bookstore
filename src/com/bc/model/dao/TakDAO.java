@@ -1,6 +1,7 @@
 package com.bc.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -8,7 +9,6 @@ import com.bc.model.vo.BookVO;
 import com.bc.model.vo.MemberVO;
 import com.bc.model.vo.ReviewVO;
 import com.bc.mybatis.DBService;
-import com.sun.net.httpserver.Authenticator.Result;
 
 public class TakDAO {
 
@@ -39,9 +39,9 @@ public class TakDAO {
 		return bookvo;
 	}
 
-	public static List<ReviewVO> detailPageReview(String bCode) {
+	public static List<ReviewVO> detailPageReview(Map detailPageReview_) {
 		SqlSession ss = DBService.getFactory().openSession(true);
-		List<ReviewVO> reviewvo = ss.selectList("detailPageReview", bCode);
+		List<ReviewVO> reviewvo = ss.selectList("detailPageReview", detailPageReview_);
 		System.out.println(reviewvo);
 		return reviewvo;
 	}
@@ -70,6 +70,12 @@ public class TakDAO {
 		SqlSession ss = DBService.getFactory().openSession(true);
 		int i = ss.delete("deleteReview", reviewNum);
 		System.out.println(i);
+		return i;
+	}
+
+	public static int detailPageReviewselect() {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int i = ss.selectOne("detailPageReviewselect");
 		return i;
 	}
 

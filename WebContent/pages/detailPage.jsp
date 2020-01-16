@@ -226,8 +226,9 @@ hr {
 									<td><c:choose>
 											<c:when test="${vo.level >1 }">
 												<c:forEach begin="1" end="${vo.level}" step="1">
-													<span style="padding-left: 10px"></span>
+													<span style="padding-left: 15px"></span>
 												</c:forEach>
+												<span style="margin-top:50px;">↘</span>
 												<span>[답변]</span>
 																	<a href="/bookstore/detail/CheckForm?reviewNum=${vo.reviewNum }">${vo.subject}</a>
 															 	</c:when>
@@ -240,7 +241,7 @@ hr {
 										</c:if>
 										
 										<c:if test="${not empty vo.upload }">
-											<td><img width="30" height="30" src="../upload/${vo.upload}"></td> 
+											<td><img width="100" height="100" src="../upload/${vo.upload}"></td> 
 										</c:if>
 								</tr>
 							</c:forEach>
@@ -249,12 +250,27 @@ hr {
 
 
 					</c:choose>
-
+					
 				</tbody>
 
 
 			</table>
-			<button onclick="location.href='/bookstore/detail/AddForm'">리뷰쓰기</button>
+					<div style="display: block; text-align: center; margin-top:-10px;">
+							<a href=""  onclick="urlClickForReview(this);return false;">처음</a>
+								<a href="">이전</a>
+							<c:set var="page" value="${(param.pageNum == null)? 1: param.pageNum}"/>
+							<c:set var="startNum" value="${page-(page-1) % 5}"/>
+							
+							<c:forEach var="i" begin="0" end="4">
+							
+									<a href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+i}">${startNum + i}</a>
+								
+							</c:forEach>	
+							
+								<a href="" onclick="urlClickForReview(this);return false;">다음</a>
+								<a href="" onclick="urlClickForReview(this);return false;">끝</a>
+					</div>
+			<button onclick="location.href='/bookstore/detail/session'">리뷰쓰기</button>
 		</div>
 
 
@@ -265,7 +281,7 @@ hr {
 		<div class="main-book">
 			<div>반품/교환안내</div>
 			<!--테이블 -->
-			<table border="0">
+			<table >
 				<tr>
 					<td>반품/교환 방법</td>
 					<td>"나의계정&gt;주문조회&gt;반품/교환신청", <a
