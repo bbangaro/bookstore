@@ -19,13 +19,15 @@
 
 	<select parameterType="String" id="logincheck"
 		resultType="com.bc.model.vo.MemberVO">select member_id,password from member WHERE member_id
-		=#{memberId} </select>
+		=#{memberId}
+	</select>
 
 	<!-- 아이디 체그 -->
 
 
 	<select parameterType="String" id="checking_id" resultType="int">select
-		count(*) from member WHERE member_id = #{memberId} </select>
+		count(*) from member WHERE member_id = #{memberId}
+	</select>
 
 	<!-- 책 상세 페이지 조회 -->
 
@@ -34,19 +36,43 @@
 		resultType="com.bc.model.vo.BookVO">select * from book where b_code = #{bCode} </select>
 
 	<!-- 디테일 리뷰 조회 -->
-
-
-	<select parameterType="String" id="detailPageReview" resultType="com.bc.model.vo.ReviewVO">
-		select level,review_num,member_id,subject,r_content,upload,b_code,orderid,b_type,parentno from
-		review where b_code =  #{bCode}  start with parentno = 0 connect by prior
-		review_num = parentno order siblings by review_num  </select>
+	<select parameterType="map" id="detailPageReview"
+		resultType="com.bc.model.vo.ReviewVO">
+		select * from ( select ROWNUM as recnum,
+		REVIEW_NUM,
+		MEMBER_ID,
+		SUBJECT,
+		R_CONTENT
+		,UPLOAD,
+		B_CODE,
+		ORDERID,
+		B_TYPE,
+		PARENTNO
+		from (select level,review_num,member_id,subject,r_content,upload
+		,b_code,orderid,b_type,parentno from
+		review where b_code = #{bCode} start with
+		parentno = 0 connect by prior
+		review_num = parentno order siblings by
+		review_num desc))
+		where recnum between (#{pageNum}-1) * 10 + 1 and #{pageNum} * 10
+	</select>
+	
+	<select id="detailPageReviewselect" resultType="int" >
+		select count(*) from review 
+	</select>
 
 	<!-- -->
 
 
 	<insert parameterType="com.bc.model.vo.ReviewVO"
-		id="insertReview">INSERT INTO
-		REVIEW(REVIEW_NUM,MEMBER_ID,SUBJECT,R_CONTENT,UPLOAD,B_CODE,ORDERID,B_TYPE,PARENTNO) VALUES(REVIEW_SEQ.NEXTVAL,#{memberId},#{subject},#{rContent},#{upload},#{bCode},'','1',#{parentno})
+		id="insertReview">
+
+		INSERT INTO
+		REVIEW(REVIEW_NUM,MEMBER_ID,SUBJECT,R_CONTENT,UPLOAD,B_CODE,ORDERID,B_TYPE,PARENTNO)
+		VALUES(REVIEW_SEQ.NEXTVAL,
+		#{memberId},#{subject},#{rContent},#{upload,jdbcType=VARCHAR},1,'',#{bCode},
+		#{parentno})
+
 	</insert>
 
 	<!-- -->
@@ -62,6 +88,7 @@
 	</update>
 
 	<delete parameterType="String" id="deleteReview">delete from review where
-		review_num = #{reviewNum} </delete>
+		review_num = #{reviewNum}
+	</delete>
 
 </mapper>
