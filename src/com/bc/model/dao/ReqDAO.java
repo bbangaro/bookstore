@@ -66,4 +66,12 @@ public class ReqDAO {
 		return result;
 	}
 	
+	public static int getReqDelete(int requestNum) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.delete("reqDelete", requestNum);
+		ss.close();
+		
+		return result;
+	}
+	
 }

@@ -1,15 +1,21 @@
 package com.bc.model.vo;
 
+import java.util.List;
+
 public class GuestBookVO {
 	private int nNum, qNum, bType, requestNum, reviewNum;
 	private String subject,	content, wDate, memberId, userName,	password, category, upload, bCode, regdate,
 				   rContent, orderId ;
 	
+	//리스트 타입의 코멘트듣ㄹ~
+	private List<CommentVO> commentList;
+	
 	public GuestBookVO() {}
 
 	public GuestBookVO(int nNum, int qNum, int bType, int requestNum, int reviewNum, String subject, String content,
 			String wDate, String memberId, String userName, String password, String category, String upload,
-			String bCode, String regdate, String rContent, String orderId) {
+			String bCode, String regdate, String rContent, String orderId, List<CommentVO> commentList) {
+		
 		super();
 		this.nNum = nNum;
 		this.qNum = qNum;
@@ -28,7 +34,9 @@ public class GuestBookVO {
 		this.regdate = regdate;
 		this.rContent = rContent;
 		this.orderId = orderId;
+		this.commentList = commentList;
 	}
+	
 
 	public int getnNum() {
 		return nNum;
@@ -166,13 +174,24 @@ public class GuestBookVO {
 		this.orderId = orderId;
 	}
 
+	
+	
+	public List<CommentVO> getCommentList() {
+		return commentList;
+	}
+
+	public void setCommentList(List<CommentVO> commentList) {
+		this.commentList = commentList;
+	}
+
+	
 	@Override
 	public String toString() {
 		return "GuestBookVO [nNum=" + nNum + ", qNum=" + qNum + ", bType=" + bType + ", requestNum=" + requestNum
 				+ ", reviewNum=" + reviewNum + ", subject=" + subject + ", content=" + content + ", wDate=" + wDate
 				+ ", memberId=" + memberId + ", userName=" + userName + ", password=" + password + ", category="
 				+ category + ", upload=" + upload + ", bCode=" + bCode + ", regdate=" + regdate + ", rContent="
-				+ rContent + ", orderId=" + orderId + "]";
+				+ rContent + ", orderId=" + orderId + ", commentList=" + commentList + "]";
 	}
 	
 	

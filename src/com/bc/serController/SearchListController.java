@@ -8,7 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bc.sercommand.Command;
+import com.bc.sercommand.SearchBnaCommand;
+import com.bc.sercommand.SearchComCommand;
 import com.bc.sercommand.SearchListCommand;
+import com.bc.sercommand.SearchWriCommand;
 
 
 @WebServlet("/SearchList")
@@ -18,7 +21,15 @@ public class SearchListController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Command comm = null;
-		comm = new SearchListCommand();
+		String kind = request.getParameter("kind");
+		if(kind.equalsIgnoreCase("all"))
+			comm = new SearchListCommand();
+		else if(kind.equalsIgnoreCase("company"))
+			comm = new SearchComCommand();
+		else if(kind.equalsIgnoreCase("writer"))
+			comm = new SearchWriCommand();
+		else if(kind.equalsIgnoreCase("bookname"))
+			comm = new SearchBnaCommand();
 		String path = comm.exec(request, response);
 		request.getRequestDispatcher(path).forward(request, response);
 		

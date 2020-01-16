@@ -7,12 +7,12 @@
 <meta charset="UTF-8">
 <title>Q&A 게시판</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/jejugothic.css">
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 
 <link href="csstemplate/bss.css" rel="stylesheet" type="text/css">
@@ -32,9 +32,22 @@ $(document).ready(function () {
     });
 
  });
+ 
+ function diffId() {
+	 alert("글을 열람할 수 있는 권한이 없습니다.");
+ }
+ 
+ function loginpleaz() {
+	 alert("로그인이 필요한 서비스입니다.");
+	 location.href = "login.jsp";
+ }
 </script>
 
 <style>
+	
+	* { font-family: 'Jeju Gothic', sans-serif; }
+
+	table tbody tr:hover { background-color: #f0f0f0; }
 	
 	.paging { list-style: none; }
 	.paging li {
@@ -116,33 +129,67 @@ $(document).ready(function () {
                                     </td>
                                     <td>2013/08/12</td>
                                 </tr>
-                                <c:forEach var="vo" items="${list }">
-                                	<tr data-status="${vo.category }">
-                                		<td>
-                                			<img src="upload/${vo.upload }" alt="업로드이미지" width="80px" height="80px">
-                                		</td>
-                                		<td>
-                                			${vo.memberId }
-                                		</td>
-                                		<td class="text-center">
-                                			<a href="QnAOneListController?qNum=${vo.qNum}">${vo.subject }</a>
-                                		</td>
-                                		<td>
-                                			${vo.category }
-                                		</td>
-                                		<td>
-                                			${vo.regdate }
-                                		</td>
-                                	</tr>
-                                </c:forEach>
+                                <c:choose>
+                                <c:when test="${empty list }">
+	                                <tr>
+	                                	<td colspan="5">
+	                                		<p>현재 등록된 게시글이 없습니다.</p>
+	                                	</td>
+	                                </tr>
+	                            </c:when>   
+	                            
+	                            <c:otherwise>
+	                            	<c:forEach var="vo" items="${list }">
+	                            
+	                                  <c:choose>
+	                                  	<c:when test="${sessionScope.id eq vo.memberId}">
+	                                  		<tr data-status="${vo.category }" onclick="javascript:location.href='QnAOneListController?qNum=${vo.qNum}'">
+	                                  	</c:when>
+	                                  	<c:when test="${sessionScope.id eq 'admin'}">
+	                                  		<tr data-status="${vo.category }" onclick="javascript:location.href='QnAOneListController?qNum=${vo.qNum}'">
+	                                  	</c:when>
+	                                  	<c:when test="${sessionScope.id ne vo.memberId}">
+	                                  		<tr data-status="${vo.category }" onclick="diffId()">
+	                                  	</c:when>
+	                                  	<c:when test="${sessionScope.id eq null}">
+	                                  		<tr data-status="${vo.category }" onclick="loginpleaz()">
+	                                  	</c:when>
+	                                  </c:choose>
+	                                  
+	                                		<c:choose>
+												<c:when test="${vo.upload eq null}">
+													<td><img src="images/5.jpg" alt="디폴트이미지" width="80px" height="80px"></td>
+												</c:when>	
+												<c:otherwise>                                		
+			                                		<td>
+			                                			<img src="upload/${vo.upload }" alt="업로드이미지" width="80px" height="80px">
+			                                		</td>
+		                                		</c:otherwise>
+	                                		</c:choose>
+	                                		
+	                                		<td>
+	                                			${vo.memberId }
+	                                		</td>
+	                                		<td class="subject text-center">
+	                                			${vo.subject }
+	                                		</td>
+	                                		<td>
+	                                			${vo.category }
+	                                		</td>
+	                                		<td>
+	                                			${vo.regdate }
+	                                		</td>
+	                                	</tr>
+	                                  	
+	                                </c:forEach>
+	                            </c:otherwise>
+	                            </c:choose>    
                                 </tbody>
                                 <tfoot>
                                 	<tr>
                                 		<td colspan="4">
 											<ol class="paging">
-											<%--[이전으로]에 대한 사용여부 처리 --%>
 											<c:choose>
-												<%--사용불가(disable) : 첫번째 블록인 경우 --%>
 												<c:when test="${pvo.beginPage == 1}">
 													<li class="disable">이전으로</li>
 												</c:when>
@@ -153,7 +200,6 @@ $(document).ready(function () {
 												</c:otherwise>
 											</c:choose>
 											
-											<%-- 블록내에 표시할 페이지 표시(시작페이지~끝페이지) --%>
 											<c:forEach var="k" begin="${pvo.beginPage }" end="${pvo.endPage }">
 											<c:choose>
 												<c:when test="${k == pvo.nowPage}">
@@ -167,10 +213,7 @@ $(document).ready(function () {
 											</c:choose>
 											</c:forEach>
 											
-											<%--[다음으로]에 대한 사용여부 처리 --%>
 											<c:choose>
-												<%--사용불가(disable) : 
-													endPage가 전체페이지 수보다  크거나 같으면 --%>
 												<c:when test="${pvo.endPage >= pvo.totalPage }">
 													<li class="disable">다음으로</li>
 												</c:when>
@@ -181,7 +224,7 @@ $(document).ready(function () {
 											</ol>	
 										</td>
                                 		<td>
-                                			<input type="button" value="글쓰기" onclick="javascript:location.href='qna_write.jsp'">
+                                			<input type="button" value="글쓰기" onclick="javascript:location.href='QnAWriteController'">
                                 		</td>
                                 	</tr>
                             </tfoot>

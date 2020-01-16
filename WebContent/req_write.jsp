@@ -55,7 +55,7 @@ body {
                           <div class="col">
                             <div class="form-group">
                               <label>작성자</label>
-                              <input class="form-control" type="text" name="memberId" placeholder="bbangaro">
+                              <input class="form-control" type="text" name="memberId" value="${sessionScope.id}">
                             </div>
                           </div>
                         </div>
@@ -90,7 +90,7 @@ body {
 						<input class="btn btn-primary" type="reset" value="cancle">
                       </div>
                     </div>
-                    <input type="hidden" name="password" value="1004">
+                    <input type="hidden" name="password" value="${sessionScope.password}">
                     <br><br><br><br><br><br>
                   </form>
 

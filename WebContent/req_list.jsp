@@ -17,6 +17,7 @@
 
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 <script>
 	
 	function getDataBtn(requestNum) { 
@@ -25,7 +26,7 @@
 
 	
 	function getXMLMembers(requestNum){
-	const numUrl = "getXmlRequest?requestNum=" + requestNum;
+		const numUrl = "getXmlRequest?requestNum=" + requestNum;
 		$.ajax({
 			url : numUrl,
 			type : "get",
@@ -39,21 +40,105 @@
 				// <member>태그들이 찾아짐 .fine("태그명")
 				// 태그 안에 있는 텍스트 값 찾기 .text()
 				// 태그방식이니까 돔 객체 사용하듯
-				$(data).find("member").each(function(){
+				$(data).find("book").each(function(){
 					tbody += "<br>";
 					tbody += "<tr>";
-					tbody += "<td>" + $(this).find("content").text() + "</td>";
+					tbody += "<td>" + $(this).find("rContent").text() + "</td>";
 					tbody += "<br>";
 					tbody += "<br>";
 					tbody += "<br>";
 					tbody += "<td><img src='upload/" + $(this).find("upload").text() + "' width='50%' height='50%'></td>";
 					tbody += "<td></td>";
-					tbody += "</tr>";
+					tbody += "<br>";
+					tbody += "<br>";
+					tbody += "<br>";
 				});
-				
 				$("#tbody"+requestNum).html(tbody);
-	
 			},
+			error : function(jqXHR, textStatus, errorThrown){
+				alert("원리스트 소환 처리 실패 : \n"
+					+ "jqXHR.readyState : " + jqXHR.readyState +"\n"
+					+ "textStatus : " + textStatus +"\n"
+					+ "errorThrown : " + errorThrown);
+			}
+		});
+		reqComment(requestNum);
+	}
+	
+
+	function commentInsert(requestNum) {
+		let selector = "#content"+requestNum;
+		
+		const numUrl = "GetJXmlReqCommentWriteController";	
+		$.ajax({
+			url : numUrl,
+			type : "post",
+			dataType : "xml",
+			data : {"memberId":"${sessionScope.id}", "content":$(selector).val(), "requestNum":requestNum, "password":"${sessionScope.password}"},
+			success : function(data){
+			
+			reqComment(requestNum);
+				
+		},
+			error : function(jqXHR, textStatus, errorThrown){
+				alert("Ajax 코멘트 입력처리 실패 : \n"
+					+ "jqXHR.readyState : " + jqXHR.readyState +"\n"
+					+ "textStatus : " + textStatus +"\n"
+					+ "errorThrown : " + errorThrown);
+			}
+		});
+	}
+	
+	 function commentUpdate(cIdx, requestNum){
+		    var a ='';
+		    
+		    a += '<div class="input-group">';
+		    a += '<input type="text" class="form-control" name="content_'+cIdx+'" value="'+ $(this).find("cComment").text()+'"/>';
+		    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+cIdx+","+ requestNum +');">수정</button> </span>';
+		    a += '</div>';
+		    
+		    $('.commentList'+cIdx).html(a);
+		}
+	 
+	 function commentUpdateProc(cIdx, requestNum){
+		 console.log($("#requestNum"));
+		 console.log(requestNum);
+		    var updateContent = $('[name=content_'+cIdx+']').val();
+		    const numUrl = "GetXmlReqUpdateCommentController"	
+		    $.ajax({
+		        url : numUrl,
+		        type : 'post',
+		        data : {'content' : updateContent, 'cIdx' : cIdx},
+		        success : function(data){
+		        	
+		           getXMLMembers(requestNum);
+		           
+		        },
+				error : function(jqXHR, textStatus, errorThrown){
+					alert("Ajax 코멘트 수정처리 실패 : \n"
+						+ "jqXHR.readyState : " + jqXHR.readyState +"\n"
+						+ "textStatus : " + textStatus +"\n"
+						+ "errorThrown : " + errorThrown);
+				}
+			});
+		}
+
+
+	function commentDelete(cIdx, requestNum) {
+		console.log("cIdx"+cIdx);
+		console.log("$(cIdx)"+$(cIdx));
+		
+		const numUrl = "GetXmlReqCommentDeleteController"	
+		$.ajax({
+			url : numUrl,
+			type : "POST",
+			dataType : "xml",
+			data : {"cIdx":parseInt(cIdx)},
+			success : function(data){
+				
+			//cIdx(parseInt($("#cIdx").text()));
+			getXMLMembers(requestNum);
+		},
 			error : function(jqXHR, textStatus, errorThrown){
 				alert("Ajax 처리 실패 : \n"
 					+ "jqXHR.readyState : " + jqXHR.readyState +"\n"
@@ -62,6 +147,73 @@
 			}
 		});
 	}
+	
+	function reqComment(requestNum){
+	const numUrl = "getXmlRequestComment?requestNum=" + requestNum;
+	$.ajax({
+		url : numUrl,
+		type : "get",
+		dataType : "xml",
+		success : function(data){
+			
+			var commentTbody = "";
+				commentTbody += "<form id='rForm' method='POST'}> ";
+				commentTbody += "<div class='container'>";
+				commentTbody += "<div class='col-sm-8'>";
+				commentTbody += "<div class='panel panel-white post panel-shadow'>";
+					
+				commentTbody += "<div class='post-footer'>";
+				commentTbody += "<div class='input-group'>";
+				commentTbody += "<input class='form-control' placeholder='Add a comment' type='text' name='content' id='content"+requestNum+"'>";
+				commentTbody += "</div>";
+				commentTbody += "<span class='input-group-addon'> <button type='button' onclick='commentInsert("+requestNum+")'>댓글달기</button> </span>";
+
+				commentTbody += "<input type='hidden' name='requestNum' value="+requestNum+">";
+				commentTbody += "<input type='hidden' name='memberId' value='${sessionScope.id}'>";
+				commentTbody += "<input type='hidden' name='password' value='${sessionScope.password}'>";
+				commentTbody += "</form> ";
+				
+			$(data).find("comment").each(function(){
+				commentTbody += "<ul class='comments-list'>";
+				commentTbody += "<li class='comment'><a class='pull-left' href='#'> <img class='avatar' src='http://bootdey.com/img/Content/user_1.jpg' alt='avatar'> </a>";
+				commentTbody += "<div class='comment-body'>";
+				commentTbody += "<div class='comment-heading'>";
+				commentTbody += "<h4 class='user'>"+ $(this).find("cId").text() +"</h4>";
+				commentTbody += "<h5 class='time'>5 minutes ago</h5>";
+				commentTbody += "</div>";
+				commentTbody += "<div class='commentList"+ $(this).find("cIdx").text()+"'> <p>"+ $(this).find("cComment").text() +"</p>";
+				commentTbody += "<span class='input-group-addon'> <button type='button' onclick='commentUpdate("+$(this).find("cIdx").text()+","+requestNum+")'>수정</button> ";
+				commentTbody += "<button type='button' onclick='commentDelete("+ $(this).find("cIdx").text()+","+requestNum+")'>삭제</button> </span></div>";
+				commentTbody += "</div></li>";
+				commentTbody += "</ul>";
+			});
+				commentTbody += "</div>";
+				commentTbody += "</div>";
+				commentTbody += "</div>";
+				commentTbody += "</div>";
+				
+				
+			$("#commentTbody"+requestNum).html(commentTbody);
+	
+			},
+			error : function(jqXHR, textStatus, errorThrown){
+				alert("댓글 소환 메서드 Ajax 처리 실패 : \n"
+					+ "jqXHR.readyState : " + jqXHR.readyState +"\n"
+					+ "textStatus : " + textStatus +"\n"
+					+ "errorThrown : " + errorThrown);
+			}
+		});
+	}
+		
+	
+	function reqDelete(requestNum) {
+		if(confirm("글을 삭제하시겠습니까?") == true){
+			location.href="ReqDeleteOKController?requestNum=" + requestNum; 
+		}
+			
+	};
+	
+	
 </script>
 
 <style>
@@ -139,7 +291,134 @@ a {
     border-top: 1px solid #e7ebee;
     padding: 12px 8px;
 }
+<%--코멘트 스타일--%>
+.panel-shadow {
+	box-shadow: rgba(0, 0, 0, 0.3) 7px 7px 7px;
+}
 
+.panel-white {
+	border: 1px solid #dddddd;
+}
+
+.panel-white  .panel-heading {
+	color: #333;
+	background-color: #fff;
+	border-color: #ddd;
+}
+
+.panel-white  .panel-footer {
+	background-color: #fff;
+	border-color: #ddd;
+}
+
+.post .post-heading {
+	height: 95px;
+	padding: 20px 15px;
+}
+
+.post .post-heading .avatar {
+	width: 60px;
+	height: 60px;
+	display: block;
+	margin-right: 15px;
+}
+
+.post .post-heading .meta .title {
+	margin-bottom: 0;
+}
+
+.post .post-heading .meta .title a {
+	color: black;
+}
+
+.post .post-heading .meta .title a:hover {
+	color: #aaaaaa;
+}
+
+.post .post-heading .meta .time {
+	margin-top: 8px;
+	color: #999;
+}
+
+.post .post-image .image {
+	width: 100%;
+	height: auto;
+}
+
+.post .post-description {
+	padding: 15px;
+}
+
+.post .post-description p {
+	font-size: 14px;
+}
+
+.post .post-description .stats {
+	margin-top: 20px;
+}
+
+.post .post-description .stats .stat-item {
+	display: inline-block;
+	margin-right: 15px;
+}
+
+.post .post-description .stats .stat-item .icon {
+	margin-right: 8px;
+}
+
+.post .post-footer {
+	border-top: 1px solid #ddd;
+	padding: 15px;
+}
+
+.post .post-footer .input-group-addon a {
+	color: #454545;
+}
+
+.post .post-footer .comments-list {
+	padding: 0;
+	margin-top: 20px;
+	list-style-type: none;
+}
+
+.post .post-footer .comments-list .comment {
+	display: block;
+	width: 100%;
+	margin: 20px 0;
+}
+
+.post .post-footer .comments-list .comment .avatar {
+	width: 35px;
+	height: 35px;
+}
+
+.post .post-footer .comments-list .comment .comment-heading {
+	display: block;
+	width: 100%;
+}
+
+.post .post-footer .comments-list .comment .comment-heading .user {
+	font-size: 14px;
+	font-weight: bold;
+	display: inline;
+	margin-top: 0;
+	margin-right: 10px;
+}
+
+.post .post-footer .comments-list .comment .comment-heading .time {
+	font-size: 12px;
+	color: #aaa;
+	margin-top: 0;
+	display: inline;
+}
+
+.post .post-footer .comments-list .comment .comment-body {
+	margin-left: 50px;
+}
+
+.post .post-footer .comments-list .comment>.comments-list {
+	margin-left: 50px;
+}
 
 </style>
 
@@ -156,7 +435,7 @@ a {
                     <div class="table-responsive">
                         <table class="table user-list">
                             <thead>
-                                <a href="ReqWriteController?requestNum=${guestBookVO.getRequestNum }" class="table-link">
+                                <a href="ReqWriteController" class="table-link">
                                     <span class="fa-stack">
                                         <i class="fa fa-square fa-stack-2x"></i>
                                         <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
@@ -187,6 +466,7 @@ a {
 		                                    	<button onClick="getDataBtn(${vo.requestNum })" >눌렁</button>
 		                                    	<br>
 												<div id="tbody${vo.requestNum }"></div>
+												<div id="commentTbody${vo.requestNum }"></div>
 		                                    </td>
 		                                  
 		                                    <td>
@@ -194,18 +474,23 @@ a {
 		                                    </td>
 		                                     
 	                               			<td style="width: 10%;">
+	                               			
+	                               			<c:if test="${sessionScope.id eq vo.memberId}">
 		                                        <a href="ReqUpdateController?requestNum=${vo.requestNum }" class="table-link">
 		                                            <span class="fa-stack">
 		                                                <i class="fa fa-square fa-stack-2x"></i>
 		                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
 		                                            </span>
 		                                        </a>
-		                                        <a href="#" class="table-link danger">
+		                                        <a href="#" onclick="reqDelete(${vo.requestNum})" class="table-link danger">
 		                                            <span class="fa-stack">
 		                                                <i class="fa fa-square fa-stack-2x"></i>
 		                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
 		                                            </span>
 		                                        </a>
+	                               			</c:if>
+		                                        
+		                                        
 		                                    </td>
 	                               		</tr>
 										

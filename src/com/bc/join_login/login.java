@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bc.model.dao.TakDAO;
 import com.bc.model.vo.MemberVO;
@@ -20,24 +21,26 @@ public class login extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		String member_id = request.getParameter("member_id");
+		String memberId = request.getParameter("memberId");
 		String password = request.getParameter("password");
-		
-		MemberVO membervo = TakDAO.logincheck(member_id);
+		System.out.println(memberId);
+		System.out.println(password);
+		MemberVO membervo = TakDAO.logincheck(memberId);
 		
 		if(membervo == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-				request.setAttribute("loginFiledId", "등록된 아이디가 없습니다. 다시로그인 하세요");
+				request.setAttribute("loginFiledId", "��ϵ� ���̵� �����ϴ�.");
 				 dispatcher.forward(request, response);
 		}else {
 			if(!membervo.getPassword().equals(password)) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-				request.setAttribute("loginFiledPassword", "비밀번호가 일지하지 않습니다. 다시로그인 하세요");
+				request.setAttribute("loginFiledPassword", "��й�ȣ�� Ȯ�����ּ���");
 				 dispatcher.forward(request, response);
 			}else {
+				HttpSession Session = request.getSession(true);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-				request.setAttribute("loginSucceed", "로그인에 성공 하였습니다.");
-				request.setAttribute("id", "로그인에 성공 하였습니다.");
+				Session.setAttribute("id",membervo.getMemberId());    
+				Session.setAttribute("password",membervo.getPassword());    
 				dispatcher.forward(request, response);
 			}
 		}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="rbookstore">
+
+	<select id="reqCommentAll"  parameterType="int" resultType="com.bc.model.vo.CommentVO">
+		SELECT REVIEW_NUM, Q_NUM, REQUEST_NUM, MEMBER_ID, CONTENT, PASSWORD, WRITER_NAME, C_IDX
+		FROM COMMENTS
+		WHERE REQUEST_NUM = #{requestNum}
+		ORDER BY C_IDX
+	</select>
+
+	
+	<select id="reqCommentOne" parameterType="int" resultType="com.bc.model.vo.CommentVO">
+		SELECT REVIEW_NUM, Q_NUM, REQUEST_NUM, MEMBER_ID, CONTENT, PASSWORD, WRITER_NAME, C_IDX
+		FROM COMMENTS
+		WHERE C_IDX = #{cIdx}
+	</select>
+	
+	<insert id="reqCommentInsert" parameterType="com.bc.model.vo.CommentVO">
+		INSERT INTO COMMENTS 
+		VALUES (null, null, #{requestNum}, #{memberId}, #{content}, 
+		 #{password}, 
+		'김서나',
+		COMMENT_SEQ.NEXTVAL)
+	</insert>	
+	
+	<update id="reqCommentUpdate" parameterType="com.bc.model.vo.CommentVO">
+		UPDATE COMMENTS SET CONTENT = #{content}
+		WHERE C_IDX = #{cIdx}
+	</update>
+	
+	<delete id="reqCommentDelete" parameterType="int">
+		DELETE FROM COMMENTS WHERE C_IDX = #{cIdx}
+	</delete>
+
+
+
+</mapper>

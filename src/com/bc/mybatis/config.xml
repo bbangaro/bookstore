@@ -22,6 +22,8 @@
     <mapper resource="com/bc/mybatis/mapperTak.xml"/>
     <mapper resource="com/bc/mybatis/mapperQnA.xml"/>
     <mapper resource="com/bc/mybatis/mapperNot.xml"/>
+    <mapper resource="com/bc/mybatis/mapperReqComment.xml"/>
+    <mapper resource="com/bc/mybatis/mapperCart.xml"/>
   </mappers>
 </configuration>
 
