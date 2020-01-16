@@ -30,7 +30,7 @@
 		</div>		
 		</c:if>
 	</div>
-	
+	<div class="container"></div>
 	<%@ include file="include/bottom.jsp" %>
 </body>
 </html>
