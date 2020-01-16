@@ -36,17 +36,17 @@
 	<!-- 디테일 리뷰 조회 -->
 
 
-	<select parameterType="String" id="detailPageReview"
-		resultType="com.bc.model.vo.ReviewVO">selectlevel,review_num,member_id,subject,r_content,upload,b_code,orderid,b_type,parentnofrom
-		reviewwhere b_code = #{bCode}startwith parentno = 0connect by prior
-		review_num = parentnoorder siblingsby review_num </select>
+	<select parameterType="String" id="detailPageReview" resultType="com.bc.model.vo.ReviewVO">
+		select level,review_num,member_id,subject,r_content,upload,b_code,orderid,b_type,parentno from
+		review where b_code =  #{bCode}  start with parentno = 0 connect by prior
+		review_num = parentno order siblings by review_num  </select>
 
 	<!-- -->
 
 
 	<insert parameterType="com.bc.model.vo.ReviewVO"
 		id="insertReview">INSERT INTO
-		REVIEW(REVIEW_NUM,MEMBER_ID,SUBJECT,R_CONTENT,UPLOAD,B_CODE,ORDERID,B_TYPE,PARENTNO)VALUES(REVIEW_SEQ.NEXTVAL,#{memberId},#{subject},#{rContent},#{upload},#{bCode},'','1',#{parentno})
+		REVIEW(REVIEW_NUM,MEMBER_ID,SUBJECT,R_CONTENT,UPLOAD,B_CODE,ORDERID,B_TYPE,PARENTNO) VALUES(REVIEW_SEQ.NEXTVAL,#{memberId},#{subject},#{rContent},#{upload},#{bCode},'','1',#{parentno})
 	</insert>
 
 	<!-- -->

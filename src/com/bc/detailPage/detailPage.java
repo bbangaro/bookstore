@@ -30,10 +30,14 @@ public class detailPage extends HttpServlet {
 		String action = request.getPathInfo();
 		System.out.println(action);
 		if (action == null || action.contentEquals("/Page")) {
+			
 			String bCode = request.getParameter("bCode");
 			System.out.println(bCode);
+			
 			BookVO bookvo = TakDAO.detailPage(bCode);
 			List<ReviewVO> reviewvo = TakDAO.detailPageReview(bCode);
+			
+			
 			request.setAttribute("bookvo", bookvo);
 			request.setAttribute("reviewvo", reviewvo);
 			nextPage = "/pages/detailPage.jsp";
