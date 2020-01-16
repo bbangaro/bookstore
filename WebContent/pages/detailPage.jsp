@@ -127,7 +127,7 @@ hr {
 							<div>
 								<i>${requestScope.bookvo.salePrice}</i>원 <br>
 								<p>
-									(<s>${requestScope.bookvo.bPrice},</s>10% 할인)
+									(<s>${requestScope.bookvo.bPrice},</s>10% 할인)AA
 								</p>
 							</div></li>
 					</ul>
