@@ -210,7 +210,7 @@ body{
                         <i class="fab fa-youtube" style="color: rgba(255, 0, 0, 0.767);"></i>
                     </a>
                 </div>
-                    <a id="custom-login-btn" href="https://kauth.kakao.com/oauth/authorize?client_id=88bd3e119450cef04c32225563be47fe&redirect_uri=http://localhost:8090/bookstore/kakaologin&response_type=code">
+                    <a id="custom-login-btn" href="https://kauth.kakao.com/oauth/authorize?client_id=88bd3e119450cef04c32225563be47fe&redirect_uri=http://192.168.0.14:8090/bookstore/kakaologin&response_type=code">
 						<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
 					</a>
       </div>
