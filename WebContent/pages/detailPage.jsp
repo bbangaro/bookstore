@@ -41,6 +41,10 @@ header ul {
 	margin-right: 150px;
 }
 
+.checke{
+	color: orange;
+}
+
 header button {
 	border: none;
 	margin: 5px;
@@ -174,7 +178,7 @@ hr {
 			<div class="atc_area">
 				<div class="avg_area">
 					<h1>한줄 리뷰</h1>
-					<form name="">
+					<form  action="/bookstore/startingAjax">
 						<div class="box">
 							<span class="fa fa-star checked" onclick="starmark(this)"
 								id="1one"></span> <span class="fa fa-star checked"
@@ -185,31 +189,45 @@ hr {
 								onclick="starmark(this)" id="5one"></span>
 						</div>
 
-						제목 <input type="text" style="margin-bottom: 5px;"><br>
-						<textarea rows="5" cols="60" placeholder="내용 최대 4천자"
+						제목 <input type="text"  name ="title" style="margin-bottom: 5px;"><br>
+						<textarea name="content" rows="5" cols="60" placeholder="내용 최대 4천자"
 							style="resize: none;"></textarea>
-						<button type="button" onclick="oneReviews(this)" value="">리뷰쓰기</button>
+						<button type="submit" name="star" value="1" formaction="/bookstore/startingAjax"">리뷰쓰기</button>
 					</form>
 
 
 				</div>
 		
-				<table>
+				<table border="1">
 				
 					<tr>
+						<th><strong>번호</strong></th>
 						<th><strong>별점</strong></th>
 						<th><strong>제목</strong></th>
 						<th><strong>내용</strong></th>
 					</tr>
 					
-					<c:forEach var="list" items="${commentList}">
+				<c:forEach var="list" items="${starList }"> 
 					<tr>
-						<td>${list.reviewNum }</td>
-						<td>${list.content }</td>
-						<td>${list.writerName }</td>					
+					<td>${list.idx }</td>
+					<td>
+						<c:forEach var="i" begin="0" end="4">
+							<c:if test="${i <= list.star-1 }">
+								<span class="fa fa-star checke"></span>
+							</c:if>
+							<c:if test="${i > list.star-1 }">
+								<span class="fa fa-star "></span>
+							</c:if>
+						</c:forEach>
+						
+		
+				${list.star}점
+					</td>
+					
+						<td>${list.title}</td>
+						<td>${list.content}</td>					
 					</tr>
-					</c:forEach>
-
+				</c:forEach>
 					
 				</table>
 		
@@ -409,7 +427,7 @@ hr {
 
 				if (i < count) {
 					stars[i].style.color = "orange";
-					jumsu.vlaue  = i;
+					jumsu.value  = i;
 					
 				} else {
 					stars[i].style.color = "black";
@@ -418,8 +436,8 @@ hr {
 
 			}
 		}
-		
-	/* 	function oneReviews(){
+		/*
+	  	function oneReviews(){
 			
 			var jumsu =  document.querySelector(".avg_area button");
 			$.ajax({
@@ -430,7 +448,7 @@ hr {
 			
 		} */
 		
-	</script>
+	</script> 
 
 
 

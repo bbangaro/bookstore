@@ -9,6 +9,7 @@ import com.bc.model.vo.BookVO;
 import com.bc.model.vo.CommentVO;
 import com.bc.model.vo.MemberVO;
 import com.bc.model.vo.ReviewVO;
+import com.bc.model.vo.starRatingVO;
 import com.bc.mybatis.DBService;
 
 public class TakDAO {
@@ -78,6 +79,18 @@ public class TakDAO {
 		SqlSession ss = DBService.getFactory().openSession(true);
 		int i = ss.selectOne("detailPageReviewselect");
 		return i;
+	}
+
+	public static List<starRatingVO> starRating(String bCode) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		List<starRatingVO> list = ss.selectList("starRating",bCode);
+		return list;
+	}
+
+	public static int starInsert(starRatingVO starratinvo) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int  list = ss.insert("insertStarRting",starratinvo);
+		return list;
 	}
 
 

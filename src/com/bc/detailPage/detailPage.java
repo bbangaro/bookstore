@@ -17,8 +17,8 @@ import javax.servlet.http.HttpSession;
 
 import com.bc.model.dao.TakDAO;
 import com.bc.model.vo.BookVO;
-import com.bc.model.vo.CommentVO;
 import com.bc.model.vo.ReviewVO;
+import com.bc.model.vo.starRatingVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -44,6 +44,10 @@ public class detailPage extends HttpServlet {
 				pageNum = "1";
 			}
 			
+			
+		
+			
+			
 			BookVO bookvo = TakDAO.detailPage(bCode);
 			Map<String, Integer> detailPageReview_ = new HashMap<>();
 			
@@ -52,11 +56,15 @@ public class detailPage extends HttpServlet {
 			detailPageReview_.put("pageNum", Integer.parseInt(pageNum));
 			
 			 int lastPage = TakDAO.detailPageReviewselect() ;
+			 
+			 List<starRatingVO> starList = TakDAO.starRating(bCode);
 			 List<ReviewVO> reviewvo = TakDAO.detailPageReview(detailPageReview_);
+			 
+			 System.out.println("starList"+starList);
 			 
 			 System.out.println(lastPage);
 			 
-				
+			request.setAttribute("starList",starList);
 			request.setAttribute("lastPage",  lastPage);
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("bookvo", bookvo);
