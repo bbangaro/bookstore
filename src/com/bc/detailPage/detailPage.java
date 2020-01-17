@@ -49,8 +49,13 @@ public class detailPage extends HttpServlet {
 			detailPageReview_.put("bCode", Integer.parseInt(bCode));
 			detailPageReview_.put("pageNum", Integer.parseInt(pageNum));
 			
+			 int lastPage = TakDAO.detailPageReviewselect() / 5 ;
+			 
+			 System.out.println("1111111a"+lastPage);
+			
 			List<ReviewVO> reviewvo = TakDAO.detailPageReview(detailPageReview_);
 			
+			request.setAttribute("lastPage",  lastPage);
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("bookvo", bookvo);
 			request.setAttribute("reviewvo", reviewvo);

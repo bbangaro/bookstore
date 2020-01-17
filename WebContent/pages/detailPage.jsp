@@ -228,7 +228,7 @@ hr {
 												<c:forEach begin="1" end="${vo.level}" step="1">
 													<span style="padding-left: 15px"></span>
 												</c:forEach>
-												<span style="margin-top:50px;">↘</span>
+												<span style="margin-top:-50px;">↘</span>
 												<span>[답변]</span>
 																	<a href="/bookstore/detail/CheckForm?reviewNum=${vo.reviewNum }">${vo.subject}</a>
 															 	</c:when>
@@ -262,17 +262,22 @@ hr {
 							<c:set var="startNum" value="${page-(page-1) % 5}"/>
 							
 							<c:forEach var="i" begin="0" end="4">
-							
-									<a href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+i}">${startNum + i}</a>
-								
+									<c:choose>
+									<c:when test="${startNum + i == param.pageNum }">
+									<a style="background-color: tomato;" href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+i}">${startNum + i}</a>
+									</c:when>
+									<c:otherwise>
+									<a  href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+i}">${startNum + i}</a>
+									</c:otherwise>
+								</c:choose>
 							</c:forEach>	
 								
-							<%-- <c:if test="">
+						 <c:if test="${startNum+5 < lastPage }">
 								<a href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+5}">다음</a>
 							</c:if>
-							<c:if test="">
-								<a href="" onclick="alert('데이터가 없습니다')">끝</a>
-							</c:if> --%>
+							<c:if test="${startNum+5 <= lastPage }">
+								<span onclick="alert('데이터가 없습니다')">다음</span>
+							</c:if> 
 					</div>
 			<button onclick="location.href='/bookstore/detail/session'">리뷰쓰기</button>
 		</div>
