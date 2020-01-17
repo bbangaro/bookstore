@@ -13,7 +13,7 @@
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script>
 	function eBook(){
-		location.href="eBookListController";
+		location.href="/bookstore/eBookListController";
 	}
 </script>
 
@@ -261,11 +261,16 @@ hr {
 
 
 			</table>
-					<div style="display: block; text-align: center; margin-top:-10px;">
-							<a href=""  onclick="urlClickForReview(this);return false;">처음</a>
-								<a href="">이전</a>
-							<c:set var="page" value="${(param.pageNum == null)? 1: param.pageNum}"/>
+						<c:set var="page" value="${(param.pageNum == null)? 1: param.pageNum}"/>
 							<c:set var="startNum" value="${page-(page-1) % 5}"/>
+					<div style="display: block; text-align: center; margin-top:-10px;">
+						
+							<c:if test="${startNum > 1}">
+								<a href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+5}">이전</a>
+							</c:if>
+							<c:if test="${startNum <= 1 }">
+								<span onclick="alert('데이터가 없습니다')">이전</span>
+							</c:if> 
 							
 							<c:forEach var="i" begin="0" end="4">
 									<c:choose>
@@ -278,10 +283,10 @@ hr {
 								</c:choose>
 							</c:forEach>	
 								
-						 <c:if test="${startNum+5 < lastPage }">
+						 <c:if test="${startNum+5 < lastPage-1 }">
 								<a href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+5}">다음</a>
 							</c:if>
-							<c:if test="${startNum+5 <= lastPage }">
+							<c:if test="${startNum+5 >= lastPage-1 }">
 								<span onclick="alert('데이터가 없습니다')">다음</span>
 							</c:if> 
 					</div>

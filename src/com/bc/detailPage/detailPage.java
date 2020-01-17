@@ -59,6 +59,7 @@ public class detailPage extends HttpServlet {
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("bookvo", bookvo);
 			request.setAttribute("reviewvo", reviewvo);
+			
 			nextPage = "/pages/detailPage.jsp";
 
 		} else if (action.contentEquals("/AddForm")) {
