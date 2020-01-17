@@ -11,6 +11,12 @@
 <title>책이름</title>
 
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script>
+	function eBook(){
+		location.href="eBookListController";
+	}
+</script>
+
 <style>
 /* 기본 중앙정렬 틀 */
 .review, .header-book, .main-book {
@@ -139,7 +145,7 @@ hr {
 					<button class="btn">
 						<i class="far fa-credit-card"></i>바로구매
 					</button>
-					<button class="btn">
+					<button class="btn"  onclick="location.href ='/99_bookstore/eBookListController'">
 						<i class="fas fa-atlas"></i>E북으로 보기
 					</button>
 				</div>
