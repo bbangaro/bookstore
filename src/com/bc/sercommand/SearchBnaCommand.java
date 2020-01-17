@@ -20,7 +20,9 @@ public class SearchBnaCommand implements Command{
 		Map<String, String> map = new HashMap<>();
 		map.put("search", request.getParameter("search"));
 		List<GuestBookVO> list = SerDAO.getBna(map);
+		List<GuestBookVO> list2 = SerDAO.geteBna(map);
 		request.setAttribute("list", list);
+		request.setAttribute("list2", list2);
 		return "search.jsp";
 	}
 	

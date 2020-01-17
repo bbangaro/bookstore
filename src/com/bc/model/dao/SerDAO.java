@@ -33,4 +33,34 @@ public class SerDAO {
 		ss.close();
 		return list;
 	}
+	public static List<GuestBookVO> geteList(Map map) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		List<GuestBookVO> list = ss.selectList("searchelist", map); //전달하는 파라미터가 없을 때는 이름만
+		ss.close();
+		return list;
+	}
+	public static List<GuestBookVO> geteCom(Map map) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		List<GuestBookVO> list = ss.selectList("searcheCom", map); //전달하는 파라미터가 없을 때는 이름만
+		ss.close();
+		return list;
+	}
+	public static List<GuestBookVO> geteWri(Map map) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		List<GuestBookVO> list = ss.selectList("searcheWri", map); //전달하는 파라미터가 없을 때는 이름만
+		ss.close();
+		return list;
+	}
+	public static List<GuestBookVO> geteBna(Map map) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		List<GuestBookVO> list = ss.selectList("searcheBna", map); //전달하는 파라미터가 없을 때는 이름만
+		ss.close();
+		return list;
+	}
+	public static List<GuestBookVO> getoList(Map map) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		List<GuestBookVO> list = ss.selectList("searcholist", map); //전달하는 파라미터가 없을 때는 이름만
+		ss.close();
+		return list;
+	}
 }

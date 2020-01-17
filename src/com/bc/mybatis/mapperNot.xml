@@ -48,27 +48,50 @@
 	
 	<select id="searchList" resultType="com.bc.model.vo.BookVO" parameterType="map">
 		SELECT * FROM BOOK
-			WHERE B_NAME LIKE '%'||#{search}||'%'
+			WHERE B_TYPE = 1 
+			AND(B_NAME LIKE '%'||#{search}||'%' 
 			OR B_COMPANY LIKE '%'||#{search}||'%'
-			OR WRITER_NAME LIKE '%'||#{search}||'%'
-			AND B_TYPE = 1
+			OR WRITER_NAME LIKE '%'||#{search}||'%')
 	</select>
-	
 	<select id="searchcom" resultType="com.bc.model.vo.BookVO" parameterType="map">
 		SELECT * FROM BOOK
    		WHERE B_COMPANY LIKE '%'||#{search}||'%'
+   		AND B_TYPE = 1
 	</select>
 	
 	<select id="searchwri" resultType="com.bc.model.vo.BookVO" parameterType="map">
 		SELECT * FROM BOOK
    		WHERE WRITER_NAME LIKE '%'||#{search}||'%'
+   		AND B_TYPE = 1
 	</select>
 	
 	<select id="searchbna" resultType="com.bc.model.vo.BookVO" parameterType="map">
 		SELECT * FROM BOOK
    		WHERE B_NAME LIKE '%'||#{search}||'%'
+   		AND B_TYPE = 1
 	</select>
-	
+	<select id="searchelist" resultType="com.bc.model.vo.BookVO" parameterType="map">
+		SELECT * FROM BOOK
+			WHERE B_TYPE = 2
+			AND(B_NAME LIKE '%'||#{search}||'%'
+			OR B_COMPANY LIKE '%'||#{search}||'%'
+			OR WRITER_NAME LIKE '%'||#{search}||'%')
+	</select>
+	<select id="searcheCom" resultType="com.bc.model.vo.BookVO" parameterType="map">
+		SELECT * FROM BOOK
+			WHERE B_COMPANY LIKE '%'||#{search}||'%'
+			AND B_TYPE = 2
+	</select>
+	<select id="searcheWri" resultType="com.bc.model.vo.BookVO" parameterType="map">
+		SELECT * FROM BOOK
+			WHERE WRITER_NAME LIKE '%'||#{search}||'%'
+			AND B_TYPE = 2
+	</select>
+	<select id="searcheBna" resultType="com.bc.model.vo.BookVO" parameterType="map">
+		SELECT * FROM BOOK
+			WHERE B_NAME LIKE '%'||#{search}||'%'
+			AND B_TYPE = 2
+	</select>
 	<update id="Nupdate" parameterType="map">
 		UPDATE NOTICE 
 		SET SUBJECT = #{subject},
@@ -82,6 +105,7 @@
 				WHERE H_CODE = #{hCode}
 				AND L_CODE = #{hCode} || '1'
 				AND ROWNUM <= 4
+				AND B_TYPE = 1
 		]]>
 	</select>
 	<select id="2list" resultType="com.bc.model.vo.BookVO" parameterType="map">
@@ -90,6 +114,7 @@
 				WHERE H_CODE = #{hCode}
 				AND L_CODE = #{hCode} || '2'
 				AND ROWNUM <= 4
+				AND B_TYPE = 1
 		]]>
 	</select>
 	<select id="3list" resultType="com.bc.model.vo.BookVO" parameterType="map">
@@ -98,6 +123,7 @@
 				WHERE H_CODE = #{hCode}
 				AND L_CODE = #{hCode} || '3'
 				AND ROWNUM <= 4
+				AND B_TYPE = 1
 		]]>
 	</select>
 	<select id="4list" resultType="com.bc.model.vo.BookVO" parameterType="map">
@@ -106,6 +132,7 @@
 				WHERE H_CODE = #{hCode}
 				AND L_CODE = #{hCode} || '4'
 				AND ROWNUM <= 4
+				AND B_TYPE = 1
 		]]>
 	</select>
 	
@@ -115,6 +142,7 @@
 				WHERE H_CODE = #{hCode}
 				AND L_CODE = #{hCode} || '5'
 				AND ROWNUM <= 4
+				AND B_TYPE = 1
 		]]>
 	</select>
 	
@@ -124,5 +152,6 @@
 			AND L_CODE = #{lCode}
 			AND B_TYPE = 1
 	</select>
+	
 	
 </mapper>

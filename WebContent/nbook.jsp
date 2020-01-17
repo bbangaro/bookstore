@@ -49,7 +49,7 @@
 		border-bottom: 2px solid #8B008B;
 	 }
 	 .col-3 a {
-	 	text-dacoration: none;
+	 	color: black;
 	 }
   </style>
 <title>Insert title here</title>

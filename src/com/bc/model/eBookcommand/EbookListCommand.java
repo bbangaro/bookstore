@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bc.model.dao.ReqDAO;
+import com.bc.model.dao.eBookDAO;
 import com.bc.model.vo.BookVO;
 import com.bc.model.vo.GuestBookVO;
 import com.bc.page.vo.Paging;
@@ -20,14 +21,30 @@ public class EbookListCommand implements Command {
 	public String exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//1. DB연결하고 전체 데이터 가져와서(DAO)
-		//BookVO vo = BookVO;
+		String bCode = request.getParameter("bCode");
+		
+		BookVO vo = eBookDAO.getOneImg(bCode);
+		vo.getbImage();
+		request.setAttribute("book", vo);
+		
+		System.out.println("표지:"+ vo);
+
+		
+		List<BookVO> list = eBookDAO.getImgs(bCode);
+		request.setAttribute("list", list);
+		
+		System.out.println("속지:"+ list);
 		
 		//2. 응답페이지에 전달(request 객체에 속성값 저장) 
 		//request.setAttribute("list", List);
-		//request.setAttribute("pvo", p);
 		
-		//응답페이지(list.jsp) 저장하고 페이지 전환(포워딩)
-		//request.getRequestDispatcher("list.jsp").forward(request, response);
+		
+		
+		int cnt = eBookDAO.getEbookCnt(bCode);
+		
+		//2. 응답페이지에 전달(request 객체에 속성값 저장) 
+		request.setAttribute("Cnt", cnt);
+		
 		
 		return "eBook.jsp";
 	}

@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <title>로그인 | 서재</title>
 <style type="text/css">
 
@@ -209,6 +210,9 @@ body{
                         <i class="fab fa-youtube" style="color: rgba(255, 0, 0, 0.767);"></i>
                     </a>
                 </div>
+                    <a id="custom-login-btn" href="https://kauth.kakao.com/oauth/authorize?client_id=88bd3e119450cef04c32225563be47fe&redirect_uri=http://192.168.0.14:8090/bookstore/kakaologin&response_type=code">
+						<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
+					</a>
       </div>
 
             
@@ -264,7 +268,25 @@ body{
       
       
    </script>
-
+	
+	<script type='text/javascript'>
+	  //<![CDATA[
+	    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+	    Kakao.init('0ae50d275a43a26ab1ebf0be1e8d1b02');
+	    function loginWithKakao() {
+	      // 로그인 창을 띄웁니다.
+	      Kakao.Auth.login({
+	        success: function(authObj) {
+	          alert(JSON.stringify(authObj));
+	        },
+	        fail: function(err) {
+	          alert(JSON.stringify(err));
+	        }
+	      });
+	    };
+	  //]]>
+</script>
+	
 </body>
 
 </html>

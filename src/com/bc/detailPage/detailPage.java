@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import com.bc.model.dao.TakDAO;
 import com.bc.model.vo.BookVO;
+import com.bc.model.vo.CommentVO;
 import com.bc.model.vo.ReviewVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -34,6 +35,7 @@ public class detailPage extends HttpServlet {
 		if (action == null || action.contentEquals("/Page")) {
 			
 			String bCode = request.getParameter("bCode");
+	
 			String pageNum = request.getParameter("pageNum");
 			System.out.println(pageNum);
 			System.out.println(bCode);
@@ -49,12 +51,12 @@ public class detailPage extends HttpServlet {
 			detailPageReview_.put("bCode", Integer.parseInt(bCode));
 			detailPageReview_.put("pageNum", Integer.parseInt(pageNum));
 			
-			 int lastPage = TakDAO.detailPageReviewselect() / 5 ;
+			 int lastPage = TakDAO.detailPageReviewselect() ;
+			 List<ReviewVO> reviewvo = TakDAO.detailPageReview(detailPageReview_);
 			 
-			 System.out.println("1111111a"+lastPage);
-			
-			List<ReviewVO> reviewvo = TakDAO.detailPageReview(detailPageReview_);
-			
+			 System.out.println(lastPage);
+			 
+				
 			request.setAttribute("lastPage",  lastPage);
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("bookvo", bookvo);

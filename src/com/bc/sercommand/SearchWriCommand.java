@@ -20,7 +20,8 @@ public class SearchWriCommand implements Command{
 		Map<String, String> map = new HashMap<>();
 		map.put("search", request.getParameter("search"));
 		List<GuestBookVO> list = SerDAO.getWri(map);
-		request.setAttribute("list", list);
+		List<GuestBookVO> list2 = SerDAO.geteWri(map);
+		request.setAttribute("list2", list2);
 		return "search.jsp";
 	}
 	

@@ -4,12 +4,23 @@
 
 <mapper namespace="rbookstore">
 
-	<select id="eBookImg" parameterType="string" resultType="com.bc.model.vo.BookVO">
-		SELECT REVIEW_NUM, Q_NUM, REQUEST_NUM, MEMBER_ID, CONTENT, PASSWORD, WRITER_NAME, C_IDX
-		FROM COMMENTS
-		WHERE C_IDX = #{cIdx}
+	<select id="eBookImg" parameterType="String" resultType="com.bc.model.vo.BookVO">
+		SELECT B_IMAGE
+		FROM BOOK
+		WHERE B_CODE = #{bCode}
+	</select>
+	<select id="eBookImgs" parameterType="String" resultType="com.bc.model.vo.BookVO">
+		SELECT E_IMAGE
+		FROM E_BOOK
+		WHERE B_CODE = #{bCode}
+	</select>
+	
+	<select id="eBookCnt" resultType="int">
+		SELECT COUNT(*) FROM E_BOOK
+		WHERE B_CODE = #{bCode}
 	</select>
 
+	
 <!-- 
 	<select id="reqCommentAll"  parameterType="int" resultType="com.bc.model.vo.CommentVO">
 		SELECT REVIEW_NUM, Q_NUM, REQUEST_NUM, MEMBER_ID, CONTENT, PASSWORD, WRITER_NAME, C_IDX
