@@ -48,6 +48,9 @@
 		color: #8B008B;
 		border-bottom: 2px solid #8B008B;
 	 }
+	 .col-3 a {
+	 	color: black;
+	 }
   </style>
 <title>Insert title here</title>
 </head>

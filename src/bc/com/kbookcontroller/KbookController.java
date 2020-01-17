@@ -18,6 +18,7 @@ public class KbookController extends HttpServlet {
 		Command comm = new KbookCommand();
 		String path = comm.exec(request, response);
 		request.getRequestDispatcher(path).forward(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
