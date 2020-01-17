@@ -20,7 +20,9 @@ public class SearchListCommand implements Command{
 		Map<String, String> map = new HashMap<>();
 		map.put("search", request.getParameter("search"));
 		List<GuestBookVO> list = SerDAO.getList(map);
+		List<GuestBookVO> list2 = SerDAO.geteList(map);
 		request.setAttribute("list", list);
+		request.setAttribute("list2", list2);
 		return "search.jsp";
 	}
 	

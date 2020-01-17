@@ -148,9 +148,22 @@
 		   		<hr class="my-5">
 		    <h2>e북</h2>
 		    <div class="row">
-		    	<div class="col text-center">
-		    		검색 결과가 없습니다.
-		    	</div>
+		    	<c:if test="${not empty list2 }">
+		    		<c:forEach var="vo" items="${list2 }">
+				    	<div class="col text-center">
+				    		<a href="detail/Page?bCode=${vo.bCode }">
+			    					<img src="bookimg/${vo.bImage }" width="170"><br>
+			    					<p class="mt-2" style='color:black;'>${vo.bName }</p>
+			    					<small class="mt-0" style='color:gray;'>${vo.writerName }</small>
+		    				</a>
+				    	</div>
+			    	</c:forEach>
+		    	</c:if>
+		    	<c:if test="${empty list2 }">
+		    		<div class="col text-center">
+		   	 			검색 결과가 없습니다.
+		    		</div>
+		    	</c:if>
 		    </div>
 		    	<hr class="my-5">
 		    <h2>오디오북</h2>
