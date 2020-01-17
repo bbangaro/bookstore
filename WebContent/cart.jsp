@@ -111,7 +111,7 @@
 							<td><a href="javascript:history.back()" class="btn btn-warning"><i class="fa fa-angle-left"></i> 쇼핑 계속하기</a></td>
 							<td colspan="2" class="hidden-xs"></td>
 							<td class="hidden-xs text-center"><strong>총금액 <c:out value="${total }원"/></strong></td>
-							<td><a href="https://www.paypal.com/webapps/hermes?token=5EY097812P7754247&useraction=commit&mfid=1546377013907_cf1dec6830d7" class="btn btn-success btn-block">결제하기 <i class="fa fa-angle-right"></i></a></td>
+							<td><a href="OrderController" class="btn btn-success btn-block">결제하기 <i class="fa fa-angle-right"></i></a></td>
 						</tr>
 					</tfoot>
 				</table>

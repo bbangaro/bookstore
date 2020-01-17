@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.bc.model.vo.CartVO;
+import com.bc.model.vo.MemberVO;
 import com.bc.mybatis.DBService;
 
 public class CartDAO {
@@ -62,5 +63,20 @@ public class CartDAO {
 		List<CartVO> list = ss.selectList("cart", id);
 		ss.close();
 		return list;
+	}
+	
+	//아이디로 배송정보 조회
+	public static MemberVO getInfo(String id) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		MemberVO vo = ss.selectOne("memberinfo", id);
+		ss.close();
+		return vo;
+	}
+
+	public static int insertOrder(Map<String, Object> map) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.insert("order", map);
+		ss.close();
+		return result;
 	}
 }
