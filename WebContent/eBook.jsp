@@ -249,12 +249,13 @@ ul {
 
 </head>
 <body>
+	<h1>${book.bImage }</h1>
+	<h1>${book.bCode }</h1>
 
 	<ul class='list-inline'>
 		<li class='book'>
 	   		<img src="images/${book.bImage }" width="800px" height="1200px"/>
 		</li>
-		
 		<c:forEach var="list" items="${list}">
 			<li class='book'>
 				<img src="ebookImages/${list.eImage }" width="800px" height="1200px"/>

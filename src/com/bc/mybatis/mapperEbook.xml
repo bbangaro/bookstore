@@ -9,11 +9,14 @@
 		FROM BOOK
 		WHERE B_CODE = #{bCode}
 	</select>
+	
+	
 	<select id="eBookImgs" parameterType="String" resultType="com.bc.model.vo.BookVO">
 		SELECT E_IMAGE
 		FROM E_BOOK
 		WHERE B_CODE = #{bCode}
 	</select>
+	
 	
 	<select id="eBookCnt" resultType="int">
 		SELECT COUNT(*) FROM E_BOOK

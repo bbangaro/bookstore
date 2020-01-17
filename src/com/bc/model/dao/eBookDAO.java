@@ -17,10 +17,12 @@ public class eBookDAO {
 		ss.close();
 		return vo;
 	}
+	
 	public static List<BookVO> getImgs(String bCode) {
 		SqlSession ss =  DBService.getFactory().openSession(true);
 		List<BookVO> list = ss.selectList("eBookImgs", bCode); //전달하는 파라미터가 없을 때는 이름만
-		//  쿼리문 소환 ( mapper아이디, 파라미터 값)
+		System.out.println("dao에서 테스트 중"+bCode);
+		System.out.println("dao에서 테스트 중"+list);
 		ss.close();
 		return list;
 	}

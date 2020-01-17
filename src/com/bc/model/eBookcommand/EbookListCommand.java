@@ -22,12 +22,11 @@ public class EbookListCommand implements Command {
 		
 		//1. DB연결하고 전체 데이터 가져와서(DAO)
 		String bCode = request.getParameter("bCode");
-		
+		bCode = "e"+bCode;
 		BookVO vo = eBookDAO.getOneImg(bCode);
 		vo.getbImage();
 		request.setAttribute("book", vo);
 		
-		System.out.println("표지:"+ vo);
 
 		
 		List<BookVO> list = eBookDAO.getImgs(bCode);
