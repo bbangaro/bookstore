@@ -47,6 +47,25 @@
 	<select id="cart" parameterType="string" resultType="com.bc.model.vo.CartVO">
 		SELECT * FROM CART WHERE MEMBER_ID = #{memberId}
 	</select>
+	
+	<!-- 아이디별 배송 정보 조회 -->
+	<select id="memberinfo" parameterType="string" resultType="com.bc.model.vo.MemberVO">
+		SELECT * FROM MEMBER WHERE MEMBER_ID = #{memberId}
+	</select>
+	
+	<!-- order 테이블에 데이터 입력 -->
+	<insert id="order" parameterType="map">
+		INSERT INTO ORDERS 
+	 	VALUES(ORDER_SEQ.NEXTVAL, 
+	 		(SELECT TO_NUMBER(TO_CHAR(SYSDATE, 'YYYYMMDDHHMMSS')) FROM DUAL),
+	 		#{memberId}, #{oname}, #{ozipcode}, #{oaddress}, #{ophone}, #{oemail},
+	 		#{rname}, #{rzipcode}, #{raddress}, #{rphone}, #{msg},
+	 		#{total}, 
+	 		0,
+	 		0,
+	 		SYSDATE
+	 	)
+	</insert>
 
 </mapper>
 
