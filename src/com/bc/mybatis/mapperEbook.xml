@@ -5,9 +5,9 @@
 <mapper namespace="rbookstore">
 
 	<select id="eBookImg" parameterType="string" resultType="com.bc.model.vo.BookVO">
-		SELECT REVIEW_NUM, Q_NUM, REQUEST_NUM, MEMBER_ID, CONTENT, PASSWORD, WRITER_NAME, C_IDX
-		FROM COMMENTS
-		WHERE C_IDX = #{cIdx}
+		SELECT B_IMAGE
+		FROM BOOK
+		WHERE B_CODE = #{bCode}
 	</select>
 
 <!-- 
