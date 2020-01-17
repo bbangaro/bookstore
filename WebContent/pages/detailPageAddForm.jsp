@@ -40,7 +40,7 @@
 		</div>
 	    <input type="file" name="myFile" onchange="readURL(this);" ><br>
 	    <img class="preview" src = "#" width ="150" height ="150"/>
-	    <input type="hidden" name="reviewNum" value="${sessionScope.reviewNum  }">
+	    <input type="hidden" name="reviewNum" value="${sessionScope.reviewNum }">
   	<input type="submit">
 	</form> 
 	
@@ -65,7 +65,7 @@
 	 
   	<div>
   		<button type="submit" name="update" formaction="/bookstore/detail/updateForm">수정하기</button>
-  		<button type="button" onclick="deleteForm(this.form);">삭제하기</button>
+  		<button type="submit" formaction="/bookstore/detail/deleteForm">삭제하기</button>
   		<button type="submit" name="update" formaction="/bookstore/pages/detailPageAddForm.jsp">답글쓰기</button>
   	</div>
   	 

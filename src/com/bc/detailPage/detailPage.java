@@ -60,9 +60,11 @@ public class detailPage extends HttpServlet {
 			nextPage = "/pages/detailPageAddForm.jsp";
 			
 		}else if(action.contentEquals("/session")) {
+			
 			HttpSession session = request.getSession();
 			session.setAttribute("reviewNum", "0");
 			nextPage = "/pages/detailPageAddForm.jsp";
+			
 		}else if (action.contentEquals("/insertForm")) {
 			ServletContext sc = this.getServletContext();
 			String path = sc.getRealPath("/upload");
@@ -95,6 +97,7 @@ public class detailPage extends HttpServlet {
 			reviewvo.setMemberId(id);
 			reviewvo.setSubject(subject);
 			reviewvo.setrContent(rContent);
+			
 			System.out.println(reviewvo.getUpload());
 			System.out.println(reviewvo.getParentno());
 

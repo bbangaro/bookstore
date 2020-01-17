@@ -63,7 +63,7 @@
 
 	<!-- -->
 
-
+	<!-- 마이리뷰 추가   -->
 	<insert parameterType="com.bc.model.vo.ReviewVO"
 		id="insertReview">
 
