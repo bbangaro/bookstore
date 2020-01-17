@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.bc.model.vo.BookVO;
+import com.bc.model.vo.CommentVO;
 import com.bc.model.vo.MemberVO;
 import com.bc.model.vo.ReviewVO;
 import com.bc.mybatis.DBService;
@@ -78,5 +79,6 @@ public class TakDAO {
 		int i = ss.selectOne("detailPageReviewselect");
 		return i;
 	}
+
 
 }

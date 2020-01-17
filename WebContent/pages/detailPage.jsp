@@ -9,8 +9,8 @@
 <meta charset="UTF-8">
 
 <title>책이름</title>
-
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
 <script src="http://code.jquer.com/jquery-latest.min.js"></script>
 <script>
 	function eBook() {
@@ -184,17 +184,35 @@ hr {
 								id="4one"></span> <span class="fa fa-star checked"
 								onclick="starmark(this)" id="5one"></span>
 						</div>
+
 						제목 <input type="text" style="margin-bottom: 5px;"><br>
 						<textarea rows="5" cols="60" placeholder="내용 최대 4천자"
 							style="resize: none;"></textarea>
-						<button type="button" onclick="oneReviews()">리뷰쓰기</button>
+						<button type="button" onclick="oneReviews(this)" value="">리뷰쓰기</button>
 					</form>
 
 
 				</div>
-				<p class="subjcet">
-					<strong>제목</strong><strong>작성자</strong><strong>작성일</strong>
-				</p>
+		
+				<table>
+				
+					<tr>
+						<th><strong>별점</strong></th>
+						<th><strong>제목</strong></th>
+						<th><strong>내용</strong></th>
+					</tr>
+					
+					<c:forEach var="list" items="${commentList}">
+					<tr>
+						<td>${list.reviewNum }</td>
+						<td>${list.content }</td>
+						<td>${list.writerName }</td>					
+					</tr>
+					</c:forEach>
+
+					
+				</table>
+		
 
 			</div>
 			<a href="javascript:void(0);" class="view_toggle _toggleExpandReview"
@@ -275,37 +293,22 @@ hr {
 				<c:if test="${startNum <= 1 }">
 					<span onclick="alert('데이터가 없습니다')">이전</span>
 				</c:if>
-				<c:choose>
-				<c:when  test="${startNum >= lastPage % 5-1}">
-				<c:forEach var="i" begin="0" end="${lastPage }">
-						<c:choose>
-							<c:when test="${startNum + i == param.pageNum }">
-								<a style="background-color: tomato;"
-									href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+i}">${startNum + i}</a>
-							</c:when>
-							<c:otherwise>
-								<a
-									href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+i}">${startNum + i}</a>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-				</c:when>
-				
-					<c:otherwise>
-					<c:forEach var="i" begin="0" end="4">
-						<c:choose>
-							<c:when test="${startNum + i == param.pageNum }">
-								<a style="background-color: tomato;"
-									href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+i}">${startNum + i}</a>
-							</c:when>
-							<c:otherwise>
-								<a
-									href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+i}">${startNum + i}</a>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-					</c:otherwise>
-				</c:choose>
+
+
+				<c:forEach var="i" begin="0" end="4">
+					<c:choose>
+						<c:when test="${startNum + i == param.pageNum }">
+							<a style="background-color: tomato;"
+								href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+i}">${startNum + i}</a>
+						</c:when>
+						<c:otherwise>
+							<a
+								href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+i}">${startNum + i}</a>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+
+
 
 				<c:if test="${startNum+5 < lastPage / 5-1 }">
 					<a
@@ -399,28 +402,37 @@ hr {
 			rating = count;
 			var subid = item.id.substring(1);
 			var stars = document.querySelectorAll(".checked");
+			var jumsu =  document.querySelector(".avg_area button");
 			console.log(count);
 
 			for (var i = 0; i < 5; i++) {
 
 				if (i < count) {
 					stars[i].style.color = "orange";
+					jumsu.vlaue  = i;
+					
 				} else {
 					stars[i].style.color = "black";
 				}
+				
 
 			}
 		}
 		
-		
-		function oneReviews(){
-			alert("dd");
+	/* 	function oneReviews(){
 			
-		}
+			var jumsu =  document.querySelector(".avg_area button");
+			$.ajax({
+				type:"post"
+				async:false,
+				url:$
+			})
+			
+		} */
 		
 	</script>
-	
-	
+
+
 
 
 
