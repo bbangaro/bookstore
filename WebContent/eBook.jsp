@@ -111,6 +111,7 @@ ul {
 
 	<ul class='list-inline'>
 	  <li class='book'>
+	  	//여기서 
 	    <img src='http://37signals.com/images/remote/remote_front.png' />
 	  </li>
 	</ul>

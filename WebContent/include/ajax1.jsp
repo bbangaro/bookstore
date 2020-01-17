@@ -19,7 +19,7 @@
 					//1. 객체.속성명
 					//2. 객체["속성명"]
 					tbody += "<div class='col'>";
-					tbody += "<a href='#' style='color:black;'>";
+					tbody += "<a href='detail/Page?bCode="+this.bcode+"'style='color:black;'>";
 					tbody += "<img src='bookimg/" + this.image + "'width='85' height='127'/><br>";
 					tbody += this.name;
 					tbody += "<br>";
@@ -59,7 +59,7 @@
 					//1. 객체.속성명
 					//2. 객체["속성명"]
 					tbody += "<div class='col'>";
-					tbody += "<a href='#' style='color:black;'>";
+					tbody += "<a href='detail/Page?bCode="+this.bcode+"'style='color:black;'>";
 					tbody += "<img src='bookimg/" + this.image + "'width='85' height='127'/><br>";
 					tbody += this.name;
 					tbody += "<br>";
@@ -96,7 +96,7 @@
 					//1. 객체.속성명
 					//2. 객체["속성명"]
 					tbody += "<div class='col'>";
-					tbody += "<a href='#' style='color:black;'>";
+					tbody += "<a href='detail/Page?bCode="+this.bcode+"'style='color:black;'>";
 					tbody += "<img src='bookimg/" + this.image + "'width='85' height='127'/><br>";
 					tbody += this.name;
 					tbody += "<br>";
@@ -133,7 +133,7 @@
 					//1. 객체.속성명
 					//2. 객체["속성명"]
 					tbody += "<div class='col'>";
-					tbody += "<a href='#' style='color:black;'>";
+					tbody += "<a href='detail/Page?bCode="+this.bcode+"'style='color:black;'>";
 					tbody += "<img src='bookimg/" + this.image + "'width='85' height='127'/><br>";
 					tbody += this.name;
 					tbody += "<br>";
@@ -170,7 +170,7 @@
 					//1. 객체.속성명
 					//2. 객체["속성명"]
 					tbody += "<div class='col'>";
-					tbody += "<a href='#' style='color:black;'>";
+					tbody += "<a href='detail/Page?bCode="+this.bcode+"'style='color:black;'>";
 					tbody += "<img src='bookimg/" + this.image + "'width='85' height='127'/><br>";
 					tbody += this.name;
 					tbody += "<br>";

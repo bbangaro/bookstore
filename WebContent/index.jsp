@@ -84,6 +84,8 @@
 		  	</div>
 		  </div>
 		  <hr>
+	
+	<!-- 	  
 		  <h2>오늘의 리딩북</h2>
 		  <div id="reding" class="carousel slide" data-ride="carousel">
 			  <ul class="carousel-indicators">
@@ -94,13 +96,13 @@
 			  
 			  <div class="carousel-inner">
 			    <div class="carousel-item active">
-			      <div class="jumbotron"><h1>e북</h1></div>
+			      <div class="jumbotron"><a href="#"><img src="images/63.jpg" width="400px" height="300px"></a></div>
 			    </div>
 			    <div class="carousel-item">
-			      <div class="jumbotron"><h1>오디오북</h1></div>
+			      <div class="jumbotron"><a href="#"><img src="images/64.jpg" width="400px" height="300px"></a></div>
 			    </div>
 			    <div class="carousel-item">
-			      <div class="jumbotron"><h1>남는곳</h1></div>
+			      <div class="jumbotron"><a href="#"><img src="images/65.jpg" width="400px" height="300px"></a></div>
 			    </div>
 			  </div>
 			  
@@ -111,6 +113,7 @@
 			    <span class="carousel-control-next-icon"></span>
 			  </a>
 		  </div>
+	 -->
 		  <h2>최신 신작 업데이트</h2>
 		  <div class="container">
 			<button id="getNo" type="button" class="btn btn-light" name="lcode" value="N1">소설</button>
