@@ -145,7 +145,7 @@ hr {
 					<button class="btn">
 						<i class="far fa-credit-card"></i>바로구매
 					</button>
-					<button class="btn"  onclick="location.href ='/99_bookstore/eBookListController'">
+					<button class="btn"  onclick="eBook()">
 						<i class="fas fa-atlas"></i>E북으로 보기
 					</button>
 				</div>
