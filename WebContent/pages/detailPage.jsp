@@ -127,13 +127,13 @@ hr {
 							<div>
 								<i>${requestScope.bookvo.salePrice}</i>원 <br>
 								<p>
-									(<s>${requestScope.bookvo.bPrice},</s>10% 할인)AA
+									(<s>${requestScope.bookvo.bPrice},</s>10% 할인)
 								</p>
 							</div></li>
 					</ul>
 				</div>
 				<div>
-					<button class="btn">
+					<button class="btn" onclick="location.href ='/bookstore/AddProductController'">
 						<i class="fas fa-cart-arrow-down"></i>장바구니담기
 					</button>
 					<button class="btn">
@@ -266,9 +266,13 @@ hr {
 									<a href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+i}">${startNum + i}</a>
 								
 							</c:forEach>	
-							
-								<a href="" onclick="urlClickForReview(this);return false;">다음</a>
-								<a href="" onclick="urlClickForReview(this);return false;">끝</a>
+								
+							<%-- <c:if test="">
+								<a href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+5}">다음</a>
+							</c:if>
+							<c:if test="">
+								<a href="" onclick="alert('데이터가 없습니다')">끝</a>
+							</c:if> --%>
 					</div>
 			<button onclick="location.href='/bookstore/detail/session'">리뷰쓰기</button>
 		</div>
