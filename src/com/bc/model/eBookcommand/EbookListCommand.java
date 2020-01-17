@@ -24,12 +24,26 @@ public class EbookListCommand implements Command {
 		String bCode = request.getParameter("bCode");
 		
 		BookVO vo = eBookDAO.getOneImg(bCode);
+		vo.getbImage();
+		request.setAttribute("book", vo);
 		
-		vo.setbImage(request.getParameter("bImage"));
+		System.out.println("표지:"+ vo);
+
+		
+		List<BookVO> list = eBookDAO.getImgs(bCode);
+		request.setAttribute("list", list);
+		
+		System.out.println("속지:"+ list);
 		
 		//2. 응답페이지에 전달(request 객체에 속성값 저장) 
 		//request.setAttribute("list", List);
-		request.setAttribute("vo", vo);
+		
+		
+		
+		int cnt = eBookDAO.getEbookCnt(bCode);
+		
+		//2. 응답페이지에 전달(request 객체에 속성값 저장) 
+		request.setAttribute("Cnt", cnt);
 		
 		
 		return "eBook.jsp";

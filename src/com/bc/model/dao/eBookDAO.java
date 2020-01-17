@@ -1,5 +1,7 @@
 package com.bc.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.bc.model.vo.BookVO;
@@ -8,13 +10,26 @@ import com.bc.mybatis.DBService;
 public class eBookDAO {
 	
 	
-	//방명록 하나 조회
 	public static BookVO getOneImg(String bCode) {
 		SqlSession ss =  DBService.getFactory().openSession(true);
 		BookVO vo = ss.selectOne("eBookImg", bCode); //전달하는 파라미터가 없을 때는 이름만
 		//  쿼리문 소환 ( mapper아이디, 파라미터 값)
 		ss.close();
 		return vo;
+	}
+	public static List<BookVO> getImgs(String bCode) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		List<BookVO> list = ss.selectList("eBookImgs", bCode); //전달하는 파라미터가 없을 때는 이름만
+		//  쿼리문 소환 ( mapper아이디, 파라미터 값)
+		ss.close();
+		return list;
+	}
+	
+	public static int getEbookCnt(String bCode) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.selectOne("eBookCnt", bCode);
+		ss.close();
+		return result;
 	}
 	
 	
