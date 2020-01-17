@@ -25,7 +25,7 @@
 	
 	<!-- qNum 시퀀스로 변경 -->
 	<insert id="insert" parameterType="Map">
-		INSERT INTO QNA VALUES(14, #{memberId}, 
+		INSERT INTO QNA VALUES(QNA_SEQ.NEXTVAL, #{memberId}, 
                     (SELECT USERNAME FROM MEMBER WHERE MEMBER_ID = #{memberId}), 
                     (SELECT PASSWORD FROM MEMBER WHERE MEMBER_ID = #{memberId}),
                     #{subject}, #{category}, #{rContent}, #{upload, jdbcType=VARCHAR}, 
