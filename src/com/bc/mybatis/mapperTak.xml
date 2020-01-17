@@ -35,12 +35,12 @@
 	<select parameterType="String" id="detailPage"
 		resultType="com.bc.model.vo.BookVO">
 		select * from book where b_code = #{bCode}
-		 </select>
+	</select>
 
 	<!-- 디테일 리뷰 조회 -->
 	<select parameterType="map" id="detailPageReview"
 		resultType="com.bc.model.vo.ReviewVO">
-		
+
 		select level,review_num,member_id,subject,r_content,upload
 		,b_code,orderid,b_type,parentno from ( select ROWNUM as recnum,
 		REVIEW_NUM,
@@ -52,28 +52,33 @@
 		ORDERID,
 		B_TYPE,
 		PARENTNO
-		from (select level,review_num,member_id,subject,r_content,upload
+		from (select
+		level,review_num,member_id,subject,r_content,upload
 		,b_code,orderid,b_type,parentno from
-		review where b_code =#{bCode} start with
+		review where b_code =#{bCode}
+		start with
 		parentno = 0 connect by prior
-		review_num = parentno order siblings by
+		review_num = parentno order
+		siblings by
 		review_num desc))
-		where recnum between (#{pageNum}-1) * 10  and #{pageNum} * 10
-        start with
+		where recnum between (#{pageNum}-1) * 10
+		and #{pageNum} * 10
+		start with
 		parentno = 0 connect by prior
-		review_num = parentno order siblings by
+		review_num = parentno order siblings
+		by
 		review_num desc
-	
-	</select>
-	
-	<!-- 페이지 총갯수  -->
-	<select id="detailPageReviewselect" resultType="int" >
-		select count(*) from review 
+
 	</select>
 
-	<!-- -->
+	<!-- 페이지 총갯수 -->
+	<select id="detailPageReviewselect" resultType="int">
+		select
+		count(*) from review
+	</select>
 
-	<!-- 마이리뷰 추가   -->
+
+	<!-- 마이리뷰 추가 -->
 	<insert parameterType="com.bc.model.vo.ReviewVO"
 		id="insertReview">
 
