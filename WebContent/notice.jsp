@@ -55,20 +55,22 @@
 		                                    <td>
 		                                        ${vo.wDate }
 		                                    </td>
-		                      				<td style="width: 10%;">
-		                                        <a href="NoticeUpdate?nNum=${vo.nNum }&subject=${vo.subject }&content=${vo.content}" class="table-link">
-		                                            <span class="fa-stack">
-		                                                <i class="fa fa-square fa-stack-2x"></i>
-		                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-		                                            </span>
-		                                        </a>
-		                                        <a href="#" class="table-link danger">
-		                                            <span class="fa-stack">
-		                                                <i class="fa fa-square fa-stack-2x"></i>
-		                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-		                                            </span>
-		                                        </a>
-		                                    </td>
+		                                    <c:if test="${id eq 'admin' }">
+			                      				<td style="width: 10%;">
+			                                        <a href="NoticeUpdate?nNum=${vo.nNum }&subject=${vo.subject }&content=${vo.content}" class="table-link">
+			                                            <span class="fa-stack">
+			                                                <i class="fa fa-square fa-stack-2x"></i>
+			                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+			                                            </span>
+			                                        </a>
+			                                        <a href="#" class="table-link danger">
+			                                            <span class="fa-stack">
+			                                                <i class="fa fa-square fa-stack-2x"></i>
+			                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+			                                            </span>
+			                                        </a>
+			                                    </td>
+		                                    </c:if>
 	                               		</tr>
 										
 										</c:forEach>
@@ -86,11 +88,13 @@
     <div class="text-center">
 	    
     </div>
-    <div class="text-right">
-	    <form action="Notice" method="post">
-	      <input type="submit" class="btn btn-light text-right" value="글 쓰기">
-	    </form>
-    </div>
+    <c:if test="${id eq 'admin' }">
+	    <div class="text-right">
+		    <form action="Notice" method="post">
+		      <input type="submit" class="btn btn-light text-right" value="글 쓰기">
+		    </form>
+	    </div>
+   </c:if>
     <ul class="pagination">
 				<%--[이전으로]에 대한 사용여부 처리 --%>
 				<c:choose>

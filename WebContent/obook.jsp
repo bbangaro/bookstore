@@ -73,9 +73,11 @@
 				    	<c:if test="${not empty list1 }">
 				    	<c:forEach var="vo" items="${list1 }">
 				    	<div class="col-3">
-				    		<img src="bookimg/${vo.bImage }" class="img-thumbnail" width="150">
-				    			<p class="p-0 mb-0">${vo.bName }</p>
-				    		<small>${vo.writerName }</small>
+					    	<a href="detail/Page?bCode=${vo.bCode }">
+					    		<img src="bookimg/${vo.bImage }" class="img-thumbnail" width="150">
+					    			<p class="p-0 mb-0">${vo.bName }</p>
+					    		<small>${vo.writerName }</small>
+					    	</a>
 				    	</div>
 					    </c:forEach>	
 					    </c:if>
@@ -93,9 +95,11 @@
 				    	<c:if test="${not empty list2 }">
 				    	<c:forEach var="vo" items="${list2 }">
 				    	<div class="col-3">
-				    		<img src="bookimg/${vo.bImage }" class="img-thumbnail" width="150">
-				    			<p class="p-0 mb-0">${vo.bName }</p>
-				    		<small>${vo.writerName }</small>
+				    		<a href="detail/Page?bCode=${vo.bCode }">
+					    		<img src="bookimg/${vo.bImage }" class="img-thumbnail" width="150">
+					    			<p class="p-0 mb-0">${vo.bName }</p>
+					    		<small>${vo.writerName }</small>
+				    		</a>
 				    	</div>
 					    </c:forEach>	
 					    </c:if>
@@ -113,9 +117,11 @@
 				    <c:if test="${not empty list3 }">
 				    	<c:forEach var="vo" items="${list3 }">
 				    	<div class="col-3">
-				    		<img src="bookimg/${vo.bImage }" class="img-thumbnail" width="150">
-				    			<p class="p-0 mb-0">${vo.bName }</p>
-				    		<small>${vo.writerName }</small>
+				   			<a href="detail/Page?bCode=${vo.bCode }">
+					    		<img src="bookimg/${vo.bImage }" class="img-thumbnail" width="150">
+					    			<p class="p-0 mb-0">${vo.bName }</p>
+					    		<small>${vo.writerName }</small>
+				    		</a>
 				    	</div>
 					    </c:forEach>	
 					    </c:if>
@@ -133,9 +139,11 @@
 				    	<c:if test="${not empty list4 }">
 				    	<c:forEach var="vo" items="${list4 }">
 				    	<div class="col-3">
-				    		<img src="bookimg/${vo.bImage }" class="img-thumbnail" width="150">
-				    			<p class="p-0 mb-0">${vo.bName }</p>
-				    		<small>${vo.writerName }</small>
+				    		<a href="detail/Page?bCode=${vo.bCode }">
+					    		<img src="bookimg/${vo.bImage }" class="img-thumbnail" width="150">
+					    			<p class="p-0 mb-0">${vo.bName }</p>
+					    		<small>${vo.writerName }</small>
+				    		</a>
 				    	</div>
 					    </c:forEach>	
 					    </c:if>
@@ -153,9 +161,11 @@
 				    	<c:if test="${not empty list5 }">
 				    	<c:forEach var="vo" items="${list5 }">
 				    	<div class="col-3">
-				    		<img src="bookimg/${vo.bImage }" class="img-thumbnail" width="150">
-				    			<p class="p-0 mb-0">${vo.bName }</p>
-				    		<small>${vo.writerName }</small>
+				    		<a href="detail/Page?bCode=${vo.bCode }">
+					    		<img src="bookimg/${vo.bImage }" class="img-thumbnail" width="150">
+					    			<p class="p-0 mb-0">${vo.bName }</p>
+					    		<small>${vo.writerName }</small>
+				    		</a>
 				    	</div>
 					    </c:forEach>	
 					    </c:if>

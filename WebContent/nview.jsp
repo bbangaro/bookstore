@@ -48,6 +48,7 @@
 		</div>		
 		</c:if>
 	</div>
+	<c:if test="${id eq 'admin' }">
 	<div class="container text-center mt-3">
 	<a href="NoticeUpdate?nNum=${vo.nNum }&subject=${vo.subject }&content=${vo.content}">
 		<button type="button" class="btn btn-light">수정</button>
@@ -56,17 +57,9 @@
 		<button type="button" class="btn btn-light">삭제</button>
 	</a>
 	</div>
-	
+	</c:if>
 	<%@ include file="include/bottom.jsp" %>
 	
-	<script>
-			$("#already").click(function(){
-				$.ajax
-			})	
-			
-		
-		
-	</script>
 	
 </body>
 </html>
