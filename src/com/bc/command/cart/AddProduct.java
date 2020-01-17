@@ -7,6 +7,9 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.catalina.ant.SessionsTask;
 
 import com.bc.model.dao.CartDAO;
 import com.bc.model.vo.CartVO;
@@ -15,26 +18,26 @@ public class AddProduct implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession(true);
 		
-		//String bCode = request.getParameter("bCode");
-		//int bType = Integer.parseInt(request.getParameter("bType"));
-		String bCode = "17"; //코드랑 타입 넘겨받기!!!!!!!!!!!1
+		String memberId = (String)session.getAttribute("id");
+		String bCode = (String)session.getAttribute("b_Code");
+		//int bType = (Integer)session.getAttribute("bType");
 		int bType = 1;
+		
 		CartVO vo = new CartVO();
 		vo.setbCode(bCode);
 		vo.setbType(bType);
-		vo.setMemberId("hh12");
+		vo.setMemberId(memberId);
 		
 		int count = CartDAO.findProduct(vo);
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("bType", bType);
 		map.put("bCode", bCode);
-		map.put("count", 3); //개수 수정!!!!!!!!!!!!!!!
-		map.put("memberId", "hh12");
+		map.put("count", 1); //개수 수정!!!!!!!!!!!!!!!
+		map.put("memberId", memberId);
 		
-		
-		//가격 총 합계 조정 추가해야함
 		if (count == 0) {
 			CartDAO.insertCart(map);
 		} else {

@@ -16,12 +16,27 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <script>
-	function setCount() {
-		location.href = "SetCountController";
+	function setCount(bCode, bType) {
+		var quantity = $("#quantity"+bCode).val();
+		
+		var isUpdate = confirm("정말 수정하시겠습니까?");
+		
+		if (isUpdate) {
+			location.href = "SetCountController?bCode="+bCode+"&bType="+bType+"&quantity="+quantity;
+		} else {
+			history.go(0);
+		}
+		
 	}
 	
-	function deleteProduct() {
-		location.href = "DeleteProductController";
+	function deleteProduct(bCode, bType) {
+		var isDelete = confirm("정말 삭제하시겠습니까?");
+		
+		if (isDelete) {
+			location.href = "DeleteProductController?bCode="+bCode+"&bType="+bType;
+		} else {
+			history.go(0);
+		}
 	}
 </script>
 
@@ -75,13 +90,13 @@
 								</td>
 								<td data-th="Price">${cvo.price }원<br>(${cvo.salePrice }원)</td>
 								<td data-th="Quantity">
-									<input type="number" class="form-control text-center" value="${cvo.productsCount }" name="quantity">
+									<input type="number" class="form-control text-center" value="${cvo.productsCount }" name="quantity" id="quantity${cvo.bCode }" min="0" max="10">
 								</td>
 								<td data-th="Subtotal" class="text-center">${cvo.salePrice * cvo.productsCount }원</td>
 								<c:set var="total" value="${total + cvo.salePrice * cvo.productsCount }"/>
 								<td class="actions" data-th="">
-									<button class="btn btn-info btn-sm" onclick="setCount()"><i class="fa fa-refresh"></i></button>
-									<button class="btn btn-danger btn-sm" onclick="deleteProduct()"><i class="fa fa-trash-o"></i></button>								
+									<button class="btn btn-info btn-sm" onclick="setCount(${cvo.bCode}, ${cvo.bType})"><i class="fa fa-refresh"></i></button>
+									<button class="btn btn-danger btn-sm" onclick="deleteProduct(${cvo.bCode}, ${cvo.bType})"><i class="fa fa-trash-o"></i></button>								
 								</td>
 							</tr>
 						</c:forEach>	

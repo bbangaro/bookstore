@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bc.model.dao.CartDAO;
 import com.bc.model.vo.CartVO;
@@ -14,23 +15,25 @@ public class DeleteProduct implements Command {
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//String bCode = request.getParameter("bCode");
-		// int bType = Integer.parseInt(request.getParameter("bType"));
-		String bCode = "19"; // 코드랑 타입 넘겨받기!!!!!!!!!!!1
-		int bType = 1;
+		HttpSession session = request.getSession(true);
+		
+		String memberId = (String)session.getAttribute("id");
+		
+		String bCode = request.getParameter("bCode");
+		int bType = Integer.parseInt(request.getParameter("bType"));
+
 		CartVO vo = new CartVO();
 		vo.setbCode(bCode);
 		vo.setbType(bType);
-		vo.setMemberId("test1");
+		vo.setMemberId(memberId);
 		
 		int count = CartDAO.findProduct(vo);
 		
-		//총 합계 금액 변경해야함!!!!!!!
 		if (count > 0) {
 			CartDAO.deleteProduct(vo);
 		}
 		
-		return "cart.jsp";
+		return "CartListController";
 	}
 
 }
