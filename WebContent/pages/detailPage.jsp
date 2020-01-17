@@ -11,9 +11,10 @@
 <title>책이름</title>
 
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script src="http://code.jquer.com/jquery-latest.min.js"></script>
 <script>
-	function eBook(){
-		location.href="/bookstore/eBookListController";
+	function eBook() {
+		location.href = "/bookstore/eBookListController?bCode=${param.bCode }";
 	}
 </script>
 
@@ -30,13 +31,14 @@ header ul {
 	padding-left: 0px;
 }
 
-.img-size {
-	height: 280px;
-	width: 100%;
-}
-
 .header-book {
 	display: flex;
+	height: 500px;
+	width: 500px;
+}
+
+.tit {
+	margin-right: 150px;
 }
 
 header button {
@@ -111,12 +113,12 @@ hr {
 
 <body>
 
-<c:set var="b_Code" value="${param.bCode}" scope="session"></c:set>
- <%@ include file="../include/top.jsp"%> 
+	<c:set var="b_Code" value="${param.bCode}" scope="session"></c:set>
+	<%@ include file="../include/top.jsp"%>
 	<header>
 		<div class="header-book">
 			<div>
-				<a><img class="img-size"
+				<a><img width="100%" height="100%"
 					src="../bookimg/${requestScope.bookvo.bImage }" alt=""></a>
 			</div>
 
@@ -139,13 +141,14 @@ hr {
 					</ul>
 				</div>
 				<div>
-					<button class="btn" onclick="location.href ='/bookstore/AddProductController'">
+					<button class="btn"
+						onclick="location.href ='/bookstore/AddProductController'">
 						<i class="fas fa-cart-arrow-down"></i>장바구니담기
 					</button>
 					<button class="btn">
 						<i class="far fa-credit-card"></i>바로구매
 					</button>
-					<button class="btn"  onclick="eBook()">
+					<button class="btn" onclick="eBook()">
 						<i class="fas fa-atlas"></i>E북으로 보기
 					</button>
 				</div>
@@ -167,7 +170,7 @@ hr {
 
 		<hr>
 
-	<div class="review" style="margin: 0 auto 0 auto;">
+		<div class="review" style="margin: 0 auto 0 auto;">
 			<div class="atc_area">
 				<div class="avg_area">
 					<h1>한줄 리뷰</h1>
@@ -184,10 +187,7 @@ hr {
 						제목 <input type="text" style="margin-bottom: 5px;"><br>
 						<textarea rows="5" cols="60" placeholder="내용 최대 4천자"
 							style="resize: none;"></textarea>
-							
-						
-						<button>리뷰쓰기</button>
-						
+						<button type="button" onclick="oneReviews()">리뷰쓰기</button>
 					</form>
 
 
@@ -195,7 +195,7 @@ hr {
 				<p class="subjcet">
 					<strong>제목</strong><strong>작성자</strong><strong>작성일</strong>
 				</p>
-			
+
 			</div>
 			<a href="javascript:void(0);" class="view_toggle _toggleExpandReview"
 				data-review-type="text"> <span class="mask"></span> <span
@@ -204,7 +204,7 @@ hr {
 
 
 
-				<h1>구매자 리뷰</h1>
+			<h1>구매자 리뷰</h1>
 			<table class="content-table">
 				<thead>
 					<tr>
@@ -224,8 +224,7 @@ hr {
 
 
 						<c:when test="${not empty reviewvo}">
-							<c:forEach var="vo" items="${reviewvo }"
-								varStatus="reviewvoNum">
+							<c:forEach var="vo" items="${reviewvo }" varStatus="reviewvoNum">
 								<tr>
 									<td>${vo.reviewNum}</td>
 									<td>${vo.memberId}</td>
@@ -234,21 +233,24 @@ hr {
 												<c:forEach begin="1" end="${vo.level}" step="1">
 													<span style="padding-left: 15px"></span>
 												</c:forEach>
-												<span style="margin-top:-50px;">↘</span>
+												<span style="margin-top: -50px;"></span>
 												<span>[답변]</span>
-																	<a href="/bookstore/detail/CheckForm?reviewNum=${vo.reviewNum }">${vo.subject}</a>
-															 	</c:when>
+												<a
+													href="/bookstore/detail/CheckForm?reviewNum=${vo.reviewNum }">${vo.subject}</a>
+											</c:when>
 											<c:otherwise>
-														<a  href="/bookstore/detail/CheckForm?reviewNum=${vo.reviewNum }">${vo.subject}</a>
+												<a
+													href="/bookstore/detail/CheckForm?reviewNum=${vo.reviewNum }">${vo.subject}</a>
 											</c:otherwise>
 										</c:choose></td>
-										<c:if test="${empty vo.upload }">
-											<td></td>
-										</c:if>
-										
-										<c:if test="${not empty vo.upload }">
-											<td><img width="100" height="100" src="../upload/${vo.upload}"></td> 
-										</c:if>
+									<c:if test="${empty vo.upload }">
+										<td></td>
+									</c:if>
+
+									<c:if test="${not empty vo.upload }">
+										<td><img width="100" height="100"
+											src="../upload/${vo.upload}"></td>
+									</c:if>
 								</tr>
 							</c:forEach>
 						</c:when>
@@ -256,40 +258,63 @@ hr {
 
 
 					</c:choose>
-					
+
 				</tbody>
 
 
 			</table>
-						<c:set var="page" value="${(param.pageNum == null)? 1: param.pageNum}"/>
-							<c:set var="startNum" value="${page-(page-1) % 5}"/>
-					<div style="display: block; text-align: center; margin-top:-10px;">
-						
-							<c:if test="${startNum > 1}">
-								<a href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+5}">이전</a>
-							</c:if>
-							<c:if test="${startNum <= 1 }">
-								<span onclick="alert('데이터가 없습니다')">이전</span>
-							</c:if> 
-							
-							<c:forEach var="i" begin="0" end="4">
-									<c:choose>
-									<c:when test="${startNum + i == param.pageNum }">
-									<a style="background-color: tomato;" href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+i}">${startNum + i}</a>
-									</c:when>
-									<c:otherwise>
-									<a  href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+i}">${startNum + i}</a>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>	
-								
-						 <c:if test="${startNum+5 < lastPage-1 }">
-								<a href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+5}">다음</a>
-							</c:if>
-							<c:if test="${startNum+5 >= lastPage-1 }">
-								<span onclick="alert('데이터가 없습니다')">다음</span>
-							</c:if> 
-					</div>
+			<c:set var="page"
+				value="${(param.pageNum == null)? 1: param.pageNum}" />
+			<c:set var="startNum" value="${page-(page-1) % 5}" />
+			<div style="display: block; text-align: center; margin-top: -10px;">
+
+				<c:if test="${startNum > 1}">
+					<a
+						href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum-1}">이전</a>
+				</c:if>
+				<c:if test="${startNum <= 1 }">
+					<span onclick="alert('데이터가 없습니다')">이전</span>
+				</c:if>
+				<c:choose>
+				<c:when  test="${startNum >= lastPage % 5-1}">
+				<c:forEach var="i" begin="0" end="${lastPage }">
+						<c:choose>
+							<c:when test="${startNum + i == param.pageNum }">
+								<a style="background-color: tomato;"
+									href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+i}">${startNum + i}</a>
+							</c:when>
+							<c:otherwise>
+								<a
+									href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+i}">${startNum + i}</a>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</c:when>
+				
+					<c:otherwise>
+					<c:forEach var="i" begin="0" end="4">
+						<c:choose>
+							<c:when test="${startNum + i == param.pageNum }">
+								<a style="background-color: tomato;"
+									href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+i}">${startNum + i}</a>
+							</c:when>
+							<c:otherwise>
+								<a
+									href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+i}">${startNum + i}</a>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					</c:otherwise>
+				</c:choose>
+
+				<c:if test="${startNum+5 < lastPage / 5-1 }">
+					<a
+						href="/bookstore/detail/Page?bCode=${param.bCode }&pageNum=${startNum+5}">다음</a>
+				</c:if>
+				<c:if test="${startNum+5 >= lastPage / 5-1 }">
+					<span onclick="alert('데이터가 없습니다')">다음</span>
+				</c:if>
+			</div>
 			<button onclick="location.href='/bookstore/detail/session'">리뷰쓰기</button>
 		</div>
 
@@ -301,7 +326,7 @@ hr {
 		<div class="main-book">
 			<div>반품/교환안내</div>
 			<!--테이블 -->
-			<table >
+			<table>
 				<tr>
 					<td>반품/교환 방법</td>
 					<td>"나의계정&gt;주문조회&gt;반품/교환신청", <a
@@ -367,30 +392,39 @@ hr {
 	<br>
 
 	<script>
-		var rating="";
-		function starmark(item){
-		var count = item.id[0];
-		
-		rating = count;			
-		var subid=item.id.substring(1);
-		var stars =document.querySelectorAll(".checked");
-		console.log(count);
+		var rating = "";
+		function starmark(item) {
+			var count = item.id[0];
 
-		for(var i=0;i<5; i++){
-			
-			if(i<count){
-				stars[i].style.color="orange";
-			}else{
-				stars[i].style.color="black";
+			rating = count;
+			var subid = item.id.substring(1);
+			var stars = document.querySelectorAll(".checked");
+			console.log(count);
+
+			for (var i = 0; i < 5; i++) {
+
+				if (i < count) {
+					stars[i].style.color = "orange";
+				} else {
+					stars[i].style.color = "black";
+				}
+
 			}
+		}
+		
+		
+		function oneReviews(){
+			alert("dd");
 			
 		}
-		}
+		
 	</script>
+	
+	
 
 
 
-	 <%@ include file="../include/bottom.jsp"%> 
+	<%@ include file="../include/bottom.jsp"%>
 
 
 </body>

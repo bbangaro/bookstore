@@ -49,7 +49,7 @@ public class detailPage extends HttpServlet {
 			detailPageReview_.put("bCode", Integer.parseInt(bCode));
 			detailPageReview_.put("pageNum", Integer.parseInt(pageNum));
 			
-			 int lastPage = TakDAO.detailPageReviewselect() / 5 ;
+			 int lastPage = TakDAO.detailPageReviewselect() ;
 			 
 			 System.out.println("1111111a"+lastPage);
 			
