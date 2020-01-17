@@ -43,6 +43,7 @@
 	<select id="Nall" resultType="com.bc.model.vo.BookVO" parameterType="string">
 		SELECT * FROM BOOK
 		WHERE L_CODE = #{lcode}
+		AND B_TYPE = 1
 	</select>
 	
 	<select id="searchList" resultType="com.bc.model.vo.BookVO" parameterType="map">
@@ -107,6 +108,7 @@
 				AND ROWNUM <= 4
 		]]>
 	</select>
+	
 	<select id="5list" resultType="com.bc.model.vo.BookVO" parameterType="map">
 		<![CDATA[
 			SELECT * FROM BOOK
@@ -120,6 +122,7 @@
 		SELECT * FROM BOOK 
 			WHERE H_CODE = #{hCode}
 			AND L_CODE = #{lCode}
+			AND B_TYPE = 1
 	</select>
 	
 </mapper>

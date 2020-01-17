@@ -52,6 +52,7 @@
 						 <div class="row">
 							 <div class="col">
 					            <input id="exampleFormControlInput1" type="text" placeholder="도서명, 출판사, 저자 검색" class="form-control form-control-underlined" name="search">
+					            
 					         </div>
 				         </div>
 			         </div>
@@ -130,7 +131,7 @@
 		    		<c:if test="${not empty list }">
 		    			<c:forEach var="vo" items="${list }">
 		    				<div class="col text-center">
-		    					<a href="#">
+		    					<a href="detail/Page?bCode=${vo.bCode }">
 			    					<img src="bookimg/${vo.bImage }" width="170"><br>
 			    					<p class="mt-2" style='color:black;'>${vo.bName }</p>
 			    					<small class="mt-0" style='color:gray;'>${vo.writerName }</small>
