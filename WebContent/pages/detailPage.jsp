@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+
 <!DOCTYPE html>
 <html>
 <%-- <c:set var="b_code" value="b_code" > --%>
@@ -20,6 +22,9 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 <script>
+	
+	console.log("${param.bCode}");
+	console.log(${param.bCode});
 	function eBook() {
 		location.href = "/bookstore/eBookListController?bCode=e${param.bCode }";
 	}
@@ -159,9 +164,12 @@ hr {
 					<button class="btn">
 						<i class="far fa-credit-card"></i>바로구매
 					</button>
+					
+					<c:if test="${fn:startsWith(param.bCode, 'e')}">
 					<button class="btn" onclick="eBook()">
 						<i class="fas fa-atlas"></i>E북으로 보기
 					</button>
+					</c:if>
 				</div>
 			</div>
 		</div>
