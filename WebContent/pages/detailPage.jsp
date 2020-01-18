@@ -7,11 +7,18 @@
 <%-- <c:set var="b_code" value="b_code" > --%>
 <head>
 <meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <title>책이름</title>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/jejugothic.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-<script src="http://code.jquer.com/jquery-latest.min.js"></script>
 <script>
 	function eBook() {
 		location.href = "/bookstore/eBookListController?bCode=${param.bCode }";
@@ -41,7 +48,7 @@ header ul {
 	margin-right: 150px;
 }
 
-.checke{
+.checke {
 	color: orange;
 }
 
@@ -118,11 +125,11 @@ hr {
 <body>
 
 	<c:set var="b_Code" value="${param.bCode}" scope="session"></c:set>
-	<%@ include file="../include/top.jsp"%>
+	<%@ include file="../include/top.jsp"%> 
 	<header>
 		<div class="header-book">
 			<div>
-				<a><img width="100%" height="100%"
+				<a><img
 					src="../bookimg/${requestScope.bookvo.bImage }" alt=""></a>
 			</div>
 
@@ -178,7 +185,7 @@ hr {
 			<div class="atc_area">
 				<div class="avg_area">
 					<h1>한줄 리뷰</h1>
-					<form  action="/bookstore/startingAjax">
+					<form action="/bookstore/startingAjax">
 						<div class="box">
 							<span class="fa fa-star checked" onclick="starmark(this)"
 								id="1one"></span> <span class="fa fa-star checked"
@@ -189,48 +196,51 @@ hr {
 								onclick="starmark(this)" id="5one"></span>
 						</div>
 
-						제목 <input type="text"  name ="title" style="margin-bottom: 5px;"><br>
-						<textarea name="content" rows="5" cols="60" placeholder="내용 최대 4천자"
-							style="resize: none;"></textarea>
-						<button type="submit" name="star" value="1" formaction="/bookstore/startingAjax"">리뷰쓰기</button>
+						제목 <input type="text" class="star-title" name="title"
+							style="margin-bottom: 5px;"><br>
+						<textarea name="content" rows="5" cols="60" class="star-content"
+							placeholder="내용 최대 4천자" style="resize: none;"></textarea>
+						<button type="button" name="star" value="1" onclick="oneReviews()"
+							formaction="/bookstore/startingAjax"">리뷰쓰기</button>
 					</form>
 
 
 				</div>
-		
+
 				<table border="1">
-				
-					<tr>
-						<th><strong>번호</strong></th>
-						<th><strong>별점</strong></th>
-						<th><strong>제목</strong></th>
-						<th><strong>내용</strong></th>
-					</tr>
-					
-				<c:forEach var="list" items="${starList }"> 
-					<tr>
-					<td>${list.idx }</td>
-					<td>
-						<c:forEach var="i" begin="0" end="4">
-							<c:if test="${i <= list.star-1 }">
-								<span class="fa fa-star checke"></span>
-							</c:if>
-							<c:if test="${i > list.star-1 }">
-								<span class="fa fa-star "></span>
-							</c:if>
+					<thead>
+						<tr>
+							<th><strong>별점</strong></th>
+							<th><strong>제목</strong></th>
+							<th><strong>내용</strong></th>
+						</tr>
+					</thead>
+
+					<tbody class="starNext">
+						<c:forEach var="list" items="${starList }" varStatus="status">
+
+							<tr>
+								<td><c:forEach var="i" begin="0" end="4">
+										<c:if test="${i <= list.star-1 }">
+											<span class="fa fa-star checke"></span>
+										</c:if>
+										<c:if test="${i > list.star-1 }">
+											<span class="fa fa-star "></span>
+										</c:if>
+									</c:forEach>${list.star }점</td>
+
+								<td>${list.title}</td>
+								<td>${list.content}</td>
+							</tr>
 						</c:forEach>
-						
-		
-				${list.star}점
-					</td>
-					
-						<td>${list.title}</td>
-						<td>${list.content}</td>					
-					</tr>
-				</c:forEach>
-					
+					</tbody>
+
+
+
+
+
 				</table>
-		
+
 
 			</div>
 			<a href="javascript:void(0);" class="view_toggle _toggleExpandReview"
@@ -420,41 +430,79 @@ hr {
 			rating = count;
 			var subid = item.id.substring(1);
 			var stars = document.querySelectorAll(".checked");
-			var jumsu =  document.querySelector(".avg_area button");
+			var jumsu = document.querySelector(".avg_area button");
 			console.log(count);
 
 			for (var i = 0; i < 5; i++) {
 
 				if (i < count) {
 					stars[i].style.color = "orange";
-					jumsu.value  = i;
-					
+					jumsu.value = i + 1;
+
 				} else {
 					stars[i].style.color = "black";
 				}
-				
 
 			}
 		}
-		/*
-	  	function oneReviews(){
-			
-			var jumsu =  document.querySelector(".avg_area button");
-			$.ajax({
-				type:"post"
-				async:false,
-				url:$
-			})
-			
-		} */
+
+		function oneReviews() {
+
+			var star = $(".avg_area button").val();
+			var title = $(".star-title").val();
+			var content = $(".star-content").val();
+
 		
-	</script> 
+				$.ajax({
+						url : '/bookstore/startingAjax',
+						type : 'POST',
+						data : {
+							star : star,
+							title : title,
+							content : content
+						},
+						success : function(result) {
+
+							var starNext = $("<tr></tr>");
+						
+
+							var star = $(".avg_area button").val();
+							var title = $(".star-title").val();
+							var content = $(".star-content").val();
+
+							var td = $("<td></td>");
+								var text = "";
+									for (var i = 1; i <= 5; i++) { 
+										if(i <= star){
+											text += "<span class='fa fa-star checke'></span>"+'&nbsp';
+										}else{
+											text += "<span class='fa fa-star'></span>";
+										}
+									}
+							td.append(text+'&nbsp'+star+"점");
+
+							starNext.append(td);
+
+							var sartTitle = $('<td>' + title + '</td>');
+
+							starNext.append(sartTitle);
+
+							var sartContent = $('<td>' + content + '</td>');
+
+							starNext.append(sartContent);
+
+							$(".starNext").append(starNext);
+						}
+					});
+
+		}
+	</script>
 
 
 
 
 
-	<%@ include file="../include/bottom.jsp"%>
+ <%@ include file="../include/bottom.jsp"%> --%>
 
 
 </body>

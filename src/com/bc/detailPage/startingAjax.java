@@ -16,41 +16,46 @@ import com.bc.model.vo.starRatingVO;
 @WebServlet("/startingAjax")
 public class startingAjax extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public startingAjax() {
-        super();
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public startingAjax() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.getParameter("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+
 		HttpSession session = request.getSession();
 		String bCode = (String) session.getAttribute("b_Code");
+
 		String star = request.getParameter("star");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		
-		System.out.println("bCode"+bCode);
-		System.out.println("star"+star);
-		System.out.println("title"+title);
-		System.out.println("content"+content);
-		
+
+		System.out.println("bCode" + bCode);
+		System.out.println("star" + star);
+		System.out.println("title" + title);
+		System.out.println("content" + content);
+
 		starRatingVO starratinvo = new starRatingVO();
-		
+
 		starratinvo.setbCode(bCode);
 		starratinvo.setStar(star);
 		starratinvo.setTitle(title);
 		starratinvo.setContent(content);
-		
+
 		System.out.println(starratinvo);
-		
-		int i  = TakDAO.starInsert(starratinvo);
+
+		int i = TakDAO.starInsert(starratinvo);
 		PrintWriter pw = response.getWriter();
-		pw.print("<script>alert('리뷰쓰기완료 ');" + "location.href='/bookstore/detail/Page?bCode="
-				+ Integer.parseInt(bCode) + "'</script>");
+
+		pw.print("<tr>" + "<td>" + star + "</td>" + "<td>" + title + "</td>" + "<td>" + content + "</td>" + "</tr>");
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getParameter("utf-8");
-		response.setContentType("text/html; charset=utf-8");
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		request.setCharacterEncoding("utf-8");
 		doGet(request, response);
 	}
