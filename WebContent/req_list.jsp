@@ -5,25 +5,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/jejugothic.css">
-  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="csstemplate/bbs.css">
+<!-- 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/jejugothic.css">
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="csstemplate/bbs.css">
+ -->
+ 
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <script>
 	
 	function getDataBtn(requestNum) { 
 			getXMLMembers(requestNum);
 	};	
-
 	
 	function getXMLMembers(requestNum){
 		const numUrl = "getXmlRequest?requestNum=" + requestNum;
@@ -65,7 +66,6 @@
 		reqComment(requestNum);
 	}
 	
-
 	function commentInsert(requestNum) {
 		let selector = "#content"+requestNum;
 		
@@ -122,8 +122,6 @@
 				}
 			});
 		}
-
-
 	function commentDelete(cIdx, requestNum) {
 		console.log("cIdx"+cIdx);
 		console.log("$(cIdx)"+$(cIdx));
@@ -167,13 +165,13 @@
 				commentTbody += "<input class='form-control' placeholder='Add a comment' type='text' name='content' id='content"+requestNum+"'>";
 				commentTbody += "</div>";
 				commentTbody += "<span class='input-group-addon'> <button type='button' onclick='commentInsert("+requestNum+")'>댓글달기</button> </span>";
-
 				commentTbody += "<input type='hidden' name='requestNum' value="+requestNum+">";
 				commentTbody += "<input type='hidden' name='memberId' value='${sessionScope.id}'>";
 				commentTbody += "<input type='hidden' name='password' value='${sessionScope.password}'>";
 				commentTbody += "</form> ";
 				
 			$(data).find("comment").each(function(){
+				
 				commentTbody += "<ul class='comments-list'>";
 				commentTbody += "<li class='comment'><a class='pull-left' href='#'> <img class='avatar' src='http://bootdey.com/img/Content/user_1.jpg' alt='avatar'> </a>";
 				commentTbody += "<div class='comment-body'>";
@@ -182,11 +180,13 @@
 				commentTbody += "<h5 class='time'>5 minutes ago</h5>";
 				commentTbody += "</div>";
 				commentTbody += "<div class='commentList"+ $(this).find("cIdx").text()+"'> <p>"+ $(this).find("cComment").text() +"</p>";
+				if("${sessionScope.id}" ==  $(this).find("cId").text() ) {
 				commentTbody += "<span class='input-group-addon'> <button type='button' onclick='commentUpdate("+$(this).find("cIdx").text()+","+requestNum+")'>수정</button> ";
 				commentTbody += "<button type='button' onclick='commentDelete("+ $(this).find("cIdx").text()+","+requestNum+")'>삭제</button> </span></div>";
+				}
 				commentTbody += "</div></li>";
 				commentTbody += "</ul>";
-			});
+				});
 				commentTbody += "</div>";
 				commentTbody += "</div>";
 				commentTbody += "</div>";
@@ -263,7 +263,6 @@ a {
     float: left;
     margin-right: 15px;
 }
-
 .table thead tr th {
     text-transform: uppercase;
     font-size: 0.875em;
@@ -281,7 +280,6 @@ a {
     border-top: 1px solid #e7ebee;
     padding: 12px 8px;
 }
-
 .table tfoot {
     border-bottom: 2px solid #e7ebee;
     font-size: 1.125em;
@@ -291,112 +289,88 @@ a {
     border-top: 1px solid #e7ebee;
     padding: 12px 8px;
 }
-<%--코멘트 스타일--%>
-.panel-shadow {
-	box-shadow: rgba(0, 0, 0, 0.3) 7px 7px 7px;
-}
 
+<%--코멘트 스타일--%>
 .panel-white {
 	border: 1px solid #dddddd;
 }
-
 .panel-white  .panel-heading {
 	color: #333;
 	background-color: #fff;
 	border-color: #ddd;
 }
-
 .panel-white  .panel-footer {
 	background-color: #fff;
 	border-color: #ddd;
 }
-
 .post .post-heading {
 	height: 95px;
 	padding: 20px 15px;
 }
-
 .post .post-heading .avatar {
 	width: 60px;
 	height: 60px;
 	display: block;
 	margin-right: 15px;
 }
-
 .post .post-heading .meta .title {
 	margin-bottom: 0;
 }
-
 .post .post-heading .meta .title a {
 	color: black;
 }
-
 .post .post-heading .meta .title a:hover {
 	color: #aaaaaa;
 }
-
 .post .post-heading .meta .time {
 	margin-top: 8px;
 	color: #999;
 }
-
 .post .post-image .image {
 	width: 100%;
 	height: auto;
 }
-
 .post .post-description {
 	padding: 15px;
 }
-
 .post .post-description p {
 	font-size: 14px;
 }
-
 .post .post-description .stats {
 	margin-top: 20px;
 }
-
 .post .post-description .stats .stat-item {
 	display: inline-block;
 	margin-right: 15px;
 }
-
 .post .post-description .stats .stat-item .icon {
 	margin-right: 8px;
 }
-
 .post .post-footer {
 	border-top: 1px solid #ddd;
 	padding: 15px;
 }
-
 .post .post-footer .input-group-addon a {
 	color: #454545;
 }
-
 .post .post-footer .comments-list {
 	padding: 0;
 	margin-top: 20px;
 	list-style-type: none;
 }
-
 .post .post-footer .comments-list .comment {
 	display: block;
 	width: 100%;
 	margin: 20px 0;
 }
-
 .post .post-footer .comments-list .comment .avatar {
 	width: 35px;
 	height: 35px;
 }
-
 .post .post-footer .comments-list .comment .comment-heading {
 	display: block;
 	width: 100%;
 }
-
 .post .post-footer .comments-list .comment .comment-heading .user {
 	font-size: 14px;
 	font-weight: bold;
@@ -404,22 +378,18 @@ a {
 	margin-top: 0;
 	margin-right: 10px;
 }
-
 .post .post-footer .comments-list .comment .comment-heading .time {
 	font-size: 12px;
 	color: #aaa;
 	margin-top: 0;
 	display: inline;
 }
-
 .post .post-footer .comments-list .comment .comment-body {
 	margin-left: 50px;
 }
-
 .post .post-footer .comments-list .comment>.comments-list {
 	margin-left: 50px;
 }
-
 </style>
 
 </head>
@@ -504,57 +474,54 @@ a {
                             </tbody>
                             
                         </table>
-                           <tfoot>
-                                	<tr>
-                                		<td colspan="4">
-											<ol class="paging">
-											<%--[이전으로]에 대한 사용여부 처리 --%>
-											<c:choose>
-												<%--사용불가(disable) : 첫번째 블록인 경우 --%>
-												<c:when test="${pvo.beginPage == 1}">
-													<li class="disable">이전으로</li>
-												</c:when>
-												<c:otherwise>
-													<li>
-														<a href="ReqListController?cPage=${pvo.beginPage - 1}">이전으로</a>
-													</li>
-												</c:otherwise>
-											</c:choose>
-											
-											<%-- 블록내에 표시할 페이지 표시(시작페이지~끝페이지) --%>
-											<c:forEach var="k" begin="${pvo.beginPage }" end="${pvo.endPage }">
-											<c:choose>
-												<c:when test="${k == pvo.nowPage}">
-													<li class="now">${k }</li>
-												</c:when>
-												<c:otherwise>
-													<li>
-														<a href="ReqListController?cPage=${k}">${k}</a>
-													</li> 
-												</c:otherwise>
-											</c:choose>
-											</c:forEach>
-											
-											<%--[다음으로]에 대한 사용여부 처리 --%>
-											<c:choose>
-												<%--사용불가(disable) : 
-													endPage가 전체페이지 수보다  크거나 같으면 --%>
-												<c:when test="${pvo.endPage >= pvo.totalPage }">
-													<li class="disable">다음으로</li>
-												</c:when>
-												<c:otherwise>
-													<li><a href="ReqListController?cPage=${pvo.endPage + 1}">다음으로</a></li>
-												</c:otherwise>
-											</c:choose>
-											</ol>	
-										</td>
-                                	</tr>
-                            </tfoot>		
+                        
+                    
                     </div>
                 </div>
+                  <nav>
+								<ul class="pagination">
+								<%--[이전으로]에 대한 사용여부 처리 --%>
+								<c:choose>
+									<%--사용불가(disable) : 첫번째 블록인 경우 --%>
+									<c:when test="${pvo.beginPage == 1}">
+										<li class="disabled"><span aria-hidden="true">이전</span></li>
+									</c:when>
+									<c:otherwise>
+										<li class="disabled"><a href="ReqListController?cPage=${pvo.beginPage - 1}" aria-label="Previous"><span aria-hidden="true">이전</span></a></li>
+									</c:otherwise>
+								</c:choose>
+								
+								<%-- 블록내에 표시할 페이지 표시(시작페이지~끝페이지) --%>
+								<c:forEach var="k" begin="${pvo.beginPage }" end="${pvo.endPage }">
+								<c:choose>
+									<c:when test="${k == pvo.nowPage}">
+										<li class="active">${k } <span class="sr-only">${k }</span></li>
+									</c:when>
+									<c:otherwise>
+										<li class="disabled"><a href="ReqListController?cPage=${k}">${k } <span class="sr-only">${k }</span></a></li>
+									</c:otherwise>
+								</c:choose>
+								</c:forEach>
+								
+								<%--[다음으로]에 대한 사용여부 처리 --%>
+								<c:choose>
+									<%--사용불가(disable) : 
+										endPage가 전체페이지 수보다  크거나 같으면 --%>
+									<c:when test="${pvo.endPage >= pvo.totalPage }">
+										<li class="disabled"><span aria-hidden="true">다음</span></li>
+									</c:when>
+									<c:otherwise>
+										<li class="disabled"><a href="ReqListController?cPage=${pvo.endPage + 1}" aria-label="Previous"><span aria-hidden="true">다음</span></a></li>
+									</c:otherwise>
+								</c:choose>
+								</ul>	
+                          	</nav>
             </div>
+            
         </div>
+        
     </div>
+    
 </div>
 <br><br><br><br><br><br><br><br><br><br><br><br>
 <%@ include file="include/bottom.jsp" %>

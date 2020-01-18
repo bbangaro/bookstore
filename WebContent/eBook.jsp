@@ -8,250 +8,22 @@
 <meta charset="UTF-8">
 
 <title>eBook 페이지</title>
- <script src="https://code.jquery.com/jquery-3.4.1.min.js"> </script>
- 
-<script>
-$(function(){
-  
-	
-	
-    
-    
-});	
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"> </script>
 
+<!-- 이북 css -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/ebook.css" />
+<!-- 이북 스크립트  -->
+<script src="${pageContext.request.contextPath}/ebook.js"></script>
 
-</script>
-
-<style>
-.book, .book img, .book::after, .book::before {
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-body, html {
-	width: 100%;
-	height: 100%;
-	display: table;
-	text-align: center;
-}
-body {
-	background: #fde3a7;
-}
-ul {
-	display: table-cell;
-	vertical-align: middle;
-}
-.list-inline {
-	padding-left: 0;
-	list-style: none;
-}
-.list-inline>li {
-	display: inline-block;
-	margin-left: 2em;
-}
-.list-inline>li:first-child {
-	margin-left: 0;
-}
-.book {
-	cursor: pointer;
-	display: block;
-	width: 500px;
-	height: 770px;
-	position: relative;
-	background: white;
-	z-index: 1;
-	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 9px 20px 0
-		rgba(0, 0, 0, 0.25);
-	overflow: hidden;
-	transition: box-shadow .3s linear;
-}
-
-.book img {
-	width: inherit;
-	height: inherit;
-	-webkit-transform-origin: 0 50%;
-	transform-origin: 0 50%;
-	-webkit-transform: rotateY(0);
-	transform: rotateY(0);
-	transition: all .45s ease;
-}
-.book:hover {
-	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25), 0 9px 20px 0
-		rgba(0, 0, 0, 0.45);
-}
-.book:hover img {
-	-webkit-transform: rotateY(-25deg);
-	transform: rotateY(-25deg);
-	box-shadow: 1px 1px 5px 5px rgba(0, 0, 0, 0.2);
-}
-.book::after, .book::before {
-	content: '';
-	display: block;
-	width: inherit;
-	height: inherit;
-	position: absolute;
-	z-index: -1;
-	top: 0;
-	background: white;
-	border: 1px solid #d9d9d9;
-}
-.book::before {
-	left: -3px;
-}
-
-.book::after {
-	left: -6px;
-}
-<!-- -->
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
-@import url(https://fonts.googleapis.com/css?family=Lora);
-[class*=" imghvr-"],
-[class^="imghvr-"] {
-  font-family: Montserrat, sans-serif;
-  position: relative;
-  display: inline-block;
-  margin: 0;
-  max-width: 100%;
-  background-color: rgba(230, 230, 230, 0.7);
-  color: #666;
-  overflow: hidden;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-}
-[class*=" imghvr-"] img,
-[class^="imghvr-"] img {
-  vertical-align: top;
-  max-width: 100%;
-}
-[class*=" imghvr-"] figcaption,
-[class^="imghvr-"] figcaption {
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 20px;
-  position: absolute;
-  top: 15px;
-  bottom: 15px;
-  left: 15px;
-  right: 15px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-[class*=" imghvr-"] h3,
-[class*=" imghvr-"] p,
-[class^="imghvr-"] h3,
-[class^="imghvr-"] p {
-  margin: 0;
-  padding: 0;
-}
-[class*=" imghvr-"] h3,
-[class^="imghvr-"] h3 {
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 2px;
-}
-[class*=" imghvr-"] p,
-[class^="imghvr-"] p {
-  font-family: Lora, sans-serif;
-  font-size: 0.9em;
-}
-[class*=" imghvr-"] a,
-[class^="imghvr-"] a {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-}
-[class*=" imghvr-"],
-[class*=" imghvr-"] *,
-[class*=" imghvr-"] :after,
-[class*=" imghvr-"] :before,
-[class*=" imghvr-"]:after,
-[class*=" imghvr-"]:before,
-[class^="imghvr-"],
-[class^="imghvr-"] *,
-[class^="imghvr-"] :after,
-[class^="imghvr-"] :before,
-[class^="imghvr-"]:after,
-[class^="imghvr-"]:before {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-transition: all 0.35s ease;
-  transition: all 0.35s ease;
-}
-.imghvr-fade figcaption,
-.imghvr-fade:hover img {
-  opacity: 0;
-}
-.imghvr-fade:hover figcaption {
-  opacity: 1;
-}
-
-[class*=" imghvr-scale-"]:before,
-[class^="imghvr-scale-"]:before {
-  background-color: inherit;
-  top: 15px;
-  bottom: 15px;
-  left: 15px;
-  right: 15px;
-  position: absolute;
-  content: "";
-}
-[class*=" imghvr-scale-"] figcaption,
-[class^="imghvr-scale-"] figcaption {
-  opacity: 0;
-}
-[class*=" imghvr-scale-"]:hover:before,
-[class^="imghvr-scale-"]:hover:before {
-  top: 15px;
-  bottom: 15px;
-  left: 15px;
-  right: 15px;
-  opacity: 0.9;
-}
-[class*=" imghvr-scale-"]:hover figcaption,
-[class^="imghvr-scale-"]:hover figcaption {
-  opacity: 1;
-  -webkit-transition-delay: 0.25s;
-  transition-delay: 0.25s;
-}
-.imghvr-scale-top-left:before {
-  bottom: 100%;
-  right: 100%;
-}
-.imghvr-scale-top-right:before {
-  bottom: 100%;
-  left: 100%;
-}
-
-[class*=" imghvr-fall-away-"],
-[class^="imghvr-fall-away-"] {
-  -webkit-perspective: 50em;
-  perspective: 50em;
-}
-[class*=" imghvr-fall-away-"] img,
-[class^="imghvr-fall-away-"] img {
-  -webkit-transform-origin: 50% 50%;
-  -ms-transform-origin: 50% 50%;
-  transform-origin: 50% 50%;
-  -webkit-transition: all 0.45s ease-in;
-  transition: all 0.45s ease-in;
-}
-
-
-
-	
-</style>
-
-
+<!-- 부투스트랩꺼 쓰려면 이거 있어야 함 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 
 </head>
 <body>
-	<h1>${book.bImage }</h1>
-	<h1>${book.bCode }</h1>
-
+	<%-- 
+<div class="row">
 	<ul class='list-inline'>
 		<li class='book'>
 	   		<img src="images/${book.bImage }" width="800px" height="1200px"/>
@@ -262,25 +34,74 @@ ul {
 			</li>
 		</c:forEach>
 	</ul>
+</div>
+ --%>
+	<!-- 이걸루ㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜ  -->
+	<!-- div row는 한줄 무적권 차지하게 해줌 -->
 
-<!--  
-        <div class="demo">
-          <figure class="imghvr-scale-top-left"><img src="images/${book.bImage }" >
-            <figcaption>
-              <p><img src="ebookImages/63(1).jpg" ></p>
-            </figcaption><a href="javascript:;"></a>
-          </figure>
-        </div>
-        <div class="demo">
-       
-        <div class="demo">
-          <figure class="imghvr-scale-top-right"><img src="ebookImages/63(1).jpg" alt="54">
-            <figcaption>
-               <p><img src="ebookImages/63(2).jpg" ></p>
-            </figcaption><a href="javascript:;"></a>
-          </figure>
-        </div>
+	<div class="row">
 
--->
+		<div class="slider book">
+			<div class="slide_viewer">
+				<div class="slide_group">
+				
+					<div class="slide">
+						<img src="images/${book.bImage }">
+					</div>
+			
+					
+					<c:forEach var="list" items="${list}">
+					
+					
+							
+					<div class="slide">
+						<span class="glyphicon glyphicon-play-circle" onclick="playEbook(${book.eNum })" ></span>
+						<img src="ebookImages/${list.eImage }" />
+					</div>
+					
+												
+					</c:forEach>
+				
+					
+
+				</div>
+			</div>
+		</div>
+		<!-- End // .slider -->
+
+		<div class="slide_buttons"></div>
+
+		<div class="directional_nav">
+			<div class="previous_btn" title="Previous">
+				<span class="glyphicon glyphicon-chevron-left"  aria-hidden="true"></span>
+      <g>
+        <g>
+          <path fill="#474544"
+						d="M-10.5,22.118C-10.5,4.132,4.133-10.5,22.118-10.5S54.736,4.132,54.736,22.118
+			c0,17.985-14.633,32.618-32.618,32.618S-10.5,40.103-10.5,22.118z M-8.288,22.118c0,16.766,13.639,30.406,30.406,30.406 c16.765,0,30.405-13.641,30.405-30.406c0-16.766-13.641-30.406-30.405-30.406C5.35-8.288-8.288,5.352-8.288,22.118z" />
+          <path fill="#474544"
+						d="M25.43,33.243L14.628,22.429c-0.433-0.432-0.433-1.132,0-1.564L25.43,10.051c0.432-0.432,1.132-0.432,1.563,0	c0.431,0.431,0.431,1.132,0,1.564L16.972,21.647l10.021,10.035c0.432,0.433,0.432,1.134,0,1.564	c-0.215,0.218-0.498,0.323-0.78,0.323C25.929,33.569,25.646,33.464,25.43,33.243z" />
+        </g>
+      </g>
+    </svg>
+			</div>
+			<div class="next_btn" title="Next">
+				<span class="glyphicon glyphicon-chevron-right"  aria-hidden="true"></span>
+      <g>
+        <g>
+          <path fill="#474544"
+						d="M22.118,54.736C4.132,54.736-10.5,40.103-10.5,22.118C-10.5,4.132,4.132-10.5,22.118-10.5	c17.985,0,32.618,14.632,32.618,32.618C54.736,40.103,40.103,54.736,22.118,54.736z M22.118-8.288	c-16.765,0-30.406,13.64-30.406,30.406c0,16.766,13.641,30.406,30.406,30.406c16.768,0,30.406-13.641,30.406-30.406 C52.524,5.352,38.885-8.288,22.118-8.288z" />
+          <path fill="#474544"
+						d="M18.022,33.569c 0.282,0-0.566-0.105-0.781-0.323c-0.432-0.431-0.432-1.132,0-1.564l10.022-10.035 			L17.241,11.615c 0.431-0.432-0.431-1.133,0-1.564c0.432-0.432,1.132-0.432,1.564,0l10.803,10.814c0.433,0.432,0.433,1.132,0,1.564 L18.805,33.243C18.59,33.464,18.306,33.569,18.022,33.569z" />
+        </g>
+      </g>
+    </svg>
+			</div>
+
+		</div>
+	</div>
+
+
+
 </body>
 </html>

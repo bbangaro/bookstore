@@ -21,7 +21,7 @@
 
 <script>
 	function eBook() {
-		location.href = "/bookstore/eBookListController?bCode=${param.bCode }";
+		location.href = "/bookstore/eBookListController?bCode=e${param.bCode }";
 	}
 </script>
 
@@ -130,7 +130,7 @@ hr {
 		<div class="header-book">
 			<div>
 				<a><img
-					src="../bookimg/${requestScope.bookvo.bImage }" alt=""></a>
+					src="../bookimg/${requestScope.bookvo.bImage }" width="150px" height="220px" alt=""></a>
 			</div>
 
 			<div class="header-book-title">
