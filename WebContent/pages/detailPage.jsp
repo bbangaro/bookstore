@@ -165,11 +165,9 @@ hr {
 						<i class="far fa-credit-card"></i>바로구매
 					</button>
 					
-					<c:if test="${fn:startsWith(param.bCode, 'e')}">
 					<button class="btn" onclick="eBook()">
-						<i class="fas fa-atlas"></i>E북으로 보기
+						<i class="fas fa-atlas"></i>E/오디오북으로 보기
 					</button>
-					</c:if>
 				</div>
 			</div>
 		</div>

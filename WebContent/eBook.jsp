@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 
 <title>eBook 페이지</title>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"> </script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <!-- 이북 css -->
 <link rel="stylesheet"
@@ -49,13 +49,14 @@
 						<img src="images/${book.bImage }">
 					</div>
 			
+					<audio id="bookAudio" src="" hidden></audio>		
 					
 					<c:forEach var="list" items="${list}">
 					
 					
 							
 					<div class="slide">
-						<span class="glyphicon glyphicon-play-circle" onclick="playEbook(${book.eNum })" ></span>
+						<span class="glyphicon glyphicon-play-circle" onclick="playEbook(${list.eNum}, '${list.eText}')" ></span>
 						<img src="ebookImages/${list.eImage }" />
 					</div>
 					
@@ -102,6 +103,8 @@
 	</div>
 
 
+<script>
 
+</script>
 </body>
 </html>

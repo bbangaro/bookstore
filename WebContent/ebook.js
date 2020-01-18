@@ -94,14 +94,47 @@ $(function() {
 
 		advance();
 	});
-	
-	function playEbook(eNum){
-		console.log(eNum);	}
-	
+
 
 });
 
 
+var audio = new Audio();
+
+
+
+
+function playEbook(eNum, eText){
+	console.log("e북 번호 : " + eNum);
+	console.log("텍스트 : " + eText);	
+
+	$.ajax({
+		url : "GelXmleBookPlayController",
+		type : "POST",
+		data: {
+			"playText" : eText
+		},
+		dataType: "html",
+		success : function(data){
+			console.log('음성 결과 확인');
+			setTimeout(playText, 2000);
+		},
+		error : function(jqXHR, textStatus, errorThrown){
+			alert("원리스트 소환 처리 실패 : \n"
+				+ "jqXHR.readyState : " + jqXHR.readyState +"\n"
+				+ "textStatus : " + textStatus +"\n"
+				+ "errorThrown : " + errorThrown);
+		}
+	});
+}
+
+function playText(result) {
+	audio.src = "result.mp3";
+	audio.oncanplaythrough = function() {
+		audio.play();
+		console.log("mp3 재생");
+	}
+};
 
 
 

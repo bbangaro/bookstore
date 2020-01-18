@@ -12,7 +12,7 @@
 	
 	
 	<select id="eBookImgs" parameterType="String" resultType="com.bc.model.vo.BookVO">
-		SELECT E_IMAGE
+		SELECT *
 		FROM E_BOOK
 		WHERE B_CODE = #{bCode}
 		ORDER BY E_NUM
