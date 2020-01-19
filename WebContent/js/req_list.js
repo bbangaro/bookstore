@@ -71,7 +71,7 @@
 		    
 		    a += '<div class="input-group">';
 		    a += '<input type="text" class="form-control" name="content_'+cIdx+'" value="'+ $(this).find("cComment").text()+'"/>';
-		    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+cIdx+","+ requestNum +');">수정</button> </span>';
+		    a += '<span class="input-group-btn"><button class="btn btn-outline-info" type="button" onclick="commentUpdateProc('+cIdx+","+ requestNum +');">수정</button> </span>';
 		    a += '</div>';
 		    
 		    $('.commentList'+cIdx).html(a);
@@ -139,7 +139,7 @@
 				commentTbody += "<div class='input-group'>";
 				commentTbody += "<input class='form-control' placeholder='Add a comment' type='text' name='content' id='content"+requestNum+"'>";
 				commentTbody += "</div>";
-				commentTbody += "<span class='input-group-addon'> <button type='button' onclick='commentInsert("+requestNum+")'>댓글달기</button> </span>";
+				commentTbody += "<span class='input-group-addon'> <button type='button' class='btn btn-outline-success' onclick='commentInsert("+requestNum+")'>댓글달기</button> </span>";
 				commentTbody += "<input type='hidden' name='requestNum' value="+requestNum+">";
 				commentTbody += "<input type='hidden' name='memberId' value='"+sessionId+"'>";
 				commentTbody += "<input type='hidden' name='password' value='"+sessionPwd+"'>";
@@ -156,8 +156,8 @@
 				commentTbody += "</div>";
 				commentTbody += "<div class='commentList"+ $(this).find("cIdx").text()+"'> <p>"+ $(this).find("cComment").text() +"</p>";
 				if(sessionId ==  $(this).find("cId").text() ) {
-				commentTbody += "<span class='input-group-addon'> <button type='button' onclick='commentUpdate("+$(this).find("cIdx").text()+","+requestNum+")'>수정</button> ";
-				commentTbody += "<button type='button' onclick='commentDelete("+ $(this).find("cIdx").text()+","+requestNum+")'>삭제</button> </span></div>";
+				commentTbody += "<span class='input-group-addon'> <button type='button' class='btn btn-outline-info' onclick='commentUpdate("+$(this).find("cIdx").text()+","+requestNum+")'>수정</button> ";
+				commentTbody += "<button type='button' class='btn btn-outline-danger' onclick='commentDelete("+ $(this).find("cIdx").text()+","+requestNum+")'>삭제</button> </span></div>";
 				}
 				commentTbody += "</div></li>";
 				commentTbody += "</ul>";

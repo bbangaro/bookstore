@@ -51,7 +51,7 @@ public class GelXmleBookPlayController extends HttpServlet {
 			conn.setRequestProperty("Content-Type", "application/xml");
 			conn.setRequestProperty("Host", "kakaoi-newtone-openapi.kakao.com");
 			conn.setRequestProperty("POST", "/v1/synthesize HTTP/1.1");
-			conn.setRequestProperty("Authorization", "******");
+			conn.setRequestProperty("Authorization", "**********");
 
 			// OutputStream으로 POST 데이터를 넘겨주겠다는 옵션.
 			conn.setDoOutput(true);

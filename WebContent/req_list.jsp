@@ -47,11 +47,11 @@
 	                                </a>
                                 </c:if>
                             <tr>
-                                <th><span>No</span></th> 
-                                <th><span>썸네일</span></th>
-                                <th><span>작성자</span></th>
+                                <th width="5%"><span>No</span></th> 
+                                <th width="10%"><span>썸네일</span></th>
+                                <th width="10%"><span>작성자</span></th>
                                 <th><span>제목</span></th>
-                                <th><span>등록일</span></th>
+                                <th width="15%"><span>등록일</span></th>
                                 <th><span>&nbsp;</span></th>
                             </tr>
                             </thead>
@@ -67,8 +67,7 @@
 		                                    <td><a>${vo.memberId }</a></td>
 		                                  
 		                                    <td>
-		                                    	<a >${vo.subject }</a>
-		                                    	<button onClick="getDataBtn(${vo.requestNum })" >보기</button>
+		                                    	<a class="listTitle" onClick="getDataBtn(${vo.requestNum })" >${vo.subject }</a>
 		                                    	<br>
 												<div id="tbody${vo.requestNum }"></div>
 												<div id="commentTbody${vo.requestNum }"></div>
@@ -115,8 +114,8 @@
                 </div>
               
               <!-- 페이징 버튼 위치 -->
-                  <nav aria-label="page">
-								<ul class="pagination">
+                  <nav class="listPage">
+								<ul class="pagination justify-content-md-center">
 								<%--[이전으로]에 대한 사용여부 처리 --%>
 								<c:choose>
 									<%--사용불가(disable) : 첫번째 블록인 경우 --%>

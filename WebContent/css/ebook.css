@@ -184,3 +184,7 @@ a.slide_btn {
     right: 50px;
   }
 }
+.playEbook {
+	float: right;
+	border: 0;
+}

@@ -177,3 +177,16 @@ a {
 .input-group {
 	margin-bottom: 10px;
 }
+.form-control{
+	margin-right : 10px;	
+}
+.listTitle {
+	color: #3498db !important;
+	font-weight: bold;
+}
+.listTitle:hover{
+	cursor: pointer;
+}
+.listPage {
+	padding-bottom: 10px;
+}
