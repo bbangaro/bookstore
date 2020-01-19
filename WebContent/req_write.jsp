@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" href="csstemplate/bbs.css">
 
 <title>입력화면</title>
-<link href="css/guestbook.css" rel="stylesheet" type="text/css">
+
 <style>
 
 body {

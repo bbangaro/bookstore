@@ -12,9 +12,9 @@
 
 <!-- 이북 css -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/ebook.css" />
+	href="${pageContext.request.contextPath}/css/ebook.css" />
 <!-- 이북 스크립트  -->
-<script src="${pageContext.request.contextPath}/ebook.js"></script>
+<script src="${pageContext.request.contextPath}/js/ebook.js"></script>
 
 <!-- 부투스트랩꺼 쓰려면 이거 있어야 함 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -56,7 +56,7 @@
 					
 							
 					<div class="slide">
-						<span class="glyphicon glyphicon-play-circle" onclick="playEbook(${list.eNum}, '${list.eText}')" ></span>
+						<button type="button" onclick="playEbook(${list.eNum}, '${list.eText}')" ><img src="images/playbutton.png"> </button>
 						<img src="ebookImages/${list.eImage }" />
 					</div>
 					
