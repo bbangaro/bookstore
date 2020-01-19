@@ -45,9 +45,10 @@ $(document).ready(function () {
 
 <style>
 	
-	* { font-family: 'Jeju Gothic', sans-serif; }
-
-	table tbody tr:hover { background-color: #f0f0f0; }
+	table tbody tr:hover { 
+		background-color: #f0f0f0; 
+		cursor: pointer;
+	}
 	
 	.paging { list-style: none; }
 	.paging li {
@@ -95,40 +96,25 @@ $(document).ready(function () {
                     <div class="table-responsive">
                     	<div class="pull-right">
 							<div class="btn-group">
-								<button type="button" class="btn btn-outline-success btn-filter" data-target="배송">배송</button>
-								<button type="button" class="btn btn-outline-warning btn-filter" data-target="주문/취소">주문/취소</button>
-								<button type="button" class="btn btn-outline-danger btn-filter" data-target="반품/교환">반품/교환</button>
-								<button type="button" class="btn btn-outline-info btn-filter" data-target="결제/결제수단">결제/결제수단</button>
-								<button type="button" class="btn btn-default btn-filter" data-target="전체">전체</button>
+								<button type="button" class="btn btn-light btn-filter" data-target="배송">배송</button>
+								<button type="button" class="btn btn-light btn-filter" data-target="주문/취소">주문/취소</button>
+								<button type="button" class="btn btn-light btn-filter" data-target="반품/교환">반품/교환</button>
+								<button type="button" class="btn btn-light btn-filter " data-target="결제/결제수단">결제/결제수단</button>
+								<button type="button" class="btn btn-light btn-filter" data-target="전체">전체</button>
 							</div>
 						</div>
-                    
                         <table class="table user-list">
                             <thead>
                                 <tr>
+                                <th><span>등록번호</span></th>
                                 <th><span>이미지</span></th>
                                 <th><span>아이디</span></th>
-                                <th class="text-center"><span>제목</span></th>
+                                <th><span>제목</span></th>
                                 <th><span>유형</span></th>
-                                <th>등록일</th>
+                                <th><span>등록일</span></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <img src="images/5.jpg" alt="">
-                                    </td>
-                                    <td>
-                                        <span class="label label-default">hello123</span>
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="#">1일에 주문했는데 배송 언제 오나요??</a>
-                                    </td>
-                                    <td>
-                                    	배송
-                                    </td>
-                                    <td>2013/08/12</td>
-                                </tr>
                                 <c:choose>
                                 <c:when test="${empty list }">
 	                                <tr>
@@ -155,14 +141,18 @@ $(document).ready(function () {
 	                                  		<tr data-status="${vo.category }" onclick="loginpleaz()">
 	                                  	</c:when>
 	                                  </c:choose>
-	                                  
+	                                  		<td>
+	                                  			${vo.qNum }
+	                                  		</td>
 	                                		<c:choose>
 												<c:when test="${vo.upload eq null}">
-													<td><img src="images/5.jpg" alt="디폴트이미지" width="80px" height="80px"></td>
+													<td>
+														<img src="images/png.png" alt="디폴트이미지" width="50px" height="50px">
+													</td>
 												</c:when>	
 												<c:otherwise>                                		
 			                                		<td>
-			                                			<img src="upload/${vo.upload }" alt="업로드이미지" width="80px" height="80px">
+			                                			<img src="upload/${vo.upload }" alt="업로드이미지" width="50px" height="50px">
 			                                		</td>
 		                                		</c:otherwise>
 	                                		</c:choose>
@@ -170,7 +160,7 @@ $(document).ready(function () {
 	                                		<td>
 	                                			${vo.memberId }
 	                                		</td>
-	                                		<td class="subject text-center">
+	                                		<td class="subject">
 	                                			${vo.subject }
 	                                		</td>
 	                                		<td>
@@ -187,7 +177,7 @@ $(document).ready(function () {
                                 </tbody>
                                 <tfoot>
                                 	<tr>
-                                		<td colspan="4">
+                                		<td colspan="5">
 											<ol class="paging">
 											<c:choose>
 												<c:when test="${pvo.beginPage == 1}">
@@ -224,7 +214,7 @@ $(document).ready(function () {
 											</ol>	
 										</td>
                                 		<td>
-                                			<input type="button" value="글쓰기" onclick="javascript:location.href='QnAWriteController'">
+                                			<button type="button" class="btn btn-light pull-right" onclick="javascript:location.href='QnAWriteController'">글쓰기</button>
                                 		</td>
                                 	</tr>
                             </tfoot>

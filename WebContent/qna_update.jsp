@@ -112,8 +112,9 @@
                     </div>
                     <div class="row">
                       <div class="col d-flex justify-content-end">
-                        <input type="button" value="입력" onclick="sendData()"> 
-						<input type="reset" value="취소">
+						<input type="button" class="btn btn-light pull-right" value="입력" onclick="sendData()"> 
+						&nbsp;
+						<input type="reset" class="btn btn-light pull-right" value="취소">
                       </div>
                     </div>
                     <br><br><br>

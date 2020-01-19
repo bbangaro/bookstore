@@ -8,7 +8,7 @@
 		FROM (SELECT ROWNUM R_NUM, Q.*
 		        FROM (SELECT *
 		              FROM QNA
-		              ORDER BY Q_NUM
+		              ORDER BY Q_NUM DESC
 		             ) Q
 		     )    
 		WHERE R_NUM BETWEEN #{begin} AND #{end}
