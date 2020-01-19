@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.bc.model.dao.CartDAO;
 import com.bc.model.vo.CartVO;
+import com.bc.model.vo.OrdersVO;
 
 public class PayCommand implements Command {
 
@@ -35,13 +36,16 @@ public class PayCommand implements Command {
 		map.put("rphone", request.getParameter("rphone"));
 		map.put("msg", request.getParameter("msg"));
 		map.put("total", request.getParameter("total"));
-		map.put("bCode", request.getParameter("bCode"));
 		
 		System.out.println("map:" + map);
 		
 		request.setAttribute("map", map);
 		
 		CartDAO.insertOrder(map);
+		
+		OrdersVO ovo = CartDAO.selectOrder((String)session.getAttribute("id"));
+		System.out.println("ovo:"+ovo);
+		request.setAttribute("ovo", ovo);
 		
 		return "pay.jsp";
 	}
