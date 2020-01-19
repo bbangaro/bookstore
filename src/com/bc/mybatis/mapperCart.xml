@@ -69,12 +69,19 @@
 	
 	<!-- order 테이블에서 데이터 조회 -->
 	<select id="oselect" parameterType="String" resultType="com.bc.model.vo.OrdersVO">
-		SELECT * FROM ORDERS WHERE MEMBER_ID = #{memberId} and STATE = 0
+		SELECT * FROM ORDERS 
+		 WHERE MEMBER_ID = #{memberId} and STATE = 0 and CANCEL = 0
 	</select>
 	
 	<!-- order 테이블의 state 업데이트 -->
 	<update id="oupdate" parameterType="int">
 		UPDATE ORDERS SET STATE = 1
+		 WHERE O_NUM = #{oNum}
+	</update>
+	
+	<!-- 결제 실패시 order 테이블의 cancel 업데이트 -->
+	<update id="cupdate" parameterType="int">
+		UPDATE ORDERS SET CANCEL = 1
 		 WHERE O_NUM = #{oNum}
 	</update>
 </mapper>

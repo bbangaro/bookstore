@@ -52,7 +52,7 @@
 		    	location.href = "PaySuccessController?oNum=${ovo.oNum}";
 		} else {
 			alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
-	    	location.href = "OrderController";
+	    	location.href = "PayFailController?oNum=${ovo.oNum}";
 		}
 	});
 </script>

@@ -96,4 +96,11 @@ public class CartDAO {
 		ss.close();
 		return result;
 	}
+
+	public static int updateCancel(int oNum) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.update("cupdate", oNum);
+		ss.close();
+		return result;
+	}
 }
