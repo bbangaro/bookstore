@@ -133,8 +133,6 @@
 			
 			var commentTbody = "";
 				commentTbody += "<form id='rForm' method='POST'}> ";
-				commentTbody += "<div class='container'>";
-				commentTbody += "<div class='col-sm-8'>";
 				commentTbody += "<div class='panel panel-white post panel-shadow'>";
 					
 				commentTbody += "<div class='post-footer'>";
@@ -164,8 +162,6 @@
 				commentTbody += "</div></li>";
 				commentTbody += "</ul>";
 				});
-				commentTbody += "</div>";
-				commentTbody += "</div>";
 				commentTbody += "</div>";
 				commentTbody += "</div>";
 				

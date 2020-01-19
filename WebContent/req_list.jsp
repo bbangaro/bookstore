@@ -115,16 +115,18 @@
                 </div>
               
               <!-- 페이징 버튼 위치 -->
-                  <nav>
+                  <nav aria-label="page">
 								<ul class="pagination">
 								<%--[이전으로]에 대한 사용여부 처리 --%>
 								<c:choose>
 									<%--사용불가(disable) : 첫번째 블록인 경우 --%>
 									<c:when test="${pvo.beginPage == 1}">
-										<li class="disabled"><span aria-hidden="true">이전</span></li>
+										<li class="page-item disabled">
+										<a class="page-link">이전</a>
+										</li>
 									</c:when>
 									<c:otherwise>
-										<li class="disabled"><a href="ReqListController?cPage=${pvo.beginPage - 1}" aria-label="Previous"><span aria-hidden="true">이전</span></a></li>
+										<li class="page-link"><a href="ReqListController?cPage=${pvo.beginPage - 1}" aria-label="Previous">이전</a></li>
 									</c:otherwise>
 								</c:choose>
 								
@@ -132,10 +134,12 @@
 								<c:forEach var="k" begin="${pvo.beginPage }" end="${pvo.endPage }">
 								<c:choose>
 									<c:when test="${k == pvo.nowPage}">
-										<li class="active">${k } <span class="sr-only">${k }</span></li>
+										<li class="page-item active">
+											<a class="page-link">${k }</a>
+										</li>
 									</c:when>
 									<c:otherwise>
-										<li class="disabled"><a href="ReqListController?cPage=${k}">${k } <span class="sr-only">${k }</span></a></li>
+										<li class="page-link disabled"><a href="ReqListController?cPage=${k}">${k }</a></li>
 									</c:otherwise>
 								</c:choose>
 								</c:forEach>
@@ -145,10 +149,12 @@
 									<%--사용불가(disable) : 
 										endPage가 전체페이지 수보다  크거나 같으면 --%>
 									<c:when test="${pvo.endPage >= pvo.totalPage }">
-										<li class="disabled"><span aria-hidden="true">다음</span></li>
+										<li class="page-item disabled">
+											<a class="page-link">다음</a>
+										</li>
 									</c:when>
 									<c:otherwise>
-										<li class="disabled"><a href="ReqListController?cPage=${pvo.endPage + 1}" aria-label="Previous"><span aria-hidden="true">다음</span></a></li>
+										<li class="page-link"><a href="ReqListController?cPage=${pvo.endPage + 1}" aria-label="Previous">다음</a></li>
 									</c:otherwise>
 								</c:choose>
 								</ul>	
