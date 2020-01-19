@@ -49,7 +49,7 @@
 						<img src="images/${book.bImage }">
 					</div>
 			
-					<audio id="bookAudio" src="" hidden></audio>		
+					<audio id="bookAudio" src="ebook/result.mp3" hidden></audio>		
 					
 					<c:forEach var="list" items="${list}">
 					
