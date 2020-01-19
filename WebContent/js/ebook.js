@@ -112,12 +112,13 @@ function playEbook(eNum, eText){
 		url : "GelXmleBookPlayController",
 		type : "POST",
 		data: {
+			"eNum" : eNum,
 			"playText" : eText
 		},
 		dataType: "html",
 		success : function(data){
 			console.log('음성 결과 확인');
-			setTimeout(playText, 2000);
+			setTimeout(playText(eNum), 2000);
 		},
 		error : function(jqXHR, textStatus, errorThrown){
 			alert("원리스트 소환 처리 실패 : \n"
@@ -128,8 +129,8 @@ function playEbook(eNum, eText){
 	});
 }
 
-function playText(result) {
-	audio.src = "result.mp3";
+function playText(eNum) {
+	audio.src = "ebook/"+eNum+".mp3";
 	audio.oncanplaythrough = function() {
 		audio.play();
 		console.log("mp3 재생");

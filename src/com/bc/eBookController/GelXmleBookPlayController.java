@@ -27,6 +27,8 @@ public class GelXmleBookPlayController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		
+		String eNum = request.getParameter("eNum");
 		String playText = request.getParameter("playText");
 
 		// HttpURLConnection 객체 생성.
@@ -49,7 +51,7 @@ public class GelXmleBookPlayController extends HttpServlet {
 			conn.setRequestProperty("Content-Type", "application/xml");
 			conn.setRequestProperty("Host", "kakaoi-newtone-openapi.kakao.com");
 			conn.setRequestProperty("POST", "/v1/synthesize HTTP/1.1");
-			conn.setRequestProperty("Authorization", "****");
+			conn.setRequestProperty("Authorization", "******");
 
 			// OutputStream으로 POST 데이터를 넘겨주겠다는 옵션.
 			conn.setDoOutput(true);
@@ -59,7 +61,7 @@ public class GelXmleBookPlayController extends HttpServlet {
 
 			// Request Body에 Data를 담기위해 OutputStream 객체를 생성.
 			OutputStream os = conn.getOutputStream();
-			String body = "<speak>" + playText + "</speak>";
+			String body = "<speak><voice name=\"WOMAN_READ_CALM\">" + playText + "</voice></speak>";
 			// Request Body에 Data 셋팅.
 			os.write(body.getBytes("utf-8"));
 			// Request Body에 Data 입력.
@@ -76,8 +78,9 @@ public class GelXmleBookPlayController extends HttpServlet {
 				is = conn.getInputStream();
 				int read = 0;
 				byte[] bytes = new byte[1024];
-
-				File f = new File("result.mp3");
+				
+				
+				File f = new File("c:/ebook/" + eNum + ".mp3");
 				f.createNewFile();
 					
 				System.out.println("file 경로 : " + f.getAbsolutePath());
