@@ -100,9 +100,7 @@ $(function() {
 
 
 var audio = new Audio();
-
-
-
+var playStat = false;
 
 function playEbook(eNum, eText){
 	console.log("e북 번호 : " + eNum);
@@ -130,6 +128,12 @@ function playEbook(eNum, eText){
 }
 
 function playText(eNum) {
+	// 현재 상태 toggle
+	playStat = !playStat;
+	
+	// 현재 재생중이면 오디오 중지
+	if(playStat) audio.stop();
+	
 	audio.src = "ebook/"+eNum+".mp3";
 	audio.oncanplaythrough = function() {
 		audio.play();
