@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.bc.model.vo.CartVO;
 import com.bc.model.vo.MemberVO;
+import com.bc.model.vo.OrdersVO;
 import com.bc.mybatis.DBService;
 
 public class CartDAO {
@@ -72,10 +73,26 @@ public class CartDAO {
 		ss.close();
 		return vo;
 	}
-
+	
+	//order테이블에 데이터 입력
 	public static int insertOrder(Map<String, Object> map) {
 		SqlSession ss = DBService.getFactory().openSession(true);
 		int result = ss.insert("order", map);
+		ss.close();
+		return result;
+	}
+	
+	//아이디로 order정보 조회
+	public static OrdersVO selectOrder(String id) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		OrdersVO ovo = ss.selectOne("oselect", id);
+		ss.close();
+		return ovo;
+	}
+
+	public static int updateState(int oNum) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.update("oupdate", oNum);
 		ss.close();
 		return result;
 	}
