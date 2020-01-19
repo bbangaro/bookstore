@@ -116,7 +116,7 @@ function playEbook(eNum, eText){
 		dataType: "html",
 		success : function(data){
 			console.log('음성 결과 확인');
-			setTimeout(playText(eNum), 2000);
+			setTimeout(playText(eNum), 1000);
 		},
 		error : function(jqXHR, textStatus, errorThrown){
 			alert("원리스트 소환 처리 실패 : \n"
@@ -128,17 +128,28 @@ function playEbook(eNum, eText){
 }
 
 function playText(eNum) {
+	audio.src = "ebook/"+eNum+".mp3";
+
+	if(playStat) {
+		audio.stop();
+		// 현재 상태 toggle
+		//playStat = !playStat;
+	}
+	else {
+	audio.oncanplaythrough = function(){
 	// 현재 상태 toggle
 	playStat = !playStat;
-	
-	// 현재 재생중이면 오디오 중지
-	if(playStat) audio.stop();
-	
-	audio.src = "ebook/"+eNum+".mp3";
-	audio.oncanplaythrough = function() {
-		audio.play();
-		console.log("mp3 재생");
+	audio.play();
+		}	
 	}
+//	
+//	// 현재 재생중이면 오디오 중지
+//	if(playStat) audio.stop();
+//	
+//	audio.oncanplaythrough = function() {
+//		audio.play();
+//		console.log("mp3 재생");
+//	}
 };
 
 
