@@ -35,7 +35,7 @@ public class AddProduct implements Command {
 		Map<String, Object> map = new HashMap<>();
 		map.put("bType", bType);
 		map.put("bCode", bCode);
-		map.put("count", 1); //개수 수정!!!!!!!!!!!!!!!
+		map.put("count", 1);
 		map.put("memberId", memberId);
 		
 		if (count == 0) {
