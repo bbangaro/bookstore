@@ -134,11 +134,11 @@ $(document).ready(function () {
 	                                  	<c:when test="${sessionScope.id eq 'admin'}">
 	                                  		<tr data-status="${vo.category }" onclick="javascript:location.href='QnAOneListController?qNum=${vo.qNum}'">
 	                                  	</c:when>
-	                                  	<c:when test="${sessionScope.id ne vo.memberId}">
-	                                  		<tr data-status="${vo.category }" onclick="diffId()">
-	                                  	</c:when>
 	                                  	<c:when test="${sessionScope.id eq null}">
 	                                  		<tr data-status="${vo.category }" onclick="loginpleaz()">
+	                                  	</c:when>
+	                                  	<c:when test="${sessionScope.id ne vo.memberId}">
+	                                  		<tr data-status="${vo.category }" onclick="diffId()">
 	                                  	</c:when>
 	                                  </c:choose>
 	                                  		<td>

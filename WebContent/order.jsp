@@ -34,6 +34,17 @@
 		}
 		frm.submit();
 	}
+	
+	$(function(){
+		$("#equal").change(function(){
+			if($("#eqaul:checked")){
+				$("#rname").val($("#oname").val());
+				$("#rphone").val($("#ophone").val());
+				$("#rzipcode").val($("#ozipcode").val());
+				$("#raddress").val($("#oaddress").val());
+			}
+		});
+	});
 </script>
 </head>
 <body>
@@ -162,8 +173,14 @@
 				</div>
 			</div>
 			<br>
-
-			<legend>수령인 정보</legend>
+			<br>
+			<legend>
+				수령인 정보 
+				<span class="pull-right">
+					<input type="checkbox" id="equal" value="equal">주문자와 정보가 일치합니다.
+				</span>
+			</legend>
+			
 			<div class="row">
 				<div class="form-card">
 					<div class='form-group'>
@@ -205,7 +222,7 @@
 				</div>
 			</div>
 			<br> <input type="hidden" value="${total }" name="total">
-			<button class="pull-right" onclick="sendData(this.form)">결제하기</button>
+			<button class="btn btn-light pull-right" onclick="sendData(this.form)">결제하기</button>
 		</div>
 	</form>
 	<%@ include file="include/bottom.jsp" %>
