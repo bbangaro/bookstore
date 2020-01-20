@@ -22,7 +22,6 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 <script>
-
 	
 	console.log("${param.bCode}");
 	console.log(${param.bCode});
@@ -55,6 +54,8 @@ header ul {
 
 .header-book {
 	display: flex;
+	height: 500px;
+	width: 500px;
 }
 
 .tit {
@@ -69,7 +70,7 @@ header button {
 	border: none;
 	margin: 5px;
 	padding: 10px;
-	width: 200px;
+	width: 180px;
 	border-radius: 6px;
 	cursor: pointer;
 	background-image: linear-gradient(to left, #fda7df, #9980fa, #fda7df);
@@ -143,25 +144,25 @@ hr {
 		<div class="header-book">
 			<div>
 				<a><img
-					src="../bookimg/${requestScope.bookvo.bImage }" width="480px" height="480px" alt=""></a>
+					src="../bookimg/${requestScope.bookvo.bImage }" width="150px" height="220px" alt=""></a>
 			</div>
 
 			<div class="header-book-title">
 				<div class="tit">
 					<ul class="">
 						<li><strong>책제목</strong>
-							<div>${requestScope.bookvo.bName}</div></li><br>
+							<div>${requestScope.bookvo.bName}</div></li>
 						<li><strong>저자</strong>
-							<div>${requestScope.bookvo.writerName}</div></li><br>
+							<div>${requestScope.bookvo.writerName}</div></li>
 						<li><strong>출판사</strong>
-							<div>${requestScope.bookvo.bCompany}</div></li><br>
+							<div>${requestScope.bookvo.bCompany}</div></li>
 						<li><strong>종이책</strong>
 							<div>
 								<i>${requestScope.bookvo.salePrice}</i>원 <br>
 								<p>
 									(<s>${requestScope.bookvo.bPrice},</s>10% 할인)
 								</p>
-							</div></li><br>
+							</div></li>
 					</ul>
 				</div>
 				<div>
@@ -291,7 +292,7 @@ hr {
 									<td><c:choose>
 											<c:when test="${vo.level > 1 }">
 												<c:forEach var="i" begin="1" end="${vo.level}" step="1">
-													<span style="padding-left: 25px"></span>
+													<span style="padding-left: 25px">i</span>
 												</c:forEach>
 												└[답변]
 												<a
