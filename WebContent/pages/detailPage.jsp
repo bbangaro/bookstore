@@ -28,6 +28,15 @@
 	function eBook() {
 		location.href = "/bookstore/eBookListController?bCode=e${param.bCode }";
 	}
+	
+	function cart() {
+		if (${empty sessionScope.id}) {
+			alert("로그인이 필요한 서비스입니다.");
+			location.href = "/bookstore/login.jsp";
+		} else {
+			location.href ='/bookstore/AddProductController';
+		}
+	}
 </script>
 
 <style>
@@ -158,7 +167,7 @@ hr {
 				</div>
 				<div>
 					<button class="btn"
-						onclick="location.href ='/bookstore/AddProductController'">
+						onclick="cart()">
 						<i class="fas fa-cart-arrow-down"></i>장바구니담기
 					</button>
 					<button class="btn">
