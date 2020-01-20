@@ -68,12 +68,16 @@
 		                                    <td><a>${vo.memberId }</a></td>
 		                                  
 		                                    <td>
-		                                    	<a class="listTitle" onClick="getDataBtn(${vo.requestNum })" >${vo.subject }</a>
+		                                    <div>
+		                               	    	<a class="listTitle" onClick="getDataBtn(${vo.requestNum })" >${vo.subject }</a>
 		                                    	<br>
-		                                    	<div class="listBody">
-													<div id="tbody${vo.requestNum }"></div>
-													<div id="commentTbody${vo.requestNum }"></div>
+		                                    	<div id="listToggle${vo.requestNum }">
+													<div id="tbody${vo.requestNum }"  style="display: none"></div>
+													<div id="commentTbody${vo.requestNum }"  style="display: none"></div>
 		                                    	</div>
+		                                    </div>
+<!-- 
+-->
 		                                    </td>
 		                                  
 		                                    <td>

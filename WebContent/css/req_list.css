@@ -195,6 +195,6 @@ a {
 	position: relative;
 }
 
-.listBody {
+.listTitle> div div  {
 	display: none ;
-} 
+}
