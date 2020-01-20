@@ -52,7 +52,6 @@ public class QnAListCommand implements Command {
 		request.setAttribute("list", list);
 		request.setAttribute("pvo", p);
 		System.out.println("list : " + list);
-		System.out.println(list.get(0));
 		System.out.println("세션아이디:" + session.getAttribute("id"));
 	
 		//댓글 개수 표시

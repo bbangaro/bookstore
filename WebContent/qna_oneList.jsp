@@ -178,6 +178,9 @@
 													<tfoot>
 														<tr>
 															<th>&nbsp;</th>
+														</tr>
+														<tr>
+															<th>&nbsp;</th>
 															<td>
 																<input type="button" class="btn btn-light" value="수 정" onclick="update_go(this.form)"> 
 																<input type="button" class="btn btn-light" value="삭 제" onclick="delete_go(this.form)">
