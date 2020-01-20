@@ -7,8 +7,7 @@
 <br>
 <br>
 <br>
-<nav
-	class="navbar fixed-bottom navbar-expand-sm navbar-light bg-light justify-content-center">
+<nav class="navbar fixed-bottom navbar-expand-sm navbar-light bg-light justify-content-center">
 	<ul class="navbar-nav">
 		<li class="nav-item"><a class="nav-link" href="NotListController">공지사항</a>
 		</li>

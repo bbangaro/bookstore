@@ -143,8 +143,57 @@
 			  </li>
 		  </ul>
 		  <div class="jumbotron"></div>
+		  
+		  
+		  
 		<%@ include file="include/bottom.jsp" %>
 	</div>
+	<div class="container-fluid" style="background-color: rgb(240, 240, 240);">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+			</div>
+			<div class="col-2 text-center text-muted" style="border-right: 1px solid lightgrey">이용약관</div>
+			<div class="col-2 text-center text-muted" style="border-right: 1px solid lightgrey">개인정보 처리 방침</div>
+			<div class="col-2 text-center text-muted" style="border-right: 1px solid lightgrey">고객센터</div>
+			<div class="col-2 text-center text-muted">2019 &copy; Copyright</div>
+			<div class="col ">
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col">
+			</div>
+			<div class="col-2 text-center text-lightgrey" >
+				<p class="blockquote-footer">본 약관은 한국어를 정본으로 합니다. 본 약관 또는 네이버 서비스와 관련된 여러분과 네이버와의 관계에는 대한민국의 법령이 적용됩니다. 그리고 본 약관 또는 네이버 서비스와 관련하여 여러분과 네이버 사이에 분쟁이 발생할 경우, 그 분쟁의 처리는 대한민국 '민사소송법'에서 정한 절차를 따릅니다.</p>
+			</div>
+			<div class="col-2 text-center" >
+				<p class="blockquote-footer">개인정보보호법 등 국내의 개인정보 보호 법령을 철저히 준수합니다. 또한 OECD의 개인정보 보호 가이드라인 등 국제 기준을 준수하여 서비스를 제공합니다.</p>
+			</div>
+			<div class="col-2 text-center" >
+				<p class="blockquote-footer">평일 10:00 ~ 18:00 | 점심시간 13:00 ~ 14:00
+					<br>※ 빠른 상담을 위해서 문의 전에 필명을 확인해주세요.
+					<br>('내 서재' 또는 '관리' 메뉴에서 확인)
+				</p>
+			</div>
+			<div class="col-2 text-center">
+				<p class="blockquote-footer">1조(BookStore)</p>
+			</div>
+			<div class="col ">
+			</div>
+		</div>
+	</div>
+	</div>
+		<br><br><br><br><br><br>
+		  
+		  
+	
+	
+	
+	
+	
+	
+	
 <script>
 	$(document).ready(function(){
 		<%@ include file="include/ajax.jsp"%>
