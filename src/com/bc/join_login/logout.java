@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.bc.kakaocommand.KakaoAPI;
+
 @WebServlet("/logout")
 public class logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -21,7 +23,12 @@ public class logout extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		session.removeAttribute("id");
+		 String code = request.getParameter("code");
+		 KakaoAPI kakao = new KakaoAPI();
+		 
+		 kakao.kakaoLogout((String)session.getAttribute("access_Token"));
+	     session.removeAttribute("access_Token");
+		 session.removeAttribute("id");
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 		dispatcher.forward(request, response);
