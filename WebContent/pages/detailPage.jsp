@@ -41,6 +41,10 @@
 </script>
 
 <style>
+
+body{
+font-family: sans-serif;
+}
 /* 기본 중앙정렬 틀 */
 .review, .header-book, .main-book {
 	background-color: #fefefe;
@@ -58,7 +62,9 @@ header ul {
 }
 
 .tit {
-	margin-right: 150px;
+	font-size: 20px;
+	font-family:sans-serif;
+	padding-left: 30px;
 }
 
 .checke {
@@ -188,9 +194,9 @@ hr {
 	<main>
 		<div class="main-book">
 			<ul>
-				<li><strong>목차</strong>
+				<li><strong style="font-size: 25px">목차</strong>
 					<div>${requestScope.bookvo.contents}</div></li>
-				<li><strong>책소개</strong>
+				<li><strong style="font-size: 25px">책소개</strong>
 					<div>${requestScope.bookvo.content}</div></li>
 			</ul>
 		</div>
@@ -198,32 +204,8 @@ hr {
 		<hr>
 
 		<div class="review" style="margin: 0 auto 0 auto;">
-			<div class="atc_area">
-				<div class="avg_area">
-					<h1>한줄 리뷰</h1>
-					<form action="/bookstore/startingAjax">
-						<div class="box">
-							<span class="fa fa-star checked" onclick="starmark(this)"
-								id="1one"></span> <span class="fa fa-star checked"
-								onclick="starmark(this)" id="2one"></span> <span
-								class="fa fa-star checked" onclick="starmark(this)" id="3one"></span>
-							<span class="fa fa-star checked" onclick="starmark(this)"
-								id="4one"></span> <span class="fa fa-star checked"
-								onclick="starmark(this)" id="5one"></span>
-						</div>
-
-						제목 <input type="text" class="star-title" name="title"
-							style="margin-bottom: 5px;"><br>
-						<textarea name="content" rows="5" cols="60" class="star-content"
-							placeholder="내용 최대 4천자" style="resize: none;"></textarea>
-						<button type="button" name="star" value="1" onclick="oneReviews()"
-							formaction="/bookstore/startingAjax"">리뷰쓰기</button>
-					</form>
-
-
-				</div>
-
-				<table class="star-rating">
+		
+			<table class="star-rating">
 					<thead>
 						<tr>
 							<th><strong>별점</strong></th>
@@ -251,11 +233,35 @@ hr {
 						</c:forEach>
 					</tbody>
 
-
-
-
-
 				</table>
+		
+		
+			<div class="atc_area">
+				<div class="avg_area">
+					<h1>한줄 리뷰</h1>
+					<form action="/bookstore/startingAjax">
+						<div class="box">
+							<span class="fa fa-star checked" onclick="starmark(this)"
+								id="1one"></span> <span class="fa fa-star checked"
+								onclick="starmark(this)" id="2one"></span> <span
+								class="fa fa-star checked" onclick="starmark(this)" id="3one"></span>
+							<span class="fa fa-star checked" onclick="starmark(this)"
+								id="4one"></span> <span class="fa fa-star checked"
+								onclick="starmark(this)" id="5one"></span>
+						</div>
+
+						제목 <input type="text" class="star-title" name="title"
+							style="margin-bottom: 5px;"><br>
+						<textarea name="content" rows="5" cols="60" class="star-content"
+							placeholder="내용 최대 4천자" style="resize: none;"></textarea>
+						<button type="button" name="star" value="1" onclick="oneReviews()"
+							formaction="/bookstore/startingAjax"">리뷰쓰기</button>
+					</form>
+
+
+				</div>
+
+			
 
 
 			</div>
