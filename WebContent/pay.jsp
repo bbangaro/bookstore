@@ -27,7 +27,6 @@
 		buyer_tel : "${ovo.buyerPhone}",
 		buyer_addr : "${ovo.recipientAddress}",
 		buyer_postcode : "${ovo.recipientZipcode}"
-	
 	}, function(rsp) { // callback
 
 		if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우

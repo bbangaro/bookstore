@@ -146,7 +146,7 @@
 		    		</c:if>
 		    </div>
 		   		<hr class="my-5">
-		    <h2>e북</h2>
+		    <h2>e북, 오디오 북</h2>
 		    <div class="row">
 		    	<c:if test="${not empty list2 }">
 		    		<c:forEach var="vo" items="${list2 }">
@@ -166,13 +166,6 @@
 		    	</c:if>
 		    </div>
 		    	<hr class="my-5">
-		    <h2>오디오북</h2>
-		    <div class="row">
-		    	<div class="col text-center">
-		    		검색 결과가 없습니다.
-		    	</div>
-		    </div>
-				<hr class="my-5">
 			</c:if>
 		    </div>
 			</div>

@@ -59,8 +59,12 @@
 	
 	<div class="container text-center">
 		<div class="fadeonload">
-			<img src="bookimg/0.jpg">
+			<img src="bookimg/bnD_01 (1).jpg">
 		</div>
+	</div>
+	<div class="row">
+	<div class="col"></div>	
+	<div class="col">
 		<div class="card mt-3">
 		    <div class="card-header text-left">신간 도서</div>
 			    <div class="card-body">
@@ -193,6 +197,8 @@
 				</div> 
 		    <div class="card-footer"><button id="More" type="button" class="btn"></button></div>
 		</div>
+		</div>
+		<div class="col"></div>
 	</div>
 	
 	

@@ -43,6 +43,9 @@
 	.fadeonload {
    	 opacity:0;
 	}
+	.fadeonload1 {
+   	 opacity:0;
+	}
 	
 	.navbar-light .navbar-nav .active>.nav-link{
 		color: #8B008B;
@@ -50,6 +53,9 @@
 	 }
 	 .col-3 a {
 	 	color: black;
+	 }
+	 .fadein {
+    	opacity:0;
 	 }
   </style>
 <title>Insert title here</title>
@@ -59,8 +65,14 @@
 	
 	<div class="container text-center">
 		<div class="fadeonload">
-			<img src="bookimg/0.jpg">
+			<img src="bookimg/bnG_01.jpg">
 		</div>
+	</div>
+	<div class="row">
+	<div class="col">
+			<br><br><br><br><br><br><br><br><br><br><br><div class="text-right"><img class="fadeonload1" src="images/bnD_04.jpg"></div>
+	</div> 
+	<div class="col">
 		<div class="card mt-3">
 		    <div class="card-header text-left">국내 도서</div>
 			    <div class="card-body">
@@ -191,6 +203,11 @@
 						</div>
 				</div> 
 		</div>
+		</div>
+		<div class="col">
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			<img class="fadein" src="images/bnO_04.jpg">
+		</div>
 	</div>
 	
 	
@@ -206,12 +223,24 @@
 	        $(this).animate({'opacity':'1','margin-left':'0px'},1000);
 	    });
 	    $('.fadeonload1').each( function(i){
-	        $(this).animate({'opacity':'1','margin-left':'0px'},1025);
-	    }); 
-	    $('.fadeonload2').each( function(i){
-	        $(this).animate({'opacity':'1','margin-left':'0px'},1025);
-	    }); 
+	        $(this).animate({'opacity':'1','margin-left':'0px'},1900);
+	    });
+	    
+	    $(window).scroll( function(){
+	        $('.fadein').each( function(i){
+	            
+	            var bottom_of_element = $(this).offset().top + $(this).outerHeight();
+	            var bottom_of_window = $(window).scrollTop() + $(window).height();
+	            
+	            if( bottom_of_window > bottom_of_element ){
+	                $(this).animate({'opacity':'1'},1000);
+	            }
+	            
+	        }); 
+	    });
 	});
+	    
+
 	</script>
 </body>
 </html>

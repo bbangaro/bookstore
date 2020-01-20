@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="csstemplate/bbs.css">
  -->
- 
+ <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
@@ -68,12 +68,16 @@
 		                                    <td><a>${vo.memberId }</a></td>
 		                                  
 		                                    <td>
-		                                    	<a class="listTitle" onClick="getDataBtn(${vo.requestNum })" >${vo.subject }</a>
+		                                    <div>
+		                               	    	<a class="listTitle" onClick="getDataBtn(${vo.requestNum })" >${vo.subject }</a>
 		                                    	<br>
-		                                    	<div class="listBody">
-													<div id="tbody${vo.requestNum }"></div>
-													<div id="commentTbody${vo.requestNum }"></div>
+		                                    	<div id="listToggle${vo.requestNum }">
+													<div id="tbody${vo.requestNum }"  style="display: none"></div>
+													<div id="commentTbody${vo.requestNum }"  style="display: none"></div>
 		                                    	</div>
+		                                    </div>
+<!-- 
+-->
 		                                    </td>
 		                                  
 		                                    <td>

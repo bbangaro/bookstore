@@ -6,7 +6,7 @@
 
 	<div class="container text-center mt-3">
 		<a href="index.jsp">
-			<img src="images/main.jpg">
+			<img src="images/main.jpg" onerror="this.src='../images/main.jpg'">
 		</a>
 	</div>
 	
@@ -25,12 +25,6 @@
 			    </li>
 			    <li class="nav-item mr-3 ${oo }">
 			      <a class="nav-link" href="/bookstore/obook?hCode=O&oo=active">외국</a>
-			    </li>
-			    <li class="nav-item mr-3">
-			      <a class="nav-link" href="#">e북</a>
-			    </li>
-			    <li class="nav-item mr-3">
-			      <a class="nav-link" href="#">오디오북</a>
 			    </li>
 	     	</ul>
 	     	<ul class="navbar-nav ml-auto">
