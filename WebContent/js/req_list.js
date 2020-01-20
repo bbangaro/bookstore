@@ -1,9 +1,13 @@
 	
+	
+
 	function getDataBtn(requestNum) {
 			getXMLMembers(requestNum);
-			$(".listBody").stop().toggle();
-//			$("#tbody"+requestNum).stop().slideToggle();
-//			$("#commentTbody"+requestNum).stop().slideToggle();
+			
+			$("#listToggle"+requestNum).contents().slideToggle();
+			
+//			$("#tbody"+requestNum).toggle();
+//			$("#commentTbody"+requestNum).toggle();
 	};	
 	
 	function getXMLMembers(requestNum){

@@ -26,12 +26,6 @@
 			    <li class="nav-item mr-3 ${oo }">
 			      <a class="nav-link" href="/bookstore/obook?hCode=O&oo=active">외국</a>
 			    </li>
-			    <li class="nav-item mr-3">
-			      <a class="nav-link" href="#">e북</a>
-			    </li>
-			    <li class="nav-item mr-3">
-			      <a class="nav-link" href="#">오디오북</a>
-			    </li>
 	     	</ul>
 	     	<ul class="navbar-nav ml-auto">
 			    <li class="nav-item">
