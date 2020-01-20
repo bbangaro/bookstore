@@ -7,47 +7,47 @@
 <meta charset="UTF-8">
 <title>Q&A상세페이지</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-	crossorigin="anonymous">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script
-	src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/earlyaccess/jejugothic.css">
-<link rel="stylesheet" type="text/css"
-	href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/jejugothic.css">
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 
 <link href="csstemplate/bss.css" rel="stylesheet" type="text/css">
 <link href="csstemplate/comment.css" rel="stylesheet" type="text/css">
 
-<link rel="stylesheet" type="text/css"
-	href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
 <script>
 	function update_go(frm) {
-		frm.action = "QnAUpdateController?qNum=${vo.qNum}";
-		frm.submit();
+		if (${sessionScope.id ne vo.memberId}) {
+			alert("수정 권한이 없습니다.");
+		} else {
+			frm.action = "QnAUpdateController?qNum=${vo.qNum}";
+			frm.submit();
+		}
 	}
 	
 	function delete_go(frm) {
-		var isDelete = confirm("정말 삭제하시겠습니까?");
 		
-		if (isDelete) {
-			frm.action = "QnADeleteController?qNum=${vo.qNum}";
-			frm.submit();			
+		if (${sessionScope.id ne vo.memberId}) {
+			alert("삭제 권한이 없습니다.");
 		} else {
-			history.go(0);
-		}
+		
+			var isDelete = confirm("정말 삭제하시겠습니까?");
+			
+			if (isDelete) {
+				frm.action = "QnADeleteController?qNum=${vo.qNum}";
+				frm.submit();			
+			} else {
+				history.go(0);
+			}
+		}	
 	}
 
 	function sendComment(frm) {
@@ -178,9 +178,9 @@
 													<tfoot>
 														<tr>
 															<th>&nbsp;</th>
-															<td><input type="button" value="수 정"
-																onclick="update_go(this.form)"> <input
-																type="button" value="삭 제" onclick="delete_go(this.form)">
+															<td>
+																<input type="button" class="btn btn-light" value="수 정" onclick="update_go(this.form)"> 
+																<input type="button" class="btn btn-light" value="삭 제" onclick="delete_go(this.form)">
 															</td>
 														</tr>
 													</tfoot>
@@ -194,11 +194,9 @@
 											<form action="QnACommentWriteController" method="post">
 												<div class="input-group">
 
-													<input class="form-control" placeholder="Add a comment"
-														type="text" name="content"> <span
-														class="input-group-addon"> 
-														<input type="button" value="입력" onclick="sendComment(this.form)">
-													</a>
+													<input class="form-control" placeholder="Add a comment" type="text" name="content"> 
+													<span class="input-group-addon"> 
+														<input type="button" class="btn btn-light pull-right" value="입력" onclick="sendComment(this.form)">
 													</span> <input type="hidden" name="qNum" value="${vo.qNum }">
 													<input type="hidden" name="memberId" value="${sessionScope.id }">
 
@@ -211,18 +209,14 @@
 													</c:when>
 													<c:otherwise>
 														<c:forEach var="cvo" items="${clist }">
-															<li class="comment"><a class="pull-left" href="#">
-																	<img class="avatar"
-																	src="http://bootdey.com/img/Content/user_1.jpg"
-																	alt="avatar">
-															</a>
-																<div class="comment-body">
-
-																	<div class="comment-heading">
-																		<h4 class="user">${cvo.memberId}</h4>
-																	</div>
-																	
-																		<p id="updateComment${cvo.cIdx }">${cvo.content}</p>
+															<li class="comment">
+																<a class="pull-left" href="#">
+																	<img class="avatar" src="http://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+																</a>
+																<div class="comment-heading">
+																	<h4 class="user">${cvo.memberId}</h4>
+																</div>
+																<p id="updateComment${cvo.cIdx }">${cvo.content}</p>
 															</li>
 															
 						                                   <c:choose>
@@ -245,12 +239,11 @@
 					                                        </form>	
 						                                   	</c:when>
 						                                   </c:choose>
-															
 														</c:forEach>
 													</c:otherwise>
 												</c:choose>
+											</ul>
 										</div>
-										</ul>
 									</div>
 								</div>
 							</div>
@@ -259,7 +252,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
 	</div>
 
 	<%@ include file="include/bottom.jsp"%>
