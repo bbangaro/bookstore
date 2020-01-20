@@ -53,7 +53,7 @@
 	<a href="NoticeUpdate?nNum=${vo.nNum }&subject=${vo.subject }&content=${vo.content}">
 		<button type="button" class="btn btn-light">수정</button>
 	</a>
-	<a href="">
+	<a href="NoticeDelete?nNum=${vo.nNum }">
 		<button type="button" class="btn btn-light">삭제</button>
 	</a>
 	</div>

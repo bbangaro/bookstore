@@ -127,6 +127,12 @@ public class NotDAO {
 		ss.close();
 		return list;
 	}
+	public static int getDelete(Map<String, Integer> map) {
+		SqlSession ss =  DBService.getFactory().openSession(true);
+		int result = ss.update("Ndelete",map);
+		ss.close();
+		return result;
+	}
 	
 	
 }
