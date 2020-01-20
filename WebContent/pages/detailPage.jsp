@@ -213,7 +213,7 @@ hr {
 		<hr>
 
 		<div class="review" style="margin: 0 auto 0 auto;">
-		
+					<h1>한줄 리뷰</h1>
 			<table class="star-rating">
 					<thead>
 						<tr>
@@ -247,7 +247,7 @@ hr {
 		
 			<div class="atc_area">
 				<div class="avg_area">
-					<h1>한줄 리뷰</h1>
+		
 					<form action="/bookstore/startingAjax">
 						<div class="box">
 							<span class="fa fa-star checked" onclick="starmark(this)"
