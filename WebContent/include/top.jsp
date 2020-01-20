@@ -20,8 +20,8 @@
 			    <li class="nav-item mr-3 ${no }">
 			      <a class="nav-link" href="nbook?hCode=N&no=active">신간</a>
 			    </li>
-			    <li class="nav-item mr-3 ">
-			      <a class="nav-link" href="#">베스트셀러</a>
+			    <li class="nav-item mr-3 ${bo }">
+			      <a class="nav-link" href="bbook?hCode=B&bo=active">베스트셀러</a>
 			    </li>
 			    <li class="nav-item mr-3 ${oo }">
 			      <a class="nav-link" href="obook?hCode=O&oo=active">외국</a>
