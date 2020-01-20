@@ -23,8 +23,8 @@
 		<c:if test="${not empty sessionScope.id}">
 			<li class="nav-item"><a class="nav-link" href="logout">${ sessionScope.id}님<br>로그아웃
 			</a>  </li>
+			<li class="nav-item"><a class="nav-link" href="CartListController">장바구니</a></li>
 		</c:if>
-		<li class="nav-item"><a class="nav-link" href="#">빈 자리</a></li>
 	</ul>
 </nav>
 
