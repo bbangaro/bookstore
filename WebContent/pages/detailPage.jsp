@@ -38,6 +38,15 @@
 			location.href ='/bookstore/AddProductController';
 		}
 	}
+	
+	function buy() {
+		if (${empty sessionScope.id}) {
+			alert("로그인이 필요한 서비스입니다.");
+			location.href = "/bookstore/login.jsp";
+		} else {
+			location.href ='/bookstore/PayDirectController';
+		}
+	}
 </script>
 
 <style>
@@ -175,7 +184,7 @@ hr {
 						onclick="cart()">
 						<i class="fas fa-cart-arrow-down"></i>장바구니담기
 					</button>
-					<button class="btn">
+					<button class="btn" onclick="buy()">
 						<i class="far fa-credit-card"></i>바로구매
 					</button>
 					

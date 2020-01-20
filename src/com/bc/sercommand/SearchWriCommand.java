@@ -22,6 +22,7 @@ public class SearchWriCommand implements Command{
 		List<GuestBookVO> list = SerDAO.getWri(map);
 		List<GuestBookVO> list2 = SerDAO.geteWri(map);
 		request.setAttribute("list2", list2);
+		request.setAttribute("list", list);
 		return "search.jsp";
 	}
 	

@@ -123,26 +123,20 @@
 		  		
 		  	</div>
 		  </div>
-		  
+		  <hr>
 		  <h2>종합베스트</h2>
-		  <ul class="nav nav-pills">
-			  <li class="nav-item">
-			    <a class="nav-link active" href="#">인문</a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link" href="#">소설</a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link" href="#">경제</a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link" href="#">에세이</a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link" href="#">과학</a>
-			  </li>
-		  </ul>
-		  <div class="jumbotron"></div>
+		  <div class="container">
+			<button id="getBo" type="button" class="btn btn-light" name="lcode" value="B1">소설</button>
+		  	<button id="getBo2" type="button" class="btn btn-light" name="lcode2" value="B2">시/에세이</button>
+		  	<button id="getBo3" type="button" class="btn btn-light" name="lcode3" value="B3">경제/경영</button>
+		  	<button id="getBo4" type="button" class="btn btn-light" name="lcode4" value="B4">자기계발</button>
+		  	<button id="getBo5" type="button" class="btn btn-light" name="lcode5" value="B5">인문</button>
+		  </div>
+		  <div class="container text-center my-2">
+		  	<div class="row" id="con2">
+		  		
+		  	</div>
+		  </div>
 		  
 		  
 		  
@@ -200,6 +194,8 @@
 		$("#getGo").trigger("click");
 		<%@ include file="include/ajax1.jsp" %>
 		$("#getNo").trigger("click");
+		<%@ include file="include/ajax2.jsp" %>
+		$("#getBo").trigger("click");
 	});
 	
 
