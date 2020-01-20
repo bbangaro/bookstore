@@ -2,15 +2,15 @@ package com.bc.model.vo;
 
 public class BookVO {
 	
-	private int hName,  bPrice, salePrice, buyNum, bType ;
+	private int hName,  bPrice, salePrice, eNum, buyNum, bType ;
 	private String hCode, lCode, bName, bCompany, status, st1, st2, 
-		   content, created, bCode, bImage, writerName, contents, eNum, eImage, aNum, audio, lName;
+		   content, created, bCode, bImage, writerName, contents,  eImage, aNum, audio, lName, eText;
 	public BookVO() {}
 	
 	public BookVO(int hName, String lName, int bPrice, int salePrice, int buyNum, int bType, String hCode, String lCode,
 			String bName, String bCompany, String status, String st1, String st2, String content, String created,
-			String bCode, String bImage, String writerName, String contents, String eNum, String eImage, String aNum,
-			String audio) {
+			String bCode, String bImage, String writerName, String contents, int eNum, String eImage, String aNum,
+			String audio, String eText) {
 		super();
 		this.hName = hName;
 		this.lName = lName;
@@ -35,6 +35,17 @@ public class BookVO {
 		this.eImage = eImage;
 		this.aNum = aNum;
 		this.audio = audio;
+		this.eText = eText;
+	}
+	
+	
+
+	public String geteText() {
+		return eText;
+	}
+
+	public void seteText(String eText) {
+		this.eText = eText;
 	}
 
 	public int gethName() {
@@ -189,11 +200,11 @@ public class BookVO {
 		this.contents = contents;
 	}
 
-	public String geteNum() {
+	public int geteNum() {
 		return eNum;
 	}
 
-	public void seteNum(String eNum) {
+	public void seteNum(int eNum) {
 		this.eNum = eNum;
 	}
 
@@ -223,12 +234,13 @@ public class BookVO {
 
 	@Override
 	public String toString() {
-		return "BookVO [hName=" + hName + ", lName=" + lName + ", bPrice=" + bPrice + ", salePrice=" + salePrice
-				+ ", buyNum=" + buyNum + ", bType=" + bType + ", hCode=" + hCode + ", lCode=" + lCode + ", bName="
-				+ bName + ", bCompany=" + bCompany + ", status=" + status + ", st1=" + st1 + ", st2=" + st2
-				+ ", content=" + content + ", created=" + created + ", bCode=" + bCode + ", bImage=" + bImage
-				+ ", writerName=" + writerName + ", contents=" + contents + ", eNum=" + eNum + ", eImage=" + eImage
-				+ ", aNum=" + aNum + ", audio=" + audio + "]";
+		return "BookVO [hName=" + hName + ", bPrice=" + bPrice + ", salePrice=" + salePrice + ", buyNum=" + buyNum
+				+ ", bType=" + bType + ", hCode=" + hCode + ", lCode=" + lCode + ", bName=" + bName + ", bCompany="
+				+ bCompany + ", status=" + status + ", st1=" + st1 + ", st2=" + st2 + ", content=" + content
+				+ ", created=" + created + ", bCode=" + bCode + ", bImage=" + bImage + ", writerName=" + writerName
+				+ ", contents=" + contents + ", eNum=" + eNum + ", eImage=" + eImage + ", aNum=" + aNum + ", audio="
+				+ audio + ", lName=" + lName + ", eText=" + eText + "]";
 	}
+	
 
 }

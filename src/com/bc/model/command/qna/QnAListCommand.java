@@ -18,6 +18,7 @@ import com.bc.page.vo.Paging;
 public class QnAListCommand implements Command {
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession(true);
 		
 		Paging p = new Paging();
 
@@ -52,6 +53,8 @@ public class QnAListCommand implements Command {
 		request.setAttribute("pvo", p);
 		System.out.println("list : " + list);
 		System.out.println(list.get(0));
+		System.out.println("세션아이디:" + session.getAttribute("id"));
+	
 		//댓글 개수 표시
 //		int qNum;
 //		int comment = QnADAO.countComment(qNum);

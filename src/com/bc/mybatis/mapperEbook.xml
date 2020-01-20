@@ -5,16 +5,17 @@
 <mapper namespace="rbookstore">
 
 	<select id="eBookImg" parameterType="String" resultType="com.bc.model.vo.BookVO">
-		SELECT B_IMAGE
+		SELECT *
 		FROM BOOK
 		WHERE B_CODE = #{bCode}
 	</select>
 	
 	
 	<select id="eBookImgs" parameterType="String" resultType="com.bc.model.vo.BookVO">
-		SELECT E_IMAGE
+		SELECT *
 		FROM E_BOOK
 		WHERE B_CODE = #{bCode}
+		ORDER BY E_NUM
 	</select>
 	
 	

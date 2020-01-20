@@ -70,6 +70,18 @@
 		review_num desc
 
 	</select>
+	
+	<!-- 별점 리뷰 -->
+	<select id="starRating" resultType="com.bc.model.vo.starRatingVO" >
+		select * from starrating where b_code = #{bCode}
+	</select>
+	
+	
+	<!-- 별점 insert -->
+	<insert id="insertStarRting" parameterType="com.bc.model.vo.starRatingVO" >
+		insert into starrating (star,title,content,idx,b_code) 
+		 VALUES( #{star}, #{title}, #{content}, STARRATING_SEQ.nextval, #{bCode})
+	</insert>
 
 	<!-- 페이지 총갯수 -->
 	<select id="detailPageReviewselect" resultType="int">

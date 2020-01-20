@@ -29,6 +29,7 @@ public class ReqWriteOKCommand implements Command {
 		//-------------------------
 		MultipartRequest mr = null;
 		String path = request.getRealPath("/upload");
+		System.out.println("사진 경로 path : " + path);
 		try {
 			mr = new MultipartRequest(
 					request, //요청객체
@@ -40,6 +41,7 @@ public class ReqWriteOKCommand implements Command {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		/* MultipartRequest 주요메소드
 		getParameter(문자열) : 파라미터값 추출
 		getOriginalFileName(문자열) : 업로드시 사용한 원본파일명

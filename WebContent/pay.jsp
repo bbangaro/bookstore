@@ -19,14 +19,14 @@
 	IMP.request_pay({ // param
 		pg : "inicis",
 		pay_method : "card",
-		merchant_uid : "ORD20180131-0000011",
-		name : "노르웨이 회전 의자",
-		amount : 100,
-		buyer_email : "gildong@gmail.com",
-		buyer_name : "홍길동",
-		buyer_tel : "010-4242-4242",
-		buyer_addr : "서울특별시 강남구 신사동",
-		buyer_postcode : "01181"
+		merchant_uid : "${ovo.orderId}",
+		name : "도서",
+		amount : ${ovo.amount},
+		buyer_email : "${ovo.buyerEmail}",
+		buyer_name : "${ovo.buyerName}",
+		buyer_tel : "${ovo.buyerPhone}",
+		buyer_addr : "${ovo.recipientAddress}",
+		buyer_postcode : "${ovo.recipientZipcode}"
 	
 	}, function(rsp) { // callback
 
@@ -44,22 +44,19 @@
 				}
 			}).done(function(data) { // 응답 처리
 		          switch(data.status) {
-		            case "vbankIssued":
-		              // 가상계좌 발급 시 로직
-		              break;
 		            case "success":
 		              // 결제 성공 시 로직
 		              break;
 		          }
 		        });
-		
+		    	location.href = "PaySuccessController?oNum=${ovo.oNum}";
 		} else {
 			alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+	    	location.href = "PayFailController?oNum=${ovo.oNum}";
 		}
 	});
 </script>
 </head>
 <body>
-	<button onclick="requestPay()">결제하기</button>
 </body>
 </html>
