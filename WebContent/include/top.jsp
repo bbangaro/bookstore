@@ -6,7 +6,7 @@
 
 	<div class="container text-center mt-3">
 		<a href="index.jsp">
-			<img src="images/main.jpg">
+			<img src="images/main.jpg" onerror="this.src='../images/main.jpg'">
 		</a>
 	</div>
 	
