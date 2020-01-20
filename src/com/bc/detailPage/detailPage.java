@@ -49,11 +49,11 @@ public class detailPage extends HttpServlet {
 			
 			
 			BookVO bookvo = TakDAO.detailPage(bCode);
-			Map<String, Integer> detailPageReview_ = new HashMap<>();
+			Map<String, String> detailPageReview_ = new HashMap<>();
 			
 			
-			detailPageReview_.put("bCode", Integer.parseInt(bCode));
-			detailPageReview_.put("pageNum", Integer.parseInt(pageNum));
+			detailPageReview_.put("bCode", bCode);
+			detailPageReview_.put("pageNum", pageNum);
 			
 			 int lastPage = TakDAO.detailPageReviewselect() ;
 			 
