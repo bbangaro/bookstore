@@ -16,7 +16,7 @@ public class PayFailCommand implements Command {
 		
 		int result = CartDAO.updateCancel(oNum);
 		
-		return "OrderController";
+		return "index.jsp";
 	}
 
 }

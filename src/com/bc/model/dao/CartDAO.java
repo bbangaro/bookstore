@@ -103,4 +103,21 @@ public class CartDAO {
 		ss.close();
 		return result;
 	}
+	
+	//바로결제 제품 카트에 추가
+	public static int insertDirectPay(Map<String, Object> map) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.insert("paydirect", map);
+		ss.close();
+		return result;
+	}
+
+	public static List<CartVO> getDirectCart(String id) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		List<CartVO> list = ss.selectList("directcart", id);
+		ss.close();
+		return list;
+	}
+
+	
 }

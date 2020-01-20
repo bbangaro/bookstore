@@ -11,7 +11,7 @@
 	<!-- 카트에 제품이 있는지 조회 -->
 	<select id="find" parameterType="com.bc.model.vo.CartVO" resultType="int">
 		SELECT COUNT(*) FROM CART 
-		 WHERE B_CODE = #{bCode} AND B_TYPE = #{bType}
+		 WHERE B_CODE = #{bCode} AND B_TYPE = #{bType} AND CLASS = 0
 		   AND MEMBER_ID = #{memberId}
 	</select>
 	
@@ -21,7 +21,8 @@
 		(SELECT B_PRICE FROM BOOK WHERE B_TYPE = #{bType} AND B_CODE = #{bCode}),
 		#{memberId}, 
 		(SELECT SALE_PRICE FROM BOOK WHERE B_TYPE = #{bType} AND B_CODE = #{bCode}),
-		(SELECT B_NAME FROM BOOK WHERE B_TYPE = #{bType} AND B_CODE = #{bCode})
+		(SELECT B_NAME FROM BOOK WHERE B_TYPE = #{bType} AND B_CODE = #{bCode}),
+		0
 		)
 	</insert>
 	
@@ -33,19 +34,19 @@
 	
 	<delete id="deleteproduct" parameterType="com.bc.model.vo.CartVO">
 		DELETE FROM CART 
-		 WHERE B_CODE = #{bCode} AND B_TYPE = #{bType}
+		 WHERE B_CODE = #{bCode} AND B_TYPE = #{bType} AND CLASS = 0
 		   AND MEMBER_ID = #{memberId}
 	</delete>
 	
 	<update id="setcount" parameterType="map">
-		UPDATE CART SET PRODUCTS_COUNT = #{quantity}
-		 WHERE MEMBER_ID = #{memberId}
+		UPDATE CART SET PRODUCTS_COUNT = #{quantity} 
+		 WHERE MEMBER_ID = #{memberId} AND CLASS = 0
 		   AND B_CODE = #{bCode} AND B_TYPE = #{bType}
 	</update>
 	
 	<!-- 아이디별 카트 조회 -->
 	<select id="cart" parameterType="string" resultType="com.bc.model.vo.CartVO">
-		SELECT * FROM CART WHERE MEMBER_ID = #{memberId}
+		SELECT * FROM CART WHERE MEMBER_ID = #{memberId} AND CLASS = 0
 	</select>
 	
 	<!-- 아이디별 배송 정보 조회 -->
@@ -84,5 +85,27 @@
 		UPDATE ORDERS SET CANCEL = 1
 		 WHERE O_NUM = #{oNum}
 	</update>
+	
+	<!-- 바로결제 제품 카트에 추가 -->
+	<insert id="paydirect" parameterType="map">
+		INSERT INTO CART VALUES(
+		CART_SEQ.NEXTVAL, #{bType}, #{bCode}, #{count}, SYSDATE, 
+		(SELECT B_PRICE FROM BOOK WHERE B_TYPE = #{bType} AND B_CODE = #{bCode}),
+		#{memberId}, 
+		(SELECT SALE_PRICE FROM BOOK WHERE B_TYPE = #{bType} AND B_CODE = #{bCode}),
+		(SELECT B_NAME FROM BOOK WHERE B_TYPE = #{bType} AND B_CODE = #{bCode}),
+		1
+		)
+	</insert>
+	
+	<!-- 바로 결제 제품 아이디별 카트 조회 -->
+	<select id="directcart" parameterType="string" resultType="com.bc.model.vo.CartVO">
+		SELECT * FROM CART WHERE MEMBER_ID = #{memberId} AND CLASS = 1
+	</select>
+	
+	<!-- 카트에서 class 조회하기 -->
+	<select id="class" parameterType="string" resultType="int">
+		SELECT CLASS FROM CART WHERE MEMBER_ID = #{memberId}
+	</select>
 </mapper>
 
