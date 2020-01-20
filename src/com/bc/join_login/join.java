@@ -1,6 +1,7 @@
 package com.bc.join_login;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -39,9 +40,9 @@ public class join extends HttpServlet {
 		
 		int result = TakDAO.insetMember(membervo);
 		System.out.println(result);
+		PrintWriter pw = response.getWriter();
 		if(result == 1 ) {
-			request.getSession().setAttribute("message","회원가입이 완료 되었씁니다.");
-			response.sendRedirect("join.jsp");
+			pw.print("<script>alert('회원가입이 완료 되었습니다.');location.href='/bookstore/login.jsp';</script>");
 		}else {
 			request.getSession().setAttribute("message","회원가입이 거절 되었습니다.");
 			response.sendRedirect("join.jsp");
@@ -49,6 +50,8 @@ public class join extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		request.setCharacterEncoding("utf-8");
 		doGet(request, response);
 	}

@@ -104,28 +104,28 @@ hr {
 /* 메인시작  */
 
 /* 리뷰 테이블 */
-.content-table {
+.content-table, .star-rating{
 	border-collapse: collapse;
 	margin: 25px 0;
 	font-size: 0.9em;
 	width: 100%;
 }
 
-.content-table thead tr {
+.content-table thead tr, .star-rating thead tr {
 	background-image: linear-gradient(to left, #fcb6e3, #c9bdf7, #fcb6e3);
 	width: 100%;
 	text-align: left;
 }
 
-.content-table th, .content-table td {
+.content-table th, .content-table td,  .star-rating th,  .star-rating td {
 	padding: 12px;
 }
 
-.content-table tbody tr {
+.content-table tbody tr,  .star-rating tbody tr{
 	border-bottom: 1px solid #d1d0d0;
 }
 
-.content-table tbody tr:last-of-type {
+.content-table tbody tr:last-of-type,  .star-rating tbody tr:last-of-type {
 	border-bottom: 2px solid #fcb6e3;
 }
 
@@ -223,7 +223,7 @@ hr {
 
 				</div>
 
-				<table border="1">
+				<table class="star-rating">
 					<thead>
 						<tr>
 							<th><strong>별점</strong></th>

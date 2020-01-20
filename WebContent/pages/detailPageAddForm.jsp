@@ -35,9 +35,7 @@
 </script>
 </head>
 <body>
-<p>${b_Code }</p>
-<p>${sessionScope.reviewNum }</p>
-
+	<h1>리뷰 작성</h1>
 	<c:if test="${empty reviewvo }">
  	<form name ="reviewForm" method="post"  action="/bookstore/detail/insertForm" enctype="multipart/form-data">
 		<div>
@@ -73,7 +71,7 @@
 	 
   	<div>
   		<button type="submit" name="update" formaction="/bookstore/detail/updateForm">수정하기</button>
-  		<button type="submit" onsubmit="return confirm('정말 삭제 하시겠어요?');" formaction="/bookstore/detail/deleteForm">삭제하기</button>
+  		<button type="submit" onclick="return confirm('정말 삭제 하시겠어요?');" formaction="/bookstore/detail/deleteForm">삭제하기</button>
   		<button type="submit" name="update"  formaction="/bookstore/pages/detailPageAddForm.jsp">답글쓰기</button>
   	</div>
   	 
