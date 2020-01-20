@@ -4,9 +4,9 @@
 
  
 
-	<div class="container text-center">
+	<div class="container text-center mt-3">
 		<a href="index.jsp">
-			<img src="images/5.jpg">
+			<img src="images/main.jpg">
 		</a>
 	</div>
 	

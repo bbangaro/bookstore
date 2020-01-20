@@ -44,23 +44,18 @@
 <body>
 
 	<%@ include file="include/top.jsp" %>
-	<div class="container" >
+	<div class="container mb-3">
 	  <div id="books" class="carousel slide" data-ride="carousel">
-			  <ul class="carousel-indicators">
-			    <li data-target="#books" data-slide-to="0" class="active"></li>
-			    <li data-target="#books" data-slide-to="1"></li>
-			    <li data-target="#books" data-slide-to="2"></li>
-			  </ul>
 			  
 			  <div class="carousel-inner">
-			    <div class="carousel-item active">
-			      <img src="images/00.jpg" width="1100px" height="300px">
+			    <div class="carousel-item active text-center">
+			      <img src="images/bnD_01.jpg">
 			    </div>
-			    <div class="carousel-item">
-			      <div class="jumbotron"><h1>이달의 베스트셀러2</h1></div>
+			    <div class="carousel-item text-center">
+			      <img src="images/bnE_05.jpg">
 			    </div>
-			    <div class="carousel-item">
-			      <div class="jumbotron"><h1>이달의 베스트셀러3</h1></div>
+			    <div class="carousel-item text-center">
+			      <img src="images/bnF_01.jpg">
 			    </div>
 			  </div>
 			  
@@ -71,7 +66,7 @@
 			    <span class="carousel-control-next-icon"></span>
 			  </a>
 		  </div>
-		  <h2>장르별 베스트 셀러</h2>
+		  <h2 class="mt-3">장르별 베스트 셀러</h2>
 		  <div class="container">
 			<button id="getGo" type="button" class="btn btn-light" name="lcode" value="K1">소설</button>
 		  	<button id="getGo2" type="button" class="btn btn-light" name="lcode2" value="K2">시/에세이</button>
