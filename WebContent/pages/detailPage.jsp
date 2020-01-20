@@ -26,7 +26,7 @@
 	console.log("${param.bCode}");
 	console.log(${param.bCode});
 	function eBook() {
-		location.href = "/bookstore/eBookListController?bCode=e${param.bCode }";
+		location.href = "/bookstore/eBookListController?bCode=${param.bCode }";
 	}
 	
 	function cart() {
@@ -264,8 +264,8 @@ hr {
 			</a>
 
 
-
-			<h1>구매자 리뷰</h1>
+			
+			<h1 id='tagre'>구매자 리뷰</h1>
 			<table class="content-table">
 				<thead>
 					<tr>
@@ -290,14 +290,14 @@ hr {
 									<td>${vo.reviewNum}</td>
 									<td>${vo.memberId}</td>
 									<td><c:choose>
-											<c:when test="${vo.level >1 }">
-												<c:forEach begin="1" end="${vo.level}" step="1">
-													<span style="padding-left: 15px"></span>
+											<c:when test="${vo.level > 1 }">
+												<c:forEach var="i" begin="1" end="${vo.level}" step="1">
+													<span style="padding-left: 25px">i</span>
 												</c:forEach>
-												<span style="margin-top: -50px;"></span>
-												<span>[답변]</span>
+												└[답변]
 												<a
 													href="/bookstore/detail/CheckForm?reviewNum=${vo.reviewNum }">${vo.subject}</a>
+											
 											</c:when>
 											<c:otherwise>
 												<a
@@ -309,7 +309,7 @@ hr {
 									</c:if>
 
 									<c:if test="${not empty vo.upload }">
-										<td><img width="100" height="100"
+										<td><img width="50" height="50"
 											src="../upload/${vo.upload}"></td>
 									</c:if>
 								</tr>

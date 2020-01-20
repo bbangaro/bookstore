@@ -97,7 +97,7 @@
 		INSERT INTO
 		REVIEW(REVIEW_NUM,MEMBER_ID,SUBJECT,R_CONTENT,UPLOAD,B_CODE,ORDERID,B_TYPE,PARENTNO)
 		VALUES(REVIEW_SEQ.NEXTVAL,
-		#{memberId},#{subject},#{rContent},#{upload,jdbcType=VARCHAR},1,'',#{bCode},
+		#{memberId},#{subject,jdbcType=VARCHAR},#{rContent,jdbcType=VARCHAR},#{upload,jdbcType=VARCHAR},1,'',#{bCode},
 		#{parentno})
 
 	</insert>
@@ -110,8 +110,8 @@
 	</select>
 
 	<update parameterType="com.bc.model.vo.ReviewVO"
-		id="updateReview">update review SET subject = #{subject} ,R_content =
-		#{rContent},upload = #{upload} WHERE review_num = #{reviewNum}
+		id="updateReview">update review SET subject = #{subject,jdbcType=VARCHAR} ,R_content =
+		#{rContent,jdbcType=VARCHAR},upload = #{upload,jdbcType=VARCHAR} WHERE review_num = #{reviewNum}
 	</update>
 
 	<delete parameterType="String" id="deleteReview">delete from review where

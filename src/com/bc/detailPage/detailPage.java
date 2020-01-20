@@ -105,7 +105,7 @@ public class detailPage extends HttpServlet {
 			System.out.println(myFile);
 			
 			
-			System.out.println("����;;");
+			System.out.println("성공;;");
 			ReviewVO reviewvo = new ReviewVO();
 			reviewvo.setParentno(parentno);
 			reviewvo.setUpload(myFile);
@@ -120,8 +120,8 @@ public class detailPage extends HttpServlet {
 			int i = TakDAO.inersertReviewvo(reviewvo);
 
 			PrintWriter pw = response.getWriter();
-			pw.print("<script>alert('�۾��� �Ϸ�');" + "location.href='/bookstore/detail/Page?bCode="
-					+ Integer.parseInt(bCode) + "'</script>");
+			pw.print("<script>location.href='/bookstore/detail/Page?bCode="
+					+bCode+"&#tagre'; </script>");
 
 		} else if (action.contentEquals("/CheckForm")) {
 			String reviewNum = request.getParameter("reviewNum");
@@ -169,17 +169,18 @@ public class detailPage extends HttpServlet {
 			reviewvo.setrContent(rContent);
 			int i = TakDAO.updateReviewvo(reviewvo);
 			PrintWriter pw = response.getWriter();
-			pw.print("<script>alert('���� �Ϸ�');" + "location.href='/bookstore/detail/Page?bCode="
-					+ Integer.parseInt(bCode) + "'</script>");
+			pw.print("<script>location.href='/bookstore/detail/Page?bCode="
+					+bCode+"&#tagre'; </script>");
 		} else if (action.contentEquals("/deleteForm")) {
-			String reviewNum = request.getParameter("reviewNum");
-			String bCode = request.getParameter("bCode");
+			HttpSession session = request.getSession();
+			String reviewNum =(String) session.getAttribute("reviewNum"); 
+			String bCode = (String) session.getAttribute("b_Code");
 			System.out.println(reviewNum);
-			System.out.println("bCodr: " + bCode);
+			System.out.println("bCode: " + bCode);
 			TakDAO.deleteReviewvo(reviewNum);
 			PrintWriter pw = response.getWriter();
-			pw.print("<script>alert('���� �Ϸ�');" + "location.href='/bookstore/detail/Page?bCode="
-					+ Integer.parseInt(bCode) + "'</script>");
+			pw.print("<script>location.href='/bookstore/detail/Page?bCode="
+					+bCode+"&#tagre'; </script>");
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
 		dispatcher.forward(request, response);
