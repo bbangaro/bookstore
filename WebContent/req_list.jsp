@@ -5,6 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+
 <!-- 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -69,8 +73,10 @@
 		                                    <td>
 		                                    	<a class="listTitle" onClick="getDataBtn(${vo.requestNum })" >${vo.subject }</a>
 		                                    	<br>
-												<div id="tbody${vo.requestNum }"></div>
-												<div id="commentTbody${vo.requestNum }"></div>
+		                                    	<div class="listBody">
+													<div id="tbody${vo.requestNum }"></div>
+													<div id="commentTbody${vo.requestNum }"></div>
+		                                    	</div>
 		                                    </td>
 		                                  
 		                                    <td>
@@ -102,7 +108,7 @@
 								</c:if>
 								
 								<c:if test="${empty list }">
-									<td colspan="5">데이터가 없습니다t^^t</td>
+									<td colspan="5">등록된 게시물이 없습니다</td>
 								</c:if>
 								
                             </tbody>

@@ -128,30 +128,19 @@ function playEbook(eNum, eText){
 }
 
 function playText(eNum) {
-	audio.src = "ebook/"+eNum+".mp3";
-
-	if(playStat) {
-		audio.stop();
+	if (playStat) {
+		audio.pause();
 		// 현재 상태 toggle
-		//playStat = !playStat;
+		playStat = !playStat;
+	} else {
+		audio.src = "ebook/"+eNum+".mp3";
+		audio.oncanplaythrough = function() {
+			// 현재 상태 toggle
+			playStat = !playStat;
+			audio.play();
+		}
 	}
-	else {
-	audio.oncanplaythrough = function(){
-	// 현재 상태 toggle
-	playStat = !playStat;
-	audio.play();
-		}	
-	}
-//	
-//	// 현재 재생중이면 오디오 중지
-//	if(playStat) audio.stop();
-//	
-//	audio.oncanplaythrough = function() {
-//		audio.play();
-//		console.log("mp3 재생");
-//	}
 };
-
 
 
 

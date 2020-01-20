@@ -1,6 +1,9 @@
 	
-	function getDataBtn(requestNum) { 
+	function getDataBtn(requestNum) {
 			getXMLMembers(requestNum);
+			$(".listBody").stop().toggle();
+//			$("#tbody"+requestNum).stop().slideToggle();
+//			$("#commentTbody"+requestNum).stop().slideToggle();
 	};	
 	
 	function getXMLMembers(requestNum){
@@ -139,7 +142,7 @@
 				commentTbody += "<div class='input-group'>";
 				commentTbody += "<input class='form-control' placeholder='Add a comment' type='text' name='content' id='content"+requestNum+"'>";
 				commentTbody += "</div>";
-				commentTbody += "<span class='input-group-addon'> <button type='button' class='btn btn-outline-success' onclick='commentInsert("+requestNum+")'>댓글달기</button> </span>";
+				commentTbody += "<span class='input-group-addon'> <button type='button' class='btn btn-outline-light text-dark btn-sm' onclick='commentInsert("+requestNum+")'>댓글달기</button> </span>";
 				commentTbody += "<input type='hidden' name='requestNum' value="+requestNum+">";
 				commentTbody += "<input type='hidden' name='memberId' value='"+sessionId+"'>";
 				commentTbody += "<input type='hidden' name='password' value='"+sessionPwd+"'>";
@@ -156,8 +159,8 @@
 				commentTbody += "</div>";
 				commentTbody += "<div class='commentList"+ $(this).find("cIdx").text()+"'> <p>"+ $(this).find("cComment").text() +"</p>";
 				if(sessionId ==  $(this).find("cId").text() ) {
-				commentTbody += "<span class='input-group-addon'> <button type='button' class='btn btn-outline-info' onclick='commentUpdate("+$(this).find("cIdx").text()+","+requestNum+")'>수정</button> ";
-				commentTbody += "<button type='button' class='btn btn-outline-danger' onclick='commentDelete("+ $(this).find("cIdx").text()+","+requestNum+")'>삭제</button> </span></div>";
+				commentTbody += "<span class='input-group-addon'> <button type='button' class='btn btn-outline-light text-dark btn-sm' onclick='commentUpdate("+$(this).find("cIdx").text()+","+requestNum+")'>수정</button> ";
+				commentTbody += "<button type='button' class='btn btn-outline-light text-dark btn-sm' onclick='commentDelete("+ $(this).find("cIdx").text()+","+requestNum+")'>삭제</button> </span></div>";
 				}
 				commentTbody += "</div></li>";
 				commentTbody += "</ul>";
@@ -176,8 +179,10 @@
 					+ "errorThrown : " + errorThrown);
 			}
 		});
-	}
 		
+	
+	}
+	
 	
 	function reqDelete(requestNum) {
 		if(confirm("글을 삭제하시겠습니까?") == true){
