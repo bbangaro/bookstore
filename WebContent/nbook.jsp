@@ -43,7 +43,9 @@
 	.fadeonload {
    	 opacity:0;
 	}
-	
+	.fadeonload1 {
+   	 opacity:0;
+	}
 	.navbar-light .navbar-nav .active>.nav-link{
 		color: #8B008B;
 		border-bottom: 2px solid #8B008B;
@@ -64,7 +66,7 @@
 	</div>
 	<div class="row">
 		<div class="col">
-		</div>
+		</div> 
 		<div class="col">
 		<div class="card mt-3">
 		    <div class="card-header text-left">신간 도서</div>
@@ -216,7 +218,7 @@
 	        $(this).animate({'opacity':'1','margin-left':'0px'},1000);
 	    });
 	    $('.fadeonload1').each( function(i){
-	        $(this).animate({'opacity':'1','margin-left':'0px'},1025);
+	        $(this).animate({'opacity':'1','margin-left':'0px'},1800);
 	    }); 
 	    $('.fadeonload2').each( function(i){
 	        $(this).animate({'opacity':'1','margin-left':'0px'},1025);
